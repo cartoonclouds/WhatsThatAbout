@@ -67,15 +67,15 @@ class ReferenceTest extends TestCase
     /**
      * @test
      */
-    public function a_reference_can_have_many_shows()
+    public function a_reference_has_just_one_show()
     {
-        $shows = factory(Show::class, 10)->create([
+        $show = factory(Show::class)->create([
             'user_id' => $this->user->id
         ]);
 
-        $this->reference->shows()->saveMany($shows);
+        $this->reference->show()->associate($show);
 
-        $this->assertEquals($shows->pluck('id'), $this->reference->shows->pluck('id'));
+        $this->assertEquals($show->id, $this->reference->show->id);
     }
 
     /**

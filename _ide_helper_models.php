@@ -165,6 +165,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $title
+ * @property string $slug
  * @property string $synopsis
  * @property string|null $release_year
  * @property string $thumbnail
@@ -192,6 +193,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Show whereReferences($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Show whereReleaseYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Show whereRuntime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Show whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Show whereSynopsis($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Show whereThumbnail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Show whereTitle($value)
@@ -209,6 +211,7 @@ namespace App\Models{
  * @property string|null $start_time The timestampe the reference starts
  * @property string|null $finish_time The timestampe the reference finishes
  * @property bool|null $runs_throughout Does the reference occur throughout the show?
+ * @property string $details The story regarding what is being referenced
  * @property array|null $references A JSON object with title as key and URL as value
  * @property int $show_id
  * @property int $user_id
@@ -224,6 +227,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reference newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reference query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reference whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reference whereDetails($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reference whereFinishTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reference whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reference whereReferences($value)

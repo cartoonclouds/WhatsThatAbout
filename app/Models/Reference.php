@@ -6,7 +6,7 @@ use Eloquent;
 
 class Reference extends Eloquent
 {
-    protected $casts = [
+    protected $casts = [ // object
         'references' => 'array', // {imdb_id: tt0123456} http://www.imdb.com/title/tt0123456/
         'runs_throughout' => 'boolean'
     ];

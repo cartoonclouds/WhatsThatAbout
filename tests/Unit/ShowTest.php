@@ -63,7 +63,7 @@ class ShowTest extends TestCase
 
         $this->show->references()->saveMany($references);
 
-        $this->assertEquals($references->pluck('id'), $this->show->references->pluck('id'));
+        $this->assertEquals($references->pluck('id'), $this->show->reference->id);
     }
 
     /**

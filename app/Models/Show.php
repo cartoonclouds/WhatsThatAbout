@@ -3,13 +3,38 @@
 namespace App\Models;
 
 use Eloquent;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Show extends Eloquent
 {
-    protected $casts = [
+    use HasSlug;
+
+    protected $casts = [ // object
         'references' => 'array', // {imdb_id: tt0123456}, wikipedia_url: '', official_website_url: ''} http://www.imdb.com/title/tt0123456/
         'is_published' => 'boolean'
     ];
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug')
+            ->slugsShouldBeNoLongerThan(50);
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function votes()
     {
@@ -18,12 +43,12 @@ class Show extends Eloquent
 
     public function references()
     {
-        return $this->belongsToMany(Reference::class);
+        return $this->hasMany(Reference::class);
     }
 
-    public function rating()
+    public function ratings()
     {
-        return $this->belongsTo(Rating::class, 'rate_id');
+        return $this->belongsToMany(Rating::class);
     }
 
     public function genres()

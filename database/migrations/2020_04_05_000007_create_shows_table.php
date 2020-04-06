@@ -25,7 +25,7 @@ class CreateShowsTable extends Migration
             $table->id()->unique();
             $table->string('title')->index();
             $table->string('slug')->unique()->index();
-            $table->longText('synopsis');
+            $table->longText('synopsis'); // multiLineString
             $table->year('release_year')->nullable();
             $table->string('thumbnail');
             $table->time('runtime')->nullable();

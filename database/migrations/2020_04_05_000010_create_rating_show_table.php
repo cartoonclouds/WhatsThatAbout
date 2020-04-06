@@ -4,28 +4,28 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReferenceShowTable extends Migration
+class CreateRatingShowTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'reference_show';
+    public $tableName = 'rating_show';
 
     /**
      * Run the migrations.
-     * @table reference_show
+     * @table rating_show
      *
      * @return void
      */
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
+            $table->integer('rating_id');
             $table->integer('show_id');
-            $table->integer('reference_id');
             $table->timestamps();
 
-            $table->unique(['show_id', 'reference_id'])->primary()->index();
+            $table->unique(['rating_id', 'show_id'])->primary()->index();
         });
     }
 
@@ -34,8 +34,8 @@ class CreateReferenceShowTable extends Migration
      *
      * @return void
      */
-     public function down()
-     {
-       Schema::dropIfExists($this->tableName);
-     }
+    public function down()
+    {
+        Schema::dropIfExists($this->tableName);
+    }
 }

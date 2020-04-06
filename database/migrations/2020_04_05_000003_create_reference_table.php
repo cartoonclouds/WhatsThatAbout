@@ -25,9 +25,10 @@ class CreateReferenceTable extends Migration
             $table->time('start_time')->nullable()->comment('The timestampe the reference starts');
             $table->time('finish_time')->nullable()->comment('The timestampe the reference finishes');
             $table->boolean('runs_throughout')->nullable()->comment('Does the reference occur throughout the show?');
-            $table->longText('details')->comment('The story regarding what is being referenced');
+            $table->longText('details')->comment('The story regarding what is being referenced'); // multiLineString
             $table->json('references')->nullable()->comment('A JSON object with title as key and URL as value');
             $table->integer('show_id')->index();
+            $table->integer('type_id')->index();
             $table->integer('user_id')->index();
 
             $table->timestamps();
