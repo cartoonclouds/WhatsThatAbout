@@ -9,7 +9,6 @@ $factory->define(Rating::class, function (Faker $faker) {
     return [
         'country' => $faker->countryISOAlpha3,
         'rating' => $faker->randomElement(['G', 'PG', 'M', 'MA', 'R']),
-        'description' => $faker->realText(),
-        'reference_url' => $faker->url
+        'description' => $faker->realText
     ];
 });

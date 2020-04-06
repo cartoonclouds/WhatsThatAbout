@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 7.4.0 on 2020-04-05 18:06:00.
+ * Generated for Laravel 7.4.0 on 2020-04-06 22:53:38.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -18999,13 +18999,6 @@ namespace Illuminate\Support {
 
 namespace App\Models {
     /**
-    * @method \Illuminate\Database\Eloquent\Collection|ReferenceUser[]|ReferenceUser create($attributes = [])
-    * @method \Illuminate\Database\Eloquent\Collection|ReferenceUser[]|ReferenceUser make($attributes = [])
-    */
-    class ReferenceUserFactoryBuilder extends \Illuminate\Database\Eloquent\FactoryBuilder {}
-}
-namespace App\Models {
-    /**
     * @method \Illuminate\Database\Eloquent\Collection|Show[]|Show create($attributes = [])
     * @method \Illuminate\Database\Eloquent\Collection|Show[]|Show make($attributes = [])
     */
@@ -19027,31 +19020,10 @@ namespace App\Models {
 }
 namespace App\Models {
     /**
-    * @method \Illuminate\Database\Eloquent\Collection|RatingShow[]|RatingShow create($attributes = [])
-    * @method \Illuminate\Database\Eloquent\Collection|RatingShow[]|RatingShow make($attributes = [])
-    */
-    class RatingShowFactoryBuilder extends \Illuminate\Database\Eloquent\FactoryBuilder {}
-}
-namespace App\Models {
-    /**
-    * @method \Illuminate\Database\Eloquent\Collection|GenreShow[]|GenreShow create($attributes = [])
-    * @method \Illuminate\Database\Eloquent\Collection|GenreShow[]|GenreShow make($attributes = [])
-    */
-    class GenreShowFactoryBuilder extends \Illuminate\Database\Eloquent\FactoryBuilder {}
-}
-namespace App\Models {
-    /**
     * @method \Illuminate\Database\Eloquent\Collection|Type[]|Type create($attributes = [])
     * @method \Illuminate\Database\Eloquent\Collection|Type[]|Type make($attributes = [])
     */
     class TypeFactoryBuilder extends \Illuminate\Database\Eloquent\FactoryBuilder {}
-}
-namespace App\Models {
-    /**
-    * @method \Illuminate\Database\Eloquent\Collection|ReferenceType[]|ReferenceType create($attributes = [])
-    * @method \Illuminate\Database\Eloquent\Collection|ReferenceType[]|ReferenceType make($attributes = [])
-    */
-    class ReferenceTypeFactoryBuilder extends \Illuminate\Database\Eloquent\FactoryBuilder {}
 }
 namespace App\Models {
     /**
@@ -19073,18 +19045,4 @@ namespace App\Models {
     * @method \Illuminate\Database\Eloquent\Collection|Rating[]|Rating make($attributes = [])
     */
     class RatingFactoryBuilder extends \Illuminate\Database\Eloquent\FactoryBuilder {}
-}
-namespace App\Models {
-    /**
-    * @method \Illuminate\Database\Eloquent\Collection|ReferenceShow[]|ReferenceShow create($attributes = [])
-    * @method \Illuminate\Database\Eloquent\Collection|ReferenceShow[]|ReferenceShow make($attributes = [])
-    */
-    class ReferenceShowFactoryBuilder extends \Illuminate\Database\Eloquent\FactoryBuilder {}
-}
-namespace App\Models {
-    /**
-    * @method \Illuminate\Database\Eloquent\Collection|ShowUser[]|ShowUser create($attributes = [])
-    * @method \Illuminate\Database\Eloquent\Collection|ShowUser[]|ShowUser make($attributes = [])
-    */
-    class ShowUserFactoryBuilder extends \Illuminate\Database\Eloquent\FactoryBuilder {}
 }

@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('hide_email_address')->default('0');
 
+            $table->softDeletes('deleted_at');
             $table->timestamps();
         });
     }

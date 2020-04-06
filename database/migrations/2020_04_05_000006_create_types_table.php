@@ -22,7 +22,10 @@ class CreateTypesTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('definition')->nullable()->index();
+            $table->string('term')->index();
+            $table->string('definition')->nullable();
+
+            $table->softDeletes('deleted_at');
             $table->timestamps();
         });
     }

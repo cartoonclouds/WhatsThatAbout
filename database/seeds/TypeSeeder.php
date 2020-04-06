@@ -10,6 +10,6 @@ class TypeSeederTableSeeder extends Seeder
     public function run()
     {
         // TestDummy::times(20)->create(\App\Models\Type::class);
-        factory(App\Models\User::class, 20)->create();
+        factory(App\Models\Type::class, 20)->create();
     }
 }

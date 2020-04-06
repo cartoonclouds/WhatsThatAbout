@@ -13,6 +13,8 @@ class Vote extends Eloquent
 
     //distinguish between Reference and Show morphs
 
+    //use get/set attributes to enforce a correct vote
+
 
     public function voter()
     {

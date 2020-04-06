@@ -23,8 +23,8 @@ class CreateVotablesTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id()->unique();
             $table->morphs('votable');
+            $table->integer('vote')->nullable()->comment('Between 1 -> 5');
             $table->integer('user_id')->index();
-            $table->integer('vote')->comment('Either  (+)1 for a vote up or -1 for vote down');
             $table->timestamps();
         });
     }

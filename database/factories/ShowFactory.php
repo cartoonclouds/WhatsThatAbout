@@ -7,12 +7,14 @@ use Faker\Generator as Faker;
 
 $factory->define(Show::class, function (Faker $faker) {
     return [
-        'imdb_id' => 'tt' . $faker->numerify('#######'),
-        'wikipedia_url' => $faker->url,
-        'official_website_url' => $faker->url,
-        'image_url' => $faker->imageUrl(),
-        'running_length' => $faker->time,
-        'is_draft' => $faker->boolean,
+        'title' => $faker->sentence,
+        'synopsis' => $faker->paragraphs($faker->numberBetween(1, 10), true),
+        'release_year' => $faker->numberBetween(1950, 2030), // '-30 years', '+5 years'
+        'thumbnail' => $faker->imageUrl(),
+        'runtime' => $faker->time,
+        'references' => [],
+        'is_published' => $faker->boolean,
+        'rating_id' => factory(\App\Models\Rating::class)->create()->id,
         'user_id' => factory(\App\Models\User::class)->create()->id
     ];
 });

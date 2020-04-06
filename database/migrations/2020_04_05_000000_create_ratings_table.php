@@ -23,10 +23,8 @@ class CreateRatingsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id()->unique();
             $table->string('country', 3)->default('AUS')->comment('Must use the (ISO-3166-1 ALPHA-3) 3-letter country abbreivations, see: https://laendercode.net/en/3-letter-list.html');
-            $table->string('rating')->comment('See: https://www.wikiwand.com/en/Motion_picture_content_rating_system; G, PG, M, MA, R');
-            $table->longText('description')->nullable();
-            $table->string('reference_url')->nullable();
-
+            $table->string('rating')->comment('See: https://www.wikiwand.com/en/Motion_picture_content_rating_system; https://au.ign.com/wikis/content-ratings/MPAA');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Type::class, function (Faker $faker) {
     return [
-        'definition' => $faker->unique()->word
+        'term' => $faker->unique()->words($faker->numberBetween(1, 3), true),
+        'definition' => $faker->sentence,
     ];
 });

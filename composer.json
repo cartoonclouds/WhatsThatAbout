@@ -19,12 +19,12 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "sentry/sentry-laravel": "^1.7",
-        "spatie/laravel-permission": "^3.11",
         "yajra/laravel-datatables-oracle": "^9.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-ide-helper": "^2.6",
+        "doctrine/dbal": "^2.10",
         "facade/ignition": "^2.0",
         "filp/whoops": "^2.7",
         "fzaninotto/faker": "^1.9.1",

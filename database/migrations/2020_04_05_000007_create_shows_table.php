@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Query\Expression;
 
 class CreateShowsTable extends Migration
 {
@@ -22,12 +23,15 @@ class CreateShowsTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('imdb_id', 10)->nullable()->index();
-            $table->string('wikipedia_url')->nullable();
-            $table->string('official_website_url')->nullable();
-            $table->longText('image_url');
-            $table->time('running_length')->nullable();
-            $table->boolean('is_draft')->default('1');
+            $table->string('title')->index();
+            $table->string('slug')->unique()->index();
+            $table->longText('synopsis');
+            $table->year('release_year')->nullable();
+            $table->string('thumbnail');
+            $table->time('runtime')->nullable();
+            $table->json('references')->nullable();
+            $table->boolean('is_published')->default('0');
+            $table->integer('rating_id')->index();
             $table->integer('user_id')->index();
             $table->timestamps();
         });
