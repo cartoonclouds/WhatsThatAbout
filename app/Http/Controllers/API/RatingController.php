@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Models\Show;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
-class ShowController extends Controller
+class RatingController extends APIController
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +14,7 @@ class ShowController extends Controller
      */
     public function index()
     {
-        $this->authorizeResource(Show::class, 'show');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $this->authorizeResource(Rating::class, 'rating');
     }
 
     /**
@@ -41,21 +31,10 @@ class ShowController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Show  $show
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function show(Show $show)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Show  $show
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Show $show)
+    public function show(Rating $rating)
     {
         //
     }
@@ -64,10 +43,10 @@ class ShowController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Show  $show
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Show $show)
+    public function update(Request $request, Rating $rating)
     {
         //
     }
@@ -75,10 +54,10 @@ class ShowController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Show  $show
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Show $show)
+    public function destroy(Rating $rating)
     {
         //
     }

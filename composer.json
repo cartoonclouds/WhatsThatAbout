@@ -30,6 +30,7 @@
         "facade/ignition": "^2.0",
         "filp/whoops": "^2.7",
         "fzaninotto/faker": "^1.9.1",
+        "kitloong/laravel-migrations-generator": "^4.3",
         "laracasts/generators": "^1.1",
         "laracasts/testdummy": "^2.4",
         "laravel/browser-kit-testing": "^6.0",
