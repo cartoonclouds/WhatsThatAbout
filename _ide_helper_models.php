@@ -179,7 +179,8 @@ namespace App\Models{
  * @property-read \App\Models\User $creator
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Genre[] $genres
  * @property-read int|null $genres_count
- * @property-read \App\Models\Rating $rating
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Rating[] $ratings
+ * @property-read int|null $ratings_count
  * @property-read int|null $references_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vote[] $votes
  * @property-read int|null $votes_count
