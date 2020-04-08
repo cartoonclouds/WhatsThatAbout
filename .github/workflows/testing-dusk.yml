@@ -1,4 +1,5 @@
 # Laravel Dusk Testing
+# https://laravel.com/docs/7.x/dusk#running-tests-on-github-actions
 
 name: CI
 on: [push]
