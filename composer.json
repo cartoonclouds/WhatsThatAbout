@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3",
         "algolia/scout-extended": "^1.9",
+        "chitranu/google-recaptcha": "^1.2",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "6.4.1",
