@@ -19,14 +19,27 @@
     "dependencies": {
         "axios": "^0.19.2",
         "bootstrap": "^4.4.1",
-        "chosen-js": "^1.8.7",
         "cross-env": "^7.0.*",
         "jquery": "^3.4.1",
         "lodash": "^4.17.13",
         "moment": "^2.24.0",
         "popper.js": "^1.16.1",
         "pusher-js": "^5.1.1",
+        "select2": "^4.0.13",
         "vue": "^2.5.17",
         "vue-recaptcha-v3": "^1.9.0"
+    },
+    "@comment dependencies": {
+        "axios": "https://github.com/axios/axios",
+        "bootstrap": "https://getbootstrap.com/docs/                        https://devhints.io/bootstrap",
+        "cross-env": "https://github.com/kentcdodds/cross-env",
+        "jquery": "https://api.jquery.com/",
+        "lodash": "https://lodash.com/docs/                                 https://devhints.io/lodash",
+        "moment": "https://momentjs.com/docs/                               https://devhints.io/moment",
+        "popper.js": "https://popper.js.org/docs/",
+        "pusher-js": "https://pusher.com/docs/channels",
+        "select2": "https://select2.org/",
+        "vue": "https://vuejs.org/v2/api/                                   https://devhints.io/vue",
+        "vue-recaptcha-v3": "https://github.com/AurityLab/vue-recaptcha-v3"
     }
 }
