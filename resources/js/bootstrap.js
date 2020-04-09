@@ -1,3 +1,6 @@
+/**
+ * Lodash
+ */
 window._ = require('lodash');
 
 /**
@@ -44,19 +47,11 @@ window.axios.defaults.headers.common = {
 // });
 
 
-/**
- * VueJS
- */
-window.Vue = require('vue');
 
 /**
  * Select2
  */
 require('select2');
 
-/**
- * Simple-Icons
- */
-// require('simple-icons-css');
 
 

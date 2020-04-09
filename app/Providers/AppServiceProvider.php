@@ -16,10 +16,6 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() !== 'production') {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-//            $this->app->register(\Laracasts\Generators\GeneratorsServiceProvider::class);
-
-//            $this->app->register(\Way\Generators\GeneratorsServiceProvider::class);
-//            $this->app->register(\Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class);
         }
     }
 
@@ -30,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Flash::macro('test', function($v) {
+            dd($v, $this);
+        });
     }
 }

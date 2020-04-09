@@ -11,11 +11,18 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.js('resources/js/bootstrap.js', 'public/js');
+
 mix.js([
     'resources/js/app.js',
     //'resources/assets/js/vue/mixins/*',
-    ], 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
-//.copy('resources/assets/fonts', 'public/assets/fonts');
+    ], 'public/js');
 
-mix.version();
+
+mix.sass('resources/sass/app.scss', 'public/css');
+
+//mix.copy('resources/assets/fonts', 'public/assets/fonts');
+
+if (mix.inProduction()) {
+    mix.version();
+}

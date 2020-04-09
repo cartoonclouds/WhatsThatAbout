@@ -11,6 +11,7 @@
     <title>{{ config('app.name', $title ?? '') }}</title>
 
     <!-- Scripts -->
+    <script src="{{ mix('js/bootstrap.js') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     <script type="application/javascript">
         window.csrfToken =  '{{csrf_token()}}';
@@ -42,6 +43,13 @@
 
         <script type="application/javascript">
             $('#flash-overlay-modal').modal();
+
+            const $alert = $('div.alert').not('.alert-important');
+
+            $alert.delay(3000).fadeOut(350);
+            setTimeout(function() {
+                $alert.alert('close');
+            }, 3500);
         </script>
         @stack('scripts')
     </div>
