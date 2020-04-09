@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        flash()->overlay('Modal Message', 'Modal Title');
         return view('home');
     }
 }

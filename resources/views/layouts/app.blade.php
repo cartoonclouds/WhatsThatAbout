@@ -11,7 +11,10 @@
     <title>{{ config('app.name', $title ?? '') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script type="application/javascript">
+        window.csrfToken =  '{{csrf_token()}}';
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -37,6 +40,9 @@
 
         @include('layouts/footer')
 
+        <script type="application/javascript">
+            $('#flash-overlay-modal').modal();
+        </script>
         @stack('scripts')
     </div>
 </body>

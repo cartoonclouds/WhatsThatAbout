@@ -8,7 +8,7 @@ window._ = require('lodash');
 
 try {
     window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+    global.$ = global.jQuery = require('jquery');
 
     require('bootstrap');
 } catch (e) {}
@@ -21,7 +21,10 @@ try {
 
 window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common = {
+    'X-CSRF-TOKEN': window.csrfToken,
+    'X-Requested-With': 'XMLHttpRequest'
+};
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -50,5 +53,10 @@ window.Vue = require('vue');
  * Select2
  */
 require('select2');
+
+/**
+ * Simple-Icons
+ */
+// require('simple-icons-css');
 
 

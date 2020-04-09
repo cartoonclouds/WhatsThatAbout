@@ -1,12 +1,22 @@
 {
-    "name": "laravel/laravel",
+    "name": "cartoonclouds/whatsthatabout",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Ever watched a movie or TV episode and didn't get that joke? What was that reference about? Find the answer here!",
     "keywords": [
-        "framework",
-        "laravel"
+        "movie",
+        "film",
+        "episode",
+        "TV",
+        "reference"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "CJ Tudhope",
+            "email": "cartoonclouds@gmail.com",
+            "homepage": "https://github.com/cartoonclouds/"
+        }
+    ],
     "require": {
         "php": "^7.3",
         "algolia/scout-extended": "^1.9",
@@ -19,7 +29,10 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "league/flysystem-cached-adapter": "^1.0",
         "sentry/sentry-laravel": "^1.7",
+        "spatie/laravel-permission": "^3.11",
         "spatie/laravel-sluggable": "^2.2",
         "yajra/laravel-datatables-oracle": "^9.9"
     },
@@ -60,9 +73,6 @@
             "App\\": "app/"
         },
         "classmap": [
-            "database/seeds",
-            "database/factories",
-            "tests/factories",
             "app/Http/Controllers",
             "app/Classes",
             "app/Models"
@@ -72,7 +82,12 @@
         "psr-4": {
             "App\\": "app/",
             "Tests\\": "tests/"
-        }
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories",
+            "tests/factories"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
