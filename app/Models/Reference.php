@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Contracts\Votable;
 use Eloquent;
 
-class Reference extends Eloquent
+class Reference extends Eloquent implements Votable
 {
     protected $casts = [ // object
         'references' => 'array', // {imdb_id: tt0123456} http://www.imdb.com/title/tt0123456/

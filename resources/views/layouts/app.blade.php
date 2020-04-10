@@ -12,7 +12,6 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/bootstrap.js') }}"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
     <script type="application/javascript">
         window.csrfToken =  '{{csrf_token()}}';
     </script>
@@ -27,6 +26,9 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <style>
+
+    </style>
     @show
 </head>
 <body>
@@ -41,17 +43,25 @@
 
         @include('layouts/footer')
 
-        <script type="application/javascript">
-            $('#flash-overlay-modal').modal();
-
-            const $alert = $('div.alert').not('.alert-important');
-
-            $alert.delay(3000).fadeOut(350);
-            setTimeout(function() {
-                $alert.alert('close');
-            }, 3500);
-        </script>
-        @stack('scripts')
     </div>
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script type="application/javascript">
+        // Display flash modal
+        $('#flash-overlay-modal').modal();
+
+        // Auto-close alerts
+        const $alert = $('div.alert');//.not('.alert-important');
+
+        // setTimeout(function() {
+        //     $alert.addClass('fade');
+        //     // $alert.alert('close');
+        // }, 3500);
+
+        // Enable all tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    @stack('scripts')
 </body>
 </html>

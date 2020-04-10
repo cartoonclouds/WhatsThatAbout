@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
 //        flash()->overlay('Modal Message', 'Modal Title');
 //        flash()->message('A message here')->test('var');
-        flash()->error('A message here');
+        flash()->error('A message here')->important();
         return view('home');
     }
 }

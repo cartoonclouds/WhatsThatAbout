@@ -2,42 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Contracts\Votable;
 use App\Models\Vote;
 use Illuminate\Http\Request;
 
 class VoteController extends APIController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $this->authorizeResource(Vote::class, 'vote');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Vote  $vote
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Vote $vote)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -46,19 +16,9 @@ class VoteController extends APIController
      * @param  \App\Models\Vote  $vote
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vote $vote)
+    public function update(Request $request, ?Vote $vote, Votable $votable)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Vote  $vote
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Vote $vote)
-    {
-        //
-    }
 }
