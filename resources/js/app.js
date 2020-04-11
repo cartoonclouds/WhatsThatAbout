@@ -38,6 +38,11 @@ const files = require.context('./vuejs/components', true, /\.vue$/i);
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 // Load libraries
+import Clipboard from 'v-clipboard'
+import VueHotkey from 'v-hotkey'
+
+Vue.use(Clipboard);
+Vue.use(VueHotkey);
 Vue.use(moment, 'moment');
 
 // Load mixins
@@ -53,9 +58,12 @@ Vue.use(StringHelpers);
 
 // Define helper properties
 Object.defineProperty(Vue.prototype, '$axios', { value: window.axios });
-// Object.defineProperty(Vue.prototype, '$user', { value: window.user });
 
 // Create a global Vue instance
-global.$app = new Vue({
+global.$Vue = new Vue({
     el: '#app',
 });
+
+import WTAApp from './api';
+
+global.WTAApp = WTAApp;

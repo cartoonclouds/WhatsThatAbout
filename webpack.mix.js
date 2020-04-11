@@ -17,13 +17,13 @@ mix.options({
   // postCss: [] // Post-CSS options: https://github.com/postcss/postcss/blob/master/docs/plugins.md
 });
 
-mix.js('resources/js/bootstrap.js', 'public/js');
+mix.js('resources/js/bootstrap.js', 'public/js')
+    .js('resources/js/app.js', 'public/js');
 
-mix.js([
-    'resources/js/app.js'
-    ], 'public/js');
-
-mix.sass('resources/sass/app.scss', 'public/css')
+mix.sass([
+    'resources/sass/app.scss',
+    'node_colors.css/src/colors.css'
+], 'public/css')
     .styles([
         'public/css/app.css',
         'resources/css/app.css',

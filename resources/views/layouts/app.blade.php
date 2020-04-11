@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/bootstrap.js') }}"></script>
-    <script type="application/javascript">
+    <script>
         window.csrfToken =  '{{csrf_token()}}';
     </script>
 
@@ -45,9 +45,13 @@
 
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
-    <script type="application/javascript">
+    <script>
         // Display flash modal
         $('#flash-overlay-modal').modal();
+
+        console.table(new WTAApp({}));
+
+        Inputmask().mask(document.querySelectorAll("input"));
 
         // Auto-close alerts
         const $alert = $('div.alert');//.not('.alert-important');

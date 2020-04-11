@@ -81,6 +81,8 @@ require('select2');
  */
 window.moment = require('moment');
 
-
-
+/**
+ * InputMast -
+ */
+window.Inputmask = require('inputmask');
 

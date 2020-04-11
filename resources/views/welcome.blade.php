@@ -96,7 +96,7 @@
 </div>
 @stop
 @push('scripts')
-<script type="application/javascript">
+<script>
 
 </script>
 @endpush

@@ -1,6 +1,6 @@
 @foreach (session('flash_notification', collect())->toArray() as $message)
     @push('scripts')
-        <script type="application/javascript">
+        <script>
             setTimeout(() => {
                 $.notify({
                     // options
