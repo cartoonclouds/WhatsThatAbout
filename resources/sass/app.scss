@@ -5,4 +5,7 @@
 @import 'variables';
 
 /* Bootstrap & Material Design */
-@import '~bootstrap-material-design/scss/bootstrap-material-design';
+@import '~bootstrap-material-design/scss/core';
+
+/* Colors */
+@import '~colors.css/css/colors.css';

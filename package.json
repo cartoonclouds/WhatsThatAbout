@@ -39,7 +39,7 @@
         "vue-recaptcha-v3": "^1.9.0"
     },
     "@comment dependencies": {
-        "animate.css": "",
+        "animate.css": "https://daneden.github.io/animate.css/",
         "axios": "https://github.com/axios/axios",
         "bootstrap": "https://getbootstrap.com/docs/                        https://devhints.io/bootstrap",
         "colors.css": "https://github.com/mrmrs/colors",

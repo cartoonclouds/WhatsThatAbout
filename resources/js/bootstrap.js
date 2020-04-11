@@ -21,6 +21,9 @@ try {
     window.Popper = require('popper.js').default;
     global.$ = global.jQuery = require('jquery');
 
+    /**
+     * Include bootstrap material design
+     */
     require('bootstrap-material-design');
 
     /**
@@ -85,4 +88,9 @@ window.moment = require('moment');
  * InputMast -
  */
 window.Inputmask = require('inputmask');
+
+/**
+ * Colors
+ */
+global.colors = require('colors.css');
 

@@ -5,11 +5,22 @@
  */
 
 /**
+ * Include bootstrap material design
+ */
+$(document).ready(function() { $('body').bootstrapMaterialDesign(); });
+
+
+/**
  * Bootstrap-Notify default settings
  */
 $.notifyDefaults({
     newest_on_top: true
 });
+
+/**
+ * Initialise Inputmask
+ */
+Inputmask().mask(document.querySelectorAll('input'));
 
 
 /**
@@ -28,8 +39,6 @@ window.axios.defaults.headers.common = {
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-
 /* Auto Vue Components in ./vuejs/components
  *
  * if vue-loader >= 14 & not loading components change "pages(key)" to "pages(key).default"
