@@ -125,6 +125,7 @@ EASYTRIEVE
 ECMAScript
 EGL
 ELAN
+env
 EPL
 Erlang
 erp
@@ -224,6 +225,7 @@ L#
 LabVIEW
 Lagoona
 LANSA
+Laravel
 LaTeX
 Lava
 LC-3
