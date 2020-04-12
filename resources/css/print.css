@@ -18,8 +18,8 @@
 
     .app-body {
         margin-top: 0;
-        size: landscape;
         overflow: hidden;
+        size: landscape;
     }
 
     .card {
