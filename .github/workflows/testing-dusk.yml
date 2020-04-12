@@ -2,10 +2,16 @@
 # https://laravel.com/docs/7.x/dusk#running-tests-on-github-actions
 
 name: CI
-on: [push]
+on: 
+  push:
+    branches:
+      - master
+      - develop
+    
 jobs:
-  dusk-php:
+  dusk:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v2
         
