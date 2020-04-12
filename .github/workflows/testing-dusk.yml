@@ -6,13 +6,14 @@ on:
   push:
     branches:
       - 'master'
-      - 'master/**'
-      - 'develop'
+      - 'master/*'
+      - 'release/*'
   pull_request:
     branches:
       - 'master'
-      - 'master/**'
+      - 'master/*'
       - 'develop'
+      - 'develop/*'
       
 jobs:
   dusk-php:
