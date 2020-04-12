@@ -10,7 +10,6 @@ on:
     
 jobs:
   dusk:
-    name: Running Browser Tests 
     runs-on: ubuntu-latest
     
     steps:
