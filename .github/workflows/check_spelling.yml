@@ -12,7 +12,7 @@ on:
     - '**.md'
     - '**.blade.php'
   push:
-    branches: [master]
+    branches: master
     paths:
     - '**.js'
     - '**.vue'
