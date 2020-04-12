@@ -7,12 +7,12 @@ on:
     branches:
       - 'master'
       - 'master/**'
-      - 'develop/**'
+      - 'develop'
   pull_request:
     branches:
       - 'master'
       - 'master/**'
-      - 'develop/**'
+      - 'develop'
       
 jobs:
   dusk-php:
