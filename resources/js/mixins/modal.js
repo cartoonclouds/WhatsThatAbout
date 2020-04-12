@@ -7,7 +7,7 @@
 import bootbox from 'bootbox';
 
 // http://bootboxjs.com/documentation.html
-export default function(message, title, buttons, options = {}) {
+export default function(message, title = '', buttons = {}, options = {}) {
 
     if(typeof message === "object") {
         return bootbox.dialog(message);

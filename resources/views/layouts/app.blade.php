@@ -28,6 +28,7 @@
 
     <!-- Material Design for Bootstrap fonts and icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
@@ -37,7 +38,11 @@
     @show
 </head>
 <body>
-
+<i class="fas fa-user"></i> <!-- uses solid style -->
+<i class="far fa-user"></i> <!-- uses regular style -->
+<i class="fal fa-user"></i> <!-- uses light style -->
+<!--brand icon-->
+<i class="fab fa-github-square"></i> <!-- uses brands style -->
     <div id="app">
         <div class="bmd-layout-container bmd-drawer-f-l">
             @include('layouts.header')
@@ -58,7 +63,6 @@
         $('#flash-overlay-modal').modal();
 
         console.table(new WTAApp({}));
-
 
         // Auto-close alerts
         const $alert = $('div.alert');//.not('.alert-important');
