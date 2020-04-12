@@ -5,11 +5,7 @@ name: Check Spelling
 on:
   pull_request:
   push:
-    types: 
-      - opened
-      - edited
-      - reopened
-      - synchronize
+    types: [opened, edited, reopened, synchronize]
     paths:
     - '**.js'
     - '**.vue'
