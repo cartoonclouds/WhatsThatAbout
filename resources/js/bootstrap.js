@@ -26,10 +26,6 @@ try {
      */
     require('bootstrap-material-design');
 
-    /**
-     * Bootbox - alert/prompt replacement
-     */
-    require('bootbox');
 
     /**
      * Bootstrap-Notify - Growl message alert
@@ -94,3 +90,20 @@ window.Inputmask = require('inputmask');
  */
 global.colors = require('colors.css');
 
+
+global.modal = require('./mixins/modal').default;
+
+
+/**
+ * Bootbox - alert/prompt replacement
+ */
+import bootbox from 'bootbox';
+
+// (window.) alert
+global.alert = bootbox.alert;
+
+// (window.) confirm
+global.confirm = bootbox.confirm;
+
+// (window.) prompt
+global.prompt = bootbox.prompt;
