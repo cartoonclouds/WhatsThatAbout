@@ -73,9 +73,7 @@
         // }, 3500);
 
         // Enable all tooltips
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+        $('[data-toggle="tooltip"]').tooltip();
     </script>
     @stack('scripts')
 </body>
