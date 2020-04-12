@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Models\Reference;
 use Illuminate\Http\Request;
 
-class ReferenceController extends Controller
+class ReferenceController extends APIController
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,17 +15,7 @@ class ReferenceController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $this->authorizeResource(Reference::class, 'reference');
     }
 
     /**
@@ -45,17 +36,6 @@ class ReferenceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Reference $reference)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Reference  $reference
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reference $reference)
     {
         //
     }

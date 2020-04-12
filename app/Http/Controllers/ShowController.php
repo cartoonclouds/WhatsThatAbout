@@ -14,7 +14,7 @@ class ShowController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorizeResource(Show::class, 'show');
     }
 
     /**

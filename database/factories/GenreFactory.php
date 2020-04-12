@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Genre::class, function (Faker $faker) {
     return [
-        'genre' => $faker->unique()->words(3, true)
+        'genre' => $faker->unique()->words,
+        'definition' => $faker->sentence,
     ];
 });

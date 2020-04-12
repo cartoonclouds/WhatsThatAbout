@@ -20,7 +20,7 @@ class TypeTest extends TestCase
     /**
      * @test
      */
-    public function a_reference_can_have_many_types()
+    public function a_type_can_have_many_references() // a_cinematic_term_can_have_many_breakdowns
     {
         $references = factory(Reference::class, 10)->create();
 

@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-04-05 18:06:00.
+    * Generated on 2020-04-07 01:04:14.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -51,9 +51,6 @@ namespace PHPSTORM_META {
         'Laravel\Scout\EngineManager' => \Algolia\ScoutExtended\Managers\EngineManager::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
-        'Spatie\Permission\Contracts\Permission' => \Spatie\Permission\Models\Permission::class,
-        'Spatie\Permission\Contracts\Role' => \Spatie\Permission\Models\Role::class,
-        'Spatie\Permission\PermissionRegistrar' => \Spatie\Permission\PermissionRegistrar::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -230,9 +227,6 @@ namespace PHPSTORM_META {
         'Laravel\Scout\EngineManager' => \Algolia\ScoutExtended\Managers\EngineManager::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
-        'Spatie\Permission\Contracts\Permission' => \Spatie\Permission\Models\Permission::class,
-        'Spatie\Permission\Contracts\Role' => \Spatie\Permission\Models\Role::class,
-        'Spatie\Permission\PermissionRegistrar' => \Spatie\Permission\PermissionRegistrar::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -409,9 +403,6 @@ namespace PHPSTORM_META {
         'Laravel\Scout\EngineManager' => \Algolia\ScoutExtended\Managers\EngineManager::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
-        'Spatie\Permission\Contracts\Permission' => \Spatie\Permission\Models\Permission::class,
-        'Spatie\Permission\Contracts\Role' => \Spatie\Permission\Models\Role::class,
-        'Spatie\Permission\PermissionRegistrar' => \Spatie\Permission\PermissionRegistrar::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -588,9 +579,6 @@ namespace PHPSTORM_META {
         'Laravel\Scout\EngineManager' => \Algolia\ScoutExtended\Managers\EngineManager::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
-        'Spatie\Permission\Contracts\Permission' => \Spatie\Permission\Models\Permission::class,
-        'Spatie\Permission\Contracts\Role' => \Spatie\Permission\Models\Role::class,
-        'Spatie\Permission\PermissionRegistrar' => \Spatie\Permission\PermissionRegistrar::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -767,9 +755,6 @@ namespace PHPSTORM_META {
         'Laravel\Scout\EngineManager' => \Algolia\ScoutExtended\Managers\EngineManager::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
-        'Spatie\Permission\Contracts\Permission' => \Spatie\Permission\Models\Permission::class,
-        'Spatie\Permission\Contracts\Role' => \Spatie\Permission\Models\Role::class,
-        'Spatie\Permission\PermissionRegistrar' => \Spatie\Permission\PermissionRegistrar::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -946,9 +931,6 @@ namespace PHPSTORM_META {
         'Laravel\Scout\EngineManager' => \Algolia\ScoutExtended\Managers\EngineManager::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
-        'Spatie\Permission\Contracts\Permission' => \Spatie\Permission\Models\Permission::class,
-        'Spatie\Permission\Contracts\Role' => \Spatie\Permission\Models\Role::class,
-        'Spatie\Permission\PermissionRegistrar' => \Spatie\Permission\PermissionRegistrar::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -1125,9 +1107,6 @@ namespace PHPSTORM_META {
         'Laravel\Scout\EngineManager' => \Algolia\ScoutExtended\Managers\EngineManager::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
-        'Spatie\Permission\Contracts\Permission' => \Spatie\Permission\Models\Permission::class,
-        'Spatie\Permission\Contracts\Role' => \Spatie\Permission\Models\Role::class,
-        'Spatie\Permission\PermissionRegistrar' => \Spatie\Permission\PermissionRegistrar::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -1304,9 +1283,6 @@ namespace PHPSTORM_META {
         'Laravel\Scout\EngineManager' => \Algolia\ScoutExtended\Managers\EngineManager::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
-        'Spatie\Permission\Contracts\Permission' => \Spatie\Permission\Models\Permission::class,
-        'Spatie\Permission\Contracts\Role' => \Spatie\Permission\Models\Role::class,
-        'Spatie\Permission\PermissionRegistrar' => \Spatie\Permission\PermissionRegistrar::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
@@ -1445,19 +1421,13 @@ namespace PHPSTORM_META {
 
 	override(\factory(0), map([
         '' => '@FactoryBuilder',
-        'App\Models\ReferenceUser' => \App\Models\ReferenceUserFactoryBuilder::class,
         'App\Models\Show' => \App\Models\ShowFactoryBuilder::class,
         'App\Models\User' => \App\Models\UserFactoryBuilder::class,
         'App\Models\Vote' => \App\Models\VoteFactoryBuilder::class,
-        'App\Models\RatingShow' => \App\Models\RatingShowFactoryBuilder::class,
-        'App\Models\GenreShow' => \App\Models\GenreShowFactoryBuilder::class,
         'App\Models\Type' => \App\Models\TypeFactoryBuilder::class,
-        'App\Models\ReferenceType' => \App\Models\ReferenceTypeFactoryBuilder::class,
         'App\Models\Genre' => \App\Models\GenreFactoryBuilder::class,
         'App\Models\Reference' => \App\Models\ReferenceFactoryBuilder::class,
         'App\Models\Rating' => \App\Models\RatingFactoryBuilder::class,
-        'App\Models\ReferenceShow' => \App\Models\ReferenceShowFactoryBuilder::class,
-        'App\Models\ShowUser' => \App\Models\ShowUserFactoryBuilder::class,
 	]));
 
     override(\Illuminate\Support\Arr::add(0), type(0));

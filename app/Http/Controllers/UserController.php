@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Genre;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class GenreController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorizeResource(User::class, 'user');
     }
 
     /**
@@ -41,10 +41,10 @@ class GenreController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Genre  $genre
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Genre $genre)
+    public function show(User $user)
     {
         //
     }
@@ -52,10 +52,10 @@ class GenreController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Genre  $genre
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Genre $genre)
+    public function edit(User $user)
     {
         //
     }
@@ -64,10 +64,10 @@ class GenreController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Genre  $genre
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Genre $genre)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -75,10 +75,10 @@ class GenreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Genre  $genre
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Genre $genre)
+    public function destroy(User $user)
     {
         //
     }

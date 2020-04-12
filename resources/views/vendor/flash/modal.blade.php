@@ -1,3 +1,4 @@
+
 <div id="flash-overlay-modal" class="modal fade {{ isset($modalClass) ? $modalClass : '' }}">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -6,7 +7,6 @@
 
                 <h4 class="modal-title">{{ $title }}</h4>
             </div>
-
             <div class="modal-body">
                 <p>{!! $body !!}</p>
             </div>

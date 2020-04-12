@@ -1,27 +1,32 @@
 @foreach (session('flash_notification', collect())->toArray() as $message)
-    @if ($message['overlay'])
-        @include('flash::modal', [
-            'modalClass' => 'flash-modal',
-            'title'      => $message['title'],
-            'body'       => $message['message']
-        ])
-    @else
-        <div class="alert
-                    alert-{{ $message['level'] }}
-                    {{ $message['important'] ? 'alert-important' : '' }}"
-                    role="alert"
-        >
-            @if ($message['important'])
-                <button type="button"
-                        class="close"
-                        data-dismiss="alert"
-                        aria-hidden="true"
-                >&times;</button>
-            @endif
-
-            {!! $message['message'] !!}
-        </div>
-    @endif
+    @push('scripts')
+        <script>
+            setTimeout(() => {
+                $.notify({
+                    // options
+                    icon: 'glyphicon glyphicon-warning-sign',
+                    title: '{{ $message['title'] }}',
+                    message: '{{ $message['message'] }}',
+                    url: '{{ $message['url'] ?? "" }}',
+                    target: '_blank'
+                },{
+                    // settings
+                    type: '{{ $message['level'] }}',
+                    allow_dismiss: {{ (bool)$message['important'] }},
+                    showProgressbar: false,
+                    placement: {
+                        from: "top",
+                        align: "right"
+                    },
+                    delay: 5000,
+                    animate: {
+                        enter: 'animated fadeInDown',
+                        exit: 'animated fadeOutUp'
+                    },
+                });
+            }, 1000);
+        </script>
+    @endpush
 @endforeach
 
 {{ session()->forget('flash_notification') }}

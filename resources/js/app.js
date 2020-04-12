@@ -4,29 +4,75 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+/**
+ * Include bootstrap material design
+ */
+$(document).ready(function() { $('body').bootstrapMaterialDesign(); });
 
-window.Vue = require('vue');
 
 /**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Bootstrap-Notify default settings
  */
+$.notifyDefaults({
+    newest_on_top: true
+});
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+/**
+ * Initialise Inputmask
+ */
+Inputmask().mask(document.querySelectorAll('input'));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+/**
+ * Axios default settings
+ */
+window.axios.defaults.headers.common = {
+    'X-CSRF-TOKEN': window.csrfToken,
+    'X-Requested-With': 'XMLHttpRequest',
+    'User-Agent': 'WhatsThatAbout/1.0',
+    'Accept': 'application/json',
+};
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+/* Auto Vue Components in ./vuejs/components
+ *
+ * if vue-loader >= 14 & not loading components change "pages(key)" to "pages(key).default"
+ */
+const files = require.context('./vuejs/components', true, /\.vue$/i);
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-const app = new Vue({
+// Load libraries
+import Clipboard from 'v-clipboard'
+import VueHotkey from 'v-hotkey'
+
+Vue.use(Clipboard);
+Vue.use(VueHotkey);
+Vue.use(moment, 'moment');
+
+// Load mixins
+const CurrencyHelpers  = require('./vuejs/mixins/currency');
+const MathsHelpers     = require('./vuejs/mixins/maths');
+const StringHelpers    = require('./vuejs/mixins/stringManipulation');
+const DateTimeHelpers  = require('./vuejs/mixins/dateTime');
+
+Vue.use(CurrencyHelpers);
+Vue.use(DateTimeHelpers);
+Vue.use(MathsHelpers);
+Vue.use(StringHelpers);
+
+// Define helper properties
+Object.defineProperty(Vue.prototype, '$axios', { value: window.axios });
+
+// Create a global Vue instance
+global.$Vue = new Vue({
     el: '#app',
 });
+
+import WTAApp from './api';
+
+global.WTAApp = WTAApp;

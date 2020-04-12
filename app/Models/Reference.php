@@ -2,23 +2,29 @@
 
 namespace App\Models;
 
+use App\Contracts\Votable;
 use Eloquent;
 
-class Reference extends Eloquent
+class Reference extends Eloquent implements Votable
 {
+    protected $casts = [ // object
+        'references' => 'array', // {imdb_id: tt0123456} http://www.imdb.com/title/tt0123456/
+        'runs_throughout' => 'boolean'
+    ];
+
     public function votes()
     {
         return $this->morphMany(Vote::class, 'votable');
     }
 
-    public function types()
+    public function types() // cinematic_term
     {
         return $this->belongsToMany(Type::class);
     }
 
-    public function shows()
+    public function show()
     {
-        return $this->belongsToMany(Show::class);
+        return $this->belongsTo(Show::class);
     }
 
     public function creator()

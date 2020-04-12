@@ -19,11 +19,11 @@ class ReferenceSeederTableSeeder extends Seeder
                     factory(\App\Models\Type::class, 2)->make()
                 );
 
-                $reference->show()->save(
+                $reference->show()->associate(
                     factory(\App\Models\Show::class)->make()
                 );
 
-                $reference->creator()->save(
+                $reference->creator()->associate(
                     factory(\App\Models\User::class)->make()
                 );
 

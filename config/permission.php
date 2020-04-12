@@ -90,7 +90,7 @@ return [
      * the default setting is false here for optimum safety.
      */
 
-    'display_permission_in_exception' => false,
+    'display_permission_in_exception' => true,
 
     /*
      * By default wildcard permission lookups are disabled.
@@ -111,7 +111,7 @@ return [
          * The cache key used to store all permissions.
          */
 
-        'key' => 'spatie.permission.cache',
+        'key' => 'permission.cache',
 
         /*
          * When checking for a permission against a model by passing a Permission

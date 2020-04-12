@@ -23,7 +23,7 @@ class CreateGenresTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id()->unique();
             $table->string('genre')->unique()->index()->comment('Such as: movie, tv series, anime, special, etc.');
-
+            $table->string('definition');
             $table->timestamps();
         });
     }

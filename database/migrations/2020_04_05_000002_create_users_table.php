@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id()->unique();
+            $table->string('name', 45)->nullable()->index();
             $table->string('username', 45)->unique()->index();
             $table->string('email')->unique()->index();
             $table->string('password');
@@ -29,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('hide_email_address')->default('0');
 
+            $table->softDeletes('deleted_at');
             $table->timestamps();
         });
     }

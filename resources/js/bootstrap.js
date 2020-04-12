@@ -1,3 +1,14 @@
+/**
+ * Development only NodeJS/Webpack/etc packages
+ */
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    // pages
+}
+
+
+/**
+ * Lodash
+ */
 window._ = require('lodash');
 
 /**
@@ -8,9 +19,22 @@ window._ = require('lodash');
 
 try {
     window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+    global.$ = global.jQuery = require('jquery');
 
-    require('bootstrap');
+    /**
+     * Include bootstrap material design
+     */
+    require('bootstrap-material-design');
+
+    /**
+     * Bootbox - alert/prompt replacement
+     */
+    require('bootbox');
+
+    /**
+     * Bootstrap-Notify - Growl message alert
+     */
+    require('bootstrap-notify');
 } catch (e) {}
 
 /**
@@ -21,7 +45,16 @@ try {
 
 window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/**
+ * The following block of code may be used to automatically register VueJS and
+ * your Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
+window.Vue = require('vue');
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -39,3 +72,25 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+
+/**
+ * Select2 -
+ */
+require('select2');
+
+/**
+ * Moment -
+ */
+window.moment = require('moment');
+
+/**
+ * InputMast -
+ */
+window.Inputmask = require('inputmask');
+
+/**
+ * Colors
+ */
+global.colors = require('colors.css');
+

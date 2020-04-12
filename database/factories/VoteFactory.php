@@ -13,6 +13,6 @@ $factory->define(Vote::class, function (Faker $faker) {
         'votable_type' => get_class($votable),
         'votable_id' => $votable->id,
         'user_id' => factory(\App\Models\User::class)->create()->id,
-        'vote' => $faker->randomElement([-1, 1])
+        'vote' => $faker->boolean ? $faker->numberBetween(1, 5) : null
     ];
 });

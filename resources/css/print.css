@@ -1,0 +1,32 @@
+/* Print Layout Defaults */
+@media print {
+    header, ul.navbar-nav, .app-header, .sidebar, .app-footer, .btn-setting {
+        display: none;
+    }
+
+    body, .card-header {
+        background: #fff;
+    }
+
+    .slider {
+        display: none;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .app-body {
+        margin-top: 0;
+        size: landscape;
+        overflow: hidden;
+    }
+
+    .card {
+        border: none;
+    }
+
+    .card-block {
+        padding: 5px;
+    }
+}
