@@ -22,11 +22,13 @@ mix.js('resources/js/bootstrap.js', 'public/js')
 
 mix.sass('resources/sass/app.scss', 'public/css')
     .styles([
+        'resources/css/fontawesome-pro-5.2.0.css',
         'public/css/app.css',
         'resources/css/app.css',
     ], 'public/css/app.css');
 
 mix.copyDirectory('resources/fonts', 'public/assets/fonts')
+    .copyDirectory('resources/webfonts', 'public/webfonts')
     .copyDirectory('resources/images', 'public/assets/images');
 
 if (mix.inProduction()) {
