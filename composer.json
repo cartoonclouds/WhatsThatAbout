@@ -75,7 +75,6 @@
         },
         "classmap": [
             "app/Http/Controllers",
-            "app/Classes",
             "app/Models"
         ]
     },
