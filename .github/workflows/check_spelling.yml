@@ -4,15 +4,12 @@
 name: Check Spelling
 on:
   pull_request:
-    paths:
-    - '**.js'
-    - '**.vue'
-    - '**.txt'
-    - '**.html'
-    - '**.md'
-    - '**.blade.php'
   push:
-    branches: master
+    types: 
+      - opened
+      - edited
+      - reopened
+      - synchronize
     paths:
     - '**.js'
     - '**.vue'
@@ -23,6 +20,7 @@ on:
   
 jobs:
   spelling:
+    name: Set Up Environment
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
