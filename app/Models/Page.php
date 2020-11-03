@@ -7,7 +7,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Show extends Eloquent
+class Page extends Eloquent
 {
     use HasFactory;
     use Sluggable;
@@ -37,7 +37,7 @@ class Show extends Eloquent
 
     public function getUrlAttribute()
     {
-        return url('shows/' . $this->getRouteKey());
+        return url('pages/' . $this->getRouteKey());
     }
 
     public function segments()

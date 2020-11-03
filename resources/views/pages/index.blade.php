@@ -12,7 +12,7 @@
         <span class="badge badge-danger"><i class="fa fa-exclamation-triangle"></i> DANGER BADGE</span>
 
         <dl>
-        @foreach(\App\Models\Show::all() as $show)
+        @foreach(\App\Models\Page::all() as $show)
             <dt>
                 <a href="{{ $show->url }}">{{ $show->title }}</a>
             </dt>

@@ -10,11 +10,11 @@ class SegmentTest extends TestCase
 {
 //    use RefreshDatabase;
 
-    public function testSegmentHasShow()
+    public function testSegmentHasPage()
     {
-        $segment = Segment::factory()->forShow()->make();
+        $segment = Segment::factory()->forPage()->make();
 
-        $this->assertNotNull($segment->show);
+        $this->assertNotNull($segment->page);
     }
 
     public function testSegmentHasComments()

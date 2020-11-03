@@ -12,7 +12,7 @@ class SegmentPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can view any Segments.
      *
      * @param  \App\Models\User  $user
      * @return mixed
@@ -23,7 +23,7 @@ class SegmentPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the Segment.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Segment  $segment
@@ -35,14 +35,14 @@ class SegmentPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create Segments.
      *
      * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
     {
-        if ($user->hasAnyRole(['super-admin', 'admin', 'moderator'])) {
+        if ($user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])) {
             return Response::allow();
         }
 
@@ -50,7 +50,7 @@ class SegmentPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the Segment.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Segment  $segment
@@ -58,7 +58,7 @@ class SegmentPolicy
      */
     public function update(User $user, Segment $segment)
     {
-        if ($user->hasAnyRole(['super-admin', 'admin', 'moderator'])) {
+        if ($segment->creator->is($user) || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])) {
             return Response::allow();
         }
 
@@ -66,7 +66,7 @@ class SegmentPolicy
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can delete the Segment.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Segment  $segment
@@ -74,7 +74,7 @@ class SegmentPolicy
      */
     public function delete(User $user, Segment $segment)
     {
-        if ($user->hasAnyRole(['super-admin', 'admin'])) {
+        if ($segment->creator->is($user) || $user->hasAnyRole([User::ROLE_ADMIN])) {
             return Response::allow();
         }
 
@@ -82,7 +82,7 @@ class SegmentPolicy
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can restore the Segment.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Segment $segment
@@ -90,7 +90,7 @@ class SegmentPolicy
      */
     public function restore(User $user, Segment $segment)
     {
-        if ($user->hasAnyRole(['super-admin', 'admin'])) {
+        if ($user->hasAnyRole([User::ROLE_ADMIN])) {
             return Response::allow();
         }
 
@@ -98,7 +98,7 @@ class SegmentPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete the Segment.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Segment $segment
@@ -106,10 +106,6 @@ class SegmentPolicy
      */
     public function forceDelete(User $user, Segment $segment)
     {
-        if ($user->hasRole(['super-admin'])) {
-            return Response::allow();
-        }
-
         return Response::deny('A deleted segment can only be force deleted by a super administrator');
     }
 }

@@ -16,9 +16,9 @@ class Comment extends Eloquent
         return $this->morphTo();
     }
 
-    public function show()
+    public function page()
     {
-        return $this->morphTo(Show::class, 'commentable_type', 'commentable_id');
+        return $this->morphTo(Page::class, 'commentable_type', 'commentable_id');
     }
 
     public function segment()

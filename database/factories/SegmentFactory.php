@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Segment;
-use App\Models\Show;
+use App\Models\Page;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -29,7 +29,7 @@ class SegmentFactory extends Factory
             'runs_throughout' => $this->faker->boolean,
             'details' => $this->faker->paragraphs($this->faker->numberBetween(10, 50), true),
             //'references' => $this->faker->,
-            'show_id' => Show::factory(),
+            'page_id' => Page::factory(),
             'user_id' => User::factory(),
         ];
     }

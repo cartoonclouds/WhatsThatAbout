@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Show;
+use App\Models\Page;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ShowFactory extends Factory
+class PageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Show::class;
+    protected $model = Page::class;
 
     /**
      * Define the model's default state.

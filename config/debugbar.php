@@ -75,7 +75,7 @@ return [
      | Custom Error Handler for Deprecated warnings
      |--------------------------------------------------------------------------
      |
-     | When enabled, the Debugbar shows deprecated warnings for Symfony components
+     | When enabled, the Debugbar pages deprecated warnings for Symfony components
      | in the Messages tab.
      |
      */
@@ -108,7 +108,7 @@ return [
         'memory'          => true,  // Memory usage
         'exceptions'      => true,  // Exception displayer
         'log'             => true,  // Logs from Monolog (merged in messages if enabled)
-        'db'              => true,  // Show database (PDO) queries and bindings
+        'db'              => true,  // Page database (PDO) queries and bindings
         'views'           => true,  // Views with their data
         'route'           => true,  // Current route information
         'auth'            => false, // Display Laravel authentication status
@@ -120,7 +120,7 @@ return [
         'events'          => false, // All events fired
         'default_request' => false, // Regular or special Symfony request logger
         'logs'            => false, // Add the latest log messages
-        'files'           => false, // Show the included files
+        'files'           => false, // Page the included files
         'config'          => false, // Display config settings
         'cache'           => false, // Display cache events
         'models'          => true,  // Display models
@@ -145,12 +145,12 @@ return [
             'backtrace'         => true,   // Use a backtrace to find the origin of the query in your files.
             'backtrace_exclude_paths' => [],   // Paths to exclude from backtrace. (in addition to defaults)
             'timeline'          => false,  // Add the queries to the timeline
-            'explain' => [                 // Show EXPLAIN output on queries
+            'explain' => [                 // Page EXPLAIN output on queries
                 'enabled' => false,
                 'types' => ['SELECT'],     // Deprecated setting, is always only SELECT
             ],
-            'hints'             => false,    // Show hints for common mistakes
-            'show_copy'         => false,    // Show copy button next to the query
+            'hints'             => false,    // Page hints for common mistakes
+            'show_copy'         => false,    // Page copy button next to the query
         ],
         'mail' => [
             'full_log' => false,

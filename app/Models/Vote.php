@@ -18,9 +18,9 @@ class Vote extends Eloquent
         return $this->morphTo();
     }
 
-    public function show()
+    public function page()
     {
-        return $this->morphTo(Show::class, 'votable_type', 'votable_id');
+        return $this->morphTo(Page::class, 'votable_type', 'votable_id');
     }
 
     public function segment()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Commentable;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Comment.
      */
     public function index()
     {
@@ -21,7 +22,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Page the form for creating a new Comment.
      */
     public function create()
     {
@@ -29,7 +30,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Comment in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      */
@@ -39,7 +40,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Comment.
      *
      * @param  \App\Models\Comment  $comment
      */
@@ -49,7 +50,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Page the form for editing the specified Comment.
      *
      * @param  \App\Models\Comment  $comment
      */
@@ -59,7 +60,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Comment in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Comment  $comment
@@ -70,7 +71,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Comment from storage.
      *
      * @param  \App\Models\Comment  $comment
      */

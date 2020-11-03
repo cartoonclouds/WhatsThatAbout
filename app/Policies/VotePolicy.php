@@ -12,41 +12,41 @@ class VotePolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can view any Votes.
      *
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
-        //only by admin/creators/moderator
+        return Response::allow();
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the Vote.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Vote  $vote
      * @return mixed
      */
-    public function view(User $user, Vote $vote)
+    public function view(?User $user, Vote $vote)
     {
-        //by user
+        return Response::allow();
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create Votes.
      *
      * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
     {
-        //by user
+        return Response::allow();
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the Vote.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Vote  $vote
@@ -58,7 +58,7 @@ class VotePolicy
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can delete the Vote.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Vote  $vote
@@ -66,6 +66,6 @@ class VotePolicy
      */
     public function delete(User $user, Vote $vote)
     {
-        //by user
+        return Response::allow();
     }
 }

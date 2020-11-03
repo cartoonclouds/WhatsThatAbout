@@ -7,12 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use HasFactory;
+    use HasRoles;
     use Notifiable;
     use SoftDeletes;
+
+    public const ROLE_SUPER_ADMIN = 'super-admin';
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_MOD = 'moderator';
 
     /**
      * The attributes that are mass assignable.d
@@ -44,16 +50,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     public function getUrlAttribute()
     {
         return url('users/' . $this->id);
     }
 
 
-    public function shows()
+    public function pages()
     {
-        return $this->hasMany(Show::class);
+        return $this->hasMany(Page::class);
     }
 
 

@@ -5,19 +5,19 @@ namespace Tests\Unit;
 use App\Models\Comment;
 use App\Models\Vote;
 use App\Models\Segment;
-use App\Models\Show;
+use App\Models\Page;
 use Tests\TestCase;
 
 class VoteTest extends TestCase
 {
 
-    public function testVoteHasShow()
+    public function testVoteHasPage()
     {
         $vote = Vote::factory()->for(
-            Show::factory(), 'votable'
+            Page::factory(), 'votable'
         )->make();
 
-        $this->assertTrue($vote->show->exists);
+        $this->assertTrue($vote->page->exists);
     }
 
     public function testVoteHasSegment()

@@ -20,7 +20,7 @@ class CreateSegmentsTable extends Migration
             $table->boolean('runs_throughout')->nullable()->comment('Does the reference occur throughout the show?');
             $table->longText('details')->comment('The story regarding what is being referenced'); // multiLineString
             $table->json('references')->nullable()->comment('A JSON object with title as key and URL as value');
-            $table->integer('show_id')->index();
+            $table->integer('page_id')->index();
             $table->integer('user_id')->index();
             $table->softDeletes();
             $table->timestamps();

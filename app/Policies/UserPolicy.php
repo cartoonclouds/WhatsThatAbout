@@ -11,18 +11,22 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can view any Users.
      *
      * @param  \App\Models\User  $user
      * @return mixed
      */
     public function viewAny(User $user)
     {
-        //only by admin/creators/moderator
+        if ($user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])) {
+            return Response::allow();
+        }
+
+        return Response::deny('Users can only be viewed by a moderator or administrator');
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the User.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\User  $model
@@ -30,22 +34,30 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //only by user/admin/creators/moderator
+        if ($user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])) {
+            return Response::allow();
+        }
+
+        return Response::deny('A user can only be viewed by a moderator or administrator');
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create Users.
      *
      * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
     {
-        //only by admin/creators
+        if ($user->hasAnyRole([User::ROLE_ADMIN])) {
+            return Response::allow();
+        }
+
+        return Response::deny('A user can only be created by an administrator');
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the User.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\User  $model
@@ -53,11 +65,15 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        //only by user/admin/creators/moderator
+        if ($model->creator->is($user) || $user->hasAnyRole([User::ROLE_ADMIN])) {
+            return Response::allow();
+        }
+
+        return Response::deny('A user can only be edited by themselves or an administrator');
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can delete the User.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\User  $model
@@ -65,11 +81,11 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //only by admin/creators
+        return Response::deny('A user can only be deleted by a super administrator');
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can restore the User.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\User  $model
@@ -77,11 +93,11 @@ class UserPolicy
      */
     public function restore(User $user, User $model)
     {
-        //only by admin/creators
+        return Response::deny('A user can only be restored by a super administrator');
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete the User.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\User  $model
@@ -89,6 +105,6 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        //only by admin
+        return Response::deny('A user can only be restored by a super administrator');
     }
 }

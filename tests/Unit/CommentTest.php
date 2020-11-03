@@ -4,19 +4,19 @@ namespace Tests\Unit;
 
 use App\Models\Comment;
 use App\Models\Segment;
-use App\Models\Show;
+use App\Models\Page;
 use Tests\TestCase;
 
 class CommentTest extends TestCase
 {
 
-    public function testCommentHasShow()
+    public function testCommentHasPage()
     {
         $comment = Comment::factory()->for(
-            Show::factory(), 'commentable'
+            Page::factory(), 'commentable'
         )->make();
 
-        $this->assertTrue($comment->show->exists);
+        $this->assertTrue($comment->page->exists);
     }
 
     public function testCommentHasSegment()

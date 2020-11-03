@@ -1420,14 +1420,14 @@ namespace PHPSTORM_META {
     ]));
 
 	override(\factory(0), map([
-        '' => '@FactoryBuilder',
-        'App\Models\Show' => \App\Models\ShowFactoryBuilder::class,
-        'App\Models\User' => \App\Models\UserFactoryBuilder::class,
-        'App\Models\Vote' => \App\Models\VoteFactoryBuilder::class,
-        'App\Models\Type' => \App\Models\TypeFactoryBuilder::class,
-        'App\Models\Genre' => \App\Models\GenreFactoryBuilder::class,
-        'App\Models\Reference' => \App\Models\ReferenceFactoryBuilder::class,
-        'App\Models\Rating' => \App\Models\RatingFactoryBuilder::class,
+		''                     => '@FactoryBuilder',
+		'App\Models\Page'      => \App\Models\ShowFactoryBuilder::class,
+		'App\Models\User'      => \App\Models\UserFactoryBuilder::class,
+		'App\Models\Vote'      => \App\Models\VoteFactoryBuilder::class,
+		'App\Models\Type'      => \App\Models\TypeFactoryBuilder::class,
+		'App\Models\Genre'     => \App\Models\GenreFactoryBuilder::class,
+		'App\Models\Reference' => \App\Models\ReferenceFactoryBuilder::class,
+		'App\Models\Rating'    => \App\Models\RatingFactoryBuilder::class,
 	]));
 
     override(\Illuminate\Support\Arr::add(0), type(0));

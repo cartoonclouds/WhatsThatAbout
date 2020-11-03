@@ -13,7 +13,7 @@ class SegmentController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Segment.
      */
     public function index()
     {
@@ -21,7 +21,7 @@ class SegmentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Page the form for creating a new Segment.
      */
     public function create()
     {
@@ -29,7 +29,7 @@ class SegmentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Segment in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      */
@@ -39,7 +39,7 @@ class SegmentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Segment.
      *
      * @param  \App\Models\Segment  $segment
      */
@@ -49,7 +49,7 @@ class SegmentController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Page the form for editing the specified Segment.
      *
      * @param  \App\Models\Segment  $segment
      */
@@ -59,7 +59,7 @@ class SegmentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Segment in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Segment  $segment
@@ -70,7 +70,7 @@ class SegmentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Segment from storage.
      *
      * @param  \App\Models\Segment  $segment
      */

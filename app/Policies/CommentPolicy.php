@@ -12,7 +12,7 @@ class CommentPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can view any Comments.
      *
      * @param  \App\Models\User  $user
      * @return mixed
@@ -23,7 +23,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the Comment.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Comment  $comment
@@ -35,7 +35,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create Comments.
      *
      * @param  \App\Models\User  $user
      * @return mixed
@@ -46,7 +46,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the Comment.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Comment  $comment
@@ -56,7 +56,7 @@ class CommentPolicy
     {
         if (
             ($comment->creator->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
-            || $user->hasAnyRole(['super-admin', 'admin', 'moderator'])
+            || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])
         ) {
             return Response::allow();
         }
@@ -65,7 +65,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can delete the Comment.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Comment  $comment
@@ -75,7 +75,7 @@ class CommentPolicy
     {
         if (
             ($comment->creator->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
-            || $user->hasAnyRole(['super-admin', 'admin', 'moderator'])
+            || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])
         ) {
             return Response::allow();
         }
@@ -84,7 +84,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can restore the Comment.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Comment  $comment
@@ -92,7 +92,7 @@ class CommentPolicy
      */
     public function restore(User $user, Comment $comment)
     {
-        if ($user->hasAnyRole(['super-admin', 'admin', 'moderator'])) {
+        if ($user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])) {
             return Response::allow();
         }
 
@@ -100,7 +100,7 @@ class CommentPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete the Comment.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Comment  $comment
@@ -108,10 +108,6 @@ class CommentPolicy
      */
     public function forceDelete(User $user, Comment $comment)
     {
-        if ($user->hasAnyRole(['super-admin', 'admin'])) {
-            return Response::allow();
-        }
-
         return Response::deny('A deleted comment can only be forced deleted by an administrator');
     }
 }

@@ -49,19 +49,19 @@ namespace App\Models{
  * @property int $id
  * @property string|null $start_time The timestamp the reference starts
  * @property string|null $finish_time The timestamp the reference finishes
- * @property bool|null $runs_throughout Does the reference occur throughout the show?
- * @property string $details The story regarding what is being referenced
- * @property array|null $references A JSON object with title as key and URL as value
- * @property int $show_id
- * @property int $user_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property bool|null                                                           $runs_throughout Does the reference occur throughout the show?
+ * @property string                                                              $details The story regarding what is being referenced
+ * @property array|null                                                          $references A JSON object with title as key and URL as value
+ * @property int                                                                 $show_id
+ * @property int                                                                 $user_id
+ * @property \Illuminate\Support\Carbon|null                                     $created_at
+ * @property \Illuminate\Support\Carbon|null                                     $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
- * @property-read int|null $comments_count
- * @property-read \App\Models\User $creator
- * @property-read \App\Models\Show $show
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vote[] $votes
- * @property-read int|null $votes_count
+ * @property-read int|null                                                       $comments_count
+ * @property-read \App\Models\User                                               $creator
+ * @property-read \App\Models\Page                                               $show
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vote[]    $votes
+ * @property-read int|null                                                       $votes_count
  * @method static \Illuminate\Database\Eloquent\Builder|Segment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Segment newQuery()
  * @method static \Illuminate\Database\Query\Builder|Segment onlyTrashed()
@@ -84,7 +84,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Show
+ * App\Models\Page
  *
  * @property int $id
  * @property string $title
@@ -104,24 +104,24 @@ namespace App\Models{
  * @property-read int|null $segments_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vote[] $votes
  * @property-read int|null $votes_count
- * @method static \Illuminate\Database\Eloquent\Builder|Show findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|Show newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Show newQuery()
- * @method static \Illuminate\Database\Query\Builder|Show onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Show query()
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereReferences($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereReleaseYear($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereRuntime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereSynopsis($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereThumbnail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Show whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|Show withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Show withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Page onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereReferences($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereReleaseYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereRuntime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereSynopsis($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereThumbnail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|Page withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Page withoutTrashed()
  */
 	class Show extends \Eloquent {}
 }
@@ -134,20 +134,20 @@ namespace App\Models{
  * @property string $name
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
- * @property-read int|null $comments_count
+ * @property string                                                                                                         $password
+ * @property string|null                                                                                                    $remember_token
+ * @property \Illuminate\Support\Carbon|null                                                                                $created_at
+ * @property \Illuminate\Support\Carbon|null                                                                                $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[]                                            $comments
+ * @property-read int|null                                                                                                  $comments_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Segment[] $segments
- * @property-read int|null $segments_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Show[] $shows
- * @property-read int|null $shows_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vote[] $votes
- * @property-read int|null $votes_count
+ * @property-read int|null                                                                                                  $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Segment[]                                            $segments
+ * @property-read int|null                                                                                                  $segments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Page[]                                               $pages
+ * @property-read int|null                                                                                                  $shows_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Vote[]                                               $votes
+ * @property-read int|null                                                                                                  $votes_count
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()

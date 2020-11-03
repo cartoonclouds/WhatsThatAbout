@@ -18,8 +18,9 @@ Route::get('/', function () {
 })->middleware(['auth']);;
 
 Route::resources([
-    'shows' => 'ShowController',
+    'pages' => 'PageController',
     'segments' => 'SegmentController',
     'comments' => 'CommentController',
     'users' => 'UserController',
 ]);
+

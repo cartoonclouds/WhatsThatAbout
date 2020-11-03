@@ -13,7 +13,7 @@ class VoteController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Vote.
      */
     public function index()
     {
@@ -21,7 +21,7 @@ class VoteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Page the form for creating a new Vote.
      */
     public function create()
     {
@@ -29,7 +29,7 @@ class VoteController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Vote in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      */
@@ -39,7 +39,7 @@ class VoteController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Vote.
      *
      * @param  \App\Models\Vote  $vote
      */
@@ -49,7 +49,7 @@ class VoteController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Page the form for editing the specified Vote.
      *
      * @param  \App\Models\Vote  $vote
      */
@@ -59,7 +59,7 @@ class VoteController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Vote in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Vote  $vote
@@ -70,7 +70,7 @@ class VoteController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Vote from storage.
      *
      * @param  \App\Models\Vote  $vote
      */

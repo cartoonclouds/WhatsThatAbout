@@ -16,9 +16,9 @@ class Segment extends Eloquent
         'runs_throughout' => 'boolean',
     ];
 
-    public function show()
+    public function page()
     {
-        return $this->belongsTo(Show::class);
+        return $this->belongsTo(Page::class);
     }
 
     public function comments()
