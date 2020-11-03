@@ -14,14 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
-Route::apiResources([
-    'shows.references' => 'API\ReferenceController',
-    'shows.votes' => 'API\VoteController',
-    'shows.ratings' => 'API\RatingController',
-    'shows.genres' => 'API\GenreController',
-    'references.types' => 'API\TypeController',
-]);
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});

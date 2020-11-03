@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
@@ -17,19 +18,19 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        //only by admin/creators/moderator
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $User
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function view(User $user, User $User)
+    public function view(User $user, User $model)
     {
-        //
+        //only by user/admin/creators/moderator
     }
 
     /**
@@ -40,54 +41,54 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //
+        //only by admin/creators
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $User
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function update(User $user, User $User)
+    public function update(User $user, User $model)
     {
-        //
+        //only by user/admin/creators/moderator
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $User
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function delete(User $user, User $User)
+    public function delete(User $user, User $model)
     {
-        //
+        //only by admin/creators
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $User
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function restore(User $user, User $User)
+    public function restore(User $user, User $model)
     {
-        //
+        //only by admin/creators
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $User
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function forceDelete(User $user, User $User)
+    public function forceDelete(User $user, User $model)
     {
-        //
+        //only by admin
     }
 }

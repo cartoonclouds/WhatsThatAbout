@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
-use App\Contracts\Votable;
 use Eloquent;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Show extends Eloquent implements Votable
+class Show extends Eloquent
 {
+    use HasFactory;
+    use Sluggable;
+    use SoftDeletes;
+
     protected $casts = [ // object
         'references' => 'array', // {imdb_id: tt0123456}, wikipedia_url: '', official_website_url: ''} http://www.imdb.com/title/tt0123456/
-        'is_published' => 'boolean'
     ];
 
     /**
@@ -22,24 +27,32 @@ class Show extends Eloquent implements Votable
         return 'slug';
     }
 
+    public function sluggable() {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    public function getUrlAttribute()
+    {
+        return url('shows/' . $this->getRouteKey());
+    }
+
+    public function segments()
+    {
+        return $this->hasMany(Segment::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function votes()
     {
         return $this->morphMany(Vote::class, 'votable');
-    }
-
-    public function references()
-    {
-        return $this->hasMany(Reference::class);
-    }
-
-    public function ratings()
-    {
-        return $this->belongsToMany(Rating::class);
-    }
-
-    public function genres()
-    {
-        return $this->belongsToMany(Genre::class);
     }
 
     public function creator()

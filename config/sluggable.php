@@ -8,7 +8,7 @@ return [
      *
      *     $model->name;
      *
-     * Or it can be an array of fields, like ("name", "company"), which builds a slug from:
+     * Or it can be an array of fields, like ["name", "company"], which builds a slug from:
      *
      *     $model->name . ' ' . $model->company;
      *
@@ -18,7 +18,7 @@ return [
      * Defaults to null, which uses the toString() method on your model.
      */
 
-    'source' => 'username',
+    'source' => null,
 
     /**
      * The maximum length of a generated slug.  Defaults to "null", which means

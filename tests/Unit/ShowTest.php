@@ -2,100 +2,39 @@
 
 namespace Tests\Unit;
 
-use App\Models\Genre;
-use App\Models\Rating;
-use App\Models\Reference;
+use App\Models\Comment;
+use App\Models\Segment;
 use App\Models\Show;
 use App\Models\User;
-use App\Models\Vote;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ShowTest extends TestCase
 {
-    protected $show;
+    use RefreshDatabase;
 
-    protected $user;
-
-    public function setUp(): void
+    public function testShowHasSegments()
     {
-        parent::setUp();
+        $SEGMENT_COUNT = 6;
 
-        $this->user = factory(User::class)->create();
+        $show = Show::factory()->hasSegments($SEGMENT_COUNT)->create();
 
-        $this->show = factory(Show::class)->create([
-            'user_id' => $this->user->id
-        ]);
+        $this->assertCount($SEGMENT_COUNT, $show->segments);
     }
 
-    /**
-     * @test
-     */
-    public function a_show_can_have_many_votes()
+    public function testShowHasComments()
     {
-        $votes = factory(Vote::class, 10)->make([
-            'user_id' => $this->user->id
-        ])->each(function($vote) {
-            /** @var Vote $vote */
+        $COMMENT_COUNT = 6;
 
-            $vote->votable()->associate(
-                $this->show
-            )->save();
+        $show = Show::factory()->hasComments($COMMENT_COUNT)->create();
 
-        });
-
-        $voteShowCount = $votes
-            ->where('votable_type', get_class($this->show))
-            ->where('votable_id', $this->show->id)->count();
-
-        $showVoteCount = $this->show->votes->count();
-
-        $this->assertEquals($voteShowCount, $showVoteCount);
+        $this->assertCount($COMMENT_COUNT, $show->comments);
     }
 
-    /**
-     * @test
-     */
-    public function a_show_can_have_many_references()
+    public function testShowHasCreator()
     {
-        $references = factory(Reference::class, 10)->create([
-            'user_id' => $this->user->id
-        ]);
+        $show = Show::factory()->hasCreator()->make();
 
-        $this->show->references()->saveMany($references);
-
-        $this->assertEquals($references->pluck('id'), $this->show->reference->id);
+        $this->assertNotNull($show->creator);
     }
-
-    /**
-     * @test
-     */
-    public function a_show_can_have_many_ratings()
-    {
-        $ratings = factory(Rating::class, 10)->create();
-
-        $this->show->ratings()->saveMany($ratings);
-
-        $this->assertEquals($ratings->pluck('id'), $this->show->ratings->pluck('id'));
-    }
-
-    /**
-     * @test
-     */
-    public function a_show_can_have_many_genres()
-    {
-        $genres = factory(Genre::class, 10)->create();
-
-        $this->show->genres()->saveMany($genres);
-
-        $this->assertEquals($genres->pluck('id'), $this->show->genres->pluck('id'));
-    }
-
-    /**
-     * @test
-     */
-    public function a_show_has_just_one_creator()
-    {
-        $this->assertEquals($this->user->id, $this->show->creator->id);
-    }
-
 }

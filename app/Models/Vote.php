@@ -3,18 +3,30 @@
 namespace App\Models;
 
 use Eloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vote extends Eloquent
 {
+    use HasFactory;
+
+    protected $casts = [
+        'vote' => 'boolean',
+    ];
+
     public function votable()
     {
         return $this->morphTo();
     }
 
-    //distinguish between Reference and Show morphs
+    public function show()
+    {
+        return $this->morphTo(Show::class, 'votable_type', 'votable_id');
+    }
 
-    //use get/set attributes to enforce a correct vote
-
+    public function segment()
+    {
+        return $this->morphTo(Segment::class, 'votable_type', 'votable_id');
+    }
 
     public function voter()
     {

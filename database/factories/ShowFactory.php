@@ -1,23 +1,35 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Show;
-use Faker\Generator as Faker;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Show::class, function (Faker $faker) {
-    return [
-        'title' => $faker->sentence,
-        'slug' => function($show) {
-            return preg_replace('/[\W]/', '', $show['title']);
-        },
-        'synopsis' => $faker->paragraphs($faker->numberBetween(1, 10), true),
-        'release_year' => $faker->numberBetween(1950, 2030), // '-30 years', '+5 years'
-        'thumbnail' => $faker->imageUrl(),
-        'runtime' => $faker->time,
-        'references' => [],
-        'is_published' => $faker->boolean,
-        'rating_id' => factory(\App\Models\Rating::class)->create()->id,
-        'user_id' => factory(\App\Models\User::class)->create()->id
-    ];
-});
+class ShowFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Show::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'title' => $this->faker->unique()->words($this->faker->numberBetween(1, 10), true),
+            'synopsis' => $this->faker->sentences($this->faker->numberBetween(10, 50), true),
+            'release_year' => $this->faker->year,
+            'thumbnail' => $this->faker->image(),
+            'runtime' => $this->faker->time(),
+            //'references' => $this->faker->,
+            'user_id' => User::factory(),
+        ];
+    }
+}

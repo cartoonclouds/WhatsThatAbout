@@ -1,37 +1,4 @@
-/**
- * Development only NodeJS/Webpack/etc packages
- */
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-    // pages
-}
-
-
-/**
- * Lodash
- */
 window._ = require('lodash');
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-try {
-    window.Popper = require('popper.js').default;
-    global.$ = global.jQuery = require('jquery');
-
-    /**
-     * Include bootstrap material design
-     */
-    require('bootstrap-material-design');
-
-
-    /**
-     * Bootstrap-Notify - Growl message alert
-     */
-    require('bootstrap-notify');
-} catch (e) {}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -41,15 +8,19 @@ try {
 
 window.axios = require('axios');
 
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+window.Popper = require('popper.js');
 
 /**
- * The following block of code may be used to automatically register VueJS and
- * your Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+ * for JavaScript based Bootstrap features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
  */
-window.Vue = require('vue');
+
+window.$ = window.jQuery = require('jquery');
+
+require('bootstrap');
 
 
 /**
@@ -66,49 +37,6 @@ window.Vue = require('vue');
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
+//     forceTLS: true
 // });
 
-
-/**
- * Select2 -
- */
-require('select2');
-
-/**
- * Moment -
- */
-window.moment = require('moment');
-
-/**
- * InputMast -
- */
-window.Inputmask = require('inputmask');
-
-/**
- * Colors
- */
-global.colors = require('colors.css');
-
-/**
- * Custom mixins - modal and notify
- * @type {function(...[*]=)}
- */
-global.modal = require('./mixins/modal').default;
-
-global.notify = require('./mixins/notify').default;
-
-
-/**
- * Bootbox - alert/prompt replacement
- */
-import bootbox from 'bootbox';
-
-// (window.) alert
-global.alert = bootbox.alert;
-
-// (window.) confirm
-global.confirm = bootbox.confirm;
-
-// (window.) prompt
-global.prompt = bootbox.prompt;

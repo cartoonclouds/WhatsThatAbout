@@ -1,18 +1,30 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
+use App\Models\User;
 use App\Models\Vote;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Vote::class, function (Faker $faker) {
+class VoteFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Vote::class;
 
-    $votable = $faker->boolean ? factory(\App\Models\Show::class)->create() : factory(\App\Models\Reference::class)->create();
-
-    return [
-        'votable_type' => get_class($votable),
-        'votable_id' => $votable->id,
-        'user_id' => factory(\App\Models\User::class)->create()->id,
-        'vote' => $faker->boolean ? $faker->numberBetween(1, 5) : null
-    ];
-});
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'vote' => $this->faker->boolean,
+            'user_id' => User::factory()
+        ];
+    }
+}

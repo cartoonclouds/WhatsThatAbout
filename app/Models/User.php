@@ -2,25 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, CanResetPassword;
-
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass assignable.d
      *
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
-
 
     /**
      * The attributes that should be hidden for arrays.
@@ -28,9 +31,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
-
 
     /**
      * The attributes that should be cast to native types.
@@ -39,8 +42,13 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'hide_email_address' => 'boolean',
     ];
+
+
+    public function getUrlAttribute()
+    {
+        return url('users/' . $this->id);
+    }
 
 
     public function shows()
@@ -48,14 +56,24 @@ class User extends Authenticatable
         return $this->hasMany(Show::class);
     }
 
-    public function references()
+
+    public function segments()
     {
-        return $this->hasMany(Reference::class);
+        return $this->hasMany(Segment::class);
     }
+
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 
     public function votes()
     {
         return $this->hasMany(Vote::class);
     }
+
+
 
 }

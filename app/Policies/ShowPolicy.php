@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Show;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class ShowPolicy
 {
@@ -16,9 +17,9 @@ class ShowPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
-        //
+        return Response::allow();
     }
 
     /**
@@ -28,9 +29,9 @@ class ShowPolicy
      * @param  \App\Models\Show  $show
      * @return mixed
      */
-    public function view(User $user, Show $show)
+    public function view(?User $user, Show $show)
     {
-        //
+        return Response::allow();
     }
 
     /**
@@ -53,7 +54,11 @@ class ShowPolicy
      */
     public function update(User $user, Show $show)
     {
-        //
+        if ($show->creator->is($user) || $user->hasAnyRole(['super-admin', 'admin'])) {
+            return Response::allow();
+        }
+
+        return Response::deny('A show can only be edited by it\'s creator or an administrator');
     }
 
     /**
@@ -65,30 +70,42 @@ class ShowPolicy
      */
     public function delete(User $user, Show $show)
     {
-        //
+        if ($show->creator->is($user) || $user->hasAnyRole(['super-admin', 'admin'])) {
+            return Response::allow();
+        }
+
+        return Response::deny('A show can only be deleted by it\'s creator or an administrator');
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Show  $show
+     * @param  \App\Models\Show $show
      * @return mixed
      */
     public function restore(User $user, Show $show)
     {
-        //
+        if ($user->hasAnyRole(['super-admin', 'admin'])) {
+            return Response::allow();
+        }
+
+        return Response::deny('A deleted show can only be restored by an administrator');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Show  $show
+     * @param  \App\Models\Show $show
      * @return mixed
      */
     public function forceDelete(User $user, Show $show)
     {
-        //
+        if ($user->hasRole(['super-admin'])) {
+            return Response::allow();
+        }
+
+        return Response::deny('A deleted show can only be force deleted by a super administrator');
     }
 }

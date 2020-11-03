@@ -2,66 +2,51 @@
 
 namespace Tests\Unit;
 
-use App\Models\Reference;
-use App\Models\Show;
-use App\Models\User;
+use App\Models\Comment;
 use App\Models\Vote;
+use App\Models\Segment;
+use App\Models\Show;
 use Tests\TestCase;
-
-//use PHPUnit\Framework\TestCase;
 
 class VoteTest extends TestCase
 {
-    protected $vote;
-    protected $user;
-    protected $reference;
-    protected $show;
 
-    public function setUp(): void
+    public function testVoteHasShow()
     {
-        parent::setUp();
+        $vote = Vote::factory()->for(
+            Show::factory(), 'votable'
+        )->make();
 
-        $this->user = factory(User::class)->create();
-
-        $this->vote = factory(Vote::class)->create([
-            'user_id' => $this->user->id
-        ]);
+        $this->assertTrue($vote->show->exists);
     }
 
-    /**
-     * @test
-     */
-    public function a_vote_has_one_creator()
+    public function testVoteHasSegment()
     {
-        $this->assertEquals($this->user->id, $this->vote->voter->id);
+        $vote = Vote::factory()->for(
+            Segment::factory(), 'votable'
+        )->make();
+
+        $this->assertTrue($vote->segment->exists);
     }
 
-    /**
-     * @test
-     */
-    public function a_vote_is_associated_with_one_show()
+//    public function testVoteHasComment()
+//    {
+//        $vote = Vote::factory()->for(
+//            Comment::factory(), 'votable'
+//        )->make();
+//
+//        $this->assertTrue($vote->comment->exists);
+//    }
+
+    public function testVoteHasVoter()
     {
-        $show = factory(Show::class)->create([
-            'user_id' => $this->user->id
-        ]);
+        $vote = Vote::factory()->hasVoter()->make();
 
-        $show->votes()->save($this->vote); // make the association
-
-        $this->assertEquals($show->id, $this->vote->votable->id); // validate
+        $this->assertNotNull($vote->voter);
     }
 
-    /**
-     * @test
-     */
-    public function a_vote_is_associated_with_one_reference()
-    {
-        $reference = factory(Reference::class)->create([
-            'user_id' => $this->user->id
-        ]);
-
-        $reference->votes()->save($this->vote); // make the association
-
-        $this->assertEquals($reference->id, $this->vote->votable->id); // validate
-    }
-
+//    public function testVoteHasReplies()
+//    {
+//
+//    }
 }

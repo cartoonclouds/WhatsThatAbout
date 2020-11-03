@@ -13,15 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
+Route::get('/', function () {
+    return view('welcome');
+})->middleware(['auth']);;
 
 Route::resources([
     'shows' => 'ShowController',
+    'segments' => 'SegmentController',
+    'comments' => 'CommentController',
     'users' => 'UserController',
 ]);
-
-

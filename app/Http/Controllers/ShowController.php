@@ -7,20 +7,23 @@ use Illuminate\Http\Request;
 
 class ShowController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function __construct()
     {
         $this->authorizeResource(Show::class, 'show');
     }
 
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return view('shows.index');
+    }
+
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -31,7 +34,6 @@ class ShowController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -42,18 +44,16 @@ class ShowController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Show  $show
-     * @return \Illuminate\Http\Response
      */
     public function show(Show $show)
     {
-        //
+        dd($show);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Show  $show
-     * @return \Illuminate\Http\Response
      */
     public function edit(Show $show)
     {
@@ -65,7 +65,6 @@ class ShowController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Show  $show
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Show $show)
     {
@@ -76,7 +75,6 @@ class ShowController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Show  $show
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Show $show)
     {

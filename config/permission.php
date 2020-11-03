@@ -85,12 +85,20 @@ return [
     ],
 
     /*
-     * When set to true, the required permission/role names are added to the exception
+     * When set to true, the required permission names are added to the exception
      * message. This could be considered an information leak in some contexts, so
      * the default setting is false here for optimum safety.
      */
 
-    'display_permission_in_exception' => true,
+    'display_permission_in_exception' => false,
+
+    /*
+     * When set to true, the required role names are added to the exception
+     * message. This could be considered an information leak in some contexts, so
+     * the default setting is false here for optimum safety.
+     */
+
+    'display_role_in_exception' => false,
 
     /*
      * By default wildcard permission lookups are disabled.
@@ -111,7 +119,7 @@ return [
          * The cache key used to store all permissions.
          */
 
-        'key' => 'permission.cache',
+        'key' => 'spatie.permission.cache',
 
         /*
          * When checking for a permission against a model by passing a Permission

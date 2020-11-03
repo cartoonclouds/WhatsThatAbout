@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'What\'s That About?'),
+    'name' => env('APP_NAME','What\'s That About?'),
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +106,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'en_AU',
 
     /*
     |--------------------------------------------------------------------------
@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Laracasts\Flash\FlashServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,
 
         /*
          * Application Service Providers...

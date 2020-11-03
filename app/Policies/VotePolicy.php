@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Vote;
 use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class VotePolicy
 {
@@ -18,19 +19,19 @@ class VotePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        //only by admin/creators/moderator
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Vote  $Vote
+     * @param  \App\Models\Vote  $vote
      * @return mixed
      */
-    public function view(User $user, Vote $Vote)
+    public function view(User $user, Vote $vote)
     {
-        //
+        //by user
     }
 
     /**
@@ -41,54 +42,30 @@ class VotePolicy
      */
     public function create(User $user)
     {
-        //
+        //by user
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Vote  $Vote
+     * @param  \App\Models\Vote  $vote
      * @return mixed
      */
-    public function update(User $user, Vote $Vote)
+    public function update(User $user, Vote $vote)
     {
-        //
+        //by user
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Vote  $Vote
+     * @param  \App\Models\Vote  $vote
      * @return mixed
      */
-    public function delete(User $user, Vote $Vote)
+    public function delete(User $user, Vote $vote)
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Vote  $Vote
-     * @return mixed
-     */
-    public function restore(User $user, Vote $Vote)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Vote  $Vote
-     * @return mixed
-     */
-    public function forceDelete(User $user, Vote $Vote)
-    {
-        //
+        //by user
     }
 }
