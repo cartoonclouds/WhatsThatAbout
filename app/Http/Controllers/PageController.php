@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePageRequest;
 use App\Models\Page;
-use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -28,7 +26,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.create');
     }
 
     /**
@@ -38,7 +36,7 @@ class PageController extends Controller
      */
     public function show(Page $page)
     {
-        //
+        return view('pages.show', compact('page'));
     }
 
     /**
@@ -48,7 +46,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        //
+        return view('pages.edit', compact('page'));
     }
 
 }

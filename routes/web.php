@@ -15,15 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware(['auth']);;
+})->middleware(['auth']);
 
 
-Route::resource('pages', 'PageController')->only([
-    'index',
-    'create',
-    'show',
-    'edit',
-]);
+Route::resource('pages', 'PageController',
+    ['only' => ['index', 'create', 'show', 'edit']]);
 
 
 Route::resources([
