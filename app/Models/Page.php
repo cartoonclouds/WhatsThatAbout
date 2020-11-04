@@ -47,11 +47,6 @@ class Page extends Eloquent
         return $this->hasMany(Segment::class);
     }
 
-    public function comments()
-    {
-        return $this->morphMany(Comment::class, 'commentable');
-    }
-
     public function votes()
     {
         return $this->morphMany(Vote::class, 'votable');

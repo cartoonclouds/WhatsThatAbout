@@ -22,6 +22,7 @@ class PagePolicy
         return Response::allow();
     }
 
+
     /**
      * Determine whether the user can view the Page.
      *
@@ -34,20 +35,6 @@ class PagePolicy
         return Response::allow();
     }
 
-    /**
-     * Determine whether the user can create/update Pages.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function updateOrCreate(User $user, ?Page $page)
-    {
-        if (($page->exists && $page->creator->is($user)) || $user->hasAnyRole([User::ROLE_ADMIN])) {
-            return Response::allow();
-        }
-
-        return Response::deny('A page can only be created by an administrator');
-    }
 
     /**
      * Determine whether the user can create Pages.
@@ -63,6 +50,7 @@ class PagePolicy
 
         return Response::deny('A page can only be created by an administrator');
     }
+
 
     /**
      * Determine whether the user can update the Page.
@@ -80,6 +68,7 @@ class PagePolicy
         return Response::deny('A page can only be edited by the creator or an administrator');
     }
 
+
     /**
      * Determine whether the user can delete the Page.
      *
@@ -95,6 +84,7 @@ class PagePolicy
 
         return Response::deny('A page can only be deleted by the creator or an administrator');
     }
+
 
     /**
      * Determine whether the user can restore the Page.
@@ -112,6 +102,7 @@ class PagePolicy
         return Response::deny('A deleted page can only be restored by an administrator');
     }
 
+
     /**
      * Determine whether the user can permanently delete the Page.
      *
@@ -123,4 +114,5 @@ class PagePolicy
     {
         return Response::deny('A deleted page can only be force deleted by a super administrator');
     }
+
 }

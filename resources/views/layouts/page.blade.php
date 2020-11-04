@@ -27,9 +27,12 @@
     @include('flash::message')
     @include('layouts.header')
 
-    <main class="main">
+    <main class="main" style="width:60%;margin:0 auto;">
         @yield('content')
     </main>
+
+    @section('modals')
+    @show
 
     @include('layouts.footer')
 

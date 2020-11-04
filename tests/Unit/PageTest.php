@@ -20,15 +20,6 @@ class PageTest extends TestCase
         $this->assertCount($SEGMENT_COUNT, $page->segments);
     }
 
-    public function testPageHasComments()
-    {
-        $COMMENT_COUNT = 6;
-
-        $page = Page::factory()->hasComments($COMMENT_COUNT)->create();
-
-        $this->assertCount($COMMENT_COUNT, $page->comments);
-    }
-
     public function testPageHasCreator()
     {
         $page = Page::factory()->hasCreator()->make();

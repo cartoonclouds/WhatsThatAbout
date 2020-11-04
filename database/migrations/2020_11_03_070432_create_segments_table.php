@@ -15,6 +15,7 @@ class CreateSegmentsTable extends Migration
     {
         Schema::create('segments', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->time('start_time')->nullable()->comment('The timestamp the reference starts');
             $table->time('finish_time')->nullable()->comment('The timestamp the reference finishes');
             $table->boolean('runs_throughout')->nullable()->comment('Does the reference occur throughout the show?');

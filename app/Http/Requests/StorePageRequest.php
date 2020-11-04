@@ -2,13 +2,25 @@
 
 namespace App\Http\Requests;
 
-use App\Traits\FormRequestAuthorization;
 use App\Models\Page;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class StorePageRequest extends FormRequest
 {
+
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return $this->page ?
+            $this->user()->can('update', $this->page) :
+            $this->user()->can('create', Page::class);
+    }
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -55,4 +67,5 @@ class StorePageRequest extends FormRequest
 
         return false;
     }
+
 }

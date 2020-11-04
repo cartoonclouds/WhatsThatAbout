@@ -21,6 +21,7 @@ class PageController extends Controller
         return view('pages.index');
     }
 
+
     /**
      * Page the form for creating a new Page.
      */
@@ -28,6 +29,7 @@ class PageController extends Controller
     {
         return view('pages.edit');
     }
+
 
     /**
      * Display the specified Page.
@@ -38,6 +40,7 @@ class PageController extends Controller
     {
         return view('pages.show', compact('page'));
     }
+
 
     /**
      * Page the form for editing the specified Page.

@@ -24,8 +24,6 @@ class PageController extends Controller
      */
     public function updateOrCreate(Page $page, StorePageRequest $request)
     {
-        $this->authorize('updateOrCreate', $page);
-
         if ($page->exists) {
             $page = $request->persist($page);
 
@@ -69,4 +67,5 @@ class PageController extends Controller
             'message' => 'Successfully deleted page!'
         ]);
     }
+
 }
