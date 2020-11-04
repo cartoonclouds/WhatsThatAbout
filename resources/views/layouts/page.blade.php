@@ -41,6 +41,11 @@
         <script>
             $('#flash-overlay-modal').modal();
             $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+
+            window.App = @json([
+	            'user' => Auth::user(),
+                'signedIn' => Auth::check()
+            ])
         </script>
     @show
 </body>
