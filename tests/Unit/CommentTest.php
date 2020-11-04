@@ -10,15 +10,6 @@ use Tests\TestCase;
 class CommentTest extends TestCase
 {
 
-    public function testCommentHasPage()
-    {
-        $comment = Comment::factory()->for(
-            Page::factory(), 'commentable'
-        )->make();
-
-        $this->assertTrue($comment->page->exists);
-    }
-
     public function testCommentHasSegment()
     {
         $comment = Comment::factory()->for(

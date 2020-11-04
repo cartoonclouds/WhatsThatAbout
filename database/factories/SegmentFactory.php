@@ -24,10 +24,11 @@ class SegmentFactory extends Factory
     public function definition()
     {
         return [
+            'title' => $this->faker->words(5, true),
             'start_time' => $this->faker->time(),
             'finish_time' => $this->faker->time(),
             'runs_throughout' => $this->faker->boolean,
-            'details' => $this->faker->paragraphs($this->faker->numberBetween(10, 50), true),
+            'details' => $this->faker->paragraphs($this->faker->numberBetween(10, 30), true),
             //'references' => $this->faker->,
             'page_id' => Page::factory(),
             'user_id' => User::factory(),

@@ -4,7 +4,6 @@ namespace Tests\Feature\Page;
 
 use App\Models\Page;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
@@ -23,7 +22,7 @@ class AdminAccessTest extends TestCase
 
     public function testAdminCanCreatePage()
     {
-        $response = $this->actingAs($this->user)->post('api/pages', Page::factory()->make()->toArray());
+        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate', Page::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -34,7 +33,7 @@ class AdminAccessTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $response = $this->actingAs($this->user)->put('/api/pages/' . $page->getRouteKey(), Page::factory()->make()->toArray());
+        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -43,7 +42,7 @@ class AdminAccessTest extends TestCase
     {
         $page = Page::factory()->create();
 
-        $response = $this->actingAs($this->user)->put('/api/pages/' . $page->getRouteKey(), Page::factory()->make()->toArray());
+        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -54,7 +53,7 @@ class AdminAccessTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $response = $this->actingAs($this->user)->delete('/api/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user, 'api')->deleteJson('/api/pages/' . $page->getRouteKey());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -63,7 +62,7 @@ class AdminAccessTest extends TestCase
     {
         $page = Page::factory()->create();
 
-        $response = $this->actingAs($this->user)->delete('/api/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user, 'api')->deleteJson('/api/pages/' . $page->getRouteKey());
 
         $response->assertStatus(Response::HTTP_OK);
     }

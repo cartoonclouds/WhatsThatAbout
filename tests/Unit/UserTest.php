@@ -35,13 +35,13 @@ class UserTest extends TestCase
 
         $user = User::factory()->create();
 
-        $page = Page::factory()->hasComments($COMMENT_COUNT, [
+        $segment = Segment::factory()->hasComments($COMMENT_COUNT, [
             'user_id' => $user->id
         ])->create([
             'user_id' => $user->id
         ]);
 
-        $this->assertCount($COMMENT_COUNT, $page->comments);
+        $this->assertCount($COMMENT_COUNT, $segment->comments);
         $this->assertCount($COMMENT_COUNT, $user->comments);
     }
 

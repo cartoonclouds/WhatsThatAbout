@@ -4,7 +4,7 @@ namespace Tests\Feature\Page;
 
 use App\Models\Page;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
@@ -23,25 +23,31 @@ class ModeratorAccessTest extends TestCase
 
     public function testModeratorCannotCreatePage()
     {
-        $response = $this->actingAs($this->user)->post('/api/pages');
+        $this->expectException(AuthorizationException::class);
+
+        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate', Page::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testModeratorCannotUpdatePage()
     {
+        $this->expectException(AuthorizationException::class);
+
         $page = Page::factory()->create();
 
-        $response = $this->actingAs($this->user)->put('/api/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testModeratorCannotDestroyPage()
     {
+        $this->expectException(AuthorizationException::class);
+
         $page = Page::factory()->create();
 
-        $response = $this->actingAs($this->user)->delete('/api/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user, 'api')->deleteJson('/api/pages/' . $page->getRouteKey());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
