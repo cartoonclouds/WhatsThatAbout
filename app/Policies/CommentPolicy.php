@@ -61,7 +61,7 @@ class CommentPolicy
             return Response::allow();
         }
 
-        return Response::deny('A comment can only be edited by it\'s creator, a moderator or administrator');
+        return Response::deny('A comment can only be edited by the creator, a moderator or administrator');
     }
 
     /**
@@ -80,7 +80,7 @@ class CommentPolicy
             return Response::allow();
         }
 
-        return Response::deny('A comment can only be deleted by it\'s creator, a moderator or administrator');
+        return Response::deny('A comment can only be deleted by the creator, a moderator or administrator');
     }
 
     /**

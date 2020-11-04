@@ -15,44 +15,42 @@ class PageController extends Controller
         $this->authorizeResource(Page::class, 'page');
     }
 
+
     /**
-     * Store a newly created Page in storage.
+     * Store a newly created Page or update as specific Page in storage.
      *
      * @param  \App\Http\Requests\StorePageRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StorePageRequest $request)
+    public function updateOrCreate(Page $page, StorePageRequest $request)
     {
-        if ($page = $request->persist(new Page())) {
+        $this->authorize('updateOrCreate', $page);
+
+        if ($page->exists) {
+            $page = $request->persist($page);
+
+            if ($page) {
+                return response()->json([
+                    'message' => 'Successfully updated page!'
+                ]);
+            }
+
             return response()->json([
-                'message' => 'Successfully created new page!'
+                'message' => 'There was an issue updating the page. Please try again.',
+            ]);
+        } else {
+            $page = $request->persist(new Page());
+
+            if ($page) {
+                return response()->json([
+                    'message' => 'Successfully created new page!'
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'There was an issue creating the page. Please try again.',
             ]);
         }
-
-        return response()->json([
-            'message' => 'There was an issue creating the page. Please try again.',
-        ]);
-    }
-
-
-    /**
-     * Update the specified Page in storage.
-     *
-     * @param  \App\Http\Requests\StorePageRequest  $request
-     * @param  \App\Models\Page         $page
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function update(StorePageRequest $request, Page $page)
-    {
-        if ($page = $request->persist($page)) {
-            return response()->json([
-                'message' => 'Successfully updated page!'
-            ]);
-        }
-
-        return response()->json([
-            'message' => 'There was an issue updating the page. Please try again.',
-        ]);
     }
 
 

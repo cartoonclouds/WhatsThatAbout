@@ -14,9 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:api']], function() {
+
+    Route::get('/user', function (Request $request) {
+        return response()->json($request->user());
+    });
+
+    Route::apiResource('pages', 'API\\PageController',
+        ['only' => ['destroy']]);
+
+    Route::post('pages/updateOrCreate/{page:slug?}', 'API\\PageController@updateOrCreate');
+
 });
 
-Route::apiResource('pages', 'API\\PageController',
-    ['only' => ['store', 'update', 'destroy']]);

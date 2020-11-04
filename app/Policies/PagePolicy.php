@@ -35,6 +35,21 @@ class PagePolicy
     }
 
     /**
+     * Determine whether the user can create/update Pages.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function updateOrCreate(User $user, ?Page $page)
+    {
+        if (($page->exists && $page->creator->is($user)) || $user->hasAnyRole([User::ROLE_ADMIN])) {
+            return Response::allow();
+        }
+
+        return Response::deny('A page can only be created by an administrator');
+    }
+
+    /**
      * Determine whether the user can create Pages.
      *
      * @param  \App\Models\User  $user
@@ -46,7 +61,7 @@ class PagePolicy
             return Response::allow();
         }
 
-        return Response::deny('A show can only be created by an administrator');
+        return Response::deny('A page can only be created by an administrator');
     }
 
     /**
@@ -62,7 +77,7 @@ class PagePolicy
             return Response::allow();
         }
 
-        return Response::deny('A show can only be edited by it\'s creator or an administrator');
+        return Response::deny('A page can only be edited by the creator or an administrator');
     }
 
     /**
@@ -78,7 +93,7 @@ class PagePolicy
             return Response::allow();
         }
 
-        return Response::deny('A show can only be deleted by it\'s creator or an administrator');
+        return Response::deny('A page can only be deleted by the creator or an administrator');
     }
 
     /**
@@ -94,7 +109,7 @@ class PagePolicy
             return Response::allow();
         }
 
-        return Response::deny('A deleted show can only be restored by an administrator');
+        return Response::deny('A deleted page can only be restored by an administrator');
     }
 
     /**
@@ -106,6 +121,6 @@ class PagePolicy
      */
     public function forceDelete(User $user, Page $page)
     {
-        return Response::deny('A deleted show can only be force deleted by a super administrator');
+        return Response::deny('A deleted page can only be force deleted by a super administrator');
     }
 }

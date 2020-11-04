@@ -12,19 +12,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => ['auth']], function() {
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware(['auth']);
-
-
-Route::resource('pages', 'PageController',
-    ['only' => ['index', 'create', 'show', 'edit']]);
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
 
-Route::resources([
-    'segments' => 'SegmentController',
-    'comments' => 'CommentController',
-    'users' => 'UserController',
-]);
+    Route::resource('pages', 'PageController',
+        ['only' => ['index', 'create', 'show', 'edit']]);
+
+
+    Route::resources([
+        'segments' => 'SegmentController',
+        'comments' => 'CommentController',
+        'users' => 'UserController',
+    ]);
+
+});
+
+
+
 

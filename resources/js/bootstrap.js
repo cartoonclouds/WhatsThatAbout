@@ -8,8 +8,6 @@ window._ = require('lodash');
 
 window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 window.Popper = require('popper.js');
 
 /**
@@ -19,6 +17,16 @@ window.Popper = require('popper.js');
  */
 
 window.$ = window.jQuery = require('jquery');
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        'Authorization': 'Bearer ' + $('meta[name="remember-token"]').attr('content'),
+    }
+});
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + $('meta[name="remember-token"]').attr('content');
 
 require('bootstrap');
 

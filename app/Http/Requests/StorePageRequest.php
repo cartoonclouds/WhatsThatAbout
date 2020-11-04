@@ -4,15 +4,11 @@ namespace App\Http\Requests;
 
 use App\Traits\FormRequestAuthorization;
 use App\Models\Page;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StorePageRequest extends APIRequest
+class StorePageRequest extends FormRequest
 {
-    use FormRequestAuthorization;
-
-    protected $routeParameter = 'page';
-
-    protected $parameterClass = Page::class;
 
     /**
      * Get the validation rules that apply to the request.
@@ -54,7 +50,6 @@ class StorePageRequest extends APIRequest
 
         if ($page->save()) {
             // Perform other tasks, maybe fire an event, dispatch a job.
-
             return $page;
         }
 
