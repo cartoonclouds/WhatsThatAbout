@@ -3,12 +3,10 @@
 namespace Tests\Unit;
 
 use App\Models\Segment;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class SegmentTest extends TestCase
 {
-//    use RefreshDatabase;
 
     public function testSegmentHasPage()
     {

@@ -23,7 +23,7 @@ class AdminAccessTest extends TestCase
 
     public function testAdminCanCreatePage()
     {
-        $response = $this->actingAs($this->user)->post('/pages');
+        $response = $this->actingAs($this->user)->post('api/pages', Page::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -34,7 +34,7 @@ class AdminAccessTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $response = $this->actingAs($this->user)->put('/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user)->put('/api/pages/' . $page->getRouteKey(), Page::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -43,7 +43,7 @@ class AdminAccessTest extends TestCase
     {
         $page = Page::factory()->create();
 
-        $response = $this->actingAs($this->user)->put('/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user)->put('/api/pages/' . $page->getRouteKey(), Page::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -54,7 +54,7 @@ class AdminAccessTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $response = $this->actingAs($this->user)->delete('/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user)->delete('/api/pages/' . $page->getRouteKey());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -63,7 +63,7 @@ class AdminAccessTest extends TestCase
     {
         $page = Page::factory()->create();
 
-        $response = $this->actingAs($this->user)->delete('/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user)->delete('/api/pages/' . $page->getRouteKey());
 
         $response->assertStatus(Response::HTTP_OK);
     }

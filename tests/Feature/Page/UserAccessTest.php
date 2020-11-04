@@ -21,14 +21,14 @@ class UserAccessTest extends TestCase
 
     public function testGuestCannotCreatePage()
     {
-        $response = $this->post('/pages');
+        $response = $this->post('/api/pages');
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testUserCannotCreatePage()
     {
-        $response = $this->actingAs($this->user)->post('/pages');
+        $response = $this->actingAs($this->user)->post('/api/pages');
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -37,7 +37,7 @@ class UserAccessTest extends TestCase
     {
         $page = Page::factory()->create();
 
-        $response = $this->actingAs($this->user)->put('/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user)->put('/api/pages/' . $page->getRouteKey());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -46,7 +46,7 @@ class UserAccessTest extends TestCase
     {
         $page = Page::factory()->create();
 
-        $response = $this->actingAs($this->user)->delete('/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user)->delete('/api/pages/' . $page->getRouteKey());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }

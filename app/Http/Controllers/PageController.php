@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePageRequest;
 use App\Models\Page;
 use Illuminate\Http\Request;
 
@@ -31,16 +32,6 @@ class PageController extends Controller
     }
 
     /**
-     * Store a newly created Page in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified Page.
      *
      * @param  \App\Models\Page $page
@@ -60,24 +51,4 @@ class PageController extends Controller
         //
     }
 
-    /**
-     * Update the specified Page in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Models\Page         $page
-     */
-    public function update(Request $request, Page $page)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified Page from storage.
-     *
-     * @param  \App\Models\Page $page
-     */
-    public function destroy(Page $page)
-    {
-        //
-    }
 }

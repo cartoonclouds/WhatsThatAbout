@@ -6,12 +6,10 @@ use App\Models\Comment;
 use App\Models\Segment;
 use App\Models\Page;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PageTest extends TestCase
 {
-    use RefreshDatabase;
 
     public function testPageHasSegments()
     {

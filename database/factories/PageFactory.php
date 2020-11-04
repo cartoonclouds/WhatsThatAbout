@@ -28,7 +28,7 @@ class PageFactory extends Factory
             'release_year' => $this->faker->year,
             'thumbnail' => $this->faker->image(),
             'runtime' => $this->faker->time(),
-            //'references' => $this->faker->,
+            'references' => ['imdb_id' => $this->faker->numerify('#######')],
             'user_id' => User::factory(),
         ];
     }

@@ -23,7 +23,7 @@ class ModeratorAccessTest extends TestCase
 
     public function testModeratorCannotCreatePage()
     {
-        $response = $this->actingAs($this->user)->post('/pages');
+        $response = $this->actingAs($this->user)->post('/api/pages');
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -32,7 +32,7 @@ class ModeratorAccessTest extends TestCase
     {
         $page = Page::factory()->create();
 
-        $response = $this->actingAs($this->user)->put('/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user)->put('/api/pages/' . $page->getRouteKey());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -41,7 +41,7 @@ class ModeratorAccessTest extends TestCase
     {
         $page = Page::factory()->create();
 
-        $response = $this->actingAs($this->user)->delete('/pages/' . $page->getRouteKey());
+        $response = $this->actingAs($this->user)->delete('/api/pages/' . $page->getRouteKey());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }

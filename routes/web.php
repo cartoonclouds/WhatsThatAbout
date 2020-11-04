@@ -17,8 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware(['auth']);;
 
+
+Route::resource('pages', 'PageController')->only([
+    'index',
+    'create',
+    'show',
+    'edit',
+]);
+
+
 Route::resources([
-    'pages' => 'PageController',
     'segments' => 'SegmentController',
     'comments' => 'CommentController',
     'users' => 'UserController',

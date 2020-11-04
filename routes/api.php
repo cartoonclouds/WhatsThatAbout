@@ -18,4 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('pages.comments', 'API\\PageCommentController')->shallow();
+Route::apiResource('pages', 'API\\PageController')->only([
+    'store',
+    'update',
+    'destroy',
+]);
+

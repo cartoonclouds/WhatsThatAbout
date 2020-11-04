@@ -11,6 +11,8 @@ class Comment extends Eloquent
     use HasFactory;
     use SoftDeletes;
 
+    protected $guarded = [];
+
     public function commentable()
     {
         return $this->morphTo();

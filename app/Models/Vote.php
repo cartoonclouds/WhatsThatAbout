@@ -9,6 +9,8 @@ class Vote extends Eloquent
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $casts = [
         'vote' => 'boolean',
     ];
