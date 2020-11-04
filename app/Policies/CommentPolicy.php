@@ -55,13 +55,13 @@ class CommentPolicy
     public function update(User $user, Comment $comment)
     {
         if (
-            ($comment->creator->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
+            ($comment->commenter->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
             || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])
         ) {
             return Response::allow();
         }
 
-        return Response::deny('A comment can only be edited by the creator, a moderator or administrator');
+        return Response::deny('A comment can only be edited by the commenter, a moderator or administrator');
     }
 
     /**
@@ -74,13 +74,13 @@ class CommentPolicy
     public function delete(User $user, Comment $comment)
     {
         if (
-            ($comment->creator->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
+            ($comment->commenter->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
             || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])
         ) {
             return Response::allow();
         }
 
-        return Response::deny('A comment can only be deleted by the creator, a moderator or administrator');
+        return Response::deny('A comment can only be deleted by the commenter, a moderator or administrator');
     }
 
     /**

@@ -23,12 +23,18 @@
 @stop
 
 @section('content')
-    <div id="content">
-        <a class="mb-3 btn btn-primary" href="{{ url('pages') }}">Back</a>
-        <a class="mb-3 btn btn-primary" href="{{ user()->url }}">{{ user()->name }} <small>({{ user()->email }})</small></a>
+    <div id="app">
 
+        <a class="mb-3 btn btn-primary" href="{{ url('pages') }}">Back</a>
+
+        @can('view', user())
+        <a class="mb-3 btn btn-primary" href="{{ user()->url }}">{{ user()->name }} <small>({{ user()->email }})</small></a>
+        @endcan
+
+        @can('createOrUpdate', $page)
         <a href="{{ url("pages/create") }}" class="btn btn-dark float-right ml-2">Create</a>
         <a href="{{ url("pages/$page->slug/edit") }}" class="btn btn-dark float-right"><i class="fa fa-edit"></i> Edit</a>
+        @endcan
 
         <h1>{{ $page->title }} <small>(Slug: {{ $page->slug }})</small></h1>
 
@@ -43,7 +49,9 @@
             {{ $page->synopsis }}
         </p>
 
+        @can('create', \App\Models\Segment::class)
         <button type="button" class="btn btn-dark float-right" data-toggle="modal" data-target="#createSegment">Create Segment</button>
+        @endcan
 
         <hr>
 
@@ -106,12 +114,14 @@
                                         &bull;
                                         {{ $comment->created_at->diffForHumans() }}
 
+                                        @can('update', $comment)
                                         <button type="button" class="btn btn-dark float-right" data-toggle="modal" data-target="#editComment"><i class="fa fa-edit"></i> Edit</button>
+                                        @endcan
                                     </td>
                                 </tr>
                                 <tr class="segment-comment-details">
                                     <td>
-                                        {{ $comment->comment }}
+                                        {{ $comment->body }}
                                     </td>
                                 </tr>
                             </table>

@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth']], function() {
         return view('welcome');
     });
 
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::resource('pages', 'PageController',
         ['only' => ['index', 'create', 'show', 'edit']]);
@@ -30,7 +31,6 @@ Route::group(['middleware' => ['auth']], function() {
     ]);
 
 });
-
 
 
 

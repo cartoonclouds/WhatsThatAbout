@@ -14,7 +14,11 @@
         <dl>
         @foreach(\App\Models\Page::all() as $page)
             <dt>
-                <a href="{{ $page->url }}">{{ $page->title }}</a> <small>/ <a href="{{ url("pages/$page->slug/edit") }}">Edit</a></small>
+                <a href="{{ $page->url }}">{{ $page->title }}</a>
+
+                @can('updateOrCreate')
+                <small>/ <a href="{{ url("pages/$page->slug/edit") }}">Edit</a></small>
+                @endcan
             </dt>
             <dd>
                 <p>{{ $page->synopsis }}</p>
