@@ -3,10 +3,19 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Example Component</div>
+                    <div class="card-header">
+                        {{ details.title }}
 
-                    <div class="card-body">
-                        I'm an example component.
+                        <button type="button" class="btn btn-dark float-right" v-if="!editing" @click="editing = true">Edit</button>
+                        <button type="button" class="btn btn-dark float-right" v-else @click="save">Save</button>
+                    </div>
+
+                    <div v-if="editing" class="card-body">
+                        <textarea v-model="comment"></textarea>
+                    </div>
+
+                    <div v-else class="card-body">
+                        {{ comment }}
                     </div>
                 </div>
             </div>
@@ -16,8 +25,21 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        props: ['details'],
+        data() {
+            return {
+                editing: false,
+                comment: this.details.body
+            }
+        },
+        methods: {
+            save()
+            {
+                this.editing = false;
+            }
+        },
+        computed: {
+
+        },
     }
 </script>

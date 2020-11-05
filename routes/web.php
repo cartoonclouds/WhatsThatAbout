@@ -20,15 +20,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::resource('pages', 'PageController',
-        ['only' => ['index', 'create', 'show', 'edit']]);
+    Route::get('pages/{page}', 'PageViewController');
 
-
-    Route::resources([
-        'segments' => 'SegmentController',
-        'comments' => 'CommentController',
-        'users' => 'UserController',
-    ]);
 
 });
 

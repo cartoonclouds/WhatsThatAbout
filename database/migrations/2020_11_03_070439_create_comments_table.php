@@ -17,6 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->morphs('commentable');
             $table->integer('user_id')->index();
+            $table->string('title');
             $table->longText('body');
             $table->softDeletes();
             $table->timestamps();

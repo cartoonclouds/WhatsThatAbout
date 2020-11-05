@@ -27,7 +27,9 @@ window.Vue.prototype.authorize = function (handler) {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('comment', require('./components/Comment.vue').default);
-Vue.component('voter', require('./components/Vote.vue').default);
+Vue.component('vote', require('./components/Vote.vue').default);
+Vue.component('update-or-create', require('./components/UpdateOrCreate.vue').default);
+Vue.component('segment', require('./components/Segment.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -35,6 +37,6 @@ Vue.component('voter', require('./components/Vote.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+app = new Vue({
     el: '#app',
 });

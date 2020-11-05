@@ -23,7 +23,8 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'comment' => $this->faker->sentence($this->faker->numberBetween(10, 50), true),
+            'title' => $this->faker->words($this->faker->numberBetween(1, 10), true),
+            'body' => $this->faker->sentence($this->faker->numberBetween(10, 50), true),
             'user_id' => User::factory()
         ];
     }

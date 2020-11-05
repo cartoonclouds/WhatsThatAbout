@@ -20,10 +20,10 @@ Route::group(['middleware' => ['auth:api']], function() {
         return response()->json($request->user());
     });
 
-    Route::apiResource('pages', 'API\\PageController',
+    Route::apiResource('pages', 'API\\PageViewController',
         ['only' => ['destroy']]);
 
-    Route::post('pages/updateOrCreate/{page:slug?}', 'API\\PageController@updateOrCreate');
+    Route::post('pages/updateOrCreate/{page:slug?}', 'API\\PageViewController@updateOrCreate');
 
 });
 

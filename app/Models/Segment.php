@@ -18,6 +18,16 @@ class Segment extends Eloquent
         'runs_throughout' => 'boolean',
     ];
 
+    protected $with = [
+        'comments',
+        'votes'
+    ];
+
+    protected $withCount = [
+        'comments',
+        'votes'
+    ];
+
     public function page()
     {
         return $this->belongsTo(Page::class);

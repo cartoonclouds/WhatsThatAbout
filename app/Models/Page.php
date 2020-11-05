@@ -19,6 +19,16 @@ class Page extends Eloquent
         'references' => 'array', // {imdb_id: tt0123456}, wikipedia_url: '', official_website_url: ''} http://www.imdb.com/title/tt0123456/
     ];
 
+    protected $with = [
+        'segments',
+        'votes'
+    ];
+
+    protected $withCount = [
+        'segments',
+        'votes'
+    ];
+
     /**
      * Get the route key for the model.
      *
