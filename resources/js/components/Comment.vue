@@ -26,6 +26,7 @@
 <script>
     export default {
         props: ['details'],
+        name: 'comment',
         data() {
             return {
                 editing: false,

@@ -40,28 +40,23 @@
 
     <h2>Segments:</h2>
 
-    <table class="table">
-        <tbody>
-            @each('segments.show', $page->segments, 'segment', 'segment.empty')
-        </tbody>
-    </table>
+    @each('segments.show', $page->segments, 'segment', 'segment.empty')
 
-
+    <update-or-create :details="updateDetails" :type="updateType"></update-or-create>
 </div>
 @endsection
 
-{{--<update-or-create :details="updateDetails" :type="updateType"></update-or-create>--}}
 
 @push('scripts')
     <script type="text/javascript">
-        // new Vue({
-        //     el: '#content',
-        //     data() {
-        //         return {
-        //             updateDetails: undefined,
-        //             updateType: undefined
-        //         }
-        //     },
-        // });
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    updateDetails: {},
+                    updateType: {}
+                }
+            },
+        });
     </script>
 @endpush

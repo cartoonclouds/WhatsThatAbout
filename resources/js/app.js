@@ -28,8 +28,11 @@ window.axios.defaults.headers.common = {
 
 window.Vue = require('vue');
 
+window.EventBus = new Vue();
+
 // Define helper properties
 Object.defineProperty(Vue.prototype, '$axios', { value: window.axios });
+Object.defineProperty(Vue.prototype, '$bus', { value: window.EventBus });
 
 // window.Vue.prototype.authorize = function (handler) {
 //     // Additional admin privileges here.
@@ -54,15 +57,6 @@ Vue.component('vote', require('./components/Vote.vue').default);
 Vue.component('update-or-create', require('./components/UpdateOrCreate.vue').default);
 Vue.component('segment', require('./components/Segment.vue').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-app = new Vue({
-    el: '#app',
-});
 
 
 /**

@@ -36,7 +36,6 @@
     @include('layouts.footer')
 
     <script src="{{ mix('js/app.js') }}"></script>
-    @stack('scripts')
     <script>
         $('#flash-overlay-modal').modal();
         $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
@@ -46,5 +45,6 @@
             'signedIn' => Auth::check()
         ])
     </script>
+    @stack('scripts')
 </body>
 </html>
