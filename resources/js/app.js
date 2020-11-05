@@ -8,7 +8,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.prototype.authorize = function (handler) {
+window.Vue.prototype.authorize = function (handler) {
     // Additional admin privileges here.
     let user = window.App.user;
 
@@ -20,13 +20,14 @@ Vue.prototype.authorize = function (handler) {
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
  *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Eg. ./components/Comment.vue -> <example-component></example-component>
  */
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('comment', require('./components/Comment.vue').default);
+Vue.component('voter', require('./components/Vote.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -35,5 +36,5 @@ Vue.prototype.authorize = function (handler) {
  */
 
 const app = new Vue({
-    el: '#content',
+    el: '#app',
 });
