@@ -6,18 +6,22 @@ use Eloquent;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Pine\Policy\UsesModelName;
 
 class Page extends Eloquent
 {
     use HasFactory;
     use Sluggable;
     use SoftDeletes;
+    use UsesModelName;
 
     protected $guarded = [];
 
     protected $casts = [ // object
         'references' => 'array', // {imdb_id: tt0123456}, wikipedia_url: '', official_website_url: ''} http://www.imdb.com/title/tt0123456/
     ];
+
+    protected $appends = ['model_name'];
 
     protected $with = [
         'segments',

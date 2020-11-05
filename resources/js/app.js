@@ -6,6 +6,23 @@
 
 require('./bootstrap');
 
+import Gate from './policies/Gate';
+
+Gate.prototype.before = function() {
+    return this.user.roles.super-admin;
+}
+
+window.Gate = new Gate('User');
+
+
+/**
+ * Include and configure VueJS
+ */
+
+window.Vue = require('vue');
+
+window.Vue.prototype.$gate = window.Gate;
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
