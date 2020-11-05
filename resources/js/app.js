@@ -6,14 +6,37 @@
 
 require('./bootstrap');
 
+/**
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
+ */
+
+window.axios = require('axios');
+
+window.axios.defaults.headers.common = {
+    'X-CSRF-TOKEN': document.getElementsByName('csrf-token').item(0).content,
+    'X-Requested-With': 'XMLHttpRequest',
+    'User-Agent': 'WhatsThatAbout/1.0',
+    'Accept': 'application/json',
+    'Authorization': 'Bearer ' + document.getElementsByName('remember-token').item(0).content
+};
+
+/**
+ * Require and setup VueJS
+ */
+
 window.Vue = require('vue');
 
-window.Vue.prototype.authorize = function (handler) {
-    // Additional admin privileges here.
-    let user = window.App.user;
+// Define helper properties
+Object.defineProperty(Vue.prototype, '$axios', { value: window.axios });
 
-    return user ? handler(user) : false;
-};
+// window.Vue.prototype.authorize = function (handler) {
+//     // Additional admin privileges here.
+//     let user = window.App.user;
+//
+//     return user ? handler(user) : false;
+// };
 
 /**
  * The following block of code may be used to automatically register your
@@ -40,3 +63,21 @@ Vue.component('segment', require('./components/Segment.vue').default);
 app = new Vue({
     el: '#app',
 });
+
+
+/**
+ * Echo exposes an expressive API for subscribing to channels and listening
+ * for events that are broadcast by Laravel. Echo and event broadcasting
+ * allows your team to easily build robust real-time web applications.
+ */
+
+// import Echo from 'laravel-echo';
+
+// window.Pusher = require('pusher-js');
+
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     forceTLS: true
+// });
