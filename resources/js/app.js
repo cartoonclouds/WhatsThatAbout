@@ -26,11 +26,12 @@ window.axios.defaults.headers.common = {
  * Require and setup VueJS
  */
 
+// Defined Window-contexted helper properties
 window.Vue = require('vue');
 
 window.EventBus = new Vue();
 
-// Define helper properties
+// Define Vue-contexted helper properties
 Object.defineProperty(Vue.prototype, '$axios', { value: window.axios });
 Object.defineProperty(Vue.prototype, '$bus', { value: window.EventBus });
 
@@ -55,7 +56,6 @@ Object.defineProperty(Vue.prototype, '$bus', { value: window.EventBus });
 Vue.component('comment', require('./components/Comment.vue').default);
 Vue.component('vote', require('./components/Vote.vue').default);
 Vue.component('update-or-create', require('./components/UpdateOrCreate.vue').default);
-Vue.component('segment', require('./components/Segment.vue').default);
 
 
 

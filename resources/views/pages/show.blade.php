@@ -11,12 +11,12 @@
     <a class="mb-3 btn btn-primary" href="{{ url('pages') }}">Back</a>
 
     @can('view', user())
-    <a class="mb-3 btn btn-primary" href="{{ user()->url }}">{{ user()->name }} <small>({{ user()->email }})</small></a>
+        <a class="mb-3 btn btn-primary" href="{{ user()->url }}">{{ user()->name }} <small>({{ user()->email }})</small></a>
     @endcan
 
     @can('createOrUpdate', $page)
-    <a href="{{ url("pages/create") }}" class="btn btn-dark float-right ml-2">Create</a>
-    <a href="{{ url("pages/$page->slug/edit") }}" class="btn btn-dark float-right"><i class="fa fa-edit"></i> Edit</a>
+        <a href="{{ url("pages/create") }}" class="btn btn-dark float-right ml-2">Create</a>
+        <a href="{{ url("pages/$page->slug/edit") }}" class="btn btn-dark float-right"><i class="fa fa-edit"></i> Edit</a>
     @endcan
 
     <h1>{{ $page->title }} <small>(Slug: {{ $page->slug }})</small></h1>
@@ -33,7 +33,7 @@
     </p>
 
     @can('create', \App\Models\Segment::class)
-        <button type="button" class="btn btn-dark float-right" data-toggle="modal" data-target="#createSegment">Create Segment</button>
+        <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', 'create', undefined)">Create Segment</button>
     @endcan
 
     <hr>
@@ -42,7 +42,7 @@
 
     @each('segments.show', $page->segments, 'segment', 'segment.empty')
 
-    <update-or-create :details="updateDetails" :type="updateType"></update-or-create>
+    <update-or-create></update-or-create>
 </div>
 @endsection
 
@@ -51,12 +51,19 @@
     <script type="text/javascript">
         new Vue({
             el: '#app',
+            components: {
+                segment: Segment
+            },
             data() {
                 return {
                     updateDetails: {},
                     updateType: {}
                 }
             },
+            mounted()
+            {
+
+            }
         });
     </script>
 @endpush

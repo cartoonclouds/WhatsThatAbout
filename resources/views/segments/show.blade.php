@@ -4,9 +4,9 @@
             <tr class="segment-title">
                 <td colspan="3">
                     <h4 class="d-inline">{{ $segment->title }}</h4>
-                    <button type="button" class="btn btn-dark float-right" data-toggle="modal" data-target="#updateOrCreateModal"><i class="fa fa-edit"></i> Edit</button>
+                    <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', 'edit', details)"><i class="fa fa-edit"></i> Edit</button>
                 </td>
-            </tr>
+            </'edit'>
 
             <tr class="segment-details">
                 <td style="width: 10%;">
@@ -36,8 +36,6 @@
             <tr class="segment-controls">
                 <td colspan="3" class="p-1 text-right">
                     Comments: {{ $segment->comments->count() }}
-                    &bull;
-                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#segmentComment">Create Comment</button>
                 </td>
             </tr>
 
@@ -51,5 +49,30 @@
                 </td>
             </tr>
         </tbody>
+
     </table>
 </segment>
+
+@push('scripts')
+    @once
+        <script>
+        const Segment = {
+            props: ['details'],
+            data() {
+                return {
+                    //
+                }
+            },
+            methods: {
+                edit()
+                {
+
+                }
+            },
+            computed: {
+                //
+            },
+        }
+        </script>
+    @endonce
+@endpush

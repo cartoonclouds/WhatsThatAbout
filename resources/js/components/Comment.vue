@@ -44,3 +44,9 @@
         },
     }
 </script>
+
+<style scoped>
+    textarea {
+        width: 100%;
+    }
+</style>

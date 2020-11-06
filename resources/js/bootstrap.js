@@ -17,5 +17,5 @@ try {
         }
     });
 
-    require('bootstrap');
+    window.bootstrap = require('bootstrap');
 } catch (e) {}
