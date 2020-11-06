@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Segment extends Eloquent
 {
     use HasFactory;
+    use Sluggable;
     use SoftDeletes;
 
     protected $guarded = [];
@@ -27,6 +29,45 @@ class Segment extends Eloquent
         'comments',
         'votes'
     ];
+
+    protected $appends = [
+        'model_type',
+        'exists',
+        'url'
+    ];
+
+    public function getModelTypeAttribute()
+    {
+        return get_class($this);
+    }
+
+    public function getExistsAttribute()
+    {
+        return $this->exists;
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function sluggable() {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    public function getUrlAttribute()
+    {
+        return url('segments/' . $this->getRouteKey());
+    }
 
     public function page()
     {

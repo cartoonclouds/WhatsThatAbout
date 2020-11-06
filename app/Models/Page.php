@@ -29,6 +29,22 @@ class Page extends Eloquent
         'votes'
     ];
 
+    protected $appends = [
+        'model_type',
+        'exists',
+        'url'
+    ];
+
+    public function getModelTypeAttribute()
+    {
+        return get_class($this);
+    }
+
+    public function getExistsAttribute()
+    {
+        return $this->exists;
+    }
+
     /**
      * Get the route key for the model.
      *

@@ -13,6 +13,15 @@ class Comment extends Eloquent
 
     protected $guarded = [];
 
+    protected $appends = [
+        'exists'
+    ];
+    
+    public function getExistsAttribute() 
+    {
+        return $this->exists;
+    }
+
     public function commentable()
     {
         return $this->morphTo();

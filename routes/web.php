@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageViewController;
+use App\Http\Controllers\SegmentViewController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,18 +16,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => ['auth']], function() {
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('pages/{page}', 'PageViewController');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('pages/{page}', PageViewController::class);
+
+Route::get('segments/{segment}', SegmentViewController::class);
+
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::resource('users', UserController::class);
+
 
 
 });
-
-
-

@@ -1,78 +1,37 @@
-<segment inline-template :details="{{ $segment }}">
-    <table class="table">
-        <tbody>
-            <tr class="segment-title">
-                <td colspan="3">
-                    <h4 class="d-inline">{{ $segment->title }}</h4>
-                    <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', 'edit', details)"><i class="fa fa-edit"></i> Edit</button>
-                </td>
-            </'edit'>
+@extends('layouts.app')
+@section('title', 'View Show')
+@push('styles')
+    <style>
 
-            <tr class="segment-details">
-                <td style="width: 10%;">
-                    <vote :votable="{{ $segment }}"></vote>
-                </td>
-                <td style="width: 30%;">
-                    <table class="table table-borderless table-condensed">
-                        <tr>
-                            <td class="font-weight-bold">Created At:</td>
-                            <td>{{ $segment->created_at->toDateTimeString() }}</td>
-                        </tr>
-                        <tr>
-                            <td class="font-weight-bold">Creator:</td>
-                            <td><a href="{{ $segment->creator->url }}">{{ $segment->creator->name }}</a></td>
-                        </tr>
-                        <tr>
-                            <td class="font-weight-bold">Interval:</td>
-                            <td>{{ $segment->start_time }} - {{ $segment->finish_time }}</td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    {{ $segment->details }}
-                </td>
-            </tr>
+    </style>
+@endpush
 
-            <tr class="segment-controls">
-                <td colspan="3" class="p-1 text-right">
-                    Comments: {{ $segment->comments->count() }}
-                </td>
-            </tr>
+@section('content')
+    <div id="content">
 
-            <tr class="segment-comments">
-                <td colspan="3">
-                    @forelse($segment->comments as $comment)
-                        <comment :details="{{ $comment }}"></comment>
-                    @empty
-                        @include('comments.empty')
-                    @endforelse
-                </td>
-            </tr>
-        </tbody>
+        @include('segments.partials.segment')
 
-    </table>
-</segment>
+        <update-or-create></update-or-create>
+    </div>
+@endsection
+
 
 @push('scripts')
-    @once
-        <script>
-        const Segment = {
-            props: ['details'],
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            components: {
+                segment: Segment
+            },
             data() {
                 return {
                     //
                 }
             },
-            methods: {
-                edit()
-                {
+            mounted()
+            {
 
-                }
-            },
-            computed: {
-                //
-            },
-        }
-        </script>
-    @endonce
+            }
+        });
+    </script>
 @endpush

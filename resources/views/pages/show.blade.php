@@ -1,4 +1,4 @@
-@extends('layouts.page')
+@extends('layouts.app')
 @section('title', 'View Show')
 @push('styles')
     <style>
@@ -8,18 +8,13 @@
 
 @section('content')
 <div id="content">
-    <a class="mb-3 btn btn-primary" href="{{ url('pages') }}">Back</a>
-
-    @can('view', user())
-        <a class="mb-3 btn btn-primary" href="{{ user()->url }}">{{ user()->name }} <small>({{ user()->email }})</small></a>
-    @endcan
 
     @can('createOrUpdate', $page)
-        <a href="{{ url("pages/create") }}" class="btn btn-dark float-right ml-2">Create</a>
-        <a href="{{ url("pages/$page->slug/edit") }}" class="btn btn-dark float-right"><i class="fa fa-edit"></i> Edit</a>
+        <button class="btn btn-dark float-right ml-2" @click="$bus.$emit('update-or-create', 'create', {{ new \App\Models\Page }})">Create</button>
+        <button class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', 'edit', {{ $page }})"><i class="fa fa-edit"></i> Edit</button>
     @endcan
 
-    <h1>{{ $page->title }} <small>(Slug: {{ $page->slug }})</small></h1>
+    <h1>{{ $page->title }}</h1>
 
     <label>Release Year</label>
     <p>{{ $page->release_year }}</p>
@@ -33,14 +28,14 @@
     </p>
 
     @can('create', \App\Models\Segment::class)
-        <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', 'create', undefined)">Create Segment</button>
+        <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', 'create', {{ new \App\Models\Segment }})">Create Segment</button>
     @endcan
 
     <hr>
 
     <h2>Segments:</h2>
 
-    @each('segments.show', $page->segments, 'segment', 'segment.empty')
+    @each('segments.partials.segment', $page->segments, 'segment', 'segments.partials.empty')
 
     <update-or-create></update-or-create>
 </div>
@@ -56,8 +51,7 @@
             },
             data() {
                 return {
-                    updateDetails: {},
-                    updateType: {}
+                    //
                 }
             },
             mounted()

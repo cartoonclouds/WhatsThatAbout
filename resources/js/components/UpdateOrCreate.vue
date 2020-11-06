@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                        <h5 class="modal-title" id="updateOrCreateModalLabel">Change Type: {{ changeType }} - New message</h5>
+                    <h5 class="modal-title" id="updateOrCreateModalLabel">Change Type: {{ changeType }} - <strong>{{ model.model_type }}</strong> - New message</h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -43,7 +43,9 @@
         },
         mounted()
         {
-            this.modal = new bootstrap.Modal(this.$el)
+            this.modal = new bootstrap.Modal(this.$el, {
+                backdrop: 'static'
+            })
 
             EventBus.$on('update-or-create', (changeType, model) => {
                 this.changeType = changeType

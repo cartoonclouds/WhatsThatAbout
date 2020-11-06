@@ -15,6 +15,9 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    @each('pages.partials.excerpt', \App\Models\Page::limit(10)->get(), 'page')
+
                 </div>
             </div>
         </div>

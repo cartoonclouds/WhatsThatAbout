@@ -25,7 +25,12 @@
 
 <script>
     export default {
-        props: ['details'],
+        props: {
+            'details': {
+                required: false,
+                default: {}
+            }
+        },
         name: 'comment',
         data() {
             return {
@@ -40,8 +45,17 @@
             }
         },
         computed: {
-
+            exists()
+            {
+                return this.details.exists;
+            }
         },
+        mounted()
+        {
+            if (!this.exists) {
+                this.editing = true;
+            }
+        }
     }
 </script>
 
