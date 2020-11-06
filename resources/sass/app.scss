@@ -1,4 +1,30 @@
 
-@import "variables";
+// Import Custom Variables
+@import "theme/variables.scss";
+
+// Import Bootstrap
 @import "~bootstrap/scss/bootstrap.scss";
-@import "theme";
+
+// Import Custom SCSS
+@import "theme/global.scss";
+
+// Layout
+@import "theme/layout/authentication.scss";
+@import "theme/layout/dashboard-default.scss";
+@import "theme/layout/dashboard-fixed.scss";
+@import "theme/layout/error.scss";
+
+// Navigation
+@import "theme/navigation/nav.scss";
+@import "theme/navigation/topnav.scss";
+@import "theme/navigation/sidenav/sidenav.scss";
+@import "theme/navigation/sidenav/sidenav-dark.scss";
+@import "theme/navigation/sidenav/sidenav-light.scss";
+
+
+@import '~hover.css';
+
+
+
+//https://startbootstrap.com/previews/sb-admin
+

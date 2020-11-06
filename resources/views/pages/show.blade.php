@@ -7,12 +7,14 @@
 @endpush
 
 @section('content')
-<div id="content">
+<div id="content" class="container-fluid">
 
     @can('createOrUpdate', $page)
         <button class="btn btn-dark float-right ml-2" @click="$bus.$emit('update-or-create', 'create', {{ new \App\Models\Page }})">Create</button>
         <button class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', 'edit', {{ $page }})"><i class="fa fa-edit"></i> Edit</button>
     @endcan
+
+    <h1 class="hvr-wobble-to-bottom-right">An animated element</h1>
 
     <h1>{{ $page->title }}</h1>
 

@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-    <div id="content">
+    <div id="content" class="container-fluid">
 create
     </div>
 @endsection

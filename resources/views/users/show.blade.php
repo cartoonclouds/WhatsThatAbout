@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-    <div id="content">
+    <div id="content" class="container-fluid">
         <h1>User is <strong>{{ $user->name }}</strong></h1>
     </div>
 @endsection
