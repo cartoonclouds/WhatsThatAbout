@@ -2,25 +2,17 @@
 
 @section('content')
     <div id="content" class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+        <div class=" justify-content-center">
 
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
 
-                        {{ __('You are logged in!') }}
+                {{ __('You are logged in!') }}
 
-                        @each('pages.partials.excerpt', \App\Models\Page::limit(10)->get(), 'page')
+                <div class="row row-cols-1 row-cols-md-3 g-4">
 
-                    </div>
+                    @each('pages.partials.excerpt', \App\Models\Page::limit(10)->get(), 'page')
                 </div>
-            </div>
+
+
         </div>
     </div>
 @endsection

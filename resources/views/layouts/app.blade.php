@@ -25,7 +25,7 @@
 <body class="sb-nav-fixed {{ !auth()->check() ? 'sb-sidenav-toggled' : '' }}">
     <div>
 
-        @include('layouts.header')
+{{--        @include('layouts.header')--}}
 
 
         @include('layouts.navigation.topnav')
@@ -36,29 +36,27 @@
 
         <div id="layoutSidenav">
 
-            @auth
-            <sidebar id="layoutSidenav_nav" class="layoutSidenav_nav_left">
-
-                @include('layouts.navigation.sidenav-left')
-
-            </sidebar>
-            @endauth
-
             <div id="layoutSidenav_content">
 
-                <main id="app" class="main py-4">
+                <main id="app" class="main py-4" style="width: 80%;margin: auto;">
 
                     <a class="mb-3 btn btn-primary" href="{{ back()->getTargetUrl() }}">Back</a>
-
-                    <div class="shadow-lg p-3 mb-5 bg-white rounded">Larger shadow</div>
-
-
+                    
                     @yield('content')
+
                 </main>
 
                 @include('layouts.footer')
-
             </div>
+
+
+            @auth
+                <sidebar id="layoutSidenav_nav">
+
+                    @include('layouts.navigation.sidenav')
+
+                </sidebar>
+            @endauth
 
         </div>
 

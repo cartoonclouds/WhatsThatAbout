@@ -41,7 +41,9 @@ $gray-dark:     $gray-800 !default;
 $yiq-contrasted-threshold: 200 !default;
 
 
-
+$border-radius:     0.75rem !default;
+$border-radius-sm:  0.25rem !default;
+$border-radius-lg:  1.00rem !default;
 
 // Import spacing variables
 @import "./variables/spacing.scss";

@@ -10,7 +10,7 @@
     transition: transform 0.15s ease-in-out;
     z-index: $zindex-sidenav;
     // Mobile first transform - by default the sidenav will be moved off-canvas
-    transform: translateX(-$sidenav-base-width);
+    transform: translateX($sidenav-base-width);
   }
   // Wraps the content when using the sidenav layout
   #layoutSidenav_content {
@@ -21,7 +21,7 @@
     min-width: 0;
     flex-grow: 1;
     min-height: calc(100vh - #{$topnav-base-height});
-    margin-left: -$sidenav-base-width;
+    margin-right: 0;
   }
 }
 
@@ -37,7 +37,7 @@
         display: block;
         position: absolute;
         top: 0;
-        left: 0;
+        right: 0;
         width: 100%;
         height: 100%;
         background: $black;
@@ -56,7 +56,7 @@
       transform: translateX(0);
     }
     #layoutSidenav_content {
-      margin-left: 0;
+      margin-right: $sidenav-base-width;
       transition: margin 0.15s ease-in-out;
     }
   }
@@ -64,10 +64,10 @@
   .sb-sidenav-toggled {
     #layoutSidenav {
       #layoutSidenav_nav {
-        transform: translateX(-$sidenav-base-width);
+        transform: translateX($sidenav-base-width);
       }
       #layoutSidenav_content {
-        margin-left: -$sidenav-base-width;
+        margin-right: 0;
         // Removes the sidenav overlay on screens larger than the med breakpoint
         &:before {
           display: none;

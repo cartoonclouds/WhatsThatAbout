@@ -6,6 +6,7 @@
   #layoutSidenav {
     #layoutSidenav_nav {
       @extend .fixed-top;
+      left: unset;
       width: $sidenav-base-width;
       height: 100vh;
       z-index: $zindex-sidenav;
@@ -17,7 +18,6 @@
       }
     }
     #layoutSidenav_content {
-      padding-left: $sidenav-base-width;
       top: $topnav-base-height;
     }
   }
