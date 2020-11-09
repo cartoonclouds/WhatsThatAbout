@@ -7,47 +7,79 @@
 @endpush
 
 @section('content')
-<div id="content" class="container-fluid">
+    <div id="content" class="container-fluid">
 
-    @can('createOrUpdate', $page)
-        <button class="btn btn-dark float-right ml-2" @click="$bus.$emit('update-or-create', 'create', {{ new \App\Models\Page }})">Create</button>
-        <button class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', 'edit', {{ $page }})"><i class="fa fa-edit"></i> Edit</button>
-    @endcan
+        <a href="{{ back()->getTargetUrl() }}" class="btn btn-dark float-left"><i class="fa fa-chevron-double-left"></i> Back</a>
 
-    <h1 class="hvr-wobble-to-bottom-right">An animated element</h1>
+        @can('createOrUpdate', $page)
+            <button class="btn btn-dark float-right ml-2" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">Create</button>
+            <button class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ $page }})"><i class="fa fa-edit"></i> Edit</button>
+        @endcan
 
-    <h1>{{ $page->title }}</h1>
+        <div class="clearfix"></div>
 
-    <label>Release Year</label>
-    <p>{{ $page->release_year }}</p>
+        <article>
 
-    <label>Creator</label>
-    <p>{{ $page->creator->name }}</p>
+            <h2 class="hvr-wobble-to-bottom-right">
+                {{ $page->title }}
+            </h2>
 
-    <label>Synopsis</label>
-    <p>
-        {{ $page->synopsis }}
-    </p>
+            <div class="card">
 
-    @can('create', \App\Models\Segment::class)
-        <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', 'create', {{ new \App\Models\Segment }})">Create Segment</button>
-    @endcan
+                <div class="card-body">
 
-    <hr>
+                    <div class="card-text">
 
-    <h2>Segments:</h2>
+                        <div class="row">
 
-    @each('segments.partials.segment', $page->segments, 'segment', 'segments.partials.empty')
+                            <div class="col-4 text-center">
+                                <img src="{{ $page->cover_image }}" class="card-img-top border-radius-0" alt="..." style="width:100%;max-width: 270px;">
+                            </div>
+
+                            <div class="col-8">
+
+                                <p>Release Year: {{ $page->release_year }}</p>
+
+                                <p>Runtime: {{ $page->runtime }}</p>
+
+                                <p>Creator: {{ $page->creator->name }}</p>
+
+
+                            </div>
+
+                        </div>
+
+                        <p class="my-4">
+                            {{ $page->synopsis }}
+                        </p>
+
+                        @can('create', \App\Models\Segment::class)
+                            <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ new \App\Models\Segment }})">Create Segment</button>
+                        @endcan
+
+                    </div>
+                </div>
+            </div>
+
+        </article>
+
+
+
+        <hr>
+
+        <h2>Segments:</h2>
+
+        @each('segments.partials.segment', $page->segments, 'segment', 'segments.partials.empty')
+    </div>
 
     <update-or-create></update-or-create>
-</div>
 @endsection
 
 
 @push('scripts')
     <script type="text/javascript">
         new Vue({
-            el: '#app',
+            el: '.app',
             components: {
                 segment: Segment
             },

@@ -26,13 +26,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 
-Route::get('pages/{page}', PageViewController::class);
+Route::get('/{page}', PageViewController::class);
 
 Route::get('segments/{segment}', SegmentViewController::class);
 
 Route::group(['middleware' => ['auth']], function () {
-
-
 
     Route::resource('users', UserController::class);
 

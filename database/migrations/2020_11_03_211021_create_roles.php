@@ -14,15 +14,18 @@ class CreateRoles extends Migration
     public function up()
     {
         \Spatie\Permission\Models\Role::create([
-            'name' => 'super-admin'
+            'name' => 'super-admin',
+            'pretty_name' => 'Super Administrator'
         ]);
 
         \Spatie\Permission\Models\Role::create([
-            'name' => 'admin'
+            'name' => 'admin',
+            'pretty_name' => 'Administrator'
         ]);
 
         \Spatie\Permission\Models\Role::create([
-            'name' => 'moderator'
+            'name' => 'moderator',
+            'pretty_name' => 'Moderator'
         ]);
     }
 

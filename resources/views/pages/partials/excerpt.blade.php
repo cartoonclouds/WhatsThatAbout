@@ -1,26 +1,54 @@
-<div class="col">
+<article class="col">
     <div class="card h-100 rounded hvr-float hvr-glow">
-        <img src="{{ $page->thumbnail }}" class="card-img-top" alt="...">
+
+        <img src="{{ $page->cover_image }}" class="card-img-top" alt="..." style="height:150px;">
+
+        <div class="card-img-overlay">
+            <h5 class="card-title" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                <a href="{{ $page->url }}" class="text-decoration-none">{{ $page->title }}</a>
+            </h5>
+        </div>
+
         <div class="card-body">
-            <h5 class="card-title"><a href="{{ $page->url }}">{{ $page->title }}</a></h5>
+
             <div class="card-text">
 
-                <div style="max-height:20rem;overflow: hidden;text-overflow: ellipsis; display: -webkit-box;-webkit-line-clamp: 6;-webkit-box-orient: vertical;">
-                    <label>Release Year</label>
-                    <div>{{ $page->release_year }}</div>
-
-                    <label>Creator</label>
-                    <div>{{ $page->creator->name }}</div>
-
-                    <label>Synopsis</label>
-                    <div>{{ $page->synopsis }}</div>
+                <div class="tags mb-3">
+                    <span class="badge bg-primary">{{ $page->release_year }}</span>
                 </div>
 
-                <a href="{{ $page->url }}" class="stretched-link">View</a>
+                <div class="row">
+                    <div class="col">Release Year: </div>
+                    <div class="col">{{ $page->release_year }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col">Runtime: </div>
+                    <div class="col">{{ $page->runtime }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col">Creator: </div>
+                    <div class="col">{{ $page->creator->name }}</div>
+                </div>
+
+                <hr>
+
+                <div style="max-height:10rem;overflow: hidden;text-overflow: ellipsis; display: -webkit-box;-webkit-line-clamp: 6;-webkit-box-orient: vertical;">
+                    {{ $page->synopsis }}
+                </div>
+
+
             </div>
+
         </div>
+
+        <a href="{{ $page->url }}" class="mb-3 mr-4 text-right text-decoration-none">Continue <i class="fa fa-chevron-double-right"></i></a>
+
+        @hasanyrole($allRoles->implode('|'))
         <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            <small class="text-muted">Last updated {{ $page->updated_at->diffForHumans() }}, by ??</small>
         </div>
+        @endhasanyrole
     </div>
-</div>
+</article>

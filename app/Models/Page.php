@@ -65,7 +65,7 @@ class Page extends Eloquent
 
     public function getUrlAttribute()
     {
-        return url('pages/' . $this->getRouteKey());
+        return url('/' . $this->getRouteKey());
     }
 
     public function segments()

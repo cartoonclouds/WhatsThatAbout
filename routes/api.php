@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\PageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::apiResource('pages', 'API\\PageViewController',
         ['only' => ['destroy']]);
 
-    Route::post('pages/updateOrCreate/{page:slug?}', 'API\\PageViewController@updateOrCreate');
+    Route::post('pages/updateOrCreate/{page:slug?}', [PageController::class, 'updateOrCreate']);
 
 });
 

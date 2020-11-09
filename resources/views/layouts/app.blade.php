@@ -31,19 +31,21 @@
         @include('layouts.navigation.topnav')
 
 
-
         @include('flash::message')
 
-        <div id="layoutSidenav">
+        <div id="layoutSidenav" class="app">
 
             <div id="layoutSidenav_content">
 
-                <main id="app" class="main py-4" style="width: 80%;margin: auto;">
+                <main class="main py-4 row" style="width:90%;margin:auto;">
 
-                    <a class="mb-3 btn btn-primary" href="{{ back()->getTargetUrl() }}">Back</a>
-                    
-                    @yield('content')
+                    <aside class="col-2">
+                        @include('layouts.search')
+                    </aside>
 
+                    <div class="col">
+                        @yield('content')
+                    </div>
                 </main>
 
                 @include('layouts.footer')
@@ -51,11 +53,11 @@
 
 
             @auth
-                <sidebar id="layoutSidenav_nav">
+                <aside id="layoutSidenav_nav">
 
                     @include('layouts.navigation.sidenav')
 
-                </sidebar>
+                </aside>
             @endauth
 
         </div>

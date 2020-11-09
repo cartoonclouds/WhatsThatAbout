@@ -12,7 +12,7 @@
                     </h4>
 
                     @can('updateOrCreat', user())
-                        <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', 'edit', {{ $segment }})"><i class="fa fa-edit"></i> Edit</button>
+                        <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ $segment }})"><i class="fa fa-edit"></i> Edit</button>
                     @endcan
                 </td>
             </tr>

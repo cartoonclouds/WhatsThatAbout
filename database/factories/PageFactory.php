@@ -23,10 +23,10 @@ class PageFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->unique()->words($this->faker->numberBetween(1, 10), true),
+            'title' => ucwords($this->faker->unique()->words($this->faker->numberBetween(1, 10), true)),
             'synopsis' => $this->faker->sentences($this->faker->numberBetween(10, 50), true),
             'release_year' => $this->faker->year,
-            'thumbnail' => $this->faker->image(),
+            'cover_image' => $this->faker->image(),
             'runtime' => $this->faker->time(),
             'references' => ['imdb_id' => $this->faker->numerify('#######')],
             'user_id' => User::factory(),

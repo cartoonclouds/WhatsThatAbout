@@ -19,7 +19,7 @@
 @push('scripts')
     <script type="text/javascript">
         new Vue({
-            el: '#app',
+            el: '.app',
             components: {
                 segment: Segment
             },

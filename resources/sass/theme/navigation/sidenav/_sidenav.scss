@@ -7,6 +7,11 @@
   flex-wrap: nowrap;
   border-left-style: solid;
   border-left-width: 1px;
+  #sidebarToggle {
+    position: absolute;
+    transform: translate(-40px, 10px);
+    border-right-color: $body-bg;
+  }
   .sb-sidenav-menu {
     flex-grow: 1;
     .nav {
