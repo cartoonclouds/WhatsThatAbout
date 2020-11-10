@@ -33,7 +33,7 @@
                         <div class="row">
 
                             <div class="col-4 text-center">
-                                <img src="{{ $page->cover_image }}" class="card-img-top border-radius-0" alt="..." style="width:100%;max-width: 270px;">
+                                <img src="{{ $page->cover_image }}" class="card-img-top border-radius-0 page-cover" alt="..." style="width:100%;max-width: 270px;">
                             </div>
 
                             <div class="col-8">

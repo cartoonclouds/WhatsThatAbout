@@ -13,7 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js([
     'resources/js/app.js',
-    'resources/js/functional/layout.js'
+    'resources/js/mixins/layout.js'
 ], 'public/js');
 
 mix.sass('resources/sass/app.scss', 'public/css');

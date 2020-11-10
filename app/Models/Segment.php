@@ -22,18 +22,18 @@ class Segment extends Eloquent
 
     protected $with = [
         'comments',
-        'votes'
+        'votes',
     ];
 
     protected $withCount = [
         'comments',
-        'votes'
+        'votes',
     ];
 
     protected $appends = [
         'model_type',
         'exists',
-        'url'
+        'url',
     ];
 
     public function getModelTypeAttribute()
@@ -66,7 +66,7 @@ class Segment extends Eloquent
 
     public function getUrlAttribute()
     {
-        return url('segments/' . $this->getRouteKey());
+        return url('/segments/' . $this->getRouteKey());
     }
 
     public function page()

@@ -3,8 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="remember-token" content="{{ user()->getRememberToken() }}">
     <title>{{ config('app.name') }} - @yield('title')</title>
 
     <!-- FavIcons -->
@@ -12,9 +10,14 @@
     <link rel="icon" href="{{ config('website.favicon-url') }}" type="image/x-icon">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <script>
+        window.csrf_token = '{{ csrf_token() }}';
+        window.remember_token = '{{ user()->getRememberToken() }}';
+    </script>
     <style>
         body {
             font-family: 'Nunito';
@@ -70,12 +73,18 @@
 
         <script>
             $('#flash-overlay-modal').modal();
+
             $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 
+            // Enable all tooltips
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+
             window.User = @json([
-            'user' => Auth::user(),
-            'signedIn' => Auth::check()
-        ])
+                'user' => Auth::user(),
+                'signedIn' => Auth::check()
+            ])
         </script>
 
         @stack('scripts')

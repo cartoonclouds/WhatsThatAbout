@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -17,28 +16,6 @@ class UserController extends Controller
     {
         $this->authorizeResource(User::class, 'user');
     }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function index()
-    {
-        return view('users.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function create()
-    {
-        return view('users.create');
-    }
-
-
 
     /**
      * Store a newly created User or update as specific User in storage.
@@ -97,14 +74,4 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
 }

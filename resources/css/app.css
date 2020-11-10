@@ -1,12 +1,40 @@
+/**
+ * Custom CSS
+ */
 
-.page-cover {
-    height: 400px;
+
+
+/**
+ * Bootstrap-Notify progressbar animation
+ */
+[data-notify="progressbar"] {
+    bottom: 0;
+    height: 5px;
+    left: 0;
+    margin-bottom: 0;
+    position: absolute;
     width: 100%;
-    background-color:#2b2b31;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin: 0;
+}
+
+/**
+ * Minimalist notify Notification by Danny Keane
+ */
+.alert-minimalist {
+    background-color: rgb(241, 242, 240);
+    border-color: rgba(149, 149, 149, 0.3);
+    border-radius: 3px;
+    color: rgb(149, 149, 149);
+    padding: 10px;
+}
+
+.alert-minimalist > [data-notify="icon"] {
+    height: 100px;
+}
+
+.alert-minimalist > [data-notify="title"] {
+    color: rgb(51, 51, 51);
+}
+
+.alert-minimalist > [data-notify="message"] {
+    font-size: 80%;
 }

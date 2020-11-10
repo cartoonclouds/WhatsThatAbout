@@ -18,22 +18,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//Route::get('/', function() {
-//    return view('welcome');
-//});
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/{page:slug}', PageViewController::class);
 
-
-Route::get('/{page}', PageViewController::class);
-
-Route::get('segments/{segment}', SegmentViewController::class);
+Route::get('/segments/{segment:slug}', SegmentViewController::class);
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::resource('users', UserController::class);
-
-
+    Route::resource('user', UserController::class)->only(['show', 'edit']);
 
 });

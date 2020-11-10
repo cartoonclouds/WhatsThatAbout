@@ -3,32 +3,41 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 require('./bootstrap');
 
+
 /**
+ * jQuery Setup
+ */
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': window.csrf_token,
+        'Authorization': 'Bearer ' + window.remember_token,
+    }
+});
+
+
+/**
+ * Axios Setup
+ *
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
-
-window.axios = require('axios');
-
 window.axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': document.getElementsByName('csrf-token').item(0).content,
+    'X-CSRF-TOKEN': window.csrf_token,
     'X-Requested-With': 'XMLHttpRequest',
     'User-Agent': 'WhatsThatAbout/1.0',
     'Accept': 'application/json',
-    'Authorization': 'Bearer ' + document.getElementsByName('remember-token').item(0).content
+    'Authorization': 'Bearer ' + window.remember_token
 };
 
+
 /**
- * Require and setup VueJS
+ * Setup VueJS
  */
 
 // Defined Window-contexted helper properties
-window.Vue = require('vue');
-
 window.EventBus = new Vue();
 
 // Define Vue-contexted helper properties
@@ -42,21 +51,40 @@ Object.defineProperty(Vue.prototype, '$bus', { value: window.EventBus });
 //     return user ? handler(user) : false;
 // };
 
+// Register Vue components
+const files = require.context('./components', true, /\.vue$/i)
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0].toLowerCase(), files(key).default))
+
+
 /**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/Comment.vue -> <example-component></example-component>
+ * Setup Bootstrap-Notify
  */
+$.notifyDefaults({
+    newest_on_top: true
+});
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+window.notify = require('./mixins/notify').default;
 
-Vue.component('comment', require('./components/Comment.vue').default);
-Vue.component('vote', require('./components/Vote.vue').default);
-Vue.component('update-or-create', require('./components/UpdateOrCreate.vue').default);
 
+/**
+ * Setup Inputmask
+ */
+Inputmask().mask(document.querySelectorAll('input'));
+
+
+/**
+ * Setup Bootbox
+ */
+// window.dialog = require('./mixins/modal').default;
+
+// (window.) alert
+window.alert = bootbox.alert;
+
+// (window.) confirm
+window.confirm = bootbox.confirm;
+
+// (window.) prompt
+window.prompt = bootbox.prompt;
 
 
 /**

@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Page;
+use App\Models\Segment;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StorePageRequest extends FormRequest
+class StoreSegmentRequest extends FormRequest
 {
 
     /**
@@ -16,9 +16,9 @@ class StorePageRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->page ?
-            $this->user()->can('update', $this->page) :
-            $this->user()->can('create', Page::class);
+        return $this->segment ?
+            $this->user()->can('update', $this->segment) :
+            $this->user()->can('create', Segment::class);
     }
 
 
@@ -33,38 +33,36 @@ class StorePageRequest extends FormRequest
             'title' => [
                 'required',
                 'string',
-                Rule::unique('pages', 'title')->ignore($this->page),
+                Rule::unique('segments', 'title')->ignore($this->segment),
             ],
-            'synopsis' => 'required|string',
-            'release_year' => 'required',
-            'cover_image' => 'required|file',
-            'runtime' => 'required',
+            'details' => 'required|string',
+            'start_time' => 'required',
+            'finish_time' => 'required',
+            'runs_throughout' => 'required',
             'references' => '',
         ];
     }
 
 
     /**
-     * Save the Page.
+     * Save the Segment.
      *
-     * @param \App\Models\Page $page
-     * @return \App\Models\Page|false
+     * @param \App\Models\Segment $segment
+     * @return \App\Models\Segment|false
      */
-    public function persist(Page $page)
+    public function persist(Segment $segment)
     {
-        if (!$page->exists) {
+        if (!$segment->exists) {
             // If the post doesn't exist, we'll assign the
             // post as created by the current user.
-            $page->user_id = $this->user()->id;
+            $segment->user_id = $this->user()->id;
         }
 
-        $page->fill($this->validated());
+        $segment->fill($this->validated());
 
-        //@todo Handle file uploads
-
-        if ($page->save()) {
+        if ($segment->save()) {
             // Perform other tasks, maybe fire an event, dispatch a job.
-            return $page;
+            return $segment;
         }
 
         return false;

@@ -1,39 +1,24 @@
 <template>
-    <form @submit.prevent="save">
-        <div class="card">
+    <form novalidate @submit.prevent="save">
+        <div class="card p-3">
             <div class="row">
 
-                <div class="col-3 py-4 px-5">
-                    <label class="form-label cover_image" aria-describedby="cover_imageHelp" for="cover_image">
-                        <img v-if="model.cover_image" :src="model.cover_image" :title="model.title + ' Cover Image'" class="w-100 h-100">
-                        <template v-else>
-                            Upload cover (270 x 400)
-                        </template>
+                <div class="col-3 px-md-3 px-lg-5">
 
-                        <input type="file" name="page-cover" class="d-none" id="cover_image">
-                    </label>
-                    <div id="cover_imageHelp" class="form-text">Add new thumbnail.</div>
+                    <wta-file name="cover_image" label="Upload cover (270 x 400)" :feedback="errors" :wasValidated="submitted" v-model="model.cover_image"></wta-file>
+
                 </div>
 
-                <div class="col-9 pr-5">
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title:</label>
-                        <input type="text" name="title" class="form-control" id="title" v-model="model.title">
-                    </div>
-                    <div class="mb-3">
-                        <label for="release_year" class="form-label">Release Year:</label>
-                        <input type="text" name="release_year" class="form-control" id="release_year" v-model="model.release_year">
-                    </div>
-                    <div class="mb-3">
-                        <label for="runtime" class="form-label">Runtime:</label>
-                        <input type="text" name="runtime" class="form-control" id="runtime" v-model="model.runtime">
-                    </div>
-                    <div class="mb-3">
-                        <label for="synopsis" class="form-label">Synopsis:</label>
-                        <textarea name="synopsis" class="form-control" rows="10" id="synopsis">
-                            {{ model.synopsis }}
-                        </textarea>
-                    </div>
+                <div class="col-9">
+
+                    <wta-input name="title" label="Title:" :feedback="errors" :wasValidated="submitted" v-model="model.title"></wta-input>
+
+                    <wta-input name="release_year" input-mask="9999" placeholder="2020" label="Release Year:" :feedback="errors" :wasValidated="submitted" v-model="model.release_year"></wta-input>
+
+                    <wta-input name="runtime" input-mask="99:99:99" label="Runtime:" :feedback="errors" :wasValidated="submitted" v-model="model.runtime"></wta-input>
+
+                    <wta-textarea name="synopsis" label="Synopsis:" rows="6" :feedback="errors" :wasValidated="submitted" v-model="model.synopsis"></wta-textarea>
+
                 </div>
 
             </div>
@@ -48,30 +33,53 @@ export default {
     props: ['model'],
     data() {
         return {
-            //
+            errors: {},
+            submitted: false,
         }
     },
     methods: {
         save()
         {
+            this.submitted = false
+
             axios.post(this.url, new FormData(this.$el))
                 .then(response => {
-                    console.log(response);
+
+                    //@todo Handle on successful update
+
                 })
-                .catch(error => {
-                    console.log(error);
+                .catch(errors => {
+                    this.errors = errors.response.data.errors
+                })
+                .finally(() => {
+                    this.submitted = true
                 })
         }
     },
     computed: {
         url()
         {
-            return `/api/pages/updateOrCreate/${this.model.slug}`
+            return `/api/pages/updateOrCreate/${this.model.slug || ''}`
         },
     }
 }
 </script>
 
 <style scoped>
+    .cover-image {
+        height: 400px;
+        width: 100%;
+        background-color: #2b2b31;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin: 0;
+        transition: 0.4s ease;
+    }
 
+    .cover-image:hover {
+        color: #fff;
+    }
 </style>

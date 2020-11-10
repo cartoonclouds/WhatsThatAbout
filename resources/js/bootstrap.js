@@ -1,21 +1,74 @@
-window._ = require('lodash');
 
 /**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
+ * Lo-dash
  */
+import _ from 'lodash';
 
-try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+window._ = _;
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            'Authorization': 'Bearer ' + $('meta[name="remember-token"]').attr('content'),
-        }
-    });
 
-    window.bootstrap = require('bootstrap');
-} catch (e) {}
+/**
+ * Popper.js
+ */
+import Popper from 'popper.js';
+
+window.Popper = Popper;
+
+
+/**
+ * jQuery
+ */
+import jquery from 'jquery';
+
+window.$ = window.jQuery = jquery;
+
+
+/**
+ * Bootstrap
+ */
+window.bootstrap = require('bootstrap');
+
+
+/**
+ * Bootstrap-Notify - Growl message alert
+ */
+require('bootstrap-notify');
+
+
+/**
+ * Axios
+ */
+import axios from 'axios';
+
+window.axios = axios;
+
+
+/**
+ * Inputmask
+ */
+import Inputmask from 'inputmask/dist/inputmask';
+
+window.Inputmask = Inputmask;
+
+
+/**
+ * VueJS 2.* -
+ */
+import Vue from 'vue';
+
+window.Vue = Vue;
+
+
+/**
+ * Select2 -
+ */
+require('select2');
+
+
+/**
+ * Bootbox - alert/prompt replacement
+ * http://bootboxjs.com/
+ */
+import bootbox from 'bootbox';
+
+window.bootbox = bootbox;

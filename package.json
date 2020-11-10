@@ -13,7 +13,7 @@
         "core-js": "^3.7.0",
         "cross-env": "^7.0.2",
         "laravel-mix": "^5.0.7",
-        "resolve-url-loader": "^2.3.1",
+        "resolve-url-loader": "^3.1.2",
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
         "vue": "^2.6.12",
@@ -21,10 +21,14 @@
     },
     "dependencies": {
         "axios": "^0.21.0",
+        "bootbox": "^5.5.1",
         "bootstrap": "^5.0.0-alpha2",
+        "bootstrap-notify": "^3.1.3",
         "hover.css": "^2.3.2",
+        "inputmask": "^5.0.5",
         "jquery": "^3.5.1",
         "lodash": "^4.17.20",
-        "popper.js": "^1.16.1"
+        "popper.js": "^1.16.1",
+        "select2": "^4.0.13"
     }
 }
