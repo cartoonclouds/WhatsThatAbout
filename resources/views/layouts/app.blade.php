@@ -72,19 +72,21 @@
         <script src="{{ mix('js/app.js') }}"></script>
 
         <script>
-            $('#flash-overlay-modal').modal();
+            $(document).ready(function() {
+                $('#flash-overlay-modal').modal();
 
-            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+                $('.select2').select2();
 
-            // Enable all tooltips
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
+                // Enable all tooltips
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
 
-            window.User = @json([
-                'user' => Auth::user(),
-                'signedIn' => Auth::check()
-            ])
+                window.User = @json([
+                    'user' => Auth::user(),
+                    'signedIn' => Auth::check()
+                ]);
+            });
         </script>
 
         @stack('scripts')

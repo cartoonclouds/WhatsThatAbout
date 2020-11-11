@@ -8,7 +8,7 @@
 
         <div v-if="errorsExists" class="invalid-feedback">
             <ul>
-                <li v-for="error in errors">{{ error }}</li>
+                <li v-for="(error, id) in errors" v-bind:key="id">{{ error }}</li>
             </ul>
         </div>
     </div>
@@ -24,7 +24,6 @@ export default {
         },
         value: {
             required: true,
-            type: Boolean,
         },
         label: {
             required: true,

@@ -1,30 +1,28 @@
 <template>
-    <form novalidate @submit.prevent="save">
+    <form id="saveForm" novalidate v-on:submit.prevent="save">
         <div class="card p-3">
             <div class="row">
 
                 <div class="col-3 px-md-3 px-lg-5">
 
-                    <wta-file name="cover_image" label="Upload cover (270 x 400)" :feedback="errors" :wasValidated="submitted" v-model="model.cover_image"></wta-file>
+                    <wta-file name="cover_image" class="cover-image" label="Upload cover (270 x 400)" v-bind:feedback="errors" v-bind:wasValidated="submitted" v-model="model.cover_image"></wta-file>
 
                 </div>
 
                 <div class="col-9">
 
-                    <wta-input name="title" label="Title:" :feedback="errors" :wasValidated="submitted" v-model="model.title"></wta-input>
+                    <wta-input name="title" label="Title:" v-bind:feedback="errors" v-bind:wasValidated="submitted" v-model="model.title"></wta-input>
 
-                    <wta-input name="release_year" input-mask="9999" placeholder="2020" label="Release Year:" :feedback="errors" :wasValidated="submitted" v-model="model.release_year"></wta-input>
+                    <wta-input name="release_year" input-mask="9999" placeholder="2020" label="Release Year:" v-bind:feedback="errors" v-bind:wasValidated="submitted" v-model="model.release_year"></wta-input>
 
-                    <wta-input name="runtime" input-mask="99:99:99" label="Runtime:" :feedback="errors" :wasValidated="submitted" v-model="model.runtime"></wta-input>
+                    <wta-input name="runtime" input-mask="99:99:99" label="Runtime:" v-bind:feedback="errors" v-bind:wasValidated="submitted" v-model="model.runtime"></wta-input>
 
-                    <wta-textarea name="synopsis" label="Synopsis:" rows="6" :feedback="errors" :wasValidated="submitted" v-model="model.synopsis"></wta-textarea>
+                    <wta-textarea name="synopsis" label="Synopsis:" rows="6" v-bind:feedback="errors" v-bind:wasValidated="submitted" v-model="model.synopsis"></wta-textarea>
 
                 </div>
 
             </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </template>
 
@@ -34,6 +32,7 @@ export default {
     data() {
         return {
             errors: {},
+            errorMessage: null,
             submitted: false,
         }
     },
@@ -45,11 +44,16 @@ export default {
             axios.post(this.url, new FormData(this.$el))
                 .then(response => {
 
-                    //@todo Handle on successful update
+                    notify(response.data.message, 'Page Notification', (this.model.exists ? 'info' : 'success'), null, {
+                        url: `/${response.data.page.slug}`
+                    })
+
+                    this.$emit('close')
 
                 })
                 .catch(errors => {
                     this.errors = errors.response.data.errors
+                    this.errorMessage = errors.response.message
                 })
                 .finally(() => {
                     this.submitted = true

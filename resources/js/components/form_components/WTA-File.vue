@@ -1,8 +1,9 @@
 <template>
-    <div class="form-file form-file-lg mb-3">
-        <label :for="name" :id="name+'Label'" class="form-label w-100 px-md-5 bg-light text-center d-flex justify-content-center align-items-center cover-image">
+    <div class="form-file form-file mb-3">
+        <label :for="name" :id="name+'Label'" class="form-label w-100 h-100 bg-light text-center d-flex justify-content-center align-items-center cover-image">
 
             <img v-if="src" v-bind:src="src" title="Cover Image" class="w-100 h-100">
+
             <template v-else>
                 {{  label }}
             </template>
@@ -17,7 +18,7 @@
 
         <div v-if="errorsExists" class="invalid-feedback">
             <ul>
-                <li v-for="error in errors">{{ error }}</li>
+                <li v-for="(error, id) in errors" v-bind:key="id">{{ error }}</li>
             </ul>
         </div>
     </div>

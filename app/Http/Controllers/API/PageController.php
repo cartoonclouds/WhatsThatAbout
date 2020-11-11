@@ -29,24 +29,26 @@ class PageController extends Controller
 
             if ($page) {
                 return response()->json([
-                    'message' => 'Successfully updated page!'
+                    'message' => "Successfully updated page $page->title!",
+                    'page' => $page
                 ]);
             }
 
             return response()->json([
-                'message' => 'There was an issue updating the page. Please try again.',
+                'message' => "There was an issue updating the page $page->title. Please try again!",
             ]);
         } else {
             $page = $request->persist(new Page());
 
             if ($page) {
                 return response()->json([
-                    'message' => 'Successfully created new page!'
+                    'message' => "Successfully created new page $page->title!",
+                    'page' => $page
                 ]);
             }
 
             return response()->json([
-                'message' => 'There was an issue creating the page. Please try again.',
+                'message' => "There was an issue creating the page $page->title. Please try again!",
             ]);
         }
     }

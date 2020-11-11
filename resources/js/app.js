@@ -60,7 +60,17 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0].toLower
  * Setup Bootstrap-Notify
  */
 $.notifyDefaults({
-    newest_on_top: true
+    newest_on_top: true,
+    z_index: 2038,
+    offset: {
+        y: 70,
+        x: 20
+    },
+    url_target: '_self',
+    animate: {
+        enter: 'animated fadeInRight',
+        exit: 'animated fadeOutRight'
+    },
 });
 
 window.notify = require('./mixins/notify').default;

@@ -35,10 +35,11 @@ class StoreSegmentRequest extends FormRequest
                 'string',
                 Rule::unique('segments', 'title')->ignore($this->segment),
             ],
+            'page_id' => 'required|exists:pages,id',
             'details' => 'required|string',
             'start_time' => 'required',
             'finish_time' => 'required',
-            'runs_throughout' => 'required',
+            'runs_throughout' => 'in:1',
             'references' => '',
         ];
     }

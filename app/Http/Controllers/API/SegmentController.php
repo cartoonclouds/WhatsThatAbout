@@ -29,24 +29,26 @@ class SegmentController extends Controller
 
             if ($segment) {
                 return response()->json([
-                    'message' => 'Successfully updated segment!'
+                    'message' => "Successfully updated segment $segment->title!",
+                    'segment' => $segment
                 ]);
             }
 
             return response()->json([
-                'message' => 'There was an issue updating the segment. Please try again.',
+                'message' => "There was an issue updating the segment $segment->title. Please try again!",
             ]);
         } else {
             $segment = $request->persist(new Segment());
 
             if ($segment) {
                 return response()->json([
-                    'message' => 'Successfully created new segment!'
+                    'message' => "Successfully created new segment $segment->title!",
+                    'segment' => $segment
                 ]);
             }
 
             return response()->json([
-                'message' => 'There was an issue creating the segment. Please try again.',
+                'message' => "There was an issue creating the segment $segment->title. Please try again!",
             ]);
         }
     }

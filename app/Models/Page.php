@@ -63,6 +63,11 @@ class Page extends Eloquent
         ];
     }
 
+    public function getTitleAttribute()
+    {
+        return ucwords($this->attributes['title']);
+    }
+
     public function getUrlAttribute()
     {
         return url('/' . $this->getRouteKey());

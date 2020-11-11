@@ -5,8 +5,11 @@
         <div class="input-group input-group">
             <span v-if="preIcon" class="input-group-text">{{  preIcon }}</span>
 
-            <textarea v-bind="$attrs" v-bind:value="value" v-on:input="$emit('input', $event.target.value)" type="text" :name="name" :class="validationClass" class="form-control" :id="name" :aria-label="placeholder" :aria-describedby="name+'Label'">
-            </textarea>
+            <select v-bind="$attrs" v-bind:value="value" v-on:change="$emit('input', $event.target.value)" :name="name" class="form-control select2" :id="name" :aria-describedby="name+'Label'">
+                <option v-for="(option, optionValue, key) in options" v-bind:value="optionValue" v-bind:key="key">
+                    {{ option }}
+                </option>
+            </select>
 
             <span v-if="postIcon" class="input-group-text">{{  postIcon }}</span>
 
@@ -23,8 +26,7 @@
 
 <script>
 export default {
-    name: 'wta-textarea',
-    inheritAttrs: false,
+    name: 'wta-select',
     props: {
         name: {
             required: true,
@@ -32,6 +34,10 @@ export default {
         },
         value: {
             required: true,
+        },
+        options: {
+            required: true,
+            type: Object,
         },
         placeholder: {
             required: false,

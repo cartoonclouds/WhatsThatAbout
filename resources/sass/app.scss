@@ -22,7 +22,25 @@
 @import "theme/navigation/sidenav/sidenav-light.scss";
 
 
+/**
+ * Hover.css
+ * https://ianlunn.github.io/Hover/
+ *
+ * A collection of CSS3 powered hover effects to be applied to links, buttons, logos, SVG, featured images and so on.
+ */
 @import '~hover.css';
+
+/**
+ * Animate.css
+ * https://animate.style/
+ *
+ * Animate.css is a library of ready-to-use, cross-browser animations for use in your web projects.
+ * Great for emphasis, home pages, sliders, and attention-guiding hints.
+ */
+@import '~animate.css/animate.compat.css';
+
+
+@import '~select2';
 
 
 //https://startbootstrap.com/previews/sb-admin

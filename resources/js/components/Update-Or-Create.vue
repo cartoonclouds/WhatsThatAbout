@@ -1,20 +1,22 @@
 <template>
     <div class="modal fade" id="updateOrCreateModal" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="updateOrCreateModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+        <div class="modal-dialog" v-bind:class="modalSize">
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title" id="updateOrCreateModalLabel">Change Type: {{ modelType }} - <strong>{{ model.model_type }}</strong> - New message</h5>
+                    <h5 class="modal-title" id="updateOrCreateModalLabel">
+                        <i class="far fa-file-alt"></i> <span v-html="title"></span>
+                    </h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
-                    <component :model="model" :is="modelType"></component>
+                    <component :model="model" v-bind:is="modelType" v-on:close="modal.hide()"></component>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="submit" form="saveForm" class="btn btn-primary">Save</button>
                 </div>
 
             </div>
@@ -40,7 +42,15 @@
         computed: {
             modelType()
             {
-                return (this.model.model_type || '').split('\\').reverse()[0].toLowerCase()
+                return (this.model.model_type || '').split('\\').pop().toLowerCase()
+            },
+            title()
+            {
+                return this.model.exists ? `Edit ` + this.modelType.ucwords() + `: <strong>${this.model.title}</strong>` : `Create A New <strong>` + this.modelType.ucwords() + `</strong>`
+            },
+            modalSize()
+            {
+                return this.modelType === 'page' ? 'modal-fullscreen' : 'modal-lg';
             }
         },
         mounted()
@@ -63,12 +73,9 @@
 </script>
 
 <style scoped>
-    .modal-dialog {
-        margin: 58px;
-    }
-
-    .modal-fullscreen {
+    .modal-dialog.modal-fullscreen {
+        margin: 60px;
         width: calc(100vw - 120px);
-        height: calc(100% - 120px);
+        height: calc(100vh - 120px);
     }
 </style>

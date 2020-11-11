@@ -37,7 +37,6 @@ class StorePageRequest extends FormRequest
             ],
             'synopsis' => 'required|string',
             'release_year' => 'required',
-            'cover_image' => 'required|file',
             'runtime' => 'required',
             'references' => '',
         ];

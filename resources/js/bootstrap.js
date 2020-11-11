@@ -31,6 +31,7 @@ window.bootstrap = require('bootstrap');
 
 /**
  * Bootstrap-Notify - Growl message alert
+ * http://bootstrap-notify.remabledesigns.com/
  */
 require('bootstrap-notify');
 
@@ -60,10 +61,15 @@ window.Vue = Vue;
 
 
 /**
- * Select2 -
+ * Select2
+ * https://select2.org/
+ *
+ * The jQuery replacement for select boxes. Select2 gives you a customizable select box with support
+ * for searching, tagging, remote data sets, infinite scrolling, and many other highly used options.
  */
-require('select2');
+// require('select2');
 
+require('select2/dist/js/select2.full');
 
 /**
  * Bootbox - alert/prompt replacement
@@ -72,3 +78,13 @@ require('select2');
 import bootbox from 'bootbox';
 
 window.bootbox = bootbox;
+
+
+/**
+ * General Helper Functions/Mixins
+ */
+require('./mixins/helpers');
+
+require('./mixins/layout');
+
+window.animateCSS = require('./mixins/animateCSS');

@@ -2,10 +2,10 @@
     <div class="mb-3">
         <label :for="name" :id="name+'Label'" class="form-label">{{  label }}</label>
 
-        <div class="input-group input-group-lg">
+        <div class="input-group input-group">
             <span v-if="preIcon" class="input-group-text">{{  preIcon }}</span>
 
-            <input v-bind="$attrs" v-bind:value="value" :name="name" :data-inputmask="mask" v-on:input="$emit('input', $event.target.value)" autocomplete="off" type="text" :class="validationClass" class="form-control form-control-lg" :id="name" :placeholder="placeholder" :aria-label="placeholder" :aria-describedby="name+'Label'">
+            <input v-bind="$attrs" v-bind:value="value" :name="name" :data-inputmask="mask" v-on:input="$emit('input', $event.target.value)" autocomplete="off" type="text" :class="validationClass" class="form-control" :id="name" :placeholder="placeholder" :aria-label="placeholder" :aria-describedby="name+'Label'">
 
             <span v-if="postIcon" class="input-group-text">{{  postIcon }}</span>
 
@@ -13,7 +13,7 @@
 
             <div v-if="errorsExists" class="invalid-feedback">
                 <ul>
-                    <li v-for="error in errors">{{ error }}</li>
+                    <li v-for="(error, id) in errors" v-bind:key="id">{{ error }}</li>
                 </ul>
             </div>
         </div>

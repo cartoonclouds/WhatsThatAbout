@@ -21,6 +21,7 @@ class Segment extends Eloquent
     ];
 
     protected $with = [
+        'page',
         'comments',
         'votes',
     ];
@@ -35,6 +36,12 @@ class Segment extends Eloquent
         'exists',
         'url',
     ];
+
+
+    public function getTitleAttribute()
+    {
+        return ucwords($this->attributes['title']);
+    }
 
     public function getModelTypeAttribute()
     {
@@ -71,7 +78,7 @@ class Segment extends Eloquent
 
     public function page()
     {
-        return $this->belongsTo(Page::class);
+        return $this->belongsTo(Page::class)->without(['segments']);
     }
 
     public function comments()

@@ -29,12 +29,12 @@ const levels = [
 
 export default function(message, title = '', level = 'info', icon, options = {}, settings = {}) {
 
-    if(!levels.includes(level)) {
+    if (!levels.includes(level)) {
         throw new ReferenceError('"level" parameter must be one of "' + levels.join('", "') + '"');
     }
 
 
-    if(!icon) {
+    if (!icon) {
         icon = defaultLevelIcons[level];
     }
 
@@ -52,19 +52,9 @@ export default function(message, title = '', level = 'info', icon, options = {},
     // settings
     settings = Object.assign({
         type: level,
-        allow_dismiss: true, //dismissible
-        placement: {
-            from: "top",
-            align: "right"
-        },
-        delay: 5000,
-        animate: {
-            enter: 'animated fadeInRight',
-            exit: 'animated fadeOutRight'
-        },
         template: `
          <div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">
-             <button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>
+             <button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss">×</button>
          ` + (
              title ?
                 `<span data-notify="title">
@@ -79,14 +69,13 @@ export default function(message, title = '', level = 'info', icon, options = {},
              `<div class="progress" data-notify="progressbar">
                 <div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div>
              </div>
-             <a href="{3}" target="{4}" data-notify="url"></a>
+             <a href="{3}" target="{4}" data-notify="url" class="stretched-link"></a>
          </div>
         `
     }, settings);
 
 
-    if(level === 'minimalist') {
-
+    if (level === 'minimalist') {
         settings = Object.assign(settings, {
             template: `
                 <div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">
@@ -102,11 +91,8 @@ export default function(message, title = '', level = 'info', icon, options = {},
                 </div>
             `
         });
-
     }
 
-
-    return $.notify(options,settings);
-
+    return $.notify(options, settings);
 }
 
