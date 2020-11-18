@@ -16,12 +16,11 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('title')->index();
-            $table->string('slug')->unique()->index();
+            $table->string('slug')->unique()->index('pages_slug_idx');
             $table->longText('synopsis'); // multiLineString
-            $table->year('release_year')->nullable();
+            $table->year('release_year')->index('pages_release_year_idx')->nullable();
             $table->time('runtime')->nullable();
-            $table->json('references')->nullable();
-            $table->integer('user_id')->index();
+            $table->integer('user_id')->index('pages_user_id_idx');
             $table->softDeletes();
             $table->timestamps();
         });

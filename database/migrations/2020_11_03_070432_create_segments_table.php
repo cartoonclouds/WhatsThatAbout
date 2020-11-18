@@ -16,14 +16,13 @@ class CreateSegmentsTable extends Migration
         Schema::create('segments', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->unique()->index();
+            $table->string('slug')->unique()->index('segments_slug_idx');
             $table->time('start_time')->nullable()->comment('The timestamp the reference starts');
             $table->time('finish_time')->nullable()->comment('The timestamp the reference finishes');
             $table->boolean('runs_throughout')->nullable()->comment('Does the reference occur throughout the show?');
             $table->longText('details')->comment('The story regarding what is being referenced'); // multiLineString
-            $table->json('references')->nullable()->comment('A JSON object with title as key and URL as value');
-            $table->integer('page_id')->index();
-            $table->integer('user_id')->index();
+            $table->integer('page_id')->index('segments_page_id_idx');
+            $table->integer('user_id')->index('segments_user_id_idx');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ class CreateVotesTable extends Migration
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
             $table->morphs('votable');
-            $table->integer('user_id')->index();
+            $table->integer('user_id')->index('votes_user_id_idx');
             $table->boolean('vote')->comment('TRUE is a positive vote, FALSE a negative vote');
             $table->timestamps();
         });
