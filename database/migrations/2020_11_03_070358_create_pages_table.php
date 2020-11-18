@@ -20,6 +20,8 @@ class CreatePagesTable extends Migration
             $table->longText('synopsis'); // multiLineString
             $table->year('release_year')->index('pages_release_year_idx')->nullable();
             $table->time('runtime')->nullable();
+            $table->integer('genre_id')->index('pages_genre_id_idx');
+            $table->integer('format_id')->index('pages_format_id_idx');
             $table->integer('user_id')->index('pages_user_id_idx');
             $table->softDeletes();
             $table->timestamps();

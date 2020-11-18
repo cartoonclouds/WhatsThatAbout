@@ -104,4 +104,14 @@ class Segment extends Eloquent
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

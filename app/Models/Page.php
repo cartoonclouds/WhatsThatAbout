@@ -108,4 +108,14 @@ class Page extends Eloquent
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
+
+    public function format()
+    {
+        return $this->belongsTo(Format::class);
+    }
 }
