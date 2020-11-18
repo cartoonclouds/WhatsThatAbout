@@ -5,7 +5,9 @@
 
                 <div class="col-3 px-md-3 px-lg-5">
 
-                    <wta-file name="cover_image" class="cover-image" label="Upload cover (270 x 400)" v-bind:feedback="errors" v-bind:wasValidated="submitted" v-model="model.cover_image"></wta-file>
+                    <wta-image-file name="cover_image" class="cover_image" label="Upload cover (270 x 400)" description="Cover Image" v-bind:feedback="errors" v-bind:wasValidated="submitted" v-model="model.cover_image.file_path"></wta-image-file>
+
+                    <wta-image-file name="hero_image" class="hero_image" label="Upload hero (350 x 150)" description="Hero (Background) Image" v-bind:feedback="errors" v-bind:wasValidated="submitted" v-model="model.hero_image.file_path"></wta-image-file>
 
                 </div>
 
@@ -23,6 +25,7 @@
 
             </div>
         </div>
+
     </form>
 </template>
 
@@ -50,6 +53,10 @@ export default {
 
                     this.$emit('close')
 
+                    if (this.model.exists) { // implies an update so reload
+                        window.reload();
+                    }
+
                 })
                 .catch(errors => {
                     this.errors = errors.response.data.errors
@@ -65,15 +72,23 @@ export default {
         {
             return `/api/pages/updateOrCreate/${this.model.slug || ''}`
         },
+    },
+    mounted()
+    {
+        if (!('cover_image' in this.model)) {
+            this.$set(this.model, 'cover_image', {file_path: ''});
+        }
+
+        if (!('hero_image' in this.model)) {
+            this.$set(this.model, 'hero_image', {file_path: ''});
+        }
     }
 }
 </script>
 
 <style scoped>
-    .cover-image {
-        height: 400px;
+    .cover_image, .hero_image {
         width: 100%;
-        background-color: #2b2b31;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -83,7 +98,15 @@ export default {
         transition: 0.4s ease;
     }
 
-    .cover-image:hover {
+    .cover_image {
+        height: 400px;
+    }
+
+    .hero_image {
+        height: 150px;
+    }
+
+    .cover_image:hover, .hero_image:hover {
         color: #fff;
     }
 </style>

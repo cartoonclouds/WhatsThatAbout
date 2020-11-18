@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Page;
 
+use App\Models\Image;
 use App\Models\Page;
 use App\Models\User;
 use Illuminate\Http\Response;

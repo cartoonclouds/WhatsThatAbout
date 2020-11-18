@@ -59,10 +59,35 @@ class StorePageRequest extends FormRequest
 
         $page->fill($this->validated());
 
-        //@todo Handle file uploads
-
         if ($page->save()) {
             // Perform other tasks, maybe fire an event, dispatch a job.
+
+            if ($this->hasFile('cover_image')) {
+                $coverImageFile = $this->file('cover_image');
+
+                $filename = "{$page->slug}_cover.{$coverImageFile->extension()}";
+
+                $coverImagePath = $coverImageFile->storeAs(config('website.paths.images.pages').$page->slug, $filename, 'public');
+
+                $page->images()->updateOrCreate([
+                    'file_path' => $coverImagePath,
+                    'cover' => true,
+                ]);
+            }
+
+            if ($this->hasFile('hero_image')) {
+                $heroImageFile = $this->file('hero_image');
+
+                $filename = "{$page->slug}_hero.{$heroImageFile->extension()}";
+
+                $heroImagePath = $heroImageFile->storeAs(config('website.paths.images.page.hero').$page->slug, $filename, 'public');
+
+                $page->images()->updateOrCreate([
+                    'file_path' => $heroImagePath,
+                    'hero' => true,
+                ]);
+            }
+
             return $page;
         }
 

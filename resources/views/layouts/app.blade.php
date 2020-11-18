@@ -40,7 +40,7 @@
 
             <div id="layoutSidenav_content">
 
-                <main class="main py-4 row" style="width:90%;margin:auto;">
+                <main class="main py-4 row" style="width:95%;margin:auto;">
 
                     <aside class="col-2">
                         @include('layouts.search')

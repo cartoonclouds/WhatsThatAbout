@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/debug-sentry', function () {
+    throw new Exception('Debug Sentry!');
+});
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

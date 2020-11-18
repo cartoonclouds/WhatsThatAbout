@@ -1,15 +1,13 @@
 <article class="col">
     <div class="card h-100 rounded hvr-float hvr-glow">
 
-        <img src="{{ $page->cover_image }}" class="card-img-top" alt="..." style="height:150px;">
-
-        <div class="card-img-overlay">
-            <h5 class="card-title" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
-                <a href="{{ $page->url }}" class="text-decoration-none">{{ $page->title }}</a>
-            </h5>
-        </div>
+        <img src="{{ Storage::url($page->heroImage->file_path) }}" class="card-img-top" alt="..." style="height:150px;">
 
         <div class="card-body">
+
+            <h3 class="card-title page-title">
+                <a href="{{ $page->url }}" class="text-decoration-none">{{ $page->title }}</a>
+            </h3>
 
             <div class="card-text">
 

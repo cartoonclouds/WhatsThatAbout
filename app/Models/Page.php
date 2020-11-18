@@ -6,12 +6,16 @@ use Eloquent;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Page extends Eloquent
 {
     use HasFactory;
     use Sluggable;
     use SoftDeletes;
+    use LogsActivity;
+
+    protected static $logOnlyDirty = true;
 
     protected $guarded = [];
 
@@ -21,18 +25,20 @@ class Page extends Eloquent
 
     protected $with = [
         'segments',
-        'votes'
+        'votes',
+        'coverImage',
+        'heroImage',
     ];
 
     protected $withCount = [
         'segments',
-        'votes'
+        'votes',
     ];
 
     protected $appends = [
         'model_type',
         'exists',
-        'url'
+        'url',
     ];
 
     public function getModelTypeAttribute()
@@ -86,5 +92,20 @@ class Page extends Eloquent
     public function creator()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function coverImage()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
+    }
+
+    public function heroImage()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('hero', true)->withDefault();
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

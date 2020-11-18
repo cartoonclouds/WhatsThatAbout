@@ -6,12 +6,16 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Segment extends Eloquent
 {
     use HasFactory;
     use Sluggable;
     use SoftDeletes;
+    use LogsActivity;
+
+    protected static $logOnlyDirty = true;
 
     protected $guarded = [];
 
@@ -94,5 +98,10 @@ class Segment extends Eloquent
     public function creator()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

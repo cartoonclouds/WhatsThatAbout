@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         App\Providers\FortifyServiceProvider::class,
+        Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -229,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Slugify' => Cocur\Slugify\Bridge\Laravel\SlugifyFacade::class,
     ],
 
 ];

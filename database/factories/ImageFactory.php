@@ -1,0 +1,49 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Image;
+use App\Models\Page;
+use App\Models\Segment;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ImageFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Image::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        $imageable_type = $this->faker->randomElement([
+            Page::class,
+            Segment::class,
+            User::class
+        ]);
+
+        if ($imageable_type::count() === 0) {
+            $imageable_id = $imageable_type::factory()->create();
+        } else {
+            $imageable_id = $imageable_type::inRandomOrder()->value('id');
+        }
+
+        return [
+            'imageable_type' => $imageable_type,
+            'imageable_id' => $imageable_id,
+            'file_path' => $this->faker->image(),
+            'cover' => $this->faker->boolean,
+            'background' => function (array $image) {
+                return $image['cover'] ? false : $this->faker->boolean;
+            },
+        ];
+    }
+}

@@ -1,8 +1,22 @@
 /**
  * Custom CSS
  */
+.page-title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff !important;
+    padding: 0.5em;
+    width: 100%;
+    left: 0;
+    top: calc(150px - 2.1em);
+}
 
-
+.page-title a, .page-title a:hover {
+    color: #FFF;
+}
 
 /**
  * Bootstrap-Notify progressbar animation

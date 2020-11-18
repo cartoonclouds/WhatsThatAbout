@@ -63,6 +63,12 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
+
+            'cache' => [
+                'store' => 'memcached',
+                'expire' => 600,
+                'prefix' => 'cache-prefix',
+            ],
         ],
 
     ],
@@ -80,6 +86,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('images') => storage_path('app/images'),
     ],
 
 ];

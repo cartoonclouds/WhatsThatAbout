@@ -19,7 +19,6 @@ class CreatePagesTable extends Migration
             $table->string('slug')->unique()->index();
             $table->longText('synopsis'); // multiLineString
             $table->year('release_year')->nullable();
-            $table->string('cover_image');
             $table->time('runtime')->nullable();
             $table->json('references')->nullable();
             $table->integer('user_id')->index();

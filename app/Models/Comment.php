@@ -5,19 +5,23 @@ namespace App\Models;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Comment extends Eloquent
 {
     use HasFactory;
     use SoftDeletes;
+    use LogsActivity;
+
+    protected static $logOnlyDirty = true;
 
     protected $guarded = [];
 
     protected $appends = [
         'exists'
     ];
-    
-    public function getExistsAttribute() 
+
+    public function getExistsAttribute()
     {
         return $this->exists;
     }
@@ -26,7 +30,6 @@ class Comment extends Eloquent
     {
         return $this->morphTo();
     }
-
 
     public function segment()
     {

@@ -12,7 +12,7 @@
         <a href="{{ back()->getTargetUrl() }}" class="btn btn-dark float-left"><i class="fa fa-chevron-double-left"></i> Back</a>
 
         @can('createOrUpdate', $page)
-            <button class="btn btn-dark float-right ml-2" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">Create</button>
+            <button class="btn btn-dark float-right ml-2" @click="$bus.$emit('update-or-create', {{ (new \App\Models\Page) }})">Create</button>
             <button class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ $page }})"><i class="fa fa-edit"></i> Edit</button>
         @endcan
 
@@ -33,7 +33,7 @@
                         <div class="row">
 
                             <div class="col-4 text-center">
-                                <img src="{{ $page->cover_image }}" class="card-img-top border-radius-0 page-cover" alt="..." style="width:100%;max-width: 270px;">
+                                <img src="{{ Storage::url($page->coverImage->file_path) }}" class="card-img-top border-radius-0 page-cover" alt="..." style="width:100%;max-width: 270px;">
                             </div>
 
                             <div class="col-8">

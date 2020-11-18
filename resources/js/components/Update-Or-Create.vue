@@ -10,7 +10,7 @@
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body mb-3">
                     <component :model="model" v-bind:is="modelType" v-on:close="modal.hide()"></component>
                 </div>
 

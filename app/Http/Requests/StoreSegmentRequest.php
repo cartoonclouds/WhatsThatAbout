@@ -40,6 +40,8 @@ class StoreSegmentRequest extends FormRequest
             'start_time' => 'required',
             'finish_time' => 'required',
             'runs_throughout' => 'in:1',
+            'cover_image' => 'file|mimes:png,jpg,jpeg,bmp',
+            'hero_image' => 'file|mimes:png,jpg,jpeg,bmp',
             'references' => '',
         ];
     }
