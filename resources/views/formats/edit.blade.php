@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'View Show')
+@section('title', 'Format Editing')
 @push('styles')
     <style>
 
@@ -8,13 +8,11 @@
 
 @section('content')
     <div id="content" class="container-fluid">
-        <h3 class="mb-4"><i class="fas fa-users"></i> All Users</h3>
-        {{ $dataTable->table() }}
+        Edit details
     </div>
 @endsection
 
 @push('scripts')
-    {{ $dataTable->scripts() }}
     <script>
 
     </script>

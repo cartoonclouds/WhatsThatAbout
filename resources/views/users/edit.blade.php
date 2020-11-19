@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'View Show')
+@section('title', 'User Editing')
 @push('styles')
     <style>
 
@@ -8,7 +8,7 @@
 
 @section('content')
     <div id="content" class="container-fluid">
-        Edit user details and settings
+        Edit details
     </div>
 @endsection
 

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataTables\UsersDataTable;
+use App\DataTables\ThemesDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Theme;
 
-class UserController extends Controller
+class ThemeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -15,29 +15,28 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(User::class, 'user');
+        $this->authorizeResource(Theme::class, 'theme');
     }
-
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UsersDataTable $dataTable)
+    public function index(ThemesDataTable $dataTable)
     {
-        return $dataTable->render('users.index');
+        return $dataTable->render('themes.index');
     }
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Theme  $theme
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit(User $user)
+    public function edit(Theme $theme)
     {
-        return view('users.edit', compact('user'));
+        return view('themes.edit', compact('theme'));
     }
 }

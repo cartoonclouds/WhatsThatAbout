@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataTables\UsersDataTable;
+use App\DataTables\GenresDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Genre;
 
-class UserController extends Controller
+class GenreController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -15,29 +15,28 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(User::class, 'user');
+        $this->authorizeResource(Genre::class, 'genre');
     }
-
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UsersDataTable $dataTable)
+    public function index(GenresDataTable $dataTable)
     {
-        return $dataTable->render('users.index');
+        return $dataTable->render('genres.index');
     }
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Genre  $genre
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit(User $user)
+    public function edit(Genre $genre)
     {
-        return view('users.edit', compact('user'));
+        return view('genres.edit', compact('genre'));
     }
 }

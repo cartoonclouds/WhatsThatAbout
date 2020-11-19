@@ -18,7 +18,7 @@
                 </a>
 
             <div class="sb-sidenav-menu-heading">Pages</div>
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ url('pages') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>All Pages
                 </a>
                 <a class="nav-link" href="#"  @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">
