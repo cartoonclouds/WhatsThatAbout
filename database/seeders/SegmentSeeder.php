@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Segment;
 use Illuminate\Database\Seeder;
 
 class SegmentSeeder extends Seeder
@@ -13,6 +14,6 @@ class SegmentSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Segment::factory()->count(10)->create();
     }
 }

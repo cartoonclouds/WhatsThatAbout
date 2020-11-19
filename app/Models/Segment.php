@@ -105,13 +105,18 @@ class Segment extends Eloquent
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    public function coverImage()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
+    }
+
     public function genre()
     {
         return $this->belongsTo(Genre::class);
     }
 
-    public function category()
+    public function theme()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Theme::class);
     }
 }

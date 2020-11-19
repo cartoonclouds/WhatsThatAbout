@@ -42,7 +42,7 @@ class CommentPolicy
      */
     public function create(User $user)
     {
-        return Response::allow();
+        return $user->banned ? Response::deny('A comment cannot be created by a banned user') : Response::allow();
     }
 
     /**
@@ -55,7 +55,7 @@ class CommentPolicy
     public function update(User $user, Comment $comment)
     {
         if (
-            ($comment->commenter->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
+            (!$user->banned && $comment->commenter->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
             || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])
         ) {
             return Response::allow();
@@ -74,7 +74,7 @@ class CommentPolicy
     public function delete(User $user, Comment $comment)
     {
         if (
-            ($comment->commenter->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
+            (!$user->banned && $comment->commenter->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
             || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])
         ) {
             return Response::allow();

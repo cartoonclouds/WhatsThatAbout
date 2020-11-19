@@ -32,7 +32,8 @@
         "league/flysystem-cached-adapter": "^1.1",
         "sentry/sentry-laravel": "^2.2",
         "spatie/laravel-activitylog": "^3.16",
-        "spatie/laravel-permission": "^3.17"
+        "spatie/laravel-permission": "^3.17",
+        "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

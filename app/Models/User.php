@@ -39,6 +39,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'remember_token',
     ];
 
     /**
@@ -47,12 +51,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        //
+    ];
+
+    protected $dates = [
+        'email_verified_at',
     ];
 
     public function getUrlAttribute()
     {
-        return url('users/' . $this->id);
+        return url('user/' . $this->id);
     }
 
 
@@ -80,5 +88,9 @@ class User extends Authenticatable
     }
 
 
+    public function avatar()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
+    }
 
 }

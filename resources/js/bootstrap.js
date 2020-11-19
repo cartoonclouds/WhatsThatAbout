@@ -53,6 +53,15 @@ window.Inputmask = Inputmask;
 
 
 /**
+ * DataTables
+ */
+require('datatables.net');
+require('datatables.net-bs4');
+require('datatables.net-buttons');
+require('datatables.net-buttons-bs4');
+
+
+/**
  * VueJS 2.* -
  */
 import Vue from 'vue';

@@ -13,7 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js([
     'resources/js/app.js',
-    'resources/js/mixins/layout.js'
+    'resources/js/mixins/layout.js',
+    'resources/js/mixins/buttons.server-side.js',
 ], 'public/js');
 
 mix.sass('resources/sass/app.scss', 'public/css');
@@ -21,7 +22,6 @@ mix.sass('resources/sass/app.scss', 'public/css');
 mix.styles([
     'resources/css/app.css',
     'public/css/app.css',
-    'resources/css/fontawesome-pro-5.2.0.css',
 ], 'public/css/app.css');
 
 mix.copyDirectory('resources/fonts', 'public/fonts')

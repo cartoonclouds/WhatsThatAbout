@@ -1,7 +1,7 @@
 /**
  * Custom CSS
  */
-.page-title {
+.page-title a {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

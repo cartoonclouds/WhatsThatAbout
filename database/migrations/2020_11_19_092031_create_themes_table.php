@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateThemesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('themes', function (Blueprint $table) {
             $table->id();
-            $table->string('category')->unique()->index('categories_category_idx')->comment('Such as: Parody, Satire, Callback, 4th Wall,');
+            $table->string('theme')->unique()->index('themes_theme_idx')->comment('Such as: Parody, Satire, Callback, 4th Wall,');
             $table->string('definition');
             $table->longText('icon')->nullable();
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('themes');
     }
 }

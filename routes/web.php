@@ -4,7 +4,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageViewController;
 use App\Http\Controllers\SegmentViewController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Yajra\DataTables\Facades\DataTables;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,19 +20,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/debug-sentry', function () {
-    throw new Exception('Debug Sentry!');
+Route::get('/debug-datatables', function () {
+    return DataTables::eloquent(User::query())->make(true);
 });
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/{page:slug}', PageViewController::class);
-
-Route::get('/segments/{segment:slug}', SegmentViewController::class);
-
 Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('user', UserController::class)->only(['show', 'edit']);
 
+    Route::resource('users', AdminUserController::class)->only(['index']);
+
 });
+
+Route::get('/segments/{segment:slug}', SegmentViewController::class);
+
+Route::get('/{page:slug}', PageViewController::class);
+

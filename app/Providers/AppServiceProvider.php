@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Image;
 use App\Observers\ImageObserver;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,5 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Image::observe(ImageObserver::class);
+
+        Paginator::defaultView('vendor.pagination.default');
     }
 }

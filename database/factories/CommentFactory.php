@@ -36,10 +36,16 @@ class CommentFactory extends Factory
             $commentable_id = $commentable_type::all()->random()->id;
         }
 
+        if (User::count() === 0) {
+            $user = User::factory()->create();
+        } else {
+            $user = User::inRandomOrder()->first();
+        }
+
         return [
             'commentable_type' => $commentable_type,
             'commentable_id' => $commentable_id,
-            'user_id' => User::factory(),
+            'user_id' => $user,
             'title' => $this->faker->words($this->faker->numberBetween(1, 10), true),
             'body' => $this->faker->sentence($this->faker->numberBetween(10, 50), true),
         ];

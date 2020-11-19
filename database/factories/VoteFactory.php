@@ -36,10 +36,16 @@ class VoteFactory extends Factory
             $votable_id = $votable_type::all()->random()->id;
         }
 
+        if (User::count() === 0) {
+            $user = User::factory()->create();
+        } else {
+            $user = User::inRandomOrder()->first();
+        }
+
         return [
             'votable_type' => $votable_type,
             'votable_id' => $votable_id,
-            'user_id' => User::factory(),
+            'user_id' => $user,
             'vote' => $this->faker->boolean,
         ];
     }

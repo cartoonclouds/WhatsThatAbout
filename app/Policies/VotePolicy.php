@@ -42,7 +42,7 @@ class VotePolicy
      */
     public function create(User $user)
     {
-        return Response::allow();
+        return $user->banned ? Response::deny('A vote cannot be created by a banned user') : Response::allow();
     }
 
     /**
@@ -54,7 +54,7 @@ class VotePolicy
      */
     public function update(User $user, Vote $vote)
     {
-        //by user
+        return !$user->banned && $vote->voter->is($user) ? Response::allow() : Response::deny('A vote can only be edited by the voter');
     }
 
     /**
@@ -66,6 +66,6 @@ class VotePolicy
      */
     public function delete(User $user, Vote $vote)
     {
-        return Response::allow();
+        return !$user->banned && $vote->voter->is($user) ? Response::allow() : Response::deny('A vote can only be edited by the voter');
     }
 }

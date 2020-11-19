@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\Genre;
 use App\Models\Segment;
 use App\Models\Page;
 use App\Models\User;
@@ -23,15 +25,40 @@ class SegmentFactory extends Factory
      */
     public function definition()
     {
+        if (Page::count() === 0) {
+            $page = Page::factory()->create();
+        } else {
+            $page = Page::inRandomOrder()->first();
+        }
+
+        if (Category::count() === 0) {
+            $category = Category::factory()->create();
+        } else {
+            $category = Category::inRandomOrder()->first();
+        }
+
+        if (Genre::count() === 0) {
+            $genre = Genre::factory()->create();
+        } else {
+            $genre = Genre::inRandomOrder()->first();
+        }
+
+        if (User::count() === 0) {
+            $user = User::factory()->create();
+        } else {
+            $user = User::inRandomOrder()->first();
+        }
+
         return [
-            'title' => $this->faker->words(5, true),
+            'title' => $this->faker->words($this->faker->numberBetween(1, 5), true),
             'start_time' => $this->faker->time(),
             'finish_time' => $this->faker->time(),
             'runs_throughout' => $this->faker->boolean,
             'details' => $this->faker->paragraphs($this->faker->numberBetween(10, 30), true),
-            //'references' => $this->faker->,
-            'page_id' => Page::factory(),
-            'user_id' => User::factory(),
+            'page_id' => $page,
+            'category_id' => $category,
+            'genre_id' => $genre,
+            'user_id' => $user,
         ];
     }
 }

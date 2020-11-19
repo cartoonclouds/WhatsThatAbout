@@ -4,15 +4,18 @@
     <div id="content" class="container-fluid">
 
         @hasanyrole($adminRoles->implode('|'))
-        <div class="alert alert-info mb-5">
+        <div class="alert alert-info mb-3">
             <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
         </div>
         @endhasanyrole
 
-        <div class="row row-cols-2 row-cols-md-3 g-4">
-            @each('pages.partials.excerpt', \App\Models\Page::limit(10)->get(), 'page')
+        @include('layouts.navigation.sorting')
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @each('pages.partials.excerpt', $pages, 'page')
         </div>
 
+        {{ $pages->withQueryString()->links() }}
     </div>
 
     <update-or-create></update-or-create>

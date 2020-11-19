@@ -39,9 +39,20 @@
  */
 @import '~animate.css/animate.compat.css';
 
-
+// Select2
 @import '~select2';
+
+// FontAwesome
+@import 'fontawesome-pro-5.13.0-scss/fontawesome';
+@import 'fontawesome-pro-5.13.0-scss/solid';
+@import 'fontawesome-pro-5.13.0-scss/regular';
+@import 'fontawesome-pro-5.13.0-scss/light';
+@import 'fontawesome-pro-5.13.0-scss/brands';
+@import 'fontawesome-pro-5.13.0-scss/duotone';
 
 
 //https://startbootstrap.com/previews/sb-admin
 
+// DataTables
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+@import "~datatables.net-buttons-bs4/css/buttons.bootstrap4.css";

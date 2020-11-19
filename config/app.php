@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'en_AU',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,6 +167,7 @@ return [
          */
         App\Providers\FortifyServiceProvider::class,
         Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider::class,
+        App\Providers\FakerServiceProvider::class,
 
         /*
          * Application Service Providers...

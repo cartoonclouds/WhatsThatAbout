@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Format;
 use Illuminate\Database\Seeder;
 
 class FormatSeeder extends Seeder
@@ -13,6 +14,6 @@ class FormatSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Format::factory()->count(6)->create();
     }
 }

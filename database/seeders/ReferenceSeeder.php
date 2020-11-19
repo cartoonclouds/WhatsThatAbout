@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Reference;
 use Illuminate\Database\Seeder;
 
 class ReferenceSeeder extends Seeder
@@ -13,6 +14,6 @@ class ReferenceSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Reference::factory()->count(10)->create();
     }
 }

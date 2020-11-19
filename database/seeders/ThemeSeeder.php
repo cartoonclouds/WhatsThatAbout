@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Theme;
 use Illuminate\Database\Seeder;
 
-class CategorySeeder extends Seeder
+class ThemeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +14,6 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        //
+        Theme::factory()->count(9)->create();
     }
 }

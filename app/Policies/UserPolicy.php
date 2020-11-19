@@ -34,11 +34,11 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        if ($user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])) {
+        if ($user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD]) || $user->is($model)) {
             return Response::allow();
         }
 
-        return Response::deny('A user can only be viewed by a moderator or administrator');
+        return Response::deny('A user can only be viewed by themselves or a moderator or administrator');
     }
 
     /**
@@ -65,7 +65,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        if ($model->creator->is($user) || $user->hasAnyRole([User::ROLE_ADMIN])) {
+        if ($model->is($user) || $user->hasAnyRole([User::ROLE_ADMIN])) {
             return Response::allow();
         }
 

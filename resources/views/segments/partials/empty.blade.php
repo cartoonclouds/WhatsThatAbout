@@ -1,5 +1,5 @@
 
-<h6>No Segments Created for Page</h6>
+<h6>No Segments for this Page</h6>
 
 
 @push('scripts')

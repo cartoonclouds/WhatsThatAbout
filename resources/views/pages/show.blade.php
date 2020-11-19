@@ -32,11 +32,13 @@
 
                         <div class="row">
 
-                            <div class="col-4 text-center">
-                                <img src="{{ Storage::url($page->coverImage->file_path) }}" class="card-img-top border-radius-0 page-cover" alt="..." style="width:100%;max-width: 270px;">
-                            </div>
+                            @if($page->coverImage)
+                                <div class="col-4 text-center">
+                                    <img src="{{ Storage::url($page->coverImage->file_path) }}" class="card-img-top border-radius-0 page-cover" alt="..." style="width:100%;max-width: 270px;">
+                                </div>
+                            @endif
 
-                            <div class="col-8">
+                            <div class="{{$page->coverImage ? 'col-8' : 'col-12'}}">
 
                                 <p>Release Year: {{ $page->release_year }}</p>
 
@@ -69,7 +71,9 @@
 
         <h2>Segments:</h2>
 
-        @each('segments.partials.segment', $page->segments, 'segment', 'segments.partials.empty')
+        <div class="row row-cols-1">
+            @each('segments.partials.excerpt', $page->segments, 'segment', 'segments.partials.empty')
+        </div>
     </div>
 
     <update-or-create></update-or-create>

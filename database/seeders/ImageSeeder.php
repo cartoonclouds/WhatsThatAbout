@@ -16,14 +16,6 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        Image::factory([
-            'imageable_id' => 3
-        ])->count(10)->for(
-            Page::factory(), 'imageable'
-        )->create();
-
-        Image::factory()->count(10)->for(
-            Segment::factory(), 'imageable'
-        )->create();
+        Image::factory()->count(10)->create();
     }
 }

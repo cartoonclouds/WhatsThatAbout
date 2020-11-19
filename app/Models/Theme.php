@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Eloquent;
 
-class Category extends Eloquent
+class Theme extends Eloquent
 {
     use HasFactory;
 

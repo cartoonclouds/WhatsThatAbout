@@ -1,42 +1,24 @@
-<segment inline-template :details="{{ $segment }}">
-    <table class="table">
-        <tbody>
-        <tr class="segment-title">
-            <td colspan="3">
-                <h4 class="d-inline">{{ $segment->title }}</h4>
 
-                @can('updateOrCreat', user())
-                    <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ $segment }})"><i class="fa fa-edit"></i> Edit</button>
-                @endcan
-            </td>
-        </tr>
+<div class="card mb-3">
+    <div class="row g-0">
 
-        <tr class="segment-details">
-            <td style="width: 10%;">
-                <vote :votable="{{ $segment }}"></vote>
-            </td>
-            <td style="width: 30%;">
-                <table class="table table-borderless table-condensed">
-                    <tr>
-                        <td class="font-weight-bold">Created At:</td>
-                        <td>{{ $segment->created_at->toDateTimeString() }}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-weight-bold">Creator:</td>
-                        <td><a href="{{ $segment->creator->url }}">{{ $segment->creator->name }}</a></td>
-                    </tr>
-                    <tr>
-                        <td class="font-weight-bold">Interval:</td>
-                        <td>{{ $segment->start_time }} - {{ $segment->finish_time }}</td>
-                    </tr>
-                </table>
-            </td>
-            <td>
-                {{ $segment->details }}
-            </td>
-        </tr>
+        <div class="col-md-3">
+            <img src="{{ Storage::url($segment->coverImage->file_path) }}" class="flex-shrink-0 mr-3" alt="Segment Cover Image">
+        </div>
 
-        </tbody>
+        <div class="col-md-9">
+            <div class="card-body">
+                <h5 class="card-title">{{ $segment->title }}</h5>
 
-    </table>
-</segment>
+                <p class="card-text" style="max-height:10rem;overflow: hidden;text-overflow: ellipsis; display: -webkit-box;-webkit-line-clamp: 6;-webkit-box-orient: vertical;">
+                    {{ $segment->details }}
+                </p>
+
+                <a href="{{ $segment->url }}" class="mb-3 mr-4 card-text d-block text-right text-decoration-none">Continue <i class="fa fa-chevron-double-right"></i></a>
+
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+
+    </div>
+</div>

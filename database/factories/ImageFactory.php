@@ -33,7 +33,7 @@ class ImageFactory extends Factory
         if ($imageable_type::count() === 0) {
             $imageable_id = $imageable_type::factory()->create();
         } else {
-            $imageable_id = $imageable_type::inRandomOrder()->value('id');
+            $imageable_id = $imageable_type::inRandomOrder()->first();
         }
 
         return [
@@ -41,9 +41,7 @@ class ImageFactory extends Factory
             'imageable_id' => $imageable_id,
             'file_path' => $this->faker->image(),
             'cover' => $this->faker->boolean,
-            'background' => function (array $image) {
-                return $image['cover'] ? false : $this->faker->boolean;
-            },
+            'hero' => $this->faker->boolean,
         ];
     }
 }
