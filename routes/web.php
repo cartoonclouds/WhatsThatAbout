@@ -25,28 +25,27 @@ use Yajra\DataTables\Facades\DataTables;
 |
 */
 
-Route::get('/debug-datatables', function () {
-    return DataTables::eloquent(User::query())->make(true);
-});
-
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('user', UserController::class)->only(['show', 'edit']);
 
-    Route::resource('users', AdminUserController::class)->only(['index']);
+    Route::group(['middleware' => ['auth.admin']], function () {
 
-    Route::resource('pages', AdminPageController::class)->only(['index']);
+        Route::resource('users', AdminUserController::class)->only(['index']);
 
-    Route::resource('segments', AdminSegmentController::class)->only(['index']);
+        Route::resource('pages', AdminPageController::class)->only(['index']);
 
-    Route::resource('themes', AdminThemeController::class)->only(['index', 'edit']);
+        Route::resource('segments', AdminSegmentController::class)->only(['index']);
 
-    Route::resource('genres', AdminGenreController::class)->only(['index', 'edit']);
+        Route::resource('themes', AdminThemeController::class)->only(['index', 'edit']);
 
-    Route::resource('formats', AdminFormatController::class)->only(['index', 'edit']);
+        Route::resource('genres', AdminGenreController::class)->only(['index', 'edit']);
+
+        Route::resource('formats', AdminFormatController::class)->only(['index', 'edit']);
+
+    });
 
 });
 

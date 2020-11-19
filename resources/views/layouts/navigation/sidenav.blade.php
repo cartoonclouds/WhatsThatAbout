@@ -26,7 +26,7 @@
                 </a>
 
             <div class="sb-sidenav-menu-heading">Segments</div>
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ url('segments') }}">
                     <div class="sb-nav-link-icon"><i class="{{ config('website.icons.segments.index') }}"></i></div>All Segments
                 </a>
                 <a class="nav-link" href="#"  @click="$bus.$emit('update-or-create', {{ new \App\Models\Segment }})">
