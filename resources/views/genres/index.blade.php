@@ -8,7 +8,7 @@
 
 @section('content')
     <div id="content" class="container-fluid">
-        <h3 class="mb-4"><i class="fas fa-theater-masks"></i> All Genres</h3>
+        <h3 class="mb-4"><i class="{{ config('website.icons.genres.index') }}"></i> All Genres</h3>
         {{ $dataTable->table() }}
     </div>
 @endsection

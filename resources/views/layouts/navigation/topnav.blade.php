@@ -38,18 +38,18 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Settings</a>
 
                     <a class="dropdown-item" href="#">Activity Log</a>
 
-                    <a class="dropdown-item" href="{{ user()->url }}">Profile</a>
+                    <a class="dropdown-item" href="{{ user()->url }}"><i class="far fa-id-card"></i> Profile</a>
 
                     <div class="dropdown-divider"></div>
 
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

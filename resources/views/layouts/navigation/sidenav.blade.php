@@ -6,42 +6,42 @@
         <div class="nav" style="padding-left: 1em;">
             <div class="sb-sidenav-menu-heading">General</div>
                 <a class="nav-link" href="/">
-                    <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>Home
+                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.home') }}"></i></div>Home
                 </a>
 
             <div class="sb-sidenav-menu-heading">Users</div>
                 <a class="nav-link" href="{{ url('users') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>All Users
+                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.users.index') }}"></i></div>All Users
                 </a>
                 <a class="nav-link" href="{{ url('users/create') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>Create User
+                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.users.create') }}"></i></div>Create User
                 </a>
 
             <div class="sb-sidenav-menu-heading">Pages</div>
                 <a class="nav-link" href="{{ url('pages') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>All Pages
+                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.pages.index') }}"></i></div>All Pages
                 </a>
                 <a class="nav-link" href="#"  @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">
-                    <div class="sb-nav-link-icon"><i class="fas fa-file-plus"></i></div>Create Pages
+                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.pages.create') }}"></i></div>Create Pages
                 </a>
 
             <div class="sb-sidenav-menu-heading">Segments</div>
                 <a class="nav-link" href="/">
-                    <div class="sb-nav-link-icon"><i class="fas fa-puzzle-piece"></i></div>All Segments
+                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.segments.index') }}"></i></div>All Segments
                 </a>
                 <a class="nav-link" href="#"  @click="$bus.$emit('update-or-create', {{ new \App\Models\Segment }})">
-                    <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>Create Segment
+                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.segments.create') }}"></i></div>Create Segment
                 </a>
 
             <div class="sb-sidenav-menu-heading">Configuration</div>
                 <a class="nav-link" href="{{ url('themes') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-monkey"></i></div>Themes
+                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.themes.index') }}"></i></div>Themes
                 </a>
                 <a class="nav-link" href="{{ url('genres') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-theater-masks"></i></div>Genres
+                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.genres.index') }}"></i></div>Genres
                 </a>
                 <a class="nav-link" href="{{ url('formats') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-camera-movie"></i></div>Formats
+                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.formats.index') }}"></i></div>Formats
                 </a>
 
 

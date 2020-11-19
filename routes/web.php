@@ -42,11 +42,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('segments', AdminSegmentController::class)->only(['index']);
 
-    Route::resource('themes', AdminThemeController::class)->only(['index']);
+    Route::resource('themes', AdminThemeController::class)->only(['index', 'edit']);
 
-    Route::resource('genres', AdminGenreController::class)->only(['index']);
+    Route::resource('genres', AdminGenreController::class)->only(['index', 'edit']);
 
-    Route::resource('formats', AdminFormatController::class)->only(['index']);
+    Route::resource('formats', AdminFormatController::class)->only(['index', 'edit']);
 
 });
 

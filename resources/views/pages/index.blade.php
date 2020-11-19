@@ -8,7 +8,7 @@
 
 @section('content')
     <div id="content" class="container-fluid">
-        <h3 class="mb-4"><i class="fas fa-file-alt"></i> All Pages</h3>
+        <h3 class="mb-4"><i class="{{ config('website.icons.pages.index') }}"></i> All Pages</h3>
         {{ $dataTable->table() }}
     </div>
 @endsection

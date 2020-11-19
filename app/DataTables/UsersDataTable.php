@@ -23,7 +23,7 @@ class UsersDataTable extends DataTable
             ->eloquent($query)
 
             ->editColumn('banned', function (User $user) {
-                return $user->banned ? '<i class="fa fa-user-times text-danger"></i>' : '<i class="fa fa-user-check text-success"></i>';
+                return $user->banned ? '<i class="fas fa-user-alt-slash text-danger"></i>' : '<i class="fa fa-user-check text-success"></i>';
             })
             ->editColumn('name', '{{$name}}')
             ->editColumn('username', '{{$username}}')
@@ -34,8 +34,14 @@ class UsersDataTable extends DataTable
             ->addColumn('email_verified', function (User $user) {
                 return $user->email_verified_at ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-minus text-black-50"></i>';
             })
-            ->addColumn('action', function (User $user) {
-                return '<button type="button" class="btn btn-sm btn-primary">Edit User</button>';
+            ->addColumn('actions', function (User $user) {
+                $actions = '<button type="button" class="btn btn-sm btn-primary">Edit User</button>';
+
+                if (user()->can('delete')) {
+                    $actions .= '<button type="button" class="ml-2 btn btn-sm btn-outline-danger">Delete User</button>';
+                }
+
+                return $actions;
             })
 
             ->filterColumn('created_at', function ($query, $keyword) {
@@ -44,7 +50,7 @@ class UsersDataTable extends DataTable
 
             ->orderColumn('email_verified', '-email_verified_at $1')
 
-            ->rawColumns(['banned', 'action', 'email_verified']);
+            ->rawColumns(['banned', 'actions', 'email_verified']);
     }
 
     /**
@@ -103,10 +109,10 @@ class UsersDataTable extends DataTable
             Column::make('email_verified')
                 ->addClass('text-center'),
             Column::make('created_at'),
-            Column::computed('action')
+            Column::computed('actions')
                 ->exportable(false)
                 ->printable(false)
-                ->width(120)
+                ->width(230)
                 ->addClass('text-center'),
         ];
     }
