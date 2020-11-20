@@ -1,18 +1,17 @@
 <?php
 
+use App\Http\Controllers\Admin\FormatController as AdminFormatController;
+use App\Http\Controllers\Admin\GenreController as AdminGenreController;
+use App\Http\Controllers\Admin\PageController as AdminPageController;
+use App\Http\Controllers\Admin\SegmentController as AdminSegmentController;
+use App\Http\Controllers\Admin\ThemeController as AdminThemeController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\PageViewController;
 use App\Http\Controllers\SegmentViewController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Admin\UserController as AdminUserController;
-use App\Http\Controllers\Admin\PageController as AdminPageController;
-use App\Http\Controllers\Admin\SegmentController as AdminSegmentController;
-use App\Http\Controllers\Admin\GenreController as AdminGenreController;
-use App\Http\Controllers\Admin\ThemeController as AdminThemeController;
-use App\Http\Controllers\Admin\FormatController as AdminFormatController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use Yajra\DataTables\Facades\DataTables;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +23,7 @@ use Yajra\DataTables\Facades\DataTables;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -48,6 +48,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
 });
+
+Route::resource('pages.comments', CommentController::class)->parameters([
+    'pages' => 'commentable'
+]);
 
 Route::get('/segments/{segment:slug}', SegmentViewController::class);
 

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Contracts\Commentable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Segment extends Eloquent
+class Segment extends Eloquent implements Commentable
 {
     use HasFactory;
     use Sluggable;

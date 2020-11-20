@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Contracts\Commentable;
 use Eloquent;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Page extends Eloquent
+class Page extends Eloquent implements Commentable
 {
     use HasFactory;
     use Sluggable;
@@ -24,6 +26,7 @@ class Page extends Eloquent
     ];
 
     protected $with = [
+        'comments',
         'segments',
         'votes',
         'coverImage',
@@ -31,6 +34,7 @@ class Page extends Eloquent
     ];
 
     protected $withCount = [
+        'comments',
         'segments',
         'votes',
     ];
@@ -69,6 +73,20 @@ class Page extends Eloquent
         ];
     }
 
+    /**
+     * Find a model by its primary key or throw an exception.
+     *
+     * @param  mixed  $id
+     * @param  array  $columns
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static|static[]
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public static function findOrFail($id, $columns = ['*'])
+    {
+        return static::where('slug', $id)->firstOrFail($columns);
+    }
+
     public function getTitleAttribute()
     {
         return ucwords($this->attributes['title']);
@@ -77,6 +95,11 @@ class Page extends Eloquent
     public function getUrlAttribute()
     {
         return url('/' . $this->getRouteKey());
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function segments()

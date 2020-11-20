@@ -9,12 +9,15 @@ use Illuminate\Http\Request;
 
 class SegmentController extends Controller
 {
-
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->authorizeResource(Segment::class, 'segment');
     }
-
 
     /**
      * Store a newly created Segment or update as specific Segment in storage.

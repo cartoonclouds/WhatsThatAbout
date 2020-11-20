@@ -9,12 +9,15 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->authorizeResource(Page::class, 'page');
     }
-
 
     /**
      * Store a newly created Page or update as specific Page in storage.

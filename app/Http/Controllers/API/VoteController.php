@@ -9,12 +9,15 @@ use Illuminate\Http\Request;
 
 class VoteController extends Controller
 {
-
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
-        $this->authorizeResource(Votable::class, 'vote');
+        $this->authorizeResource(Vote::class, 'vote');
     }
-
 
     /**
      * Store a newly created resource in storage.
