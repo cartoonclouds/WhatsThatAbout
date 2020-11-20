@@ -30,16 +30,22 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => [
+            'username' => [
                 'required',
                 'string',
-                Rule::unique('users', 'title')->ignore($this->user),
+                Rule::unique('users', 'username')->ignore($this->user),
             ],
-            'synopsis' => 'required|string',
-            'release_year' => 'required',
-            'cover_image' => 'required',
-            'runtime' => 'required',
-            'references' => '',
+            'email' => [
+                'required',
+                'string',
+                Rule::unique('users', 'email')->ignore($this->user),
+            ],
+            'banned' => 'in:1',
+            'banned_reason' => 'string',
+            'banned_by' => 'exists:users,id',
+            'banned_at' => 'datetime',
+            'password' => '',
+            'email_verified_at' => 'datetime',
         ];
     }
 

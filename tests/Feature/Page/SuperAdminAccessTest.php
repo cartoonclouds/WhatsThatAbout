@@ -40,7 +40,9 @@ class SuperAdminAccessTest extends TestCase
 
     public function testSuperAdminCanUpdateAnyPage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
 
@@ -60,7 +62,9 @@ class SuperAdminAccessTest extends TestCase
 
     public function testSuperAdminCanDestroyAnyPage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson('/api/pages/' . $page->getRouteKey());
 
@@ -69,21 +73,27 @@ class SuperAdminAccessTest extends TestCase
 
     public function testSuperAdminCanDeletePagew()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertTrue($this->user->can('delete', $page));
     }
 
     public function testSuperAdminCanRestorePage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertTrue($this->user->can('restore', $page));
     }
 
     public function testSuperAdminCanForceDeletePage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertTrue($this->user->can('force-delete', $page));
     }

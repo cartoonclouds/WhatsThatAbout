@@ -38,7 +38,8 @@ class StorePageRequest extends FormRequest
             'synopsis' => 'required|string',
             'release_year' => 'required',
             'runtime' => 'required',
-            'references' => '',
+            'genre_id' => 'exists:genres,id',
+            'format_id' => 'exists:formats,id',
         ];
     }
 

@@ -41,7 +41,9 @@ class AdminAccessTest extends TestCase
 
     public function testAdminCanUpdateAnyPage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
 
@@ -61,7 +63,9 @@ class AdminAccessTest extends TestCase
 
     public function testAdminCanDestroyAnyPage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson('/api/pages/' . $page->getRouteKey());
 
@@ -80,7 +84,9 @@ class AdminAccessTest extends TestCase
 
     public function testAdminCanDeleteAnyPage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertTrue($this->user->can('delete', $page));
     }
@@ -96,7 +102,9 @@ class AdminAccessTest extends TestCase
 
     public function testAdminCanRestoreAnyPage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertTrue($this->user->can('restore', $page));
     }

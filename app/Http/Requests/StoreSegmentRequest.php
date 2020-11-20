@@ -35,14 +35,13 @@ class StoreSegmentRequest extends FormRequest
                 'string',
                 Rule::unique('segments', 'title')->ignore($this->segment),
             ],
-            'page_id' => 'required|exists:pages,id',
-            'details' => 'required|string',
             'start_time' => 'required',
             'finish_time' => 'required',
             'runs_throughout' => 'in:1',
-            'cover_image' => 'file|mimes:png,jpg,jpeg,bmp',
-            'hero_image' => 'file|mimes:png,jpg,jpeg,bmp',
-            'references' => '',
+            'details' => 'required|string',
+            'page_id' => 'required|exists:pages,id',
+            'genre_id' => 'required|exists:genres,id',
+            'theme_id' => 'required|exists:themes,id',
         ];
     }
 

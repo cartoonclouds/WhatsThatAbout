@@ -44,7 +44,7 @@ class PagePolicy
      */
     public function create(User $user)
     {
-        if ($user->hasAnyRole([User::ROLE_ADMIN])) {
+        if ($user->hasRole(User::ROLE_ADMIN)) {
             return Response::allow();
         }
 
@@ -61,7 +61,7 @@ class PagePolicy
      */
     public function update(User $user, Page $page)
     {
-        if ($page->creator->is($user) || $user->hasAnyRole([User::ROLE_ADMIN])) {
+        if ($page->creator->is($user) || $user->hasRole(User::ROLE_ADMIN)) {
             return Response::allow();
         }
 
@@ -78,7 +78,7 @@ class PagePolicy
      */
     public function delete(User $user, Page $page)
     {
-        if ($page->creator->is($user) || $user->hasAnyRole([User::ROLE_ADMIN])) {
+        if ($page->creator->is($user) || $user->hasRole(User::ROLE_ADMIN)) {
             return Response::allow();
         }
 
@@ -95,7 +95,7 @@ class PagePolicy
      */
     public function restore(User $user, Page $page)
     {
-        if ($page->creator->is($user) || $user->hasAnyRole([User::ROLE_ADMIN])) {
+        if ($page->creator->is($user) || $user->hasRole(User::ROLE_ADMIN)) {
             return Response::allow();
         }
 

@@ -49,7 +49,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        if ($user->hasAnyRole([User::ROLE_ADMIN])) {
+        if ($user->hasRole(User::ROLE_ADMIN)) {
             return Response::allow();
         }
 
@@ -65,7 +65,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        if ($model->is($user) || $user->hasAnyRole([User::ROLE_ADMIN])) {
+        if ($model->is($user) || $user->hasRole(User::ROLE_ADMIN)) {
             return Response::allow();
         }
 

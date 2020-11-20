@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\Theme;
 use App\Models\Genre;
 use App\Models\Segment;
 use App\Models\Page;
@@ -31,10 +31,10 @@ class SegmentFactory extends Factory
             $page = Page::inRandomOrder()->first();
         }
 
-        if (Category::count() === 0) {
-            $category = Category::factory()->create();
+        if (Theme::count() === 0) {
+            $theme = Theme::factory()->create();
         } else {
-            $category = Category::inRandomOrder()->first();
+            $theme = Theme::inRandomOrder()->first();
         }
 
         if (Genre::count() === 0) {
@@ -56,7 +56,7 @@ class SegmentFactory extends Factory
             'runs_throughout' => $this->faker->boolean,
             'details' => $this->faker->paragraphs($this->faker->numberBetween(10, 30), true),
             'page_id' => $page,
-            'category_id' => $category,
+            'theme_id' => $theme,
             'genre_id' => $genre,
             'user_id' => $user,
         ];

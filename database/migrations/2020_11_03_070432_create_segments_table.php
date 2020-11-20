@@ -22,8 +22,8 @@ class CreateSegmentsTable extends Migration
             $table->boolean('runs_throughout')->nullable()->comment('Does the reference occur throughout the show?');
             $table->longText('details')->comment('The story regarding what is being referenced');
             $table->integer('page_id')->index('segments_page_id_idx');
-            $table->integer('category_id')->index('segments_category_id_idx');
             $table->integer('genre_id')->index('segments_genre_id_idx');
+            $table->integer('theme_id')->index('segments_theme_id_idx');
             $table->integer('user_id')->index('segments_user_id_idx');
             $table->softDeletes();
             $table->timestamps();

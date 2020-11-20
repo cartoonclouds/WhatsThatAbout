@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique()->index('users_username_idx');
-            $table->string('email')->unique()->index('users_email_idx');
+            $table->string('email')->index('users_email_idx');
             $table->boolean('banned')->default(0);
             $table->string('banned_reason')->nullable();
             $table->unsignedInteger('banned_by')->nullable();

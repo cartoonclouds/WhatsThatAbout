@@ -41,7 +41,9 @@ class UserAccessTest extends TestCase
     {
         $this->expectException(AuthorizationException::class);
 
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
 
@@ -52,7 +54,9 @@ class UserAccessTest extends TestCase
     {
         $this->expectException(AuthorizationException::class);
 
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson('/api/pages/' . $page->getRouteKey());
 
@@ -61,21 +65,27 @@ class UserAccessTest extends TestCase
 
     public function testUserCannotDeletePage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertFalse($this->user->can('delete', $page));
     }
 
     public function testUserCannotRestorePage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertFalse($this->user->can('restore', $page));
     }
 
     public function testUserCannotForceDeletePage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertFalse($this->user->can('force-delete', $page));
     }
