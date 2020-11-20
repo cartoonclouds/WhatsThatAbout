@@ -11,6 +11,18 @@ const mix = require('laravel-mix');
  |
  */
 
+if (mix.inProduction()) {
+    mix.options({
+        purifyCss: {
+            purifyOptions: {
+                minimize: true,
+                info    : true,
+                rejected: true,
+            }
+        },
+    });
+}
+
 mix.js([
     'resources/js/app.js',
     'resources/js/mixins/layout.js',
@@ -25,8 +37,12 @@ mix.styles([
 ], 'public/css/app.css');
 
 mix.copyDirectory('resources/fonts', 'public/fonts')
-    .copyDirectory('resources/webfonts', 'public/webfonts')
     .copyDirectory('resources/images', 'public/images');
 
-mix.version();
-mix.sourceMaps();
+mix.sourceMaps()
+    .extract();
+
+if (mix.inProduction()) {
+    mix.version();
+}
+

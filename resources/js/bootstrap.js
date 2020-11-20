@@ -1,30 +1,27 @@
-
 /**
  * Lo-dash
+ * https://lodash.com/docs/4.17.15
  */
-import _ from 'lodash';
-
-window._ = _;
-
-
-/**
- * Popper.js
- */
-import Popper from 'popper.js';
-
-window.Popper = Popper;
+window._ = require('lodash');
 
 
 /**
  * jQuery
+ * https://api.jquery.com/
  */
-import jquery from 'jquery';
-
-window.$ = window.jQuery = jquery;
+window.$ = window.jQuery = require('jquery');
 
 
 /**
- * Bootstrap
+ * Popper.js 1.16
+ * https://popper.js.org/docs/v1/
+ */
+window.popper = require('popper.js');
+
+
+/**
+ * Bootstrap 5.0
+ * https://v5.getbootstrap.com/docs/5.0/
  */
 window.bootstrap = require('bootstrap');
 
@@ -38,6 +35,7 @@ require('bootstrap-notify');
 
 /**
  * Axios
+ * https://github.com/axios/axios
  */
 import axios from 'axios';
 
@@ -46,6 +44,7 @@ window.axios = axios;
 
 /**
  * Inputmask
+ * https://github.com/RobinHerbots/Inputmask
  */
 import Inputmask from 'inputmask/dist/inputmask';
 
@@ -54,6 +53,9 @@ window.Inputmask = Inputmask;
 
 /**
  * DataTables
+ * https://yajrabox.com/docs/laravel-datatables/
+ * https://datatables.yajrabox.com/starter
+ * https://datatables.net/
  */
 require('datatables.net');
 require('datatables.net-bs4');
@@ -62,7 +64,8 @@ require('datatables.net-buttons-bs4');
 
 
 /**
- * VueJS 2.* -
+ * VueJS 2.*
+ * https://vuejs.org/v2/guide/
  */
 import Vue from 'vue';
 
@@ -76,13 +79,12 @@ window.Vue = Vue;
  * The jQuery replacement for select boxes. Select2 gives you a customizable select box with support
  * for searching, tagging, remote data sets, infinite scrolling, and many other highly used options.
  */
-// require('select2');
-
 require('select2/dist/js/select2.full');
+
 
 /**
  * Bootbox - alert/prompt replacement
- * http://bootboxjs.com/
+ * http://bootboxjs.com/documentation.html
  */
 import bootbox from 'bootbox';
 

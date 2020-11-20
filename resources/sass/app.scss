@@ -2,24 +2,11 @@
 // Import Custom Variables
 @import "theme/variables.scss";
 
-// Import Bootstrap
+// Import MD Bootstrap
 @import "~bootstrap/scss/bootstrap.scss";
 
 // Import Custom SCSS
 @import "theme/global.scss";
-
-// Layout
-@import "theme/layout/authentication.scss";
-@import "theme/layout/dashboard-default.scss";
-@import "theme/layout/dashboard-fixed.scss";
-@import "theme/layout/error.scss";
-
-// Navigation
-@import "theme/navigation/nav.scss";
-@import "theme/navigation/topnav.scss";
-@import "theme/navigation/sidenav/sidenav.scss";
-@import "theme/navigation/sidenav/sidenav-dark.scss";
-@import "theme/navigation/sidenav/sidenav-light.scss";
 
 
 /**
@@ -30,6 +17,7 @@
  */
 @import '~hover.css';
 
+
 /**
  * Animate.css
  * https://animate.style/
@@ -39,10 +27,17 @@
  */
 @import '~animate.css/animate.compat.css';
 
-// Select2
+
+/**
+ * Select2
+ * https://select2.org/
+ */
 @import '~select2';
 
-// FontAwesome
+
+/**
+ * FontAwesome Pro 5.13.0
+ */
 @import 'fontawesome-pro-5.13.0-scss/fontawesome';
 @import 'fontawesome-pro-5.13.0-scss/solid';
 @import 'fontawesome-pro-5.13.0-scss/regular';
@@ -51,8 +46,8 @@
 @import 'fontawesome-pro-5.13.0-scss/duotone';
 
 
-//https://startbootstrap.com/previews/sb-admin
-
-// DataTables
+/**
+ * Yajra DataTables
+ */
 @import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
 @import "~datatables.net-buttons-bs4/css/buttons.bootstrap4.css";
