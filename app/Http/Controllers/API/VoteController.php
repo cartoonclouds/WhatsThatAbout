@@ -23,10 +23,10 @@ class VoteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vote  $vote
+     * @param  \App\Contracts\Votable  $votable
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Vote $vote)
+    public function store(Request $request, Votable $votable)
     {
         //save a new vote
         // api/page/{page}/vote
@@ -39,10 +39,9 @@ class VoteController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Vote  $vote
-     * @param  \App\Contracts\Votable $votable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vote $vote, Votable $votable)
+    public function update(Request $request, Vote $vote)
     {
         //update a vote
         // api/vote/{vote}
@@ -52,10 +51,9 @@ class VoteController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Vote  $vote
-     * @param  \App\Contracts\Votable $votable
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vote $vote, Votable $votable)
+    public function destroy(Vote $vote)
     {
         //delete a vote
         // api/vote/{vote}

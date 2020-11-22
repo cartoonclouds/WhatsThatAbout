@@ -47,7 +47,7 @@ class UserAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testBannerUserCannotCreateComment()
+    public function testBannedUserCannotCreateComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -128,9 +128,7 @@ class UserAccessTest extends TestCase
         $this->expectException(AuthorizationException::class);
 
         $comment = Comment::factory()->create([
-            'user_id' => User::factory()->create([
-                'banned' => true
-            ])
+            'user_id' => User::factory()->create()
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
@@ -157,9 +155,7 @@ class UserAccessTest extends TestCase
         $this->expectException(AuthorizationException::class);
 
         $comment = Comment::factory()->create([
-            'user_id' => User::factory()->create([
-                'banned' => true
-            ]),
+            'user_id' => User::factory()->create(),
             'created_at' => now()->subMinute()
         ]);
 
@@ -240,9 +236,7 @@ class UserAccessTest extends TestCase
         $this->expectException(AuthorizationException::class);
 
         $comment = Comment::factory()->create([
-            'user_id' => User::factory()->create([
-                'banned' => true
-            ])
+            'user_id' => User::factory()->create()
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
@@ -269,9 +263,7 @@ class UserAccessTest extends TestCase
         $this->expectException(AuthorizationException::class);
 
         $comment = Comment::factory()->create([
-            'user_id' => User::factory()->create([
-                'banned' => true
-            ]),
+            'user_id' => User::factory()->create(),
             'created_at' => now()->subMinute()
         ]);
 
@@ -332,12 +324,10 @@ class UserAccessTest extends TestCase
     public function testBannedUserCannotDeleteAnyComment()
     {
         $comment = Comment::factory()->create([
-            'user_id' => User::factory()->create([
-                'banned' => true
-            ])
+            'user_id' => User::factory()->create()
         ]);
 
-        $this->assertFalse($this->user->can('delete', $comment));
+        $this->assertFalse($this->bannedUser->can('delete', $comment));
     }
 
     public function testBannedUserCannotDeleteCommentOutsideHour()
@@ -413,12 +403,10 @@ class UserAccessTest extends TestCase
     public function testBannedUserCannotRestoreAnyComment()
     {
         $comment = Comment::factory()->create([
-            'user_id' => User::factory()->create([
-                'banned' => true
-            ])
+            'user_id' => User::factory()->create()
         ]);
 
-        $this->assertFalse($this->user->can('restore', $comment));
+        $this->assertFalse($this->bannedUser->can('restore', $comment));
     }
 
     public function testBannedUserCannotRestoreCommentOutsideHour()

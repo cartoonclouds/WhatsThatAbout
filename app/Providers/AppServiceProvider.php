@@ -33,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
             return $modelClass::findOrFail($modelKey);
         });
 
+        Route::bind('votable', function ($modelKey, \Illuminate\Routing\Route $route) {
+            $modelClass = 'App\\Models\\' . ucfirst(rtrim(request()->segment(2), 's'));
+
+            return $modelClass::findOrFail($modelKey);
+        });
     }
 
     /**

@@ -28,25 +28,25 @@ Route::group(['middleware' => ['auth:api']], function() {
         ->shallow()
         ->parameters(['pages' => 'commentable'])
         ->scoped(['pages' => 'slug'])
-        ->except(['show']);
+        ->only(['store', 'update', 'destroy']);
 
     Route::apiResource('segments.comments', CommentController::class)
         ->shallow()
         ->parameters(['segments' => 'commentable'])
         ->scoped(['segments' => 'slug'])
-        ->except(['index', 'show']);
+        ->only(['store', 'update', 'destroy']);
 
     Route::apiResource('pages.votes', VoteController::class)
         ->shallow()
         ->parameters(['pages' => 'commentable'])
         ->scoped(['pages' => 'slug'])
-        ->except(['index', 'show']);
+        ->only(['store', 'update', 'destroy']);
 
     Route::apiResource('segments.votes', VoteController::class)
         ->shallow()
         ->parameters(['segments' => 'commentable'])
         ->scoped(['segments' => 'slug'])
-        ->except(['index', 'show']);
+        ->only(['store', 'update', 'destroy']);
 
 
     Route::post('pages/updateOrCreate/{page:slug?}', [PageController::class, 'updateOrCreate']);
