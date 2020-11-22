@@ -43,10 +43,11 @@
         }
 
         /* Menu item*/
-        #sidebar-container .list-group-item:first-of-type {
-            padding-top: 1em;
-            padding-bottom: 1em;
-        }
+        /*#sidebar-container li + .list-group-item,*/
+        /*#sidebar-container .list-group-item:first-of-type {*/
+        /*    padding-top: 1em;*/
+        /*    padding-bottom: 1em;*/
+        /*}*/
 
         #sidebar-container .list-group a {
             height: 50px;
@@ -110,18 +111,19 @@
 
         <main class="main row" id="body-row">
 
-            <!-- Bootstrap row -->
-
-                @auth
-
-                    @include('layouts.navigation.sidenav')
-
-                @endauth
+            @auth
+                @include('layouts.navigation.sidenav')
+            @endauth
 
 
-                <!-- MAIN -->
-                <div class="col row p-4">
+            <!-- MAIN -->
+            <div class="col row p-4">
 
+                <aside class="col-lg-2">
+                    @include('layouts.search')
+                </aside>
+
+                <div class="col">
                     @include('flash::message')
 
                     @hasanyrole($adminRoles->implode('|'))
@@ -129,18 +131,13 @@
                         <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
                     </div>
                     @endhasanyrole
-                    
-                    <aside class="col-lg-2">
 
-                        @include('layouts.search')
+                    @yield('content')
 
-                    </aside>
+                </div>
 
-                    <div class="col">
-                        @yield('content')
-                    </div>
+            </div><!-- Main Col END -->
 
-                </div><!-- Main Col END -->
 
             @auth
             </div><!-- body-row END -->

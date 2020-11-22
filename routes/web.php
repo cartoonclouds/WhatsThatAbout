@@ -48,11 +48,11 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-//Route::resource('pages.comments', CommentController::class)->parameters([
-//    'pages' => 'commentable'
-//])->only('show');
-//
-//Route::get('/segments/{segment:slug}', SegmentViewController::class);
-//
-//Route::get('/{page:slug}', PageViewController::class);
-//
+Route::resource('pages.comments', CommentController::class)->parameters([
+    'pages' => 'commentable'
+])->only('show');
+
+Route::get('/segments/{segment:slug}', SegmentViewController::class);
+
+Route::get('/{page:slug}', PageViewController::class);
+

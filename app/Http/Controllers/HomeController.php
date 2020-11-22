@@ -15,6 +15,8 @@ class HomeController extends Controller
     {
         $data['pages'] = Page::paginate( 6);
 
+        flash('Testing flash')->error();
+
         return view('home', $data);
     }
 }

@@ -7,10 +7,10 @@
 @endpush
 
 @section('content')
-    <div id="content" class="container-fluid">
-        <h3 class="mb-4"><i class="{{ config('website.icons.pages.index') }}"></i> All Pages</h3>
-        {{ $dataTable->table() }}
-    </div>
+<div id="content" class="container-fluid">
+    <h3 class="mb-4"><i class="{{ config('website.icons.pages.index') }}"></i> All Pages</h3>
+    {{ $dataTable->table() }}
+</div>
 @endsection
 
 @push('scripts')
