@@ -24,24 +24,28 @@ Route::group(['middleware' => ['auth:api']], function() {
         return response()->json($request->user());
     });
 
-    Route::apiResource('page.comment', CommentController::class)
-        ->shallow()
-        ->scoped(['page' => 'slug'])
+    Route::apiResource('pages.comments', CommentController::class)
+//        ->shallow()
+        ->parameters(['pages' => 'commentable'])
+        ->scoped(['pages' => 'slug'])
+        ->except(['show']);
+
+    Route::apiResource('segments.comments', CommentController::class)
+//        ->shallow()
+        ->parameters(['segments' => 'commentable'])
+        ->scoped(['segments' => 'slug'])
         ->except(['index', 'show']);
 
-    Route::apiResource('segment.comment', CommentController::class)
-        ->shallow()
-        ->scoped(['segment' => 'slug'])
+    Route::apiResource('pages.votes', VoteController::class)
+//        ->shallow()
+        ->parameters(['pages' => 'commentable'])
+        ->scoped(['pages' => 'slug'])
         ->except(['index', 'show']);
 
-    Route::apiResource('page.vote', VoteController::class)
-        ->shallow()
-        ->scoped(['page' => 'slug'])
-        ->except(['index', 'show']);
-
-    Route::apiResource('segment.vote', VoteController::class)
-        ->shallow()
-        ->scoped(['segment' => 'slug'])
+    Route::apiResource('segments.votes', VoteController::class)
+//        ->shallow()
+        ->parameters(['segments' => 'commentable'])
+        ->scoped(['segments' => 'slug'])
         ->except(['index', 'show']);
 
 

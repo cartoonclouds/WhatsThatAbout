@@ -34,7 +34,7 @@ class AdminAccessTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
+        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), $page->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }

@@ -38,9 +38,22 @@ class ModeratorAccessTest extends TestCase
             'user_id' => User::factory()->create()
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
+        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), $page->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    public function testModeratorCannotUpdateAnyPage()
+    {
+        $this->expectException(AuthorizationException::class);
+
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
+
+        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
+
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testModeratorCannotDestroyPage()

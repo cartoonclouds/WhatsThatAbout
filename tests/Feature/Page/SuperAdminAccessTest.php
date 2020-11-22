@@ -33,7 +33,7 @@ class SuperAdminAccessTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
+        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), $page->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -71,7 +71,7 @@ class SuperAdminAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testSuperAdminCanDeletePagew()
+    public function testSuperAdminCanDeletePage()
     {
         $page = Page::factory()->create([
             'user_id' => User::factory()->create()

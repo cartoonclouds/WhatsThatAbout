@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Comment;
+use App\Models\Page;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
@@ -55,7 +56,7 @@ class CommentPolicy
     public function update(User $user, Comment $comment)
     {
         if (
-            (!$user->banned && $comment->commenter->is($user) && $comment->created_at->lessThan($comment->created_at->subHour()))
+            (!$user->banned && $comment->commenter->is($user) && $comment->created_at->greaterThan($comment->created_at->subHour()))
             || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])
         ) {
             return Response::allow();

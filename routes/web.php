@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
@@ -51,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::resource('pages.comments', CommentController::class)->parameters([
     'pages' => 'commentable'
-]);
+])->only('show');
 
 Route::get('/segments/{segment:slug}', SegmentViewController::class);
 

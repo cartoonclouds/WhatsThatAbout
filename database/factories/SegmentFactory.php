@@ -50,11 +50,11 @@ class SegmentFactory extends Factory
         }
 
         return [
-            'title' => $this->faker->words($this->faker->numberBetween(1, 5), true),
+            'title' => $this->faker->unique()->words($this->faker->numberBetween(1, 5), true),
             'start_time' => $this->faker->time(),
             'finish_time' => $this->faker->time(),
             'runs_throughout' => $this->faker->boolean,
-            'details' => $this->faker->paragraphs($this->faker->numberBetween(10, 30), true),
+            'details' => $this->faker->paragraph($this->faker->numberBetween(10, 30), true),
             'page_id' => $page,
             'theme_id' => $theme,
             'genre_id' => $genre,

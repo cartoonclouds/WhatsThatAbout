@@ -24,11 +24,11 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
 //        $this->app->bind(Commentable::class, function (Application $app) {
-//            return Page::find(1);//Page::whereSlug(request()->segment(1))->first();
+//            return Page::whereSlug(request()->segment(1))->first();
 //        });
 
         Route::bind('commentable', function ($modelKey, \Illuminate\Routing\Route $route) {
-            $modelClass = 'App\\Models\\' . ucfirst(rtrim(request()->segment(1), 's'));
+            $modelClass = 'App\\Models\\' . ucfirst(rtrim(request()->segment(2), 's'));
 
             return $modelClass::findOrFail($modelKey);
         });
