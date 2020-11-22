@@ -1,8 +1,5 @@
 <div class="container">
     <div class="jumbotron">
-        <h1>Bootstrap Tutorial</h1>
-        <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
+        <h1>Header</h1>
     </div>
-    <p>This is some text.</p>
-    <p>This is another text.</p>
 </div>
