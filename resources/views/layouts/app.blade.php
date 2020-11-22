@@ -22,39 +22,129 @@
         body {
             font-family: 'Roboto';
         }
+
+        #body-row {
+            margin-left:0;
+            margin-right:0;
+        }
+
+        #sidebar-container {
+            min-height: 100vh;
+            background-color: #333;
+            padding: 0;
+        }
+
+        /* Sidebar sizes when expanded and expanded */
+        .sidebar-expanded {
+            width: 230px;
+        }
+        .sidebar-collapsed {
+            width: 60px;
+        }
+
+        /* Menu item*/
+        #sidebar-container .list-group-item:first-of-type {
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+
+        #sidebar-container .list-group a {
+            height: 50px;
+            color: white;
+        }
+
+        /* Submenu item*/
+        #sidebar-container .list-group .sidebar-submenu a {
+            height: 45px;
+            padding-left: 30px;
+        }
+        .sidebar-submenu {
+            font-size: 0.9rem;
+        }
+
+        /* Separators */
+        .sidebar-separator-title {
+            background-color: #333;
+            height: 35px;
+        }
+        .sidebar-separator {
+            background-color: #333;
+            height: 25px;
+        }
+        .logo-separator {
+            background-color: #333;
+            height: 60px;
+        }
+
+        /* Closed submenu icon */
+        #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
+            content: " \f0d7";
+            font-family: "Font Awesome 5 Pro";
+            display: inline;
+            text-align: right;
+            padding-left: 10px;
+            font-weight: bold;
+        }
+        /* Opened submenu icon */
+        #sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
+            content: " \f0da";
+            font-family: "Font Awesome 5 Pro";
+            display: inline;
+            text-align: right;
+            padding-left: 10px;
+            font-weight: bold;
+        }
     </style>
+
+
     @stack('styles')
 </head>
-<body class="sb-nav-fixed {{ !auth()->check() ? 'sb-sidenav-toggled' : '' }}">
+<body>
     <div id="app">
 
-        @include('layouts.navigation.topnav')
+        <header>
+            @include('layouts.navigation.topnav')
 
-        @include('layouts.header')
+            @include('layouts.header')
+        </header>
 
-        @include('flash::message')
+        <main class="main row" id="body-row">
 
-        @auth
-            <aside>
+            <!-- Bootstrap row -->
 
-                @include('layouts.navigation.sidenav')
+                @auth
 
-            </aside>
-        @endauth
+                    @include('layouts.navigation.sidenav')
 
-        <main class="main py-4 row" style="width:95%;margin:0 auto;flex: 1 0 auto;">
+                @endauth
 
-            <aside class="col-lg-2">
 
-                @include('layouts.search')
+                <!-- MAIN -->
+                <div class="col row p-4">
 
-            </aside>
+                    @include('flash::message')
 
-            <div class="col-10 g-0">
+                    @hasanyrole($adminRoles->implode('|'))
+                    <div class="alert alert-info mb-3">
+                        <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
+                    </div>
+                    @endhasanyrole
+                    
+                    <aside class="col-lg-2">
 
-                @yield('content')
+                        @include('layouts.search')
 
-            </div>
+                    </aside>
+
+                    <div class="col">
+                        @yield('content')
+                    </div>
+
+                </div><!-- Main Col END -->
+
+            @auth
+            </div><!-- body-row END -->
+            @endauth
 
         </main>
 
@@ -67,6 +157,39 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <script>
         $(document).ready(function() {
+
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
+
+            // Collapse/Expand icon
+            $('#collapse-icon').addClass('fa-angle-double-left');
+
+            // Collapse click
+            $('[data-toggle=sidebar-collapse]').click(function() {
+                SidebarCollapse();
+            });
+
+            function SidebarCollapse (e) {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+
+                if ( SeparatorTitle.hasClass('d-flex') ) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
+
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            }
+
+
+
             $('#flash-overlay-modal').modal();
 
             $('.select2').select2();

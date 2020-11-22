@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "web" middleware group.
 |
 */
 
@@ -48,11 +48,11 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-Route::resource('pages.comments', CommentController::class)->parameters([
-    'pages' => 'commentable'
-])->only('show');
-
-Route::get('/segments/{segment:slug}', SegmentViewController::class);
-
-Route::get('/{page:slug}', PageViewController::class);
-
+//Route::resource('pages.comments', CommentController::class)->parameters([
+//    'pages' => 'commentable'
+//])->only('show');
+//
+//Route::get('/segments/{segment:slug}', SegmentViewController::class);
+//
+//Route::get('/{page:slug}', PageViewController::class);
+//

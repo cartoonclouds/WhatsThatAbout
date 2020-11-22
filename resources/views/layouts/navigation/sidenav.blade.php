@@ -1,79 +1,160 @@
-<nav class="sb-sidenav sb-sidenav-light sb-sidenav-dark accordion" id="sidenavAccordion">
+<!-- Sidebar -->
+<div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+    <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+    <!-- Bootstrap List Group -->
+    <ul class="list-group">
 
-    <button class="btn btn-link btn-outline-light" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-
-    <div class="sb-sidenav-menu">
-        <div class="nav" style="padding-left: 1em;">
-            <div class="sb-sidenav-menu-heading">General</div>
-                <a class="nav-link" href="/">
-                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.home') }}"></i></div>Home
-                </a>
-
-            <div class="sb-sidenav-menu-heading">Users</div>
-                <a class="nav-link" href="{{ url('users') }}">
-                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.users.index') }}"></i></div>All Users
-                </a>
-                <a class="nav-link" href="{{ url('users/create') }}">
-                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.users.create') }}"></i></div>Create User
-                </a>
-
-            <div class="sb-sidenav-menu-heading">Pages</div>
-                <a class="nav-link" href="{{ url('pages') }}">
-                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.pages.index') }}"></i></div>All Pages
-                </a>
-                <a class="nav-link" href="#"  @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">
-                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.pages.create') }}"></i></div>Create Pages
-                </a>
-
-            <div class="sb-sidenav-menu-heading">Segments</div>
-                <a class="nav-link" href="{{ url('segments') }}">
-                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.segments.index') }}"></i></div>All Segments
-                </a>
-                <a class="nav-link" href="#"  @click="$bus.$emit('update-or-create', {{ new \App\Models\Segment }})">
-                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.segments.create') }}"></i></div>Create Segment
-                </a>
-
-            <div class="sb-sidenav-menu-heading">Configuration</div>
-                <a class="nav-link" href="{{ url('themes') }}">
-                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.themes.index') }}"></i></div>Themes
-                </a>
-                <a class="nav-link" href="{{ url('genres') }}">
-                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.genres.index') }}"></i></div>Genres
-                </a>
-                <a class="nav-link" href="{{ url('formats') }}">
-                    <div class="sb-nav-link-icon"><i class="{{ config('website.icons.formats.index') }}"></i></div>Formats
-                </a>
-
-
-{{--            <div class="sb-sidenav-menu-heading">Pages</div>--}}
-{{--                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">--}}
-{{--                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>Layouts--}}
-{{--                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>--}}
-{{--                </a>--}}
-{{--                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">--}}
-{{--                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="layout-static.html">Static Navigation</a><a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a></nav>--}}
-{{--                </div>--}}
-{{--                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">--}}
-{{--                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>Pages--}}
-{{--                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>--}}
-{{--                </a>--}}
-{{--                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">--}}
-{{--                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">Authentication<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>--}}
-{{--                        <div--}}
-{{--                            class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">--}}
-{{--                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="login.html">Login</a><a class="nav-link" href="register.html">Register</a><a class="nav-link" href="password.html">Forgot Password</a></nav>--}}
-{{--                        </div><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">Error<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div></a>--}}
-{{--                        <div--}}
-{{--                            class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">--}}
-{{--                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401 Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>--}}
-{{--                        </div>--}}
-{{--                    </nav>--}}
-{{--                </div>--}}
-
+        <!-- Separator with title -->
+        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+            <small>MAIN MENU</small>
+        </li>
+        <!-- /END Separator -->
+        <!-- Menu with submenu -->
+        <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <i class="{{ config('website.icons.home') }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">Home</span>
+                <span class="submenu-icon ml-auto"></span>
+            </div>
+        </a>
+        <!-- Submenu content -->
+        <div id='submenu1' class="collapse sidebar-submenu">
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Chahgag</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Reports</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <span class="menu-collapsed">Tables</span>
+            </a>
         </div>
-    </div>
 
-    <div class="sb-sidenav-footer">
-        <div class="small">Logged in as:</div>Start Bootstrap
-    </div>
-</nav>
+
+{{--        <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">--}}
+{{--            <div class="d-flex w-100 justify-content-start align-items-center">--}}
+{{--                <span class="fa fa-user fa-fw mr-3"></span>--}}
+{{--                <span class="menu-collapsed">Profile</span>--}}
+{{--                <i class="fas fa-caret-down"></i>--}}
+{{--            </div>--}}
+{{--        </a>--}}
+{{--        <!-- Submenu content -->--}}
+{{--        <div id='submenu2' class="collapse sidebar-submenu">--}}
+{{--            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">--}}
+{{--                <span class="menu-collapsed">Settings</span>--}}
+{{--            </a>--}}
+{{--            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">--}}
+{{--                <span class="menu-collapsed">Password</span>--}}
+{{--            </a>--}}
+{{--        </div>--}}
+{{--        <a href="#" class="bg-dark list-group-item list-group-item-action">--}}
+{{--            <div class="d-flex w-100 justify-content-start align-items-center">--}}
+{{--                <span class="fa fa-tasks fa-fw mr-3"></span>--}}
+{{--                <span class="menu-collapsed">Tasks</span>--}}
+{{--            </div>--}}
+{{--        </a>--}}
+
+
+        <!-- Separator with title -->
+        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+            <small>Users</small>
+        </li>
+        <!-- /END Separator -->
+        <a href="{{ url('users') }}" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <i class="{{ config('website.icons.users.index') }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">All Users</span>
+            </div>
+        </a>
+        <a href="{{ url('users/create') }}" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <i class="{{ config('website.icons.users.create') }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">Create User</span>
+            </div>
+        </a>
+
+
+        <!-- Separator with title -->
+        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+            <small>Pages</small>
+        </li>
+        <!-- /END Separator -->
+        <a href="{{ url('pages') }}" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <i class="{{ config('website.icons.pages.index') }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">All Pages</span>
+            </div>
+        </a>
+        <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <i class="{{ config('website.icons.pages.create') }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">Create Page</span>
+            </div>
+        </a>
+
+
+        <!-- Separator with title -->
+        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+            <small>Segments</small>
+        </li>
+        <!-- /END Separator -->
+        <a href="{{ url('segments') }}" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <i class="{{ config('website.icons.segments.index') }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">All Segments</span>
+            </div>
+        </a>
+        <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Segment }})" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <i class="{{ config('website.icons.segments.create')  }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">Create Segment</span>
+            </div>
+        </a>
+
+
+        <!-- Separator with title -->
+        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+            <small>Configuration</small>
+        </li>
+        <!-- /END Separator -->
+        <a href="{{ url('themes') }}" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <i class="{{ config('website.icons.themes.index') }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">Themes</span>
+            </div>
+        </a>
+        <a href="{{ url('genres') }}" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <i class="{{ config('website.icons.genres.index') }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">Genres</span>
+            </div>
+        </a>
+        <a href="{{ url('formats') }}" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <i class="{{ config('website.icons.formats.index') }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">Formats</span>
+            </div>
+        </a>
+
+
+{{--        <!-- Separator without title -->--}}
+{{--        <li class="list-group-item sidebar-separator menu-collapsed"></li>--}}
+{{--        <!-- /END Separator -->--}}
+
+{{--        <a href="#" class="bg-dark list-group-item list-group-item-action">--}}
+{{--            <div class="d-flex w-100 justify-content-start align-items-center">--}}
+{{--                <span class="fa fa-question fa-fw mr-3"></span>--}}
+{{--                <span class="menu-collapsed">Help <span class="badge badge-pill badge-primary ml-2">5</span></span>--}}
+{{--            </div>--}}
+{{--        </a>--}}
+
+
+        <a href="#top" data-toggle="sidebar-collapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+                <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                <span id="collapse-text" class="menu-collapsed">Collapse</span>
+            </div>
+        </a>
+
+    </ul><!-- List Group END-->
+</div><!-- sidebar-container END -->

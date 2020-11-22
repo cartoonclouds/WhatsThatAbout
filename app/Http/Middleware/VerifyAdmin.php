@@ -22,12 +22,14 @@ class VerifyAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->hasAnyRole([User::ROLE_MOD, User::ROLE_ADMIN, User::ROLE_SUPER_ADMIN])) {
-            return redirect(RouteServiceProvider::HOME)->withException(UnauthorizedException::forRoles([
+        if (Auth::check() && !Auth::user()->hasAnyRole([User::ROLE_MOD, User::ROLE_ADMIN, User::ROLE_SUPER_ADMIN])) {
+            throw UnauthorizedException::forRoles([
                 User::ROLE_MOD,
                 User::ROLE_ADMIN,
                 User::ROLE_SUPER_ADMIN
-            ]));
+            ]);
+
+            return redirect(RouteServiceProvider::HOME);
         }
 
         return $next($request);
