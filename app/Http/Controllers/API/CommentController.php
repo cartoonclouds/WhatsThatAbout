@@ -63,9 +63,9 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Commentable $commentable, Comment $comment)
+    public function show(Comment $comment)
     {
-        dd($commentable);
+//        dd($commentable);
     }
 
     /**
@@ -75,7 +75,7 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Commentable $commentable, Comment $comment)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -88,9 +88,9 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Commentable $commentable)
+    public function update(Request $request, Comment $comment)
     {
-        dd('updating');
+//        dd('updating');
         //update a comment
         // api/comment/{comment}
     }

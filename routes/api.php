@@ -25,25 +25,25 @@ Route::group(['middleware' => ['auth:api']], function() {
     });
 
     Route::apiResource('pages.comments', CommentController::class)
-//        ->shallow()
+        ->shallow()
         ->parameters(['pages' => 'commentable'])
         ->scoped(['pages' => 'slug'])
         ->except(['show']);
 
     Route::apiResource('segments.comments', CommentController::class)
-//        ->shallow()
+        ->shallow()
         ->parameters(['segments' => 'commentable'])
         ->scoped(['segments' => 'slug'])
         ->except(['index', 'show']);
 
     Route::apiResource('pages.votes', VoteController::class)
-//        ->shallow()
+        ->shallow()
         ->parameters(['pages' => 'commentable'])
         ->scoped(['pages' => 'slug'])
         ->except(['index', 'show']);
 
     Route::apiResource('segments.votes', VoteController::class)
-//        ->shallow()
+        ->shallow()
         ->parameters(['segments' => 'commentable'])
         ->scoped(['segments' => 'slug'])
         ->except(['index', 'show']);

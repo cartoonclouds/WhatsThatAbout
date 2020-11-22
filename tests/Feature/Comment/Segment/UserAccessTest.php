@@ -63,7 +63,7 @@ class UserAccessTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->putJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -76,7 +76,7 @@ class UserAccessTest extends TestCase
             'user_id' => User::factory()->create()
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->putJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -90,7 +90,7 @@ class UserAccessTest extends TestCase
             'created_at' => now()->subHours(2)
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->putJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -104,7 +104,7 @@ class UserAccessTest extends TestCase
             'created_at' => now()->subHours(2)
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->putJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -118,7 +118,7 @@ class UserAccessTest extends TestCase
             'user_id' => $this->bannedUser->id
         ]);
 
-        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -133,7 +133,7 @@ class UserAccessTest extends TestCase
             ])
         ]);
 
-        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -147,7 +147,7 @@ class UserAccessTest extends TestCase
             'created_at' => now()->subMinute()
         ]);
 
-        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -163,7 +163,7 @@ class UserAccessTest extends TestCase
             'created_at' => now()->subMinute()
         ]);
 
-        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -175,7 +175,7 @@ class UserAccessTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->putJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
@@ -188,7 +188,7 @@ class UserAccessTest extends TestCase
             'user_id' => User::factory()->create()
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->deleteJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->user, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -202,7 +202,7 @@ class UserAccessTest extends TestCase
             'created_at' => now()->subHours(2)
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->deleteJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->user, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -216,7 +216,7 @@ class UserAccessTest extends TestCase
             'created_at' => now()->subHours(2)
         ]);
 
-        $response = $this->actingAs($this->user, 'api')->deleteJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->user, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -230,7 +230,7 @@ class UserAccessTest extends TestCase
             'user_id' => $this->bannedUser->id
         ]);
 
-        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -245,7 +245,7 @@ class UserAccessTest extends TestCase
             ])
         ]);
 
-        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -259,7 +259,7 @@ class UserAccessTest extends TestCase
             'created_at' => now()->subMinute()
         ]);
 
-        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -275,7 +275,7 @@ class UserAccessTest extends TestCase
             'created_at' => now()->subMinute()
         ]);
 
-        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/segments/{$this->segment->slug}/comments/" . $comment->getRouteKey(), $comment->toArray());
+        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -354,7 +354,6 @@ class UserAccessTest extends TestCase
     {
         $comment = Comment::factory()->create([
             'user_id'    => User::factory()->create(),
-            'banned'     => true,
             'created_at' => now()->subHours(2)
         ]);
 
@@ -369,16 +368,16 @@ class UserAccessTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $this->assertFalse($this->user->can('delete', $comment));
+        $this->assertFalse($this->user->can('restore', $comment));
     }
 
-    public function testUserCannotRestorAnyComment()
+    public function testUserCannotRestoreAnyComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()
         ]);
 
-        $this->assertFalse($this->user->can('delete', $comment));
+        $this->assertFalse($this->user->can('restore', $comment));
     }
 
     public function testUserCannotRestoreCommentOutsideHour()
@@ -388,17 +387,17 @@ class UserAccessTest extends TestCase
             'created_at' => now()->subHours(2)
         ]);
 
-        $this->assertFalse($this->user->can('delete', $comment));
+        $this->assertFalse($this->user->can('restore', $comment));
     }
 
-    public function testUserCannotRestorAnyCommentOutsideHour()
+    public function testUserCannotRestoreAnyCommentOutsideHour()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create(),
             'created_at' => now()->subHours(2)
         ]);
 
-        $this->assertFalse($this->user->can('delete', $comment));
+        $this->assertFalse($this->user->can('restore', $comment));
     }
 
     // Banned User Restoring
@@ -408,10 +407,10 @@ class UserAccessTest extends TestCase
             'user_id' => $this->bannedUser->id
         ]);
 
-        $this->assertFalse($this->bannedUser->can('delete', $comment));
+        $this->assertFalse($this->bannedUser->can('restore', $comment));
     }
 
-    public function testBannedUserCannotRestorAnyComment()
+    public function testBannedUserCannotRestoreAnyComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create([
@@ -419,7 +418,7 @@ class UserAccessTest extends TestCase
             ])
         ]);
 
-        $this->assertFalse($this->user->can('delete', $comment));
+        $this->assertFalse($this->user->can('restore', $comment));
     }
 
     public function testBannedUserCannotRestoreCommentOutsideHour()
@@ -429,18 +428,17 @@ class UserAccessTest extends TestCase
             'created_at' => now()->subHours(2)
         ]);
 
-        $this->assertFalse($this->bannedUser->can('delete', $comment));
+        $this->assertFalse($this->bannedUser->can('restore', $comment));
     }
 
-    public function testBannedUserCannotRestorAnyCommentOutsideHour()
+    public function testBannedUserCannotRestoreAnyCommentOutsideHour()
     {
         $comment = Comment::factory()->create([
             'user_id'    => User::factory()->create(),
-            'banned'     => true,
             'created_at' => now()->subHours(2)
         ]);
 
-        $this->assertFalse($this->user->can('delete', $comment));
+        $this->assertFalse($this->user->can('restore', $comment));
     }
 
 }
