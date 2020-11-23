@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Faker;
 
 use Faker\Provider\Base;
@@ -16,15 +15,15 @@ class TimePeriodProvider extends Base
         }
 
         if ($minutes) {
-            $str .= ':'. sprintf("%02d", $this->generator->numberBetween(0, 59));
+            $str .= ':' . sprintf("%02d", $this->generator->numberBetween(0, 59));
         }
 
         if ($seconds) {
-            $str .= ':'. sprintf("%02d", $this->generator->numberBetween(0, 59));
+            $str .= ':' . sprintf("%02d", $this->generator->numberBetween(0, 59));
         }
 
         if ($milliseconds) {
-            $str .= ':'. sprintf("%03d", $this->generator->numberBetween(0, 999));
+            $str .= ':' . sprintf("%03d", $this->generator->numberBetween(0, 999));
         }
 
 

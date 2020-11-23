@@ -68,7 +68,7 @@ class StorePageRequest extends FormRequest
 
                 $filename = "{$page->slug}_cover.{$coverImageFile->extension()}";
 
-                $coverImagePath = $coverImageFile->storeAs(config('website.paths.images.pages').$page->slug, $filename, 'public');
+                $coverImagePath = $coverImageFile->storeAs(config('website.paths.images.pages') . $page->slug, $filename, 'public');
 
                 $page->images()->updateOrCreate([
                     'file_path' => $coverImagePath,
@@ -81,7 +81,7 @@ class StorePageRequest extends FormRequest
 
                 $filename = "{$page->slug}_hero.{$heroImageFile->extension()}";
 
-                $heroImagePath = $heroImageFile->storeAs(config('website.paths.images.page.hero').$page->slug, $filename, 'public');
+                $heroImagePath = $heroImageFile->storeAs(config('website.paths.images.page.hero') . $page->slug, $filename, 'public');
 
                 $page->images()->updateOrCreate([
                     'file_path' => $heroImagePath,

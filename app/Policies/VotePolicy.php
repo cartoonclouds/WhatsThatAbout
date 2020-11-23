@@ -43,7 +43,8 @@ class VotePolicy
      */
     public function update(User $user, Vote $vote)
     {
-        if (!$user->banned && ($vote->voter->is($user) || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD]))
+        if (
+            !$user->banned && ($vote->voter->is($user) || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD]))
         ) {
             return Response::allow();
         }
@@ -60,7 +61,8 @@ class VotePolicy
      */
     public function delete(User $user, Vote $vote)
     {
-        if (!$user->banned && ($vote->voter->is($user) && now()->subHour()->lessThan($vote->created_at)
+        if (
+            !$user->banned && ($vote->voter->is($user) && now()->subHour()->lessThan($vote->created_at)
                 || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD]))
         ) {
             return Response::allow();

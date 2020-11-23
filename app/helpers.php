@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Helper function to return currently logged in user.
  *

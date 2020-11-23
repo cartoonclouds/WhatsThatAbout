@@ -5,19 +5,16 @@
 
     <!-- args -->
     <arg name="colors"/>
-    <arg name="standard" value="PEAR,PSR1,PSR12,PSR2"/>
+    <arg name="standard" value="PSR1,PSR12"/>
 
     <!-- config -->
     <config name="php_path" value="/usr/bin/php"/>
 
     <exclude-pattern>vendor</exclude-pattern>
 
-<!--    <rule ref="PEAR"/>-->
     <rule ref="PSR1"/>
-<!--    <rule ref="PSR12"/>-->
     <rule ref="PSR12">
-        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+        <exclude name="PSR12.Classes.ClassInstantiation"/>
         <exclude name="Generic.Files.LineLength"/>
-        <exclude name="PSR2.Methods.MethodDeclaration"/>
     </rule>
 </ruleset>

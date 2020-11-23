@@ -55,7 +55,8 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
-        if (!$user->banned && ($comment->commenter->is($user) && now()->subHour()->lessThan($comment->created_at)
+        if (
+            !$user->banned && ($comment->commenter->is($user) && now()->subHour()->lessThan($comment->created_at)
             || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD]))
         ) {
             return Response::allow();
@@ -73,7 +74,8 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment)
     {
-        if (!$user->banned && ($comment->commenter->is($user) && now()->subHour()->lessThan($comment->created_at)
+        if (
+            !$user->banned && ($comment->commenter->is($user) && now()->subHour()->lessThan($comment->created_at)
                 || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD]))
         ) {
             return Response::allow();

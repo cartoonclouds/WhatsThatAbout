@@ -37,7 +37,7 @@ class StoreSegmentRequest extends FormRequest
             ],
             'start_time' => 'required',
             'finish_time' => 'required',
-            'runs_throughout' => 'required|in:'. true .','. false,
+            'runs_throughout' => 'required|in:' . true . ',' . false,
             'details' => 'required',
             'page_id' => 'required|exists:pages,id',
             'genre_id' => 'required|exists:genres,id',
