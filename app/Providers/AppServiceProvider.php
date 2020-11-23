@@ -53,7 +53,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Image::observe(ImageObserver::class);
-
-        Paginator::defaultView('vendor.pagination.default');
     }
 }

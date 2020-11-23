@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -29,7 +30,11 @@ mix.js([
     'resources/js/mixins/buttons.server-side.js',
 ], 'public/js');
 
-mix.sass('resources/sass/app.scss', 'public/css');
+mix.sass('resources/sass/app.scss', 'public/css')
+   .options({
+        processCssUrls: true,
+        postCss: [tailwindcss('./tailwind.config.js')],
+    });
 
 mix.styles([
     'resources/css/app.css',
@@ -39,10 +44,11 @@ mix.styles([
 mix.copyDirectory('resources/fonts', 'public/fonts')
     .copyDirectory('resources/images', 'public/images');
 
-mix.sourceMaps()
-    .extract();
+mix.extract();
 
 if (mix.inProduction()) {
     mix.version();
+} else {
+    mix.sourceMaps()
 }
 

@@ -3,9 +3,10 @@
 
     // Add active state to sidbar nav links
     var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
-    $('#layoutSidenav_nav .sb-sidenav a.nav-link').each(function() {
+    $('#top-nav #desktop-block a').each(function() {
         if (this.href === path) {
-            $(this).addClass('active');
+            $(this).addClass('text-white bg-gray-900');
+            $(this).removeClass('text-gray-300 hover:text-white hover:bg-gray-700');
         }
     });
 

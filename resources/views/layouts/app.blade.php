@@ -12,6 +12,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <script>
@@ -101,7 +103,8 @@
     @stack('styles')
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="bg-gray-100">
+
 
         <header>
             @include('layouts.navigation.topnav')
@@ -109,41 +112,52 @@
             @include('layouts.header')
         </header>
 
-        <main class="main row" id="body-row">
+        <main class="flex flex-row p-4">
 
-            @hasanyrole($allRoles->implode('|'))
-                @include('layouts.navigation.sidenav')
-            @endhasanyrole
+            <aside class="flex-none w-max p-2">
 
+                @include('layouts.search')
 
-            <!-- MAIN -->
-            <div class="col row p-4 mx-0">
+            </aside>
 
-                <aside class="col-lg-2">
-                    @include('layouts.search')
-                </aside>
+            <div class="flex-1 w-auto p-2">
 
-                <div class="col">
-                    @include('flash::message')
+                @yield('content')
 
-                    @hasanyrole($adminRoles->implode('|'))
-                    <div class="alert alert-info mb-3">
-                        <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
-                    </div>
-                    @endhasanyrole
-
-                    @yield('content')
-
-                </div>
-
-            </div><!-- Main Col END -->
-
-
-            @auth
-            </div><!-- body-row END -->
-            @endauth
+            </div>
 
         </main>
+
+
+    {{--                @hasanyrole($allRoles->implode('|'))--}}
+{{--                    @include('layouts.navigation.sidenav')--}}
+{{--                @endhasanyrole--}}
+
+                <!-- Main content -->
+{{--                <div class="">--}}
+
+
+
+{{--                    <div class="col">--}}
+{{--                        @include('flash::message')--}}
+
+{{--                        @hasanyrole($adminRoles->implode('|'))--}}
+{{--                        <div class="alert alert-info mb-3">--}}
+{{--                            <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?--}}
+{{--                        </div>--}}
+{{--                        @endhasanyrole--}}
+
+
+{{--                    </div>--}}
+
+{{--                </div>--}}
+                <!-- /End main content -->
+
+{{--            @auth--}}
+{{--            </div><!-- body-row END -->--}}
+{{--            @endauth--}}
+
+
 
         @include('layouts.footer')
 
@@ -155,9 +169,15 @@
     <script>
         $(document).ready(function() {
 
-            // Hide submenus
-            $('#body-row .collapse').collapse('hide');
+            const $topNav = $('#top-nav');
+            const $userMenuBtn = $('#user-menu');
 
+            $(document).on('click', $userMenuBtn, function () {
+
+            });
+
+
+/*
             // Collapse/Expand icon
             $('#collapse-icon').addClass('fa-angle-double-left');
 
@@ -189,12 +209,10 @@
 
             $('#flash-overlay-modal').modal();
 
-            $('.select2').select2();
-
             // Enable all tooltips
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
-            })
+            })*/
 
             window.User = @json([
                 'user' => Auth::user(),

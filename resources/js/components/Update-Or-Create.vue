@@ -55,9 +55,9 @@
         },
         mounted()
         {
-            this.modal = new bootstrap.Modal(this.$el, {
-                backdrop: 'static'
-            })
+            // this.modal = new bootstrap.Modal(this.$el, {
+            //     backdrop: 'static'
+            // })
 
             EventBus.$on('update-or-create', (model) => {
                 this.model = model || {}

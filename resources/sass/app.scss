@@ -1,9 +1,12 @@
 
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
 // Import Custom Variables
 @import "theme/variables.scss";
-
-// Import Bootstrap
-@import "~bootstrap/scss/bootstrap.scss";
 
 // Import Custom SCSS
 @import "theme/global.scss";
@@ -29,13 +32,6 @@
 
 
 /**
- * Select2
- * https://select2.org/
- */
-@import '~select2';
-
-
-/**
  * FontAwesome Pro 5.13.0
  */
 @import 'fontawesome-pro-5.13.0-scss/fontawesome';
@@ -49,5 +45,6 @@
 /**
  * Yajra DataTables
  */
-@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
-@import "~datatables.net-buttons-bs4/css/buttons.bootstrap4.css";
+@import "~datatables.net-dt/css/jquery.dataTables.css";
+@import "~datatables.net-buttons-dt/css/buttons.dataTables.css";
+
