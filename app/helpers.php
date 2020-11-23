@@ -4,7 +4,8 @@
  *
  */
 if (! function_exists('user')) {
-    function user() {
+    function user()
+    {
         return optional(auth()->user());
     }
 }
@@ -14,7 +15,8 @@ if (! function_exists('user')) {
  *
  */
 if (! function_exists('slugify')) {
-    function slugify(string $string, array $options = []) {
+    function slugify(string $string, array $options = [])
+    {
         $slugify = new Cocur\Slugify\Slugify($options);
 
         return $slugify->slugify($string);

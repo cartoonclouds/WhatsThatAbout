@@ -72,5 +72,4 @@ class SegmentController extends Controller
             'message' => 'Successfully deleted segment!'
         ]);
     }
-
 }

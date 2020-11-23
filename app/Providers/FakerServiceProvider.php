@@ -19,7 +19,7 @@ class FakerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Generator::class, function($app) {
+        $this->app->singleton(Generator::class, function ($app) {
             $faker = \Faker\Factory::create();
 
             $faker->addProvider(new TimePeriodProvider($faker));
@@ -30,8 +30,6 @@ class FakerServiceProvider extends ServiceProvider
 
             return $faker;
         });
-
-
     }
 
     /**

@@ -79,7 +79,8 @@ class Segment extends Eloquent implements Commentable, Votable
         return 'slug';
     }
 
-    public function sluggable() {
+    public function sluggable()
+    {
         return [
             'slug' => [
                 'source' => 'title'

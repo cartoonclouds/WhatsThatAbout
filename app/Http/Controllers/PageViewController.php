@@ -13,5 +13,4 @@ class PageViewController extends Controller
 
         return view('pages.show', compact('page'));
     }
-
 }

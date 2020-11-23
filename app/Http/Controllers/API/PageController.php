@@ -72,5 +72,4 @@ class PageController extends Controller
             'message' => 'Successfully deleted page!'
         ]);
     }
-
 }

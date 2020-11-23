@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-interface Votable {
+interface Votable
+{
 
     public function votes();
-
 }

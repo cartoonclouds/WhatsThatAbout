@@ -13,5 +13,4 @@ class SegmentViewController extends Controller
 
         return view('segments.show', compact('segment'));
     }
-
 }

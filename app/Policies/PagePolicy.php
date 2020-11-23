@@ -114,5 +114,4 @@ class PagePolicy
     {
         return Response::deny('A deleted page can only be force deleted by a super administrator');
     }
-
 }

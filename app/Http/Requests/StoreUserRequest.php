@@ -73,5 +73,4 @@ class StoreUserRequest extends FormRequest
 
         return false;
     }
-
 }

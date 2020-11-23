@@ -73,5 +73,4 @@ class UserController extends Controller
     {
         return view('users.edit', compact('user'));
     }
-
 }

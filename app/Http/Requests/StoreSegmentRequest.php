@@ -69,5 +69,4 @@ class StoreSegmentRequest extends FormRequest
 
         return false;
     }
-
 }

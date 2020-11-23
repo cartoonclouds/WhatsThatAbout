@@ -33,7 +33,6 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetPasswordView(function () {
             return view('auth.reset-password');
         });
-
     }
 
     /**

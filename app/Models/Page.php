@@ -80,7 +80,8 @@ class Page extends Eloquent implements Commentable, Votable
     }
 
 
-    public function sluggable() {
+    public function sluggable()
+    {
         return [
             'slug' => [
                 'source' => 'title'

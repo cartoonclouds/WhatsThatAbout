@@ -94,5 +94,4 @@ class StorePageRequest extends FormRequest
 
         return false;
     }
-
 }
