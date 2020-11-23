@@ -15,20 +15,28 @@ class Vote extends Eloquent
         'vote' => 'boolean',
     ];
 
+    protected $with = [
+        'voter',
+    ];
+
+
     public function votable()
     {
         return $this->morphTo();
     }
+
 
     public function page()
     {
         return $this->morphTo(Page::class, 'votable_type', 'votable_id');
     }
 
+
     public function segment()
     {
         return $this->morphTo(Segment::class, 'votable_type', 'votable_id');
     }
+
 
     public function voter()
     {

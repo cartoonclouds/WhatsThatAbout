@@ -1,0 +1,26 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Theme;
+use Illuminate\Database\QueryException;
+use Illuminate\Database\Seeder;
+
+class ThemeSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        try {
+
+            Theme::factory()->count(9)->create();
+
+        } catch (QueryException $e) {
+
+        }
+    }
+}

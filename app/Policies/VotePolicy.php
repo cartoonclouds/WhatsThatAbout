@@ -12,17 +12,6 @@ class VotePolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any Votes.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function viewAny(?User $user)
-    {
-        return Response::allow();
-    }
-
-    /**
      * Determine whether the user can view the Vote.
      *
      * @param  \App\Models\User  $user
@@ -42,7 +31,7 @@ class VotePolicy
      */
     public function create(User $user)
     {
-        return Response::allow();
+        return $user->banned ? Response::deny('A vote cannot be created by a banned user') : Response::allow();
     }
 
     /**
@@ -54,7 +43,13 @@ class VotePolicy
      */
     public function update(User $user, Vote $vote)
     {
-        //by user
+        if (
+            !$user->banned && ($vote->voter->is($user) || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD]))
+        ) {
+            return Response::allow();
+        }
+
+        return Response::deny('A vote can only be edited by the voter, a moderator or administrator');
     }
 
     /**
@@ -66,6 +61,13 @@ class VotePolicy
      */
     public function delete(User $user, Vote $vote)
     {
-        return Response::allow();
+        if (
+            !$user->banned && ($vote->voter->is($user) && now()->subHour()->lessThan($vote->created_at)
+                || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD]))
+        ) {
+            return Response::allow();
+        }
+
+        return Response::deny('A vote can only be deleted by the voter, a moderator or administrator');
     }
 }

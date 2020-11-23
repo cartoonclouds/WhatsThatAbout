@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Vote;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Seeder;
 
 class VoteSeeder extends Seeder
@@ -13,6 +15,12 @@ class VoteSeeder extends Seeder
      */
     public function run()
     {
-        //
+        try {
+
+            Vote::factory()->count(10)->create();
+
+        } catch (QueryException $e) {
+
+        }
     }
 }

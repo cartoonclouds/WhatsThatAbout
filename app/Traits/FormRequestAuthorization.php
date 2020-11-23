@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Traits;
 
 use Exception;
@@ -19,7 +18,7 @@ trait FormRequestAuthorization
             throw new Exception('Class variables routeParameter and parameterClass must be defined');
         }
 
-        return $this->getPolicyGuard() === 'update'? $this->route()->parameter($this->routeParameter) : $this->parameterClass;
+        return $this->getPolicyGuard() === 'update' ? $this->route()->parameter($this->routeParameter) : $this->parameterClass;
     }
 
     /**

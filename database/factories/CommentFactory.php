@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Comment;
+use App\Models\Page;
+use App\Models\Segment;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,10 +24,31 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
+        $commentable_type = $this->faker->randomElement([
+            Page::class,
+            Segment::class,
+            Comment::class,
+            //User::class
+        ]);
+
+        if ($commentable_type::count() === 0) {
+            $commentable_id = $commentable_type::factory();
+        } else {
+            $commentable_id = $commentable_type::all()->random()->id;
+        }
+
+        if (User::count() === 0) {
+            $user = User::factory();
+        } else {
+            $user = User::inRandomOrder()->first();
+        }
+
         return [
+            'commentable_type' => $commentable_type,
+            'commentable_id' => $commentable_id,
+            'user_id' => $user,
             'title' => $this->faker->words($this->faker->numberBetween(1, 10), true),
             'body' => $this->faker->sentence($this->faker->numberBetween(10, 50), true),
-            'user_id' => User::factory()
         ];
     }
 }

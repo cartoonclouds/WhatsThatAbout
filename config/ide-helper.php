@@ -35,7 +35,7 @@ return [
     |
     */
 
-    'include_fluent' => false,
+    'include_fluent' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -96,9 +96,10 @@ return [
     |
     */
 
-    'include_helpers' => false,
+    'include_helpers' => true,
 
     'helper_files' => [
+        base_path() . '/app/helpers.php',
         base_path() . '/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
     ],
 

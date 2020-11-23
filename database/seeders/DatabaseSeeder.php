@@ -13,6 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        activity()->withoutLogs(function () { // disable logging while seeding
+            $this->call([
+                UserSeeder::class,
+                FormatSeeder::class,
+                GenreSeeder::class,
+                ThemeSeeder::class,
+                ImageSeeder::class,
+                PageSeeder::class,
+                SegmentSeeder::class,
+                ReferenceSeeder::class,
+                VoteSeeder::class,
+                CommentSeeder::class,
+            ]);
+        });
     }
 }

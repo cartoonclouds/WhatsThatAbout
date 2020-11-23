@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME','What\'s That About?'),
+    'name' => env('APP_NAME', 'What\'s That About?'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'en_AU',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,6 +166,8 @@ return [
          * Package Service Providers...
          */
         App\Providers\FortifyServiceProvider::class,
+        Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider::class,
+        App\Providers\FakerServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -175,6 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ViewServiceProvider::class,
 
     ],
 
@@ -228,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Slugify' => Cocur\Slugify\Bridge\Laravel\SlugifyFacade::class,
     ],
 
 ];

@@ -34,18 +34,35 @@ class ModeratorAccessTest extends TestCase
     {
         $this->expectException(AuthorizationException::class);
 
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
+
+        $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), $page->toArray());
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    public function testModeratorCannotUpdateAnyPage()
+    {
+        $this->expectException(AuthorizationException::class);
+
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $response = $this->actingAs($this->user, 'api')->postJson('/api/pages/updateOrCreate/' . $page->getRouteKey(), Page::factory()->make()->toArray());
 
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testModeratorCannotDestroyPage()
     {
         $this->expectException(AuthorizationException::class);
 
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson('/api/pages/' . $page->getRouteKey());
 
@@ -54,21 +71,27 @@ class ModeratorAccessTest extends TestCase
 
     public function testModeratorCannotDeletePage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertFalse($this->user->can('delete', $page));
     }
 
     public function testModeratorCannotRestorePage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertFalse($this->user->can('restore', $page));
     }
 
     public function testModeratorCannotForceDeletePage()
     {
-        $page = Page::factory()->create();
+        $page = Page::factory()->create([
+            'user_id' => User::factory()->create()
+        ]);
 
         $this->assertFalse($this->user->can('force-delete', $page));
     }

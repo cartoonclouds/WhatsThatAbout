@@ -1,23 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+<div id="content" class="container-fluid">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    @include('layouts.navigation.sorting')
 
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @each('pages.partials.excerpt', $pages, 'page')
     </div>
+
+    {{ $pages->withQueryString()->links() }}
+
+    @can('createOrUpdate', 'page')
+        <update-or-create></update-or-create>
+    @endcan
 </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    //
+                }
+            },
+            mounted()
+            {
+
+            }
+        });
+    </script>
+@endpush

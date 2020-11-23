@@ -2,10 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Models\Comment;
-use App\Models\Segment;
 use App\Models\Page;
-use App\Models\User;
 use Tests\TestCase;
 
 class PageTest extends TestCase
@@ -20,10 +17,43 @@ class PageTest extends TestCase
         $this->assertCount($SEGMENT_COUNT, $page->segments);
     }
 
+    public function testPageHasComments()
+    {
+        $COMMENT_COUNT = 6;
+
+        $page = Page::factory()->hasComments($COMMENT_COUNT)->create();
+
+        $this->assertCount($COMMENT_COUNT, $page->comments);
+    }
+
+    public function testPageHasVotes()
+    {
+        $VOTE_COUNT = 6;
+
+        $page = Page::factory()->hasVotes($VOTE_COUNT)->create();
+
+        $this->assertCount($VOTE_COUNT, $page->votes);
+    }
+
     public function testPageHasCreator()
     {
         $page = Page::factory()->hasCreator()->make();
 
         $this->assertNotNull($page->creator);
+    }
+
+
+    public function testPageHasGenre()
+    {
+        $segment = Page::factory()->forGenre()->make();
+
+        $this->assertNotNull($segment->genre);
+    }
+
+    public function testPageHasFormat()
+    {
+        $segment = Page::factory()->forFormat()->make();
+
+        $this->assertNotNull($segment->format);
     }
 }

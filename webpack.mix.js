@@ -11,19 +11,38 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js');
+if (mix.inProduction()) {
+    mix.options({
+        purifyCss: {
+            purifyOptions: {
+                minimize: true,
+                info    : true,
+                rejected: true,
+            }
+        },
+    });
+}
+
+mix.js([
+    'resources/js/app.js',
+    'resources/js/mixins/layout.js',
+    'resources/js/mixins/buttons.server-side.js',
+], 'public/js');
 
 mix.sass('resources/sass/app.scss', 'public/css');
 
 mix.styles([
     'resources/css/app.css',
     'public/css/app.css',
-    'resources/css/fontawesome-pro-5.2.0.css',
 ], 'public/css/app.css');
 
 mix.copyDirectory('resources/fonts', 'public/fonts')
-    .copyDirectory('resources/webfonts', 'public/webfonts')
     .copyDirectory('resources/images', 'public/images');
 
-mix.version();
-mix.sourceMaps();
+mix.sourceMaps()
+    .extract();
+
+if (mix.inProduction()) {
+    mix.version();
+}
+

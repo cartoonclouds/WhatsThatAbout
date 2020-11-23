@@ -1,4 +1,4 @@
-@extends('layouts.page')
+@extends('layouts.app')
 @section('title', 'View Show')
 @push('styles')
     <style>
@@ -7,61 +7,95 @@
 @endpush
 
 @section('content')
-<div id="content">
-    <a class="mb-3 btn btn-primary" href="{{ url('pages') }}">Back</a>
+    <div id="content" class="container-fluid">
 
-    @can('view', user())
-    <a class="mb-3 btn btn-primary" href="{{ user()->url }}">{{ user()->name }} <small>({{ user()->email }})</small></a>
-    @endcan
+        <a href="{{ back()->getTargetUrl() }}" class="btn btn-dark float-left"><i class="fa fa-chevron-double-left"></i> Back</a>
 
-    @can('createOrUpdate', $page)
-    <a href="{{ url("pages/create") }}" class="btn btn-dark float-right ml-2">Create</a>
-    <a href="{{ url("pages/$page->slug/edit") }}" class="btn btn-dark float-right"><i class="fa fa-edit"></i> Edit</a>
-    @endcan
+        @can('createOrUpdate', $page)
+            <button class="btn btn-dark float-right ml-2" @click="$bus.$emit('update-or-create', {{ (new \App\Models\Page) }})">Create</button>
+            <button class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ $page }})"><i class="fa fa-edit"></i> Edit</button>
+        @endcan
 
-    <h1>{{ $page->title }} <small>(Slug: {{ $page->slug }})</small></h1>
+        <div class="clearfix"></div>
 
-    <label>Release Year</label>
-    <p>{{ $page->release_year }}</p>
+        <article>
 
-    <label>Creator</label>
-    <p>{{ $page->creator->name }}</p>
+            <h2 class="hvr-wobble-to-bottom-right">
+                {{ $page->title }}
+            </h2>
 
-    <label>Synopsis</label>
-    <p>
-        {{ $page->synopsis }}
-    </p>
+            <div class="card">
 
-    @can('create', \App\Models\Segment::class)
-        <button type="button" class="btn btn-dark float-right" data-toggle="modal" data-target="#createSegment">Create Segment</button>
-    @endcan
+                <div class="card-body">
 
-    <hr>
+                    <div class="card-text">
 
-    <h2>Segments:</h2>
+                        <div class="row">
 
-    <table class="table">
-        <tbody>
-            @each('segments.show', $page->segments, 'segment', 'segment.empty')
-        </tbody>
-    </table>
+                            @if($page->coverImage)
+                                <div class="col-4 text-center">
+                                    <img src="{{ Storage::url($page->coverImage->file_path) }}" class="card-img-top border-radius-0 page-cover" alt="..." style="width:100%;max-width: 270px;">
+                                </div>
+                            @endif
+
+                            <div class="{{$page->coverImage ? 'col-8' : 'col-12'}}">
+
+                                <p>Release Year: {{ $page->release_year }}</p>
+
+                                <p>Runtime: {{ $page->runtime }}</p>
+
+                                <p>Creator: {{ $page->creator->name }}</p>
 
 
-</div>
+                            </div>
+
+                        </div>
+
+                        <p class="my-4">
+                            {{ $page->synopsis }}
+                        </p>
+
+                        @can('create', \App\Models\Segment::class)
+                            <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ new \App\Models\Segment }})">Create Segment</button>
+                        @endcan
+
+                    </div>
+                </div>
+            </div>
+
+        </article>
+
+
+
+        <hr>
+
+        <h2>Segments:</h2>
+
+        <div class="row row-cols-1">
+            @each('segments.partials.excerpt', $page->segments, 'segment', 'segments.partials.empty')
+        </div>
+    </div>
+
+    <update-or-create></update-or-create>
 @endsection
 
-{{--<update-or-create :details="updateDetails" :type="updateType"></update-or-create>--}}
 
 @push('scripts')
     <script type="text/javascript">
-        // new Vue({
-        //     el: '#content',
-        //     data() {
-        //         return {
-        //             updateDetails: undefined,
-        //             updateType: undefined
-        //         }
-        //     },
-        // });
+        new Vue({
+            el: '#app',
+            components: {
+                //
+            },
+            data() {
+                return {
+                    //
+                }
+            },
+            mounted()
+            {
+
+            }
+        });
     </script>
 @endpush

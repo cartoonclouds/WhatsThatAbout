@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-interface Commentable {
+interface Commentable
+{
 
     public function comments();
-
 }

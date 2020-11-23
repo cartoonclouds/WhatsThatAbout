@@ -9,12 +9,15 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->authorizeResource(Page::class, 'page');
     }
-
 
     /**
      * Store a newly created Page or update as specific Page in storage.
@@ -22,31 +25,33 @@ class PageController extends Controller
      * @param  \App\Http\Requests\StorePageRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function updateOrCreate(Page $page, StorePageRequest $request)
+    public function updateOrCreate(StorePageRequest $request, Page $page)
     {
         if ($page->exists) {
             $page = $request->persist($page);
 
             if ($page) {
                 return response()->json([
-                    'message' => 'Successfully updated page!'
+                    'message' => "Successfully updated page $page->title!",
+                    'page' => $page
                 ]);
             }
 
             return response()->json([
-                'message' => 'There was an issue updating the page. Please try again.',
+                'message' => "There was an issue updating the page $page->title. Please try again!",
             ]);
         } else {
             $page = $request->persist(new Page());
 
             if ($page) {
                 return response()->json([
-                    'message' => 'Successfully created new page!'
+                    'message' => "Successfully created new page $page->title!",
+                    'page' => $page
                 ]);
             }
 
             return response()->json([
-                'message' => 'There was an issue creating the page. Please try again.',
+                'message' => "There was an issue creating the page $page->title. Please try again!",
             ]);
         }
     }
@@ -67,5 +72,4 @@ class PageController extends Controller
             'message' => 'Successfully deleted page!'
         ]);
     }
-
 }

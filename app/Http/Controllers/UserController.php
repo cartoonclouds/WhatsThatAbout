@@ -2,84 +2,75 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->authorizeResource(User::class, 'user');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created User or update as specific User in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\StoreUserRequest  $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function updateOrCreate(User $user, StoreUserRequest $request)
     {
-        //
-    }
+        if ($user->exists) {
+            $user = $request->persist($user);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+            if ($user) {
+                return response()->json([
+                    'message' => 'Successfully updated user!'
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'There was an issue updating the user. Please try again.',
+            ]);
+        } else {
+            $user = $request->persist(new User());
+
+            if ($user) {
+                return response()->json([
+                    'message' => 'Successfully created new user!'
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'There was an issue creating the user. Please try again.',
+            ]);
+        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function show(User $user)
     {
-        //
+        return view('users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(User $user)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
+        return view('users.edit', compact('user'));
     }
 }

@@ -25,7 +25,13 @@
 
 <script>
     export default {
-        props: ['details'],
+        props: {
+            'details': {
+                required: false,
+                default: {}
+            }
+        },
+        name: 'comment',
         data() {
             return {
                 editing: false,
@@ -39,7 +45,22 @@
             }
         },
         computed: {
-
+            exists()
+            {
+                return this.details.exists;
+            }
         },
+        mounted()
+        {
+            if (!this.exists) {
+                this.editing = true;
+            }
+        }
     }
 </script>
+
+<style scoped>
+    textarea {
+        width: 100%;
+    }
+</style>

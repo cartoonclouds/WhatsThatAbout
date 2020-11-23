@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Contracts\Commentable;
+use App\Contracts\Votable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Commentable, Votable
 {
     use HasFactory;
     use HasRoles;
@@ -20,39 +22,33 @@ class User extends Authenticatable
     public const ROLE_ADMIN = 'admin';
     public const ROLE_MOD = 'moderator';
 
-    /**
-     * The attributes that are mass assignable.d
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        //
     ];
+
+    protected $with = [
+        'avatar',
+    ];
+
+    protected $dates = [
+        'email_verified_at',
+    ];
+
 
     public function getUrlAttribute()
     {
-        return url('users/' . $this->id);
+        return url('user/' . $this->id);
     }
 
 
@@ -80,5 +76,14 @@ class User extends Authenticatable
     }
 
 
+    public function avatar()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
+    }
 
+
+    public function images()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
+    }
 }

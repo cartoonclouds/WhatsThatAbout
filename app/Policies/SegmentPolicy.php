@@ -58,7 +58,7 @@ class SegmentPolicy
      */
     public function update(User $user, Segment $segment)
     {
-        if ($segment->creator->is($user) || $user->hasAnyRole([User::ROLE_ADMIN, User::ROLE_MOD])) {
+        if ($segment->creator->is($user) || $user->hasRole(User::ROLE_ADMIN)) {
             return Response::allow();
         }
 
@@ -74,11 +74,11 @@ class SegmentPolicy
      */
     public function delete(User $user, Segment $segment)
     {
-        if ($segment->creator->is($user) || $user->hasAnyRole([User::ROLE_ADMIN])) {
+        if ($segment->creator->is($user) || $user->hasRole(User::ROLE_ADMIN)) {
             return Response::allow();
         }
 
-        return Response::deny('A segment can only be deleted by an administrator');
+        return Response::deny('A segment can only be deleted by a moderator or administrator');
     }
 
     /**
@@ -90,7 +90,7 @@ class SegmentPolicy
      */
     public function restore(User $user, Segment $segment)
     {
-        if ($user->hasAnyRole([User::ROLE_ADMIN])) {
+        if ($user->hasRole(User::ROLE_ADMIN)) {
             return Response::allow();
         }
 

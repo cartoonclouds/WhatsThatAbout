@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Segment;
 use App\Models\Page;
 use App\Models\User;
+use App\Models\Vote;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -44,6 +45,7 @@ class UserTest extends TestCase
         $this->assertCount($COMMENT_COUNT, $segment->comments);
         $this->assertCount($COMMENT_COUNT, $user->comments);
     }
+
 
 //    public function testUserHasNotifications()
 //    {

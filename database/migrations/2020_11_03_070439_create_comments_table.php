@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->morphs('commentable');
-            $table->integer('user_id')->index();
+            $table->foreignIdFor(User::class)->index('comments_user_id_idx');
             $table->string('title');
             $table->longText('body');
             $table->softDeletes();

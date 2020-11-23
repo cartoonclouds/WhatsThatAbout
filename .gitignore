@@ -17,3 +17,7 @@ npm-debug.log
 yarn-error.log
 /public/*
 !/public/*.*
+
+public/mix-manifest.json
+
+.phpstorm.meta.php
