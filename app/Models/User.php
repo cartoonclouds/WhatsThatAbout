@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\Commentable;
+use App\Contracts\Votable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements Commentable
+class User extends Authenticatable implements Commentable, Votable
 {
     use HasFactory;
     use HasRoles;

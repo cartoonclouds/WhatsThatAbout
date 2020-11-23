@@ -44,14 +44,14 @@ class ModeratorAccessTest extends TestCase
         $this->bannedUser->assignRole(User::ROLE_MOD);
     }
 
-    public function testModeratorCanCreateVote()
+    public function testModeratorCanCreateSegmentVote()
     {
         $response = $this->actingAs($this->user, 'api')->postJson("/api/segments/{$this->segment->slug}/votes", Vote::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testBannedModeratorCannotCreateVote()
+    public function testBannedModeratorCannotCreateSegmentVote()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -61,7 +61,7 @@ class ModeratorAccessTest extends TestCase
     }
 
     // User Updating
-    public function testModeratorCanUpdateVote()
+    public function testModeratorCanUpdateSegmentVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => $this->user->id
@@ -72,7 +72,7 @@ class ModeratorAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testModeratorCanUpdateAnyVote()
+    public function testModeratorCanUpdateAnySegmentVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create()
@@ -108,7 +108,7 @@ class ModeratorAccessTest extends TestCase
     }
 
     // Banned User Updating
-    public function testBannedModeratorCannotUpdateVote()
+    public function testBannedModeratorCannotUpdateSegmentVote()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -121,7 +121,7 @@ class ModeratorAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedModeratorCannotUpdateAnyVote()
+    public function testBannedModeratorCannotUpdateAnySegmentVote()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -163,7 +163,7 @@ class ModeratorAccessTest extends TestCase
     }
 
     // User Destroying
-    public function testModeratorCanDestroyVote()
+    public function testModeratorCanDestroySegmentVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => $this->user->id
@@ -174,7 +174,7 @@ class ModeratorAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testModeratorCannotDestroyAnyVote()
+    public function testModeratorCannotDestroyAnySegmentVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create()
@@ -210,7 +210,7 @@ class ModeratorAccessTest extends TestCase
     }
 
     // Banned User Destroying
-    public function testBannedModeratorCannotDestroyVote()
+    public function testBannedModeratorCannotDestroySegmentVote()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -223,7 +223,7 @@ class ModeratorAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedModeratorCannotDestroyAnyVote()
+    public function testBannedModeratorCannotDestroyAnySegmentVote()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -265,7 +265,7 @@ class ModeratorAccessTest extends TestCase
     }
 
     // User Deleting
-    public function testModeratorCanDeleteVote()
+    public function testModeratorCanDeleteSegmentVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => $this->user->id
@@ -274,7 +274,7 @@ class ModeratorAccessTest extends TestCase
         $this->assertTrue($this->user->can('delete', $vote));
     }
 
-    public function testModeratorCannDeleteAnyVote()
+    public function testModeratorCannDeleteAnySegmentVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create()
@@ -304,7 +304,7 @@ class ModeratorAccessTest extends TestCase
     }
 
     // Banned User Deleting
-    public function testBannedModeratorCannotDeleteVote()
+    public function testBannedModeratorCannotDeleteSegmentVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => $this->bannedUser->id
@@ -313,7 +313,7 @@ class ModeratorAccessTest extends TestCase
         $this->assertFalse($this->bannedUser->can('delete', $vote));
     }
 
-    public function testBannedModeratorCannotDeleteAnyVote()
+    public function testBannedModeratorCannotDeleteAnySegmentVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create()

@@ -27,6 +27,7 @@ class CommentFactory extends Factory
         $commentable_type = $this->faker->randomElement([
             Page::class,
             Segment::class,
+            Comment::class,
             //User::class
         ]);
 

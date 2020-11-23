@@ -44,14 +44,14 @@ class AdminAccessTest extends TestCase
         $this->bannedUser->assignRole(User::ROLE_MOD);
     }
 
-    public function testAdminCanCreateComment()
+    public function testAdminCanCreateSegmentComment()
     {
         $response = $this->actingAs($this->user, 'api')->postJson("/api/segments/{$this->segment->slug}/comments", Comment::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testBannedAdminCannotCreateComment()
+    public function testBannedAdminCannotCreateSegmentComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -61,7 +61,7 @@ class AdminAccessTest extends TestCase
     }
 
     // User Updating
-    public function testAdminCanUpdateComment()
+    public function testAdminCanUpdateSegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->user->id
@@ -72,7 +72,7 @@ class AdminAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testAdminCanUpdateAnyComment()
+    public function testAdminCanUpdateAnySegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()
@@ -108,7 +108,7 @@ class AdminAccessTest extends TestCase
     }
 
     // Banned User Updating
-    public function testBannedAdminCannotUpdateComment()
+    public function testBannedAdminCannotUpdateSegmentComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -121,7 +121,7 @@ class AdminAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedAdminCannotUpdateAnyComment()
+    public function testBannedAdminCannotUpdateAnySegmentComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -163,7 +163,7 @@ class AdminAccessTest extends TestCase
     }
 
     // User Destroying
-    public function testAdminCanDestroyComment()
+    public function testAdminCanDestroySegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->user->id
@@ -174,7 +174,7 @@ class AdminAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testAdminCannotDestroyAnyComment()
+    public function testAdminCannotDestroyAnySegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()
@@ -210,7 +210,7 @@ class AdminAccessTest extends TestCase
     }
 
     // Banned User Destroying
-    public function testBannedAdminCannotDestroyComment()
+    public function testBannedAdminCannotDestroySegmentComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -223,7 +223,7 @@ class AdminAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedAdminCannotDestroyAnyComment()
+    public function testBannedAdminCannotDestroyAnySegmentComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -265,7 +265,7 @@ class AdminAccessTest extends TestCase
     }
 
     // User Deleting
-    public function testAdminCanDeleteComment()
+    public function testAdminCanDeleteSegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->user->id
@@ -274,7 +274,7 @@ class AdminAccessTest extends TestCase
         $this->assertTrue($this->user->can('delete', $comment));
     }
 
-    public function testAdminCannDeleteAnyComment()
+    public function testAdminCannDeleteAnySegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()
@@ -304,7 +304,7 @@ class AdminAccessTest extends TestCase
     }
 
     // Banned User Deleting
-    public function testBannedAdminCannotDeleteComment()
+    public function testBannedAdminCannotDeleteSegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->bannedUser->id
@@ -313,7 +313,7 @@ class AdminAccessTest extends TestCase
         $this->assertFalse($this->bannedUser->can('delete', $comment));
     }
 
-    public function testBannedAdminCannotDeleteAnyComment()
+    public function testBannedAdminCannotDeleteAnySegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()
@@ -344,7 +344,7 @@ class AdminAccessTest extends TestCase
 
 
     // User Restoring
-    public function testAdminCanRestoreComment()
+    public function testAdminCanRestoreSegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->user->id
@@ -353,7 +353,7 @@ class AdminAccessTest extends TestCase
         $this->assertTrue($this->user->can('restore', $comment));
     }
 
-    public function testAdminCanRestoreAnyComment()
+    public function testAdminCanRestoreAnySegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()
@@ -383,14 +383,14 @@ class AdminAccessTest extends TestCase
     }
 
     // Banned User Restoring
-    public function testBannedAdminCanRestoreComment()
+    public function testBannedAdminCanRestoreSegmentComment()
     {
         $comment = Comment::factory()->create();
 
         $this->assertFalse($this->bannedUser->can('restore', $comment));
     }
 
-    public function testBannedAdminCannotRestoreAnyComment()
+    public function testBannedAdminCannotRestoreAnySegmentComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()

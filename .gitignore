@@ -19,3 +19,5 @@ yarn-error.log
 !/public/*.*
 
 public/mix-manifest.json
+
+.phpstorm.meta.php

@@ -111,13 +111,13 @@
 
         <main class="main row" id="body-row">
 
-            @auth
+            @hasanyrole($allRoles->implode('|'))
                 @include('layouts.navigation.sidenav')
-            @endauth
+            @endhasanyrole
 
 
             <!-- MAIN -->
-            <div class="col row p-4">
+            <div class="col row p-4 mx-0">
 
                 <aside class="col-lg-2">
                     @include('layouts.search')

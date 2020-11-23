@@ -11,7 +11,9 @@
 
     {{ $pages->withQueryString()->links() }}
 
-    <update-or-create></update-or-create>
+    @can('createOrUpdate', 'page')
+        <update-or-create></update-or-create>
+    @endcan
 </div>
 @endsection
 

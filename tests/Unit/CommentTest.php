@@ -9,6 +9,14 @@ use Tests\TestCase;
 
 class CommentTest extends TestCase
 {
+    public function testCommentHasPage()
+    {
+        $comment = Comment::factory()->for(
+            Page::factory(), 'commentable'
+        )->make();
+
+        $this->assertTrue($comment->page->exists);
+    }
 
     public function testCommentHasSegment()
     {
@@ -26,8 +34,13 @@ class CommentTest extends TestCase
         $this->assertNotNull($comment->commenter);
     }
 
+
 //    public function testCommentHasReplies()
 //    {
+//        $comment = Comment::factory()->for(
+//            Comment::factory(), 'commentable'
+//        )->make();
 //
+//        $this->assertTrue($comment->replies->exists);
 //    }
 }

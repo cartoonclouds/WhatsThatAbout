@@ -85,7 +85,7 @@
         new Vue({
             el: '#app',
             components: {
-                segment: Segment
+                //
             },
             data() {
                 return {

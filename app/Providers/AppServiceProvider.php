@@ -38,6 +38,10 @@ class AppServiceProvider extends ServiceProvider
 
             return $modelClass::findOrFail($modelKey);
         });
+
+        if ($this->app->isLocal()) {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 
     /**

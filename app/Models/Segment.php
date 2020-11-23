@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Contracts\Commentable;
+use App\Contracts\Votable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Segment extends Eloquent implements Commentable
+class Segment extends Eloquent implements Commentable, Votable
 {
     use HasFactory;
     use Sluggable;

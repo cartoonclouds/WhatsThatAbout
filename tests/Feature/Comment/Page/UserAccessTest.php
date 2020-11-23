@@ -40,14 +40,14 @@ class UserAccessTest extends TestCase
         $this->page = Page::factory()->create();
     }
 
-    public function testUserCanCreateComment()
+    public function testUserCanCreatePageComment()
     {
         $response = $this->actingAs($this->user, 'api')->postJson("/api/pages/{$this->page->slug}/comments", Comment::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testBannedUserCannotCreateComment()
+    public function testBannedUserCannotCreatePageComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -57,7 +57,7 @@ class UserAccessTest extends TestCase
     }
 
     // User Updating
-    public function testUserCanUpdateComment()
+    public function testUserCanUpdatePageComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->user->id
@@ -68,7 +68,7 @@ class UserAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testUserCannotUpdateAnyComment()
+    public function testUserCannotUpdateAnyPageComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -110,7 +110,7 @@ class UserAccessTest extends TestCase
     }
 
     // Banned User Updating
-    public function testBannedUserCannotUpdateComment()
+    public function testBannedUserCannotUpdatePageComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -123,7 +123,7 @@ class UserAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedUserCannotUpdateAnyComment()
+    public function testBannedUserCannotUpdateAnyPageComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -165,7 +165,7 @@ class UserAccessTest extends TestCase
     }
 
     // User Destroying
-    public function testUserCanDestroyComment()
+    public function testUserCanDestroyPageComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->user->id
@@ -176,7 +176,7 @@ class UserAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testUserCannotDestroyAnyComment()
+    public function testUserCannotDestroyAnyPageComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -218,7 +218,7 @@ class UserAccessTest extends TestCase
     }
 
     // Banned User Destroying
-    public function testBannedUserCannotDestroyComment()
+    public function testBannedUserCannotDestroyPageComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -231,7 +231,7 @@ class UserAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedUserCannotDestroyAnyComment()
+    public function testBannedUserCannotDestroyAnyPageComment()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -273,7 +273,7 @@ class UserAccessTest extends TestCase
     }
 
     // User Deleting
-    public function testUserCanDeleteComment()
+    public function testUserCanDeletePageComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->user->id
@@ -282,7 +282,7 @@ class UserAccessTest extends TestCase
         $this->assertTrue($this->user->can('delete', $comment));
     }
 
-    public function testUserCannotDeleteAnyComment()
+    public function testUserCannotDeleteAnyPageComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()
@@ -312,7 +312,7 @@ class UserAccessTest extends TestCase
     }
 
     // Banned User Deleting
-    public function testBannedUserCannotDeleteComment()
+    public function testBannedUserCannotDeletePageComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->bannedUser->id
@@ -321,7 +321,7 @@ class UserAccessTest extends TestCase
         $this->assertFalse($this->bannedUser->can('delete', $comment));
     }
 
-    public function testBannedUserCannotDeleteAnyComment()
+    public function testBannedUserCannotDeleteAnyPageComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()
@@ -352,7 +352,7 @@ class UserAccessTest extends TestCase
 
 
     // User Restoring
-    public function testUserCannotRestoreComment()
+    public function testUserCannotRestorePageComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->user->id
@@ -361,7 +361,7 @@ class UserAccessTest extends TestCase
         $this->assertFalse($this->user->can('restore', $comment));
     }
 
-    public function testUserCannotRestoreAnyComment()
+    public function testUserCannotRestoreAnyPageComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()
@@ -391,7 +391,7 @@ class UserAccessTest extends TestCase
     }
 
     // Banned User Restoring
-    public function testBannedUserCanRestoreComment()
+    public function testBannedUserCanRestorePageComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => $this->bannedUser->id
@@ -400,7 +400,7 @@ class UserAccessTest extends TestCase
         $this->assertFalse($this->bannedUser->can('restore', $comment));
     }
 
-    public function testBannedUserCannotRestoreAnyComment()
+    public function testBannedUserCannotRestoreAnyPageComment()
     {
         $comment = Comment::factory()->create([
             'user_id' => User::factory()->create()

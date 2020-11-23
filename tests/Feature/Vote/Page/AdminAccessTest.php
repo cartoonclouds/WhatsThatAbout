@@ -40,14 +40,14 @@ class AdminAccessTest extends TestCase
         $this->bannedUser->assignRole(User::ROLE_MOD);
     }
 
-    public function testAdminCanCreateVote()
+    public function testAdminCanCreatePageVote()
     {
         $response = $this->actingAs($this->user, 'api')->postJson("/api/pages/{$this->page->slug}/votes", Vote::factory()->make()->toArray());
 
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testBannedAdminCannotCreateVote()
+    public function testBannedAdminCannotCreatePageVote()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -57,7 +57,7 @@ class AdminAccessTest extends TestCase
     }
 
     // User Updating
-    public function testAdminCanUpdateVote()
+    public function testAdminCanUpdatePageVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => $this->user->id
@@ -68,7 +68,7 @@ class AdminAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testAdminCanUpdateAnyVote()
+    public function testAdminCanUpdateAnyPageVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create()
@@ -80,7 +80,7 @@ class AdminAccessTest extends TestCase
     }
 
     // Banned User Updating
-    public function testBannedAdminCannotUpdateVote()
+    public function testBannedAdminCannotUpdatePageVote()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -93,7 +93,7 @@ class AdminAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedAdminCannotUpdateAnyVote()
+    public function testBannedAdminCannotUpdateAnyPageVote()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -107,7 +107,7 @@ class AdminAccessTest extends TestCase
     }
 
     // User Destroying
-    public function testAdminCanDestroyVote()
+    public function testAdminCanDestroyPageVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => $this->user->id
@@ -118,7 +118,7 @@ class AdminAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testAdminCannotDestroyAnyVote()
+    public function testAdminCannotDestroyAnyPageVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create()
@@ -130,7 +130,7 @@ class AdminAccessTest extends TestCase
     }
 
     // Banned User Destroying
-    public function testBannedAdminCannotDestroyVote()
+    public function testBannedAdminCannotDestroyPageVote()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -143,7 +143,7 @@ class AdminAccessTest extends TestCase
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedAdminCannotDestroyAnyVote()
+    public function testBannedAdminCannotDestroyAnyPageVote()
     {
         $this->expectException(AuthorizationException::class);
 
@@ -157,7 +157,7 @@ class AdminAccessTest extends TestCase
     }
 
     // User Deleting
-    public function testAdminCanDeleteVote()
+    public function testAdminCanDeletePageVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => $this->user->id
@@ -166,7 +166,7 @@ class AdminAccessTest extends TestCase
         $this->assertTrue($this->user->can('delete', $vote));
     }
 
-    public function testAdminCannDeleteAnyVote()
+    public function testAdminCannDeleteAnyPageVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create()
@@ -176,7 +176,7 @@ class AdminAccessTest extends TestCase
     }
 
     // Banned User Deleting
-    public function testBannedAdminCannotDeleteVote()
+    public function testBannedAdminCannotDeletePageVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => $this->bannedUser->id
@@ -185,7 +185,7 @@ class AdminAccessTest extends TestCase
         $this->assertFalse($this->bannedUser->can('delete', $vote));
     }
 
-    public function testBannedAdminCannotDeleteAnyVote()
+    public function testBannedAdminCannotDeleteAnyPageVote()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create()
