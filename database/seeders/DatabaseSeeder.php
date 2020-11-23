@@ -13,17 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            UserSeeder::class,
-            FormatSeeder::class,
-            GenreSeeder::class,
-            ThemeSeeder::class,
-            ImageSeeder::class,
-            PageSeeder::class,
-            SegmentSeeder::class,
-            ReferenceSeeder::class,
-            VoteSeeder::class,
-            CommentSeeder::class,
-        ]);
+        activity()->withoutLogs(function () { // disable logging while seeding
+            $this->call([
+                UserSeeder::class,
+                FormatSeeder::class,
+                GenreSeeder::class,
+                ThemeSeeder::class,
+                ImageSeeder::class,
+                PageSeeder::class,
+                SegmentSeeder::class,
+                ReferenceSeeder::class,
+                VoteSeeder::class,
+                CommentSeeder::class,
+            ]);
+        });
     }
 }

@@ -26,25 +26,25 @@ class SegmentFactory extends Factory
     public function definition()
     {
         if (Page::count() === 0) {
-            $page = Page::factory()->create();
+            $page = Page::factory();
         } else {
             $page = Page::inRandomOrder()->first();
         }
 
         if (Theme::count() === 0) {
-            $theme = Theme::factory()->create();
+            $theme = Theme::factory();
         } else {
             $theme = Theme::inRandomOrder()->first();
         }
 
         if (Genre::count() === 0) {
-            $genre = Genre::factory()->create();
+            $genre = Genre::factory();
         } else {
             $genre = Genre::inRandomOrder()->first();
         }
 
         if (User::count() === 0) {
-            $user = User::factory()->create();
+            $user = User::factory();
         } else {
             $user = User::inRandomOrder()->first();
         }

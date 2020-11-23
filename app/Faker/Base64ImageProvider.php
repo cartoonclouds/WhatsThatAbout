@@ -92,11 +92,11 @@ class Base64ImageProvider extends Base
     public function robohash(string $slug = null, string $size = '300x300', string $format = 'png', string $set = 'set1', string $bgset = null): string
     {
         if (!preg_match('/^[0-9]+x[0-9]+$/', $size)) {
-            throw new \InvalidArgumentException('Size should be specified in format 300x300');
+            throw new InvalidArgumentException('Size should be specified in format 300x300');
         }
 
         if (!in_array($format, static::$roboHashSupportedFormats)) {
-            throw new \InvalidArgumentException('Supported formats are ' . implode(', ', static::$roboHashSupportedFormats));
+            throw new InvalidArgumentException('Supported formats are ' . implode(', ', static::$roboHashSupportedFormats));
         }
 
         $slug = $slug ?? $this->generator->slug(3);

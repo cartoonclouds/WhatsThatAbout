@@ -11,7 +11,7 @@
 
 return [
 
-    'favicon-url' => env('FAVICON_URL',''),
+    'favicon-url' => env('FAVICON_URL', ''),
 
     'paths' => [
         'images' => [

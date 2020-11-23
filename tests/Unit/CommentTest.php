@@ -12,7 +12,8 @@ class CommentTest extends TestCase
     public function testCommentHasPage()
     {
         $comment = Comment::factory()->for(
-            Page::factory(), 'commentable'
+            Page::factory(),
+            'commentable'
         )->make();
 
         $this->assertTrue($comment->page->exists);
@@ -21,7 +22,8 @@ class CommentTest extends TestCase
     public function testCommentHasSegment()
     {
         $comment = Comment::factory()->for(
-            Segment::factory(), 'commentable'
+            Segment::factory(),
+            'commentable'
         )->make();
 
         $this->assertTrue($comment->segment->exists);

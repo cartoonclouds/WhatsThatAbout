@@ -248,7 +248,7 @@ class ModeratorAccessTest extends TestCase
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
-  }
+    }
 
     public function testBannedModeratorCannotDestroyAnyCommentOutsideHour()
     {
@@ -418,5 +418,4 @@ class ModeratorAccessTest extends TestCase
 
         $this->assertFalse($this->bannedUser->can('restore', $comment));
     }
-
 }

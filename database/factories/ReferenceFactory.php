@@ -30,13 +30,13 @@ class ReferenceFactory extends Factory
         ]);
 
         if ($referenceable_type::count() === 0) {
-            $referenceable_id = $referenceable_type::factory()->create();
+            $referenceable_id = $referenceable_type::factory();
         } else {
             $referenceable_id = $referenceable_type::inRandomOrder()->first();
         }
 
         if (User::count() === 0) {
-            $user = User::factory()->create();
+            $user = User::factory();
         } else {
             $user = User::inRandomOrder()->first();
         }

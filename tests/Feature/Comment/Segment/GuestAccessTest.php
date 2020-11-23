@@ -55,5 +55,4 @@ class GuestAccessTest extends TestCase
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
-
 }

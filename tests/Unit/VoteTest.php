@@ -14,7 +14,8 @@ class VoteTest extends TestCase
     public function testVoteHasPage()
     {
         $vote = Vote::factory()->for(
-            Page::factory(), 'votable'
+            Page::factory(),
+            'votable'
         )->make();
 
         $this->assertTrue($vote->page->exists);
@@ -23,7 +24,8 @@ class VoteTest extends TestCase
     public function testVoteHasSegment()
     {
         $vote = Vote::factory()->for(
-            Segment::factory(), 'votable'
+            Segment::factory(),
+            'votable'
         )->make();
 
         $this->assertTrue($vote->segment->exists);

@@ -45,7 +45,7 @@ class UserFactory extends Factory
                 return $user['banned'] ? $this->faker->sentence : null;
             },
             'banned_by' => function (array $user) {
-                return $user['banned'] ? User::factory()->create() : null;
+                return $user['banned'] ? User::factory() : null;
             },
             'banned_at' => function (array $user) {
                 return $user['banned'] ? $this->faker->dateTime : null;

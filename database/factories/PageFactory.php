@@ -25,19 +25,19 @@ class PageFactory extends Factory
     public function definition()
     {
         if (Genre::count() === 0) {
-            $genre = Genre::factory()->create();
+            $genre = Genre::factory();
         } else {
             $genre = Genre::inRandomOrder()->first();
         }
 
         if (Format::count() === 0) {
-            $format = Format::factory()->create();
+            $format = Format::factory();
         } else {
             $format = Format::inRandomOrder()->first();
         }
 
         if (User::count() === 0) {
-            $user = User::factory()->create();
+            $user = User::factory();
         } else {
             $user = User::inRandomOrder()->first();
         }

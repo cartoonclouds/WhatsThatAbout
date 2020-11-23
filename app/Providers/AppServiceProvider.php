@@ -9,6 +9,7 @@ use App\Models\Page;
 use App\Models\Segment;
 use App\Models\User;
 use App\Observers\ImageObserver;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         if ($this->app->isLocal()) {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+            $this->app->register(IdeHelperServiceProvider::class);
         }
     }
 

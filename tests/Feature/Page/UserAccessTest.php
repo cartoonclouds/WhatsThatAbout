@@ -80,5 +80,4 @@ class UserAccessTest extends TestCase
 
         $this->assertFalse($this->user->can('force-delete', $page));
     }
-
 }

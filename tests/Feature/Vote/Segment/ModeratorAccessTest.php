@@ -246,7 +246,7 @@ class ModeratorAccessTest extends TestCase
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
-  }
+    }
 
     public function testBannedModeratorCannotDestroyAnyVoteOutsideHour()
     {

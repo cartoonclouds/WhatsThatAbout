@@ -7,6 +7,7 @@ use App\Faker\FilmGenreProvider;
 use App\Faker\FilmThemeProvider;
 use App\Faker\MediaFormatProvider;
 use App\Faker\TimePeriodProvider;
+use Faker\Factory;
 use Faker\Generator;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,7 +21,7 @@ class FakerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(Generator::class, function ($app) {
-            $faker = \Faker\Factory::create();
+            $faker = Factory::create();
 
             $faker->addProvider(new TimePeriodProvider($faker));
             $faker->addProvider(new FilmGenreProvider($faker));

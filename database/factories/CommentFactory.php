@@ -32,13 +32,13 @@ class CommentFactory extends Factory
         ]);
 
         if ($commentable_type::count() === 0) {
-            $commentable_id = $commentable_type::factory()->create();
+            $commentable_id = $commentable_type::factory();
         } else {
             $commentable_id = $commentable_type::all()->random()->id;
         }
 
         if (User::count() === 0) {
-            $user = User::factory()->create();
+            $user = User::factory();
         } else {
             $user = User::inRandomOrder()->first();
         }

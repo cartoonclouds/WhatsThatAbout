@@ -31,7 +31,7 @@ class ImageFactory extends Factory
         ]);
 
         if ($imageable_type::count() === 0) {
-            $imageable_id = $imageable_type::factory()->create();
+            $imageable_id = $imageable_type::factory();
         } else {
             $imageable_id = $imageable_type::inRandomOrder()->first();
         }

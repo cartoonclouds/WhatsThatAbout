@@ -31,13 +31,13 @@ class VoteFactory extends Factory
         ]);
 
         if ($votable_type::count() === 0) {
-            $votable_id = $votable_type::factory()->create();
+            $votable_id = $votable_type::factory();
         } else {
             $votable_id = $votable_type::all()->random()->id;
         }
 
         if (User::count() === 0) {
-            $user = User::factory()->create();
+            $user = User::factory();
         } else {
             $user = User::inRandomOrder()->first();
         }

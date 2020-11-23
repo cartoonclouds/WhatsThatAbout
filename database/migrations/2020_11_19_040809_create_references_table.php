@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ class CreateReferencesTable extends Migration
         Schema::create('references', function (Blueprint $table) {
             $table->id();
             $table->morphs('referenceable');
-            $table->unsignedInteger('user_id')->index('references_user_id_idx');
+            $table->foreignIdFor(User::class)->index('references_user_id_idx');
             $table->timestamps();
         });
     }
