@@ -23,43 +23,62 @@ class Comment extends Eloquent implements Commentable, Votable
         'exists'
     ];
 
+    protected $withCount = [
+        'votes',
+    ];
+
+
     public function getExistsAttribute()
     {
         return $this->exists;
     }
 
-    public function commentable()
-    {
-        return $this->morphTo();
-    }
-
-    public function parentComment()
-    {
-        return $this->morphTo(Comment::class, 'commentable_type', 'commentable_id');
-    }
 
     public function page()
     {
         return $this->morphTo(Page::class, 'commentable_type', 'commentable_id');
     }
 
+
     public function segment()
     {
         return $this->morphTo(Segment::class, 'commentable_type', 'commentable_id');
     }
+
 
     public function votes()
     {
         return $this->morphMany(Vote::class, 'votable');
     }
 
-    public function comments()
+
+    public function replies()
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+
+    public function parent()
+    {
+        return $this->morphTo(Comment::class, 'commentable_type', 'commentable_id');
+    }
+
+
     public function commenter()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+
+
+    /** LEAVE! Required for comments to be commentable */
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

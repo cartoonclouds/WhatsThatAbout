@@ -27,9 +27,10 @@ class Segment extends Eloquent implements Commentable, Votable
     ];
 
     protected $with = [
-        'page',
-        'comments',
         'votes',
+        'genre',
+        'theme',
+        'creator',
     ];
 
     protected $withCount = [
@@ -43,34 +44,30 @@ class Segment extends Eloquent implements Commentable, Votable
         'url',
     ];
 
-    /**
-     * Find a model by its primary key or throw an exception.
-     *
-     * @param  mixed  $id
-     * @param  array  $columns
-     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static|static[]
-     *
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
-     */
-    public static function findOrFail($id, $columns = ['*'])
-    {
-        return static::where('slug', $id)->firstOrFail($columns);
-    }
 
     public function getTitleAttribute()
     {
         return ucwords($this->attributes['title']);
     }
 
+
     public function getModelTypeAttribute()
     {
         return get_class($this);
     }
 
+
     public function getExistsAttribute()
     {
         return $this->exists;
     }
+
+
+    public function getUrlAttribute()
+    {
+        return url('/segments/' . $this->getRouteKey());
+    }
+
 
     /**
      * Get the route key for the model.
@@ -90,45 +87,54 @@ class Segment extends Eloquent implements Commentable, Votable
         ];
     }
 
-    public function getUrlAttribute()
+
+    public static function findOrFail($id, $columns = ['*'])
     {
-        return url('/segments/' . $this->getRouteKey());
+        return static::where('slug', $id)->firstOrFail($columns);
     }
+
 
     public function page()
     {
-        return $this->belongsTo(Page::class)->without(['segments']);
+        return $this->belongsTo(Page::class);
     }
+
 
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+
     public function votes()
     {
         return $this->morphMany(Vote::class, 'votable');
     }
+
 
     public function creator()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
 
     public function coverImage()
     {
         return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
     }
 
+
     public function genre()
     {
         return $this->belongsTo(Genre::class);
     }
+
 
     public function theme()
     {

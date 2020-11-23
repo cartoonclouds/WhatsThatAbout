@@ -22,22 +22,8 @@ class User extends Authenticatable implements Commentable, Votable
     public const ROLE_ADMIN = 'admin';
     public const ROLE_MOD = 'moderator';
 
-    /**
-     * The attributes that are mass assignable.d
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -47,18 +33,18 @@ class User extends Authenticatable implements Commentable, Votable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         //
+    ];
+
+    protected $with = [
+        'avatar',
     ];
 
     protected $dates = [
         'email_verified_at',
     ];
+
 
     public function getUrlAttribute()
     {
@@ -95,4 +81,9 @@ class User extends Authenticatable implements Commentable, Votable
         return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
     }
 
+
+    public function images()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
+    }
 }

@@ -23,7 +23,7 @@ class GenreFactory extends Factory
     {
         return [
             'genre' => $this->faker->unique()->genre,
-            'definition' => $this->faker->paragraph,
+            'definition' => $this->faker->sentence,
             'icon' => function (array $genre) {
                 return 'data:image/png;base64,';// . $this->faker->base64Image('placeholder', '250x250', 'png', 'cccccc', '999999', $genre['genre']);
             },

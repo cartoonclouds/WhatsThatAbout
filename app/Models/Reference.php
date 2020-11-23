@@ -8,4 +8,7 @@ use Eloquent;
 class Reference extends Eloquent
 {
     use HasFactory;
+
+    protected $guarded = [];
+
 }

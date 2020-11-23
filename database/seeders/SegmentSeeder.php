@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Segment;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Seeder;
 
 class SegmentSeeder extends Seeder
@@ -14,6 +15,12 @@ class SegmentSeeder extends Seeder
      */
     public function run()
     {
-        Segment::factory()->count(10)->create();
+        try {
+
+            Segment::factory()->count(10)->create();
+
+        } catch (QueryException $e) {
+
+        }
     }
 }

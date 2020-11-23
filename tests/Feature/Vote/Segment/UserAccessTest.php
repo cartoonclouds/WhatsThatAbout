@@ -29,9 +29,7 @@ class UserAccessTest extends TestCase
             'banned' => false
         ]);
 
-        $this->bannedUser = User::factory()->create([
-            'banned' => true
-        ]);
+        $this->bannedUser = User::factory()->banned()->create();
 
         $this->segment = Segment::factory()->create();
     }

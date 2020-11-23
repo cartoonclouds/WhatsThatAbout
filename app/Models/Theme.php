@@ -9,6 +9,15 @@ class Theme extends Eloquent
 {
     use HasFactory;
 
+    protected $with = [
+        //
+    ];
+
+    protected $withCount = [
+        'segments',
+    ];
+
+
     public function segments()
     {
         return $this->hasMany(Segment::class);

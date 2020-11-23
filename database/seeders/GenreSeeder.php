@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Genre;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Seeder;
 
 class GenreSeeder extends Seeder
@@ -14,6 +15,12 @@ class GenreSeeder extends Seeder
      */
     public function run()
     {
-        Genre::factory()->count(10)->create();
+        try {
+
+            Genre::factory()->count(10)->create();
+
+        } catch (QueryException $e) {
+
+        }
     }
 }

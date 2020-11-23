@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Theme;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Seeder;
 
 class ThemeSeeder extends Seeder
@@ -14,6 +15,12 @@ class ThemeSeeder extends Seeder
      */
     public function run()
     {
-        Theme::factory()->count(9)->create();
+        try {
+
+            Theme::factory()->count(9)->create();
+
+        } catch (QueryException $e) {
+
+        }
     }
 }

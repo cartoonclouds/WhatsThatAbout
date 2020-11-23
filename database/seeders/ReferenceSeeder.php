@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Reference;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Seeder;
 
 class ReferenceSeeder extends Seeder
@@ -14,6 +15,12 @@ class ReferenceSeeder extends Seeder
      */
     public function run()
     {
-        Reference::factory()->count(10)->create();
+        try {
+
+            Reference::factory()->count(10)->create();
+
+        } catch (QueryException $e) {
+
+        }
     }
 }

@@ -9,8 +9,26 @@ class Genre extends Eloquent
 {
     use HasFactory;
 
+    protected $guarded = [];
+
+    protected $with = [
+        //
+    ];
+
+    protected $withCount = [
+        'pages',
+        'segments',
+    ];
+
+
     public function pages()
     {
         return $this->hasMany(Page::class);
+    }
+
+
+    public function segments()
+    {
+        return $this->hasMany(Segment::class);
     }
 }

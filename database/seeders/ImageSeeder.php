@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Image;
 use App\Models\Page;
 use App\Models\Segment;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Seeder;
 
 class ImageSeeder extends Seeder
@@ -16,6 +17,12 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        Image::factory()->count(10)->create();
+        try {
+
+            Image::factory()->count(10)->create();
+
+        } catch (QueryException $e) {
+
+        }
     }
 }

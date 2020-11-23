@@ -12,20 +12,22 @@ class TimePeriodProvider extends Base
         $str = '';
 
         if ($hours) {
-            $str .= '##:';
+            $str .= sprintf("%02d", $this->generator->numberBetween(0, 23));
         }
 
         if ($minutes) {
-            $str .= '##:';
+            $str .= ':'. sprintf("%02d", $this->generator->numberBetween(0, 59));
         }
 
         if ($seconds) {
-            $str .= '##';
+            $str .= ':'. sprintf("%02d", $this->generator->numberBetween(0, 59));
         }
 
         if ($milliseconds) {
-            $str .= '.##';
+            $str .= ':'. sprintf("%03d", $this->generator->numberBetween(0, 999));
         }
+
+
 
         return $this->generator->numerify($str);
     }

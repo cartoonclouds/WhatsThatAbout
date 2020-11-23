@@ -16,6 +16,20 @@ class UserFactory extends Factory
     protected $model = User::class;
 
     /**
+     * Indicate that the user is banned.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function banned()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'banned' => true,
+            ];
+        });
+    }
+
+    /**
      * Define the model's default state.
      *
      * @return array
