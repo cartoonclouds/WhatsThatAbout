@@ -3,14 +3,16 @@
 namespace App\View\Components\Form;
 
 use Illuminate\Contracts\Support\MessageBag;
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class ImageUpload extends Component
 {
+    public string $uuid;
+
     public string $name;
     public string $source;
     public string $label;
-    public string $description;
     public string $helpText;
 
     /**
@@ -23,12 +25,13 @@ class ImageUpload extends Component
      *
      * @return void
      */
-    public function __construct(string $name, string $source, string $label, string $description, string $helpText, MessageBag $fieldErrors = null)
+    public function __construct(string $name, string $source, string $label, string $helpText, MessageBag $fieldErrors = null)
     {
+        $this->uuid = Str::uuid();
+
         $this->name = $name;
         $this->source = $source;
         $this->label = $label;
-        $this->description = $description;
         $this->helpText = $helpText;
 
         $this->fieldErrors = $fieldErrors ?? new \Illuminate\Support\MessageBag;

@@ -101,57 +101,212 @@
     @stack('styles')
 </head>
 <body class="vh-100">
-    <div id="app">
+    <div id="app" class="h-100">
+        @php($page = App\Models\Page::with(['coverImage', 'heroImage'])->find(1))
 
-        <header>
-            @include('layouts.navigation.topnav')
+        <form id="saveForm" novalidate method="post" action="{{ url('pages/updateOrCreate') }}">
+            <div class="container p-3 border border-2 border-dark" style="background-color:#28282d">
 
-            @include('layouts.header')
-        </header>
+                <div class="row">
 
-        <main class="main row" id="body-row">
+                    <div class="col-3">
 
-            @hasanyrole($allRoles->implode('|'))
-                @include('layouts.navigation.sidenav')
-            @endhasanyrole
+                        <x-form.image-upload name="cover_image" class="w-100 h-75 mb-4" title="Cover Image" source="{{ $page->coverImage->file_path }}" label="Upload cover (270 x 400)" help-text="Enter a title image for the page" :field-errors="$errors->page"></x-form.image-upload>
 
+                        <x-form.image-upload name="hero_image" class="w-100 h-25 mt-4" title="Hero Image" source="{{ $page->heroImage->file_path }}" label="Upload hero (350 x 150)" help-text="Enter a hero image for the page" :field-errors="$errors->page"></x-form.image-upload>
 
-            <!-- MAIN -->
-            <div class="col row p-4 mx-0">
-
-                <aside class="col-lg-2">
-                    @include('layouts.search')
-                </aside>
-
-                <div class="col">
-                    @include('flash::message')
-
-                    @hasanyrole($adminRoles->implode('|'))
-                    <div class="alert alert-info mb-3">
-                        <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
                     </div>
-                    @endhasanyrole
 
-                    @yield('content')
+                    <div class="col-9">
+
+                        <x-form.input name="title" value="{{ $page->title }}" placeholder="write here" help-text="Enter a title for the page" label="Page Title" :field-errors="$errors->page"></x-form.input>
+
+                        <x-form.input name="release_year" input-mask="9999" placeholder="YYYY" value="{{ $page->release_year }}" help-text="Enter a Release Year for the page" label="Release Year" :field-errors="$errors->page"></x-form.input>
+
+                        <x-form.input name="run_time" input-mask="99:99:99" value="{{ $page->run_time }}" placeholder="write here" help-text="Enter a Run Time for the page" label="Runtime" :field-errors="$errors->page"></x-form.input>
+
+                        <x-form.textarea name="synopsis" rows="10" style="height:10em;" value="{{ $page->run_time }}" placeholder="Write a interesting synopsis here..." help-text="Enter a Synopsis for the page" label="Synopsis" :field-errors="$errors->page"></x-form.textarea>
+
+                    </div>
 
                 </div>
 
-            </div><!-- Main Col END -->
+            </div>
+        </form>
+
+{{--        <header>--}}
+{{--            @include('layouts.navigation.topnav')--}}
+
+{{--            @include('layouts.header')--}}
+{{--        </header>--}}
+
+{{--        <main class="main row" id="body-row">--}}
+
+{{--            @hasanyrole($allRoles->implode('|'))--}}
+{{--                @include('layouts.navigation.sidenav')--}}
+{{--            @endhasanyrole--}}
 
 
-            @auth
-            </div><!-- body-row END -->
-            @endauth
+{{--            <!-- MAIN -->--}}
+{{--            <div class="col row p-4 mx-0">--}}
 
-        </main>
+{{--                <aside class="col-lg-2">--}}
+{{--                    @include('layouts.search')--}}
+{{--                </aside>--}}
 
-        @include('layouts.footer')
+{{--                <div class="col">--}}
+{{--                    @include('flash::message')--}}
+
+{{--                    @hasanyrole($adminRoles->implode('|'))--}}
+{{--                    <div class="alert alert-info mb-3">--}}
+{{--                        <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?--}}
+{{--                    </div>--}}
+{{--                    @endhasanyrole--}}
+
+{{--                    @yield('content')--}}
+
+{{--                </div>--}}
+
+{{--            </div><!-- Main Col END -->--}}
+
+
+{{--            @auth--}}
+{{--            </div><!-- body-row END -->--}}
+{{--            @endauth--}}
+
+{{--        </main>--}}
+
+{{--        @include('layouts.footer')--}}
 
     </div>
 
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>
+
+    <script>
+        // will be an export
+        const ImageUpload = (function($) {
+            'use strict';
+
+            // data-iu-img-preview      Image tag to display the preview
+            // data-iu-img-label        Label to show if no image preview
+            // data-iu-remove-preview   Button to remove the image preview
+            // data-iu-file             File input which uploads the image
+
+            const ImageUpload = function (uuid) {
+                'use strict';
+
+                // Attach some elements
+                this.uuid = uuid;
+                this.imageUpload = document.getElementById(`image-upload${uuid}`);
+
+                if (this.imageUpload.dataset.imageUploadInstance) {
+                    return;
+                }
+
+                this.imageUpload.dataset.imageUploadInstance = this;
+
+                this.imagePreview = this.imageUpload.querySelector('[data-iu-img-preview]');
+                this.imageLabel = this.imageUpload.querySelector('[data-iu-img-label]');
+                this.imageRemovePreview = this.imageUpload.querySelector('[data-iu-remove-preview]');
+                this.inputFile = this.imageUpload.querySelector('[data-iu-file]');
+
+                // Attach listeners
+                this._attachListeners();
+
+                // Create FileReader
+                this.instantiateFileRead();
+
+                // Update the UI
+                this.renderChanges();
+            };
+
+            ImageUpload.prototype = {
+
+                constructor: ImageUpload,
+
+                _attachListeners()
+                {
+                    this.imageRemovePreview.addEventListener('click', (evt) => this.removePreview());
+                },
+
+
+                renderChanges()
+                {
+                    let hideElements = [];
+                    let showElements = [];
+
+                    if (this.isEmpty(this.imagePreview.getAttribute('src'))) {
+                        hideElements.push(this.imageRemovePreview);
+                        showElements.push(this.imageLabel);
+                    } else {
+                        hideElements.push(this.imageLabel);
+                        showElements.push(this.imageRemovePreview);
+                    }
+
+                    hideElements.forEach((el) => this.hide(el));
+                    showElements.forEach((el) => this.show(el));
+                },
+
+                show(el)
+                {
+                    el.classList.add('d-block');
+                    el.classList.remove('d-none');
+                },
+
+                hide(el)
+                {
+                    el.classList.add('d-none');
+                    el.classList.remove('d-block');
+                },
+
+                removePreview()
+                {
+                    this.imagePreview.setAttribute('src', '');
+                    this.renderChanges();
+                },
+
+                isEmpty(val)
+                {
+                    return !val || parseFloat(val || 0) === 0.00 || String(val).length === 0;
+                },
+
+
+                instantiateFileRead()
+                {
+                    const reader = new FileReader();
+
+                    if (typeof (reader) != "undefined") {
+                        this.reader = new FileReader();
+
+                        this.reader.addEventListener('load', (evt) => {
+                            this.imagePreview.setAttribute('src', this.reader.result);
+
+                            this.renderChanges();
+                        });
+
+                        this.inputFile.addEventListener('change', async (evt) => {
+                            const fileInput = evt.target;
+
+                            if (fileInput.files && fileInput.files[0]) {
+                                await this.reader.readAsDataURL(fileInput.files[0])
+
+                                this.renderChanges();
+                            }
+                        });
+                    } else {
+                        alert("This browser does not support HTML5 FileReader.")
+                    }
+                }
+
+
+            }
+
+
+            return ImageUpload;
+        })(jQuery);
+    </script>
     <script>
         $(document).ready(function() {
 
@@ -185,7 +340,10 @@
                 $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
             }
 
-
+            /**
+             * Setup Inputmask
+             */
+            Inputmask().mask(document.querySelectorAll('input'));
 
             $('#flash-overlay-modal').modal();
 

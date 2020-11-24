@@ -77,11 +77,6 @@ $.notifyDefaults({
 window.notify = require('./mixins/notify').default;
 
 
-/**
- * Setup Inputmask
- */
-Inputmask().mask(document.querySelectorAll('input'));
-
 
 /**
  * Setup Bootbox

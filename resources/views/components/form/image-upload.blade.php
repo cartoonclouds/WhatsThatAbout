@@ -1,25 +1,25 @@
-<div class="form-file form-file mb-3 position-relative">
-    <i class="fa fa-times-circle button-red remove-image"></i>
+<div {{ $attributes->merge(['class' => 'form-file text-center d-inline-flex flex-column position-relative']) }} style="background-color:#2b2b31;" id="image-upload{{ $uuid }}">
+    <i style="position: absolute;top: -0.5em;right: -0.5em;cursor: pointer;font-size: 1.5em;color: #fff;z-index: 2;" data-iu-remove-preview class="fa fa-times-circle button-red d-none"></i>
 
-    <label for="{{ $name }}" id="{{ $name }}Label" class="{{ $name }} form-label w-100 h-100 p-4  bg-light text-center d-flex flex-column justify-content-center align-items-center">
+    <label style="cursor: pointer;color: rgba(255,255,255,0.5);transition: 0.4s ease;" for="{{ $name }}" id="{{ $name }}Label" class="form-label flex-grow-1 position-relative d-flex flex-column justify-content-center align-items-center">
 
-{{--        <template v-if="imageSrc">--}}
-            <img src="{{ $source }}" title="Cover Image" class="w-100 h-100">
-            <small class="d-block mt-3 description">{{ $description }}</small>
-{{--        </template>--}}
 
-{{--        <template v-else>--}}
+        <img style="max-height:100%;max-width:100%;" class="position-absolute" data-iu-img-preview src="{{ $source }}" alt="{{ $attributes['title'] ?? '' }}" title="{{ $attributes['title'] ?? '' }}">
+
+        <span style="top: -2em;" class="position-relative" data-iu-img-label>
             {{  $label }}
-{{--        </template>--}}
+        </span>
 
-        <input accept="image/*" type="file" name="{{ $name }}" id="{{ $name }}" aria-describedby="{{ $name }}Label" class="d-none form-file-input">
-        <span class="form-file-text d-none">Choose file...</span>
-        <span class="form-file-button d-none">Browse</span>
 
+        <span class="d-none flex-row">
+            <input data-iu-file accept="image/*" type="file" name="{{ $name }}" id="{{ $name }}" aria-describedby="{{ $name }}Label" class="form-file-input">
+            <span class="form-file-text">Choose file...</span>
+            <span class="form-file-button">Browse</span>
+        </span>
     </label>
 
     @if($helpText)
-        <div id="{{ $name }}HelpBlock" class="form-text">
+        <div id="{{ $name }}HelpBlock" class="form-text mb-2 tw-text-gray-300">
             {{ $helpText ?? '' }}
         </div>
     @endif
@@ -35,49 +35,23 @@
 
 @push('scripts')
     <script>
-        (function($) {
-            'use strict';
-            const $imageUpload = $('#{{ $name }}Label');
-            const $fileInput = $imageUpload.find('input[type="file"]');
-            const $fileReader = new FileReader();
-            let image
+        const {{ 'uploaderInstance'.rand() }} = new ImageUpload('{{ $uuid }}');
 
-            if (typeof ($fileReader) != "undefined") {
-
-                $fileReader.addEventListener('load', (event) => {
-                    $imageUpload.find('img').attr('src', $fileReader.result);
-                })
-
-                $fileInput.on('change', (event) => {
-                    if ($fileInput.files && $fileInput.files[0]) {
-                        $fileReader.readAsDataURL($fileInput.files[0])
-                    }
-                });
-
-            } else {
-                alert("This browser does not support HTML5 FileReader.")
-            }
-        })(jQuery);
     </script>
 @endpush
 
 @push('styles')
     <style>
-        img:hover {
-            cursor: pointer;
+        .label:hover {
+            color: #fff;
         }
 
-        .description {
-            color: #657eae;
+        ::selection {
+            background: #fff;
+            color: #000;
+            text-shadow: none;
         }
+        /*for dark bacgroud inputs*/
 
-        .remove-image {
-            position: absolute;
-            top: -0.5em;
-            right: -0.5em;
-            font-size: 1.5em;
-            color: orangered;
-            z-index: 2;
-        }
     </style>
 @endpush

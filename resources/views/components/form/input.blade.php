@@ -17,7 +17,7 @@
     </div>
 
     @if($helpText)
-        <div id="{{ $name }}HelpBlock" class="form-text">
+        <div id="{{ $name }}HelpBlock" class="form-text text-light">
             {{ $helpText ?? '' }}
         </div>
     @endif

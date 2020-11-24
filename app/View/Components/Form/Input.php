@@ -36,6 +36,11 @@ class Input extends Component
         $this->fieldErrors = $fieldErrors ?? new \Illuminate\Support\MessageBag;
     }
 
+    public function uuid()
+    {
+        return spl_object_id($this);
+    }
+
     public function isInvalid()
     {
         return $this->fieldErrors->has($this->name);
