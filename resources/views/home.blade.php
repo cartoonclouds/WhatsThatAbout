@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="content" class="container-fluid">
+    <div id="content" class="container-fluid">
 
-    @include('layouts.navigation.sorting')
+        @include('layouts.navigation.sorting')
 
-    <div class="grid grid-cols-3 gap-5">
-        @each('pages.partials.excerpt', $pages, 'page')
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @each('pages.partials.excerpt', $pages, 'page')
+        </div>
+
+        {{ $pages->withQueryString()->links() }}
+
+        @can('createOrUpdate', 'page')
+            <update-or-create></update-or-create>
+        @endcan
     </div>
-
-    {{ $pages->withQueryString()->links() }}
-
-{{--    @can('createOrUpdate', 'page')--}}
-{{--        <update-or-create></update-or-create>--}}
-{{--    @endcan--}}
-</div>
 @endsection
 
 @push('scripts')

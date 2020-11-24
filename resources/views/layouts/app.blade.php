@@ -12,8 +12,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <script>
@@ -103,124 +101,108 @@
     @stack('styles')
 </head>
 <body>
-    <div id="app" class="bg-gray-100">
+<div id="app">
+
+    <header>
+        @include('layouts.navigation.topnav')
+
+        @include('layouts.header')
+    </header>
+
+    <main class="main row" id="body-row">
+
+        @hasanyrole($allRoles->implode('|'))
+        @include('layouts.navigation.sidenav')
+        @endhasanyrole
 
 
-        <header>
-            @include('layouts.navigation.topnav')
+        <!-- MAIN -->
+        <div class="col row p-4 mx-0">
 
-            @include('layouts.header')
-        </header>
-
-        <main class="flex flex-row p-4">
-
-            <aside class="flex-none w-max p-2">
-
+            <aside class="col-lg-2">
                 @include('layouts.search')
-
             </aside>
 
-            <div class="flex-1 w-auto p-2">
+            <div class="col">
+                @include('flash::message')
+
+                @hasanyrole($adminRoles->implode('|'))
+                <div class="alert alert-info mb-3">
+                    <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
+                </div>
+                @endhasanyrole
 
                 @yield('content')
 
             </div>
 
-        </main>
+        </div><!-- Main Col END -->
 
 
-    {{--                @hasanyrole($allRoles->implode('|'))--}}
-{{--                    @include('layouts.navigation.sidenav')--}}
-{{--                @endhasanyrole--}}
+    @auth
+</div><!-- body-row END -->
+@endauth
 
-                <!-- Main content -->
-{{--                <div class="">--}}
+</main>
 
+@include('layouts.footer')
 
+</div>
 
-{{--                    <div class="col">--}}
-{{--                        @include('flash::message')--}}
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
+<script>
+    $(document).ready(function() {
 
-{{--                        @hasanyrole($adminRoles->implode('|'))--}}
-{{--                        <div class="alert alert-info mb-3">--}}
-{{--                            <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?--}}
-{{--                        </div>--}}
-{{--                        @endhasanyrole--}}
+        // Hide submenus
+        $('#body-row .collapse').collapse('hide');
 
+        // Collapse/Expand icon
+        $('#collapse-icon').addClass('fa-angle-double-left');
 
-{{--                    </div>--}}
+        // Collapse click
+        $('[data-toggle=sidebar-collapse]').click(function() {
+            SidebarCollapse();
+        });
 
-{{--                </div>--}}
-                <!-- /End main content -->
+        function SidebarCollapse (e) {
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
 
-{{--            @auth--}}
-{{--            </div><!-- body-row END -->--}}
-{{--            @endauth--}}
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
 
-
-
-        @include('layouts.footer')
-
-    </div>
-
-    <script src="{{ mix('js/manifest.js') }}"></script>
-    <script src="{{ mix('js/vendor.js') }}"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-
-            const $topNav = $('#top-nav');
-            const $userMenuBtn = $('#user-menu');
-
-            $(document).on('click', $userMenuBtn, function () {
-
-            });
-
-
-/*
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
-
-            // Collapse click
-            $('[data-toggle=sidebar-collapse]').click(function() {
-                SidebarCollapse();
-            });
-
-            function SidebarCollapse (e) {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
-
-                if ( SeparatorTitle.hasClass('d-flex') ) {
-                    SeparatorTitle.removeClass('d-flex');
-                } else {
-                    SeparatorTitle.addClass('d-flex');
-                }
-
-                // Collapse/Expand icon
-                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            if ( SeparatorTitle.hasClass('d-flex') ) {
+                SeparatorTitle.removeClass('d-flex');
+            } else {
+                SeparatorTitle.addClass('d-flex');
             }
 
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+        }
 
 
-            $('#flash-overlay-modal').modal();
 
-            // Enable all tooltips
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })*/
+        $('#flash-overlay-modal').modal();
 
-            window.User = @json([
+        $('.select2').select2();
+
+        // Enable all tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        window.User = @json([
                 'user' => Auth::user(),
                 'signedIn' => Auth::check()
             ]);
-        });
-    </script>
+    });
+</script>
 
-    @stack('scripts')
+@stack('scripts')
 </body>
 </html>

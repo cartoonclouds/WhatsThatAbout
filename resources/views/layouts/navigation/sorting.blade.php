@@ -1,7 +1,15 @@
-<nav class="flex flex-row place-content-end p-4 bg-gray-200">
-    <a class="px-3 py-2 rounded-md text-sm font-medium text-gray-900" href="{{ request()->fullUrlWithQuery(['sort' => 'popular']) }}">Popular</a>
-
-    <a class="px-3 py-2 rounded-md text-sm font-medium text-gray-900" href="{{ request()->fullUrlWithQuery(['sort' => 'date_low']) }}">Date (low)</a>
-
-    <a class="px-3 py-2 rounded-md text-sm font-medium text-gray-900" href="{{ request()->fullUrlWithQuery(['sort' => 'date_high']) }}">Date (high)</a>
+<nav class="navbar navbar-expand navbar-light mb-2">
+    <div class="container-fluid justify-content-end">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ request()->fullUrlWithQuery(['sort' => 'popular']) }}">Popular</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ request()->fullUrlWithQuery(['sort' => 'date_low']) }}">Date (low)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ request()->fullUrlWithQuery(['sort' => 'date_high']) }}">Date (high)</a>
+            </li>
+        </ul>
+    </div>
 </nav>

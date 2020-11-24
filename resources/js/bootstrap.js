@@ -13,18 +13,20 @@ window.$ = window.jQuery = $ = require('jquery');
 
 
 /**
- * Popper.js 2.5.4
+ * Popper.js 2.5.4 (for Bootstrap) / PopperJs
  * https://popper.js.org/docs/v1/
  */
 import { createPopper} from '@popperjs/core';
 
 window.createPopper = createPopper;
 
+// window.popper = require('~popper')
+
 /**
  * Bootstrap 5.0
  * https://v5.getbootstrap.com/docs/5.0/
  */
-// window.bootstrap = require('bootstrap');
+window.bootstrap = require('bootstrap');
 
 
 /**
@@ -59,7 +61,6 @@ window.Inputmask = Inputmask;
  * https://datatables.net/
  */
 require('datatables.net');
-require('datatables.net-dt');
 require('datatables.net-buttons');
 require('datatables.net-buttons/js/buttons.colVis.js');
 require('datatables.net-buttons/js/buttons.html5.js');
