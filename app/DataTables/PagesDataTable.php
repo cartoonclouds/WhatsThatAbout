@@ -46,7 +46,6 @@ class PagesDataTable extends DataTable
                     ->setTableId('pages-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
                         Button::make('create'),

@@ -112,7 +112,7 @@
     <main class="main row" id="body-row">
 
         @hasanyrole($allRoles->implode('|'))
-        @include('layouts.navigation.sidenav')
+            @include('layouts.navigation.sidenav')
         @endhasanyrole
 
 
@@ -127,9 +127,9 @@
                 @include('flash::message')
 
                 @hasanyrole($adminRoles->implode('|'))
-                <div class="alert alert-info mb-3">
-                    <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
-                </div>
+                    <div class="alert alert-info mb-3">
+                        <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
+                    </div>
                 @endhasanyrole
 
                 @yield('content')
@@ -189,7 +189,7 @@
 
         $('#flash-overlay-modal').modal();
 
-        $('.select2').select2();
+        // $('.select2').select2();
 
         // Enable all tooltips
         $(function () {

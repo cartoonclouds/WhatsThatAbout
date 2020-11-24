@@ -46,7 +46,6 @@ class GenresDataTable extends DataTable
                     ->setTableId('genres-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
                         Button::make('create'),

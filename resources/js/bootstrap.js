@@ -61,11 +61,9 @@ window.Inputmask = Inputmask;
  * https://datatables.net/
  */
 require('datatables.net');
+require('datatables.net-bs4');
 require('datatables.net-buttons');
-require('datatables.net-buttons/js/buttons.colVis.js');
-require('datatables.net-buttons/js/buttons.html5.js');
-require('datatables.net-buttons/js/buttons.flash.js');
-require('datatables.net-buttons/js/buttons.print.js');
+require('datatables.net-buttons-bs4');
 
 /**
  * VueJS 2.*
@@ -91,5 +89,7 @@ window.Vue = Vue;
 require('./mixins/helpers');
 
 require('./mixins/layout');
+
+require('./mixins/dataTableDefaults');
 
 window.animateCSS = require('./mixins/animateCSS');

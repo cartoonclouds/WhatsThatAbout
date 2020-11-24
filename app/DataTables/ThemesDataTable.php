@@ -44,7 +44,6 @@ class ThemesDataTable extends DataTable
                     ->setTableId('themes-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
                         Button::make('create'),

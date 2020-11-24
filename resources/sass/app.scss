@@ -41,6 +41,9 @@
 /**
  * Yajra DataTables
  */
-@import '~datatables.net-bs';
-@import '~datatables.net-buttons-bs';
+@import '~datatables.net-bs4';
+@import '~datatables.net-buttons-bs4';
 
+//.table.dataTable {
+//  width: 100% !important;
+//}

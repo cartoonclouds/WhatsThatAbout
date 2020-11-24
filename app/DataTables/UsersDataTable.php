@@ -76,7 +76,6 @@ class UsersDataTable extends DataTable
                     ->setTableId('users-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
                     ->orderBy(1, 'asc')
                     ->orderBy(3, 'asc')
                     ->buttons(
@@ -108,7 +107,6 @@ class UsersDataTable extends DataTable
             Column::computed('actions')
                 ->exportable(false)
                 ->printable(false)
-                ->width(230)
                 ->addClass('text-center'),
         ];
     }

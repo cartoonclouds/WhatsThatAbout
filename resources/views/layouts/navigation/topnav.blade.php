@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">What's That About?!</a>
 
@@ -14,7 +14,7 @@
             <i class="fas fa-bars"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarExample01">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarExample01">
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                 <!-- Authentication Links -->
                 @guest
