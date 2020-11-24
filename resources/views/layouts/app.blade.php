@@ -100,7 +100,7 @@
 
     @stack('styles')
 </head>
-<body>
+<body class="vh-100">
     <div id="app">
 
         <header>
