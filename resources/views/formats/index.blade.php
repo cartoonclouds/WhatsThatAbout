@@ -9,12 +9,12 @@
 @section('content')
     <div id="content" class="container-fluid p-0">
         <h3 class="mb-4"><i class="{{ config('website.icons.themes.index') }}"></i> All Themes</h3>
-        {{ $dataTable->table() }}
+        {!! $dataTable->table() !!}
     </div>
 @endsection
 
 @push('scripts')
-    {{ $dataTable->scripts() }}
+    {!! $dataTable->scripts() !!}
     <script>
 
     </script>

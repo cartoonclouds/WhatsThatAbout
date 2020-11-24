@@ -39,10 +39,11 @@ mix.styles([
 mix.copyDirectory('resources/fonts', 'public/fonts')
     .copyDirectory('resources/images', 'public/images');
 
-mix.sourceMaps()
-    .extract();
+mix.extract();
 
 if (mix.inProduction()) {
     mix.version();
+} else {
+    mix.sourceMaps()
 }
 

@@ -60,21 +60,21 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0].toLower
 /**
  * Setup Bootstrap-Notify
  */
-$.notifyDefaults({
-    newest_on_top: true,
-    z_index: 2038,
-    offset: {
-        y: 70,
-        x: 20
-    },
-    url_target: '_self',
-    animate: {
-        enter: 'animated fadeInRight',
-        exit: 'animated fadeOutRight'
-    },
-});
-
-window.notify = require('./mixins/notify').default;
+// $.notifyDefaults({
+//     newest_on_top: true,
+//     z_index: 2038,
+//     offset: {
+//         y: 70,
+//         x: 20
+//     },
+//     url_target: '_self',
+//     animate: {
+//         enter: 'animated fadeInRight',
+//         exit: 'animated fadeOutRight'
+//     },
+// });
+//
+// window.notify = require('./mixins/notify').default;
 
 
 /**
@@ -89,13 +89,13 @@ Inputmask().mask(document.querySelectorAll('input'));
 // window.dialog = require('./mixins/modal').default;
 
 // (window.) alert
-window.alert = bootbox.alert;
-
-// (window.) confirm
-window.confirm = bootbox.confirm;
-
-// (window.) prompt
-window.prompt = bootbox.prompt;
+// window.alert = bootbox.alert;
+//
+// // (window.) confirm
+// window.confirm = bootbox.confirm;
+//
+// // (window.) prompt
+// window.prompt = bootbox.prompt;
 
 
 /**
@@ -114,4 +114,3 @@ window.prompt = bootbox.prompt;
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-

@@ -101,108 +101,108 @@
     @stack('styles')
 </head>
 <body>
-    <div id="app">
+<div id="app">
 
-        <header>
-            @include('layouts.navigation.topnav')
+    <header>
+        @include('layouts.navigation.topnav')
 
-            @include('layouts.header')
-        </header>
+        @include('layouts.header')
+    </header>
 
-        <main class="main row" id="body-row">
+    <main class="main row" id="body-row">
 
-            @hasanyrole($allRoles->implode('|'))
-                @include('layouts.navigation.sidenav')
-            @endhasanyrole
+        @hasanyrole($allRoles->implode('|'))
+            @include('layouts.navigation.sidenav')
+        @endhasanyrole
 
 
-            <!-- MAIN -->
-            <div class="col row p-4 mx-0">
+        <!-- MAIN -->
+        <div class="col row p-4 mx-0">
 
-                <aside class="col-lg-2">
-                    @include('layouts.search')
-                </aside>
+            <aside class="col-lg-2">
+                @include('layouts.search')
+            </aside>
 
-                <div class="col">
-                    @include('flash::message')
+            <div class="col">
+                @include('flash::message')
 
-                    @hasanyrole($adminRoles->implode('|'))
+                @hasanyrole($adminRoles->implode('|'))
                     <div class="alert alert-info mb-3">
                         <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
                     </div>
-                    @endhasanyrole
+                @endhasanyrole
 
-                    @yield('content')
+                @yield('content')
 
-                </div>
+            </div>
 
-            </div><!-- Main Col END -->
+        </div><!-- Main Col END -->
 
 
-            @auth
-            </div><!-- body-row END -->
-            @endauth
+    @auth
+</div><!-- body-row END -->
+@endauth
 
-        </main>
+</main>
 
-        @include('layouts.footer')
+@include('layouts.footer')
 
-    </div>
+</div>
 
-    <script src="{{ mix('js/manifest.js') }}"></script>
-    <script src="{{ mix('js/vendor.js') }}"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
-    <script>
-        $(document).ready(function() {
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
+<script>
+    $(document).ready(function() {
 
-            // Hide submenus
-            $('#body-row .collapse').collapse('hide');
+        // Hide submenus
+        $('#body-row .collapse').collapse('hide');
 
-            // Collapse/Expand icon
-            $('#collapse-icon').addClass('fa-angle-double-left');
+        // Collapse/Expand icon
+        $('#collapse-icon').addClass('fa-angle-double-left');
 
-            // Collapse click
-            $('[data-toggle=sidebar-collapse]').click(function() {
-                SidebarCollapse();
-            });
+        // Collapse click
+        $('[data-toggle=sidebar-collapse]').click(function() {
+            SidebarCollapse();
+        });
 
-            function SidebarCollapse (e) {
-                $('.menu-collapsed').toggleClass('d-none');
-                $('.sidebar-submenu').toggleClass('d-none');
-                $('.submenu-icon').toggleClass('d-none');
-                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+        function SidebarCollapse (e) {
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
 
-                // Treating d-flex/d-none on separators with title
-                var SeparatorTitle = $('.sidebar-separator-title');
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
 
-                if ( SeparatorTitle.hasClass('d-flex') ) {
-                    SeparatorTitle.removeClass('d-flex');
-                } else {
-                    SeparatorTitle.addClass('d-flex');
-                }
-
-                // Collapse/Expand icon
-                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            if ( SeparatorTitle.hasClass('d-flex') ) {
+                SeparatorTitle.removeClass('d-flex');
+            } else {
+                SeparatorTitle.addClass('d-flex');
             }
 
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+        }
 
 
-            $('#flash-overlay-modal').modal();
 
-            $('.select2').select2();
+        $('#flash-overlay-modal').modal();
 
-            // Enable all tooltips
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
+        // $('.select2').select2();
 
-            window.User = @json([
+        // Enable all tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        window.User = @json([
                 'user' => Auth::user(),
                 'signedIn' => Auth::check()
             ]);
-        });
-    </script>
+    });
+</script>
 
-    @stack('scripts')
+@stack('scripts')
 </body>
 </html>
