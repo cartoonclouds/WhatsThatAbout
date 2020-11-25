@@ -8,8 +8,6 @@ use Illuminate\View\Component;
 
 class ImageUpload extends Component
 {
-    public string $uuid;
-
     public string $name;
     public string $source;
     public string $label;
@@ -27,8 +25,6 @@ class ImageUpload extends Component
      */
     public function __construct(string $name, string $source, string $label, string $helpText, MessageBag $fieldErrors = null)
     {
-        $this->uuid = Str::uuid();
-
         $this->name = $name;
         $this->source = $source;
         $this->label = $label;

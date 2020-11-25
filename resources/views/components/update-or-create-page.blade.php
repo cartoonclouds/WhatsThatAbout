@@ -6,16 +6,16 @@
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="saveForm" novalidate method="post" action="{{ url('pages/updateOrCreate') }}">
-                    <div class="container-fluid">
+                    <div class="container-fluid p-3 border border-2 border-dark" style="background-color:#28282d">
 
+                        <form id="saveForm" novalidate method="post" action="{{ url('pages/updateOrCreate') }}">
                         <div class="row">
 
-                            <div class="col-3 px-md-3 px-lg-5">
+                            <div class="col-3">
 
-                                <x-form.image-upload name="cover_image" source="{{ $page->cover_image->file_path }}" label="Upload cover (270 x 400)" description="Cover Image" help-text="Enter a title for the page" :field-errors="$errors->page"></x-form.image-upload>
+                                <x-form.image-upload name="cover_image" class="w-100 h-75 mb-4" title="Cover Image" source="{{ $page->coverImage->file_path }}" label="Upload cover (270 x 400)" help-text="Enter a title image for the page" :field-errors="$errors->page"></x-form.image-upload>
 
-                                <x-form.image-upload name="hero_image" source="{{ $page->hero_image->file_path }}" label="Upload hero (350 x 150)" description="Hero (Background) Image" help-text="Enter a title for the page" :field-errors="$errors->page"></x-form.image-upload>
+                                <x-form.image-upload name="hero_image" class="w-100 h-25 mt-4" title="Hero Image" source="{{ $page->heroImage->file_path }}" label="Upload hero (350 x 150)" help-text="Enter a hero image for the page" :field-errors="$errors->page"></x-form.image-upload>
 
                             </div>
 
@@ -27,14 +27,14 @@
 
                                 <x-form.input name="run_time" input-mask="99:99:99" value="{{ $page->run_time }}" placeholder="write here" help-text="Enter a Run Time for the page" label="Runtime" :field-errors="$errors->page"></x-form.input>
 
-                                <x-form.textarea name="synopsis" rows="6" value="{{ $page->run_time }}" help-text="Enter a Synopsis for the page" label="Synopsis:" :field-errors="$errors->page"></x-form.textarea>
+                                <x-form.textarea name="synopsis" rows="10" style="height:10em;" value="{{ $page->run_time }}" placeholder="Write a interesting synopsis here..." help-text="Enter a Synopsis for the page" label="Synopsis" :field-errors="$errors->page"></x-form.textarea>
 
                             </div>
 
                         </div>
+                        </form>
 
                     </div>
-                </form>
             </div>
             <div class="modal-footer tw-bg-gray-500 px-4 py-3 px-sm-6">
                 <button type="button" class="btn btn-outline-light rounded shadow" data-dismiss="modal">Close</button>

@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'form-file text-center d-inline-flex flex-column position-relative']) }} style="background-color:#2b2b31;" id="image-upload{{ $uuid }}">
+<div data-wta-ui {{ $attributes->merge(['class' => 'form-file text-center d-inline-flex flex-column position-relative']) }} style="background-color:#2b2b31;">
     <i style="position: absolute;top: -0.5em;right: -0.5em;cursor: pointer;font-size: 1.5em;color: #fff;z-index: 2;" data-iu-remove-preview class="fa fa-times-circle button-red d-none"></i>
 
     <label style="cursor: pointer;color: rgba(255,255,255,0.5);transition: 0.4s ease;" for="{{ $name }}" id="{{ $name }}Label" class="form-label flex-grow-1 position-relative d-flex flex-column justify-content-center align-items-center">
@@ -32,26 +32,3 @@
     </div>
     @enderror
 </div>
-
-@push('scripts')
-    <script>
-        const {{ 'uploaderInstance'.rand() }} = new ImageUpload('{{ $uuid }}');
-
-    </script>
-@endpush
-
-@push('styles')
-    <style>
-        .label:hover {
-            color: #fff;
-        }
-
-        ::selection {
-            background: #fff;
-            color: #000;
-            text-shadow: none;
-        }
-        /*for dark bacgroud inputs*/
-
-    </style>
-@endpush

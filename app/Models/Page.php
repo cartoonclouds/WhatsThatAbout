@@ -30,6 +30,8 @@ class Page extends Eloquent implements Commentable, Votable
         'creator',
         'genre',
         'format',
+        'coverImage',
+        'heroImage',
     ];
 
     protected $withCount = [

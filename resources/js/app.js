@@ -35,29 +35,6 @@ window.axios.defaults.headers.common = {
 
 
 /**
- * Setup VueJS
- */
-
-// Defined Window-contexted helper properties
-window.EventBus = new Vue();
-
-// Define Vue-contexted helper properties
-Object.defineProperty(Vue.prototype, '$axios', { value: window.axios });
-Object.defineProperty(Vue.prototype, '$bus', { value: window.EventBus });
-
-// window.Vue.prototype.authorize = function (handler) {
-//     // Additional admin privileges here.
-//     let user = window.App.user;
-//
-//     return user ? handler(user) : false;
-// };
-
-// Register Vue components
-const files = require.context('./components', true, /\.vue$/i)
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0].toLowerCase(), files(key).default))
-
-
-/**
  * Setup Bootstrap-Notify
  */
 $.notifyDefaults({
@@ -109,4 +86,6 @@ window.prompt = bootbox.prompt;
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+require('./components/form/image-upload');
 

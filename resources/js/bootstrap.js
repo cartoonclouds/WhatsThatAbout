@@ -13,6 +13,13 @@ window.$ = window.jQuery = require('jquery');
 
 
 /**
+ * syrupjs
+ * https://github.com/ahmed-musallam/syrupjs
+ */
+require('syrupjs');
+
+
+/**
  * Popper.js 1.16
  * https://popper.js.org/docs/v1/
  */
@@ -61,15 +68,6 @@ require('datatables.net');
 require('datatables.net-bs4');
 require('datatables.net-buttons');
 require('datatables.net-buttons-bs4');
-
-
-/**
- * VueJS 2.*
- * https://vuejs.org/v2/guide/
- */
-import Vue from 'vue';
-
-window.Vue = Vue;
 
 
 /**
