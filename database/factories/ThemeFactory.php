@@ -22,7 +22,7 @@ class ThemeFactory extends Factory
     public function definition()
     {
         return [
-            'theme' => $this->faker->unique()->filmTheme,
+            'name' => $this->faker->unique()->filmTheme,
             'definition' => $this->faker->sentence,
             'icon' => function (array $theme) {
                 return 'data:image/png;base64,';// . $this->faker->base64Image('placeholder', '250x250', 'png', 'cccccc', '999999', $theme['theme']);

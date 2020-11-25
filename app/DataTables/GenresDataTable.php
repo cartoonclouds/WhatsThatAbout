@@ -21,7 +21,24 @@ class GenresDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'genres.action');
+
+            ->editColumn('icon', function (Genre $genre) {
+                return $genre->icon ? "<img style='width:32px;height:auto;' src='$genre->icon' class='model-icon' />"
+                    : '';
+            })
+            ->editColumn('name', '{{$name}}')
+            ->editColumn('created_at', function (Genre $genre) {
+                return $genre->created_at->format(config('website.formats.datetime'));
+            })
+            ->editColumn('updated_at', function (Genre $genre) {
+                return $genre->updated_at->format(config('website.formats.datetime'));
+            })
+
+            ->addColumn('pages_count', '{{$pages_count}}')
+            ->addColumn('scenes_count', '{{$scenes_count}}')
+            ->addColumn('action', 'genres.action')
+
+            ->rawColumns(['icon'], true);
     }
 
     /**
@@ -46,7 +63,7 @@ class GenresDataTable extends DataTable
                     ->setTableId('genres-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1)
+                    ->orderBy(2, 'asc')
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),
@@ -64,15 +81,18 @@ class GenresDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
+            Column::make('icon')->width('40')->title('')->addClass('text-center vertical-align'),
+            Column::make('id')->title('ID'),
+            Column::make('name'),
+            Column::make('pages_count')->title('Associated Pages'),
+            Column::make('scenes_count')->title('Associated Scenes'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(160)
+                ->addClass('text-center'),
         ];
     }
 

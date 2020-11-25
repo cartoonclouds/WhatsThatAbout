@@ -55,7 +55,7 @@
                             {{ $page->synopsis }}
                         </p>
 
-                        @can('create', \App\Models\Scene::class)
+                        @canany(['update', 'create'], \App\Models\Scene::class)
                             <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ new \App\Models\Scene }})">Create Scene</button>
                         @endcan
 

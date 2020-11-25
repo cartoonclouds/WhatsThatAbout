@@ -17,3 +17,8 @@
 .page-title a, .page-title a:hover {
     color: #FFF;
 }
+
+td .model-icon {
+    width: 32px;
+    height: auto;
+}

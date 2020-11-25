@@ -31,18 +31,11 @@ class UsersDataTable extends DataTable
             ->editColumn('created_at', function (User $user) {
                 return $user->created_at->format(config('website.formats.datetime'));
             })
+
             ->addColumn('email_verified', function (User $user) {
                 return $user->email_verified_at ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-minus text-black-50"></i>';
             })
-            ->addColumn('actions', function (User $user) {
-                $actions = '<button type="button" class="btn btn-sm btn-primary">Edit User</button>';
-
-                if (user()->can('delete')) {
-                    $actions .= '<button type="button" class="ml-2 btn btn-sm btn-outline-danger">Delete User</button>';
-                }
-
-                return $actions;
-            })
+            ->addColumn('action', 'users.action')
 
             ->filterColumn('created_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(created_at, '%d/%m/%Y') LIKE ?", ["%$keyword%"]);
@@ -50,7 +43,7 @@ class UsersDataTable extends DataTable
 
             ->orderColumn('email_verified', '-email_verified_at $1')
 
-            ->rawColumns(['banned', 'actions', 'email_verified']);
+            ->rawColumns(['banned', 'email_verified'], true);
     }
 
     /**
@@ -96,17 +89,16 @@ class UsersDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('banned')
-                ->addClass('text-center'),
+            Column::make('banned')->addClass('text-center'),
             Column::make('name'),
             Column::make('username'),
             Column::make('email'),
-            Column::make('email_verified')
-                ->addClass('text-center'),
+            Column::make('email_verified')->addClass('text-center'),
             Column::make('created_at'),
-            Column::computed('actions')
+            Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
+                ->width(160)
                 ->addClass('text-center'),
         ];
     }

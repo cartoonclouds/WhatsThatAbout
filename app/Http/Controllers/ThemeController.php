@@ -52,11 +52,10 @@ class ThemeController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Theme  $theme
-     * @return \Illuminate\Http\Response
      */
     public function show(Theme $theme)
     {
-        //
+        return view('themes.show', compact('theme'));
     }
 
     /**

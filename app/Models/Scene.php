@@ -65,7 +65,7 @@ class Scene extends Eloquent implements Commentable, Votable
 
     public function getUrlAttribute()
     {
-        return url('/scenes/' . $this->getRouteKey());
+        return url('/scene/' . $this->getRouteKey());
     }
 
 

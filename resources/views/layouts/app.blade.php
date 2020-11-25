@@ -122,7 +122,7 @@
 
     <main class="main row" id="body-row">
 
-        @hasanyrole($allRoles->implode('|'))
+        @hasanyrole($adminRoles->implode('|'))
             @include('layouts.navigation.sidenav')
         @endhasanyrole
 
@@ -149,14 +149,11 @@
 
         </div><!-- Main Col END -->
 
+    </main>
 
-    @auth
-</div><!-- body-row END -->
-@endauth
-
-</main>
-
-@include('layouts.footer')
+    <footer class="py-4 bg-light mt-auto">
+        @include('layouts.footer')
+    </footer>
 
 </div>
 

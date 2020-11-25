@@ -15,7 +15,8 @@ class CreateGenresTable extends Migration
     {
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
-            $table->string('genre')->unique()->index('genres_genre_index')->comment('Such as: Comedy, Action, Thriller,');
+            $table->string('name')->unique()->index('genres_name_index')->comment('Such as: Comedy, Action, Thriller,');
+            $table->string('slug')->unique()->index('genres_slug_idx');
             $table->string('definition');
             $table->longText('icon')->nullable();
             $table->timestamps();

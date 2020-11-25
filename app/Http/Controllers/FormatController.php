@@ -46,7 +46,7 @@ class FormatController extends Controller
      */
     public function show(Format $format)
     {
-        //
+        return view('formats.show', compact('format'));
     }
 
     /**

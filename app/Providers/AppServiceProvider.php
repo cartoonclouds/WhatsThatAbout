@@ -24,6 +24,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
+        /*
+         * TO INSTALL Imagemagick (Nginx)
+         *
+         * sudo apt-get update && sudo apt-get install -y imagemagick php-imagick && sudo service php restart && sudo service nginx restart
+         */
+
+
+
 //        $this->app->bind(Commentable::class, function (Application $app) {
 //            return Page::whereSlug(request()->scene(1))->first();
 //        });

@@ -45,6 +45,10 @@ class User extends Authenticatable implements Commentable, Votable
         'email_verified_at',
     ];
 
+    protected $appends = [
+        'url'
+    ];
+
 
     public function getUrlAttribute()
     {

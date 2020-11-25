@@ -21,7 +21,23 @@ class FormatsDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'formats.action');
+
+            ->editColumn('icon', function (Format $format) {
+                return $format->icon ? "<img style='width:32px;height:auto;' src='$format->icon' />"
+                    : '';
+            })
+            ->editColumn('name', '{{$name}}')
+            ->editColumn('created_at', function (Format $format) {
+                return $format->created_at->format(config('website.formats.datetime'));
+            })
+            ->editColumn('updated_at', function (Format $format) {
+                return $format->updated_at->format(config('website.formats.datetime'));
+            })
+
+            ->addColumn('pages_count', '{{$pages_count}}')
+            ->addColumn('action', 'formats.action')
+
+            ->rawColumns(['icon'], true);
     }
 
     /**
@@ -46,7 +62,7 @@ class FormatsDataTable extends DataTable
                     ->setTableId('formats-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1)
+                    ->orderBy(2, 'asc')
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),
@@ -64,15 +80,17 @@ class FormatsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
+            Column::make('icon')->width('40')->title('')->addClass('text-center vertical-align'),
+            Column::make('id')->title('ID'),
+            Column::make('name'),
+            Column::make('pages_count')->title('Associated Pages'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(160)
+                ->addClass('text-center'),
         ];
     }
 

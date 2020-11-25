@@ -15,7 +15,8 @@ class CreateFormatsTable extends Migration
     {
         Schema::create('formats', function (Blueprint $table) {
             $table->id();
-            $table->string('format')->unique()->index('formats_format_idx')->comment('Such as: Movie, TV Series, Anime, Special,');
+            $table->string('name')->unique()->index('formats_name_idx')->comment('Such as: Movie, TV Series, Anime, Special,');
+            $table->string('slug')->unique()->index('formats_slug_idx');
             $table->string('definition');
             $table->longText('icon')->nullable();
             $table->timestamps();
