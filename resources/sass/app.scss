@@ -2,7 +2,14 @@
 // Import Custom Variables
 @import "theme/variables.scss";
 
-@import "~bootstrap";
+// Import Tailwind's colour palette
+// https://github.com/stevepolitodesign/tailwind-color-palette
+@import '~tailwind-color-palette/scss/tailwind-color-palette';
+
+//Insert here to override Bootstrap's variables
+
+// Import Bootstrap
+@import "~bootstrap/scss/bootstrap.scss";
 
 // Import Custom SCSS
 @import "theme/global.scss";

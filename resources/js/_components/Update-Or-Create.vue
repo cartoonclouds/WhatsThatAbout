@@ -25,7 +25,6 @@
 </template>
 
 <script>
-    import Page from './update-or-create_partials/Page'
     import Segment from './update-or-create_partials/Segment'
 
     export default {

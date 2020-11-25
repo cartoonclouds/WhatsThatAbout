@@ -95,13 +95,24 @@
             padding-left: 10px;
             font-weight: bold;
         }
+
+        /** image-upload component styles */
+        label:hover {
+            color: #fff !important;
+        }
+        /*for dark background inputs
+        ::selection {
+            background: #fff;
+            color: #000;
+            text-shadow: none;
+        }*/
     </style>
 
 
     @stack('styles')
 </head>
-<body>
-<div id="app">
+<body class="vh-100">
+    <div id="app" class="h-100">
 
     <header>
         @include('layouts.navigation.topnav')
@@ -184,6 +195,10 @@
             // Collapse/Expand icon
             $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
         }
+            /**
+             * Setup Inputmask
+             */
+            Inputmask().mask(document.querySelectorAll('input'));
 
 
 

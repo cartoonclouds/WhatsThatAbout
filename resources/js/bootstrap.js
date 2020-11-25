@@ -13,7 +13,14 @@ window.$ = window.jQuery = $ = require('jquery');
 
 
 /**
- * Popper.js 2.5.4 (for Bootstrap) / PopperJs
+ * syrupjs
+ * https://github.com/ahmed-musallam/syrupjs
+ */
+require('syrupjs');
+
+
+/**
+ * Popper.js 1.16
  * https://popper.js.org/docs/v1/
  */
 import { createPopper} from '@popperjs/core';
@@ -66,12 +73,13 @@ require('datatables.net-buttons');
 require('datatables.net-buttons-bs4');
 
 /**
- * VueJS 2.*
- * https://vuejs.org/v2/guide/
+ * Select2
+ * https://select2.org/
+ *
+ * The jQuery replacement for select boxes. Select2 gives you a customizable select box with support
+ * for searching, tagging, remote data sets, infinite scrolling, and many other highly used options.
  */
-import Vue from 'vue';
-
-window.Vue = Vue;
+require('select2/dist/js/select2.full');
 
 
 /**

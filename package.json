@@ -18,11 +18,11 @@
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
-        "vue": "^2.6.12",
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
         "@popperjs/core": "^2.5.4",
+        "syrupjs": "^1.0.0",
         "animate.css": "^4.1.1",
         "axios": "^0.21.0",
         "bootstrap": "^5.0.0-alpha3",
@@ -34,6 +34,8 @@
         "inputmask": "^5.0.5",
         "jquery": "^3.5.1",
         "lodash": "^4.17.20",
-        "popper.js": "^1.16.1"
+        "popper.js": "^1.16.1",
+        "select2": "^4.0.13",
+        "tailwind-color-palette": "^1.0.3"
     }
 }

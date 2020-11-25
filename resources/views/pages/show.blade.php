@@ -76,7 +76,7 @@
         </div>
     </div>
 
-    <update-or-create></update-or-create>
+    <x-update-or-create-page :page="$page"></x-update-or-create-page>
 @endsection
 
 
