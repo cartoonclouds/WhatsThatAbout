@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import Segment from './update-or-create_partials/Segment'
+    import Scene from './update-or-create_partials/Scene'
 
     export default {
         data() {
@@ -36,7 +36,7 @@
         },
         components: {
             'page': Page,
-            'segment': Segment,
+            'segment': Scene,
         },
         computed: {
             modelType()

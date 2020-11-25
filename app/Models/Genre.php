@@ -17,7 +17,7 @@ class Genre extends Eloquent
 
     protected $withCount = [
         'pages',
-        'segments',
+        'scenes',
     ];
 
 
@@ -27,8 +27,8 @@ class Genre extends Eloquent
     }
 
 
-    public function segments()
+    public function scenes()
     {
-        return $this->hasMany(Segment::class);
+        return $this->hasMany(Scene::class);
     }
 }

@@ -102,19 +102,19 @@
 
         <!-- Separator with title -->
         <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-            <small>Segments</small>
+            <small>Scenes</small>
         </li>
         <!-- /END Separator -->
-        <a href="{{ url('segments') }}" class="bg-dark list-group-item list-group-item-action">
+        <a href="{{ url('scenes') }}" class="bg-dark list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-start align-items-center">
-                <i class="{{ config('website.icons.segments.index') }} fa-fw mr-3"></i>
-                <span class="menu-collapsed">All Segments</span>
+                <i class="{{ config('website.icons.scenes.index') }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">All Scenes</span>
             </div>
         </a>
-        <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Segment }})" class="bg-dark list-group-item list-group-item-action">
+        <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Scene }})" class="bg-dark list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-start align-items-center">
-                <i class="{{ config('website.icons.segments.create')  }} fa-fw mr-3"></i>
-                <span class="menu-collapsed">Create Segment</span>
+                <i class="{{ config('website.icons.scenes.create')  }} fa-fw mr-3"></i>
+                <span class="menu-collapsed">Create Scene</span>
             </div>
         </a>
 

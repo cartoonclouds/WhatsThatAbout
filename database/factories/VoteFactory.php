@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Page;
-use App\Models\Segment;
+use App\Models\Scene;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -26,7 +26,7 @@ class VoteFactory extends Factory
     {
         $votable_type = $this->faker->randomElement([
             Page::class,
-            Segment::class,
+            Scene::class,
             //User::class
         ]);
 

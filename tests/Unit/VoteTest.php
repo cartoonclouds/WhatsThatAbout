@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\Comment;
 use App\Models\Vote;
-use App\Models\Segment;
+use App\Models\Scene;
 use App\Models\Page;
 use Tests\TestCase;
 
@@ -24,11 +24,11 @@ class VoteTest extends TestCase
     public function testVoteHasSegment()
     {
         $vote = Vote::factory()->for(
-            Segment::factory(),
+            Scene::factory(),
             'votable'
         )->make();
 
-        $this->assertTrue($vote->segment->exists);
+        $this->assertTrue($vote->scene->exists);
     }
 
 //    public function testVoteHasComment()

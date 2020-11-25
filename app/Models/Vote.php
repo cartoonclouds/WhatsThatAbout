@@ -32,9 +32,9 @@ class Vote extends Eloquent
     }
 
 
-    public function segment()
+    public function scene()
     {
-        return $this->morphTo(Segment::class, 'votable_type', 'votable_id');
+        return $this->morphTo(Scene::class, 'votable_type', 'votable_id');
     }
 
 

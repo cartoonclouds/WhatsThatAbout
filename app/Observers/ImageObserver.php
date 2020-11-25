@@ -16,12 +16,12 @@ class ImageObserver
     public function saved(Image $image)
     {
         if (get_class($image->imageable) === User::class) {
-            // a page/segment can only have one COVER image
+            // a page/scene can only have one COVER image
             if ($image->cover) {
                 $image->imageable->images()->where('id', '!=', $image->id)->update(['cover' => false]);
             }
 
-            // a page/segment can only have one HERO image
+            // a page/scene can only have one HERO image
             if ($image->hero) {
                 $image->imageable->images()->where('id', '!=', $image->id)->update(['hero' => false]);
             }

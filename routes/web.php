@@ -3,14 +3,14 @@
 use App\Http\Controllers\Admin\FormatController as AdminFormatController;
 use App\Http\Controllers\Admin\GenreController as AdminGenreController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
-use App\Http\Controllers\Admin\SegmentController as AdminSegmentController;
+use App\Http\Controllers\Admin\SceneController as AdminSceneController;
 use App\Http\Controllers\Admin\ThemeController as AdminThemeController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\API\PageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\PageViewController;
-use App\Http\Controllers\SegmentViewController;
+use App\Http\Controllers\SceneViewController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::resource('pages', AdminPageController::class)->only(['index']);
 
-        Route::resource('segments', AdminSegmentController::class)->only(['index']);
+        Route::resource('scenes', AdminSceneController::class)->only(['index']);
 
         Route::resource('themes', AdminThemeController::class)->only(['index', 'edit']);
 
@@ -55,7 +55,7 @@ Route::resource('pages.comments', CommentController::class)->parameters([
     'pages' => 'commentable'
 ])->only('show');
 
-Route::get('/segments/{segment:slug}', SegmentViewController::class);
+Route::get('/scenes/{scene:slug}', SceneViewController::class);
 
 Route::get('/{page:slug}', PageViewController::class);
 

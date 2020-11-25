@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Comment;
-use App\Models\Segment;
+use App\Models\Scene;
 use App\Models\Page;
 use Tests\TestCase;
 
@@ -19,14 +19,14 @@ class CommentTest extends TestCase
         $this->assertTrue($comment->page->exists);
     }
 
-    public function testCommentHasSegment()
+    public function testCommentHasScene()
     {
         $comment = Comment::factory()->for(
-            Segment::factory(),
+            Scene::factory(),
             'commentable'
         )->make();
 
-        $this->assertTrue($comment->segment->exists);
+        $this->assertTrue($comment->scene->exists);
     }
 
     public function testCommentHasCommenter()

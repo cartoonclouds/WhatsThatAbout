@@ -40,9 +40,9 @@ class Comment extends Eloquent implements Commentable, Votable
     }
 
 
-    public function segment()
+    public function scene()
     {
-        return $this->morphTo(Segment::class, 'commentable_type', 'commentable_id');
+        return $this->morphTo(Scene::class, 'commentable_type', 'commentable_id');
     }
 
 

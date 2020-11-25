@@ -30,7 +30,7 @@ class VoteController extends Controller
     {
         //save a new vote
         // api/page/{page}/vote
-        // api/segment/{segment}/vote
+        // api/scene/{scene}/vote
     }
 
 

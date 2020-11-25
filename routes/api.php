@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\PageController;
-use App\Http\Controllers\API\SegmentController;
+use App\Http\Controllers\API\SceneController;
 use App\Http\Controllers\API\VoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,10 +30,10 @@ Route::group(['middleware' => ['auth:api']], function() {
         ->scoped(['pages' => 'slug'])
         ->only(['store', 'update', 'destroy']);
 
-    Route::apiResource('segments.comments', CommentController::class)
+    Route::apiResource('scenes.comments', CommentController::class)
         ->shallow()
-        ->parameters(['segments' => 'commentable'])
-        ->scoped(['segments' => 'slug'])
+        ->parameters(['scenes' => 'commentable'])
+        ->scoped(['scenes' => 'slug'])
         ->only(['store', 'update', 'destroy']);
 
     Route::apiResource('pages.votes', VoteController::class)
@@ -42,18 +42,18 @@ Route::group(['middleware' => ['auth:api']], function() {
         ->scoped(['pages' => 'slug'])
         ->only(['store', 'update', 'destroy']);
 
-    Route::apiResource('segments.votes', VoteController::class)
+    Route::apiResource('scenes.votes', VoteController::class)
         ->shallow()
-        ->parameters(['segments' => 'commentable'])
-        ->scoped(['segments' => 'slug'])
+        ->parameters(['scenes' => 'commentable'])
+        ->scoped(['scenes' => 'slug'])
         ->only(['store', 'update', 'destroy']);
 
 
     Route::post('pages/updateOrCreate/{page:slug?}', [PageController::class, 'updateOrCreate']);
     Route::delete('pages/{page:slug}', [PageController::class, 'destroy']);
 
-    Route::post('segments/updateOrCreate/{segment:slug?}', [SegmentController::class, 'updateOrCreate']);
-    Route::delete('segments/{segment:slug}', [SegmentController::class, 'destroy']);
+    Route::post('scenes/updateOrCreate/{scene:slug?}', [SceneController::class, 'updateOrCreate']);
+    Route::delete('scenes/{scene:slug}', [SceneController::class, 'destroy']);
 
 });
 

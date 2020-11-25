@@ -16,7 +16,7 @@ return [
     'paths' => [
         'images' => [
             'pages' => 'images/pages/',
-            'segments' => 'images/segments/',
+            'scenes' => 'images/scenes/',
         ],
     ],
 
@@ -39,7 +39,7 @@ return [
             'index' => 'fas fa-file-alt',
             'create' => 'fas fa-file-plus',
         ],
-        'segments' => [
+        'scenes' => [
             'index' => 'fas fa-puzzle-piece',
             'create' => 'fas fa-plus',
         ],

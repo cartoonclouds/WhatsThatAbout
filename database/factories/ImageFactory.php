@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Image;
 use App\Models\Page;
-use App\Models\Segment;
+use App\Models\Scene;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -26,7 +26,7 @@ class ImageFactory extends Factory
     {
         $imageable_type = $this->faker->randomElement([
             Page::class,
-            Segment::class,
+            Scene::class,
             User::class
         ]);
 

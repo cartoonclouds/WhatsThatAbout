@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Comment;
-use App\Models\Segment;
+use App\Models\Scene;
 use App\Models\Page;
 use App\Models\User;
 use App\Models\Vote;
@@ -21,13 +21,13 @@ class UserTest extends TestCase
         $this->assertCount($SEGMENT_COUNT, $user->pages);
     }
 
-    public function testUserHasSegments()
+    public function testUserHasScenes()
     {
         $SEGMENT_COUNT = 6;
 
-        $user = User::factory()->hasSegments($SEGMENT_COUNT)->create();
+        $user = User::factory()->hasScenes($SEGMENT_COUNT)->create();
 
-        $this->assertCount($SEGMENT_COUNT, $user->segments);
+        $this->assertCount($SEGMENT_COUNT, $user->scenes);
     }
 
     public function testUserHasComments()
@@ -36,13 +36,13 @@ class UserTest extends TestCase
 
         $user = User::factory()->create();
 
-        $segment = Segment::factory()->hasComments($COMMENT_COUNT, [
+        $scene = Scene::factory()->hasComments($COMMENT_COUNT, [
             'user_id' => $user->id
         ])->create([
             'user_id' => $user->id
         ]);
 
-        $this->assertCount($COMMENT_COUNT, $segment->comments);
+        $this->assertCount($COMMENT_COUNT, $scene->comments);
         $this->assertCount($COMMENT_COUNT, $user->comments);
     }
 

@@ -49,7 +49,7 @@ export default {
             axios.post(this.url, new FormData(this.$el))
                 .then(response => {
 
-                    notify(response.data.message, 'Segment Notification', (this.model.exists ? 'info' : 'success'), null, {
+                    notify(response.data.message, 'Scene Notification', (this.model.exists ? 'info' : 'success'), null, {
                         url: `/segments/${response.data.segment.slug}`
                     })
 

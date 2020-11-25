@@ -58,9 +58,9 @@ class User extends Authenticatable implements Commentable, Votable
     }
 
 
-    public function segments()
+    public function scenes()
     {
-        return $this->hasMany(Segment::class);
+        return $this->hasMany(Scene::class);
     }
 
 

@@ -8,13 +8,13 @@ use Tests\TestCase;
 class PageTest extends TestCase
 {
 
-    public function testPageHasSegments()
+    public function testPageHasScenes()
     {
         $SEGMENT_COUNT = 6;
 
-        $page = Page::factory()->hasSegments($SEGMENT_COUNT)->create();
+        $page = Page::factory()->hasScenes($SEGMENT_COUNT)->create();
 
-        $this->assertCount($SEGMENT_COUNT, $page->segments);
+        $this->assertCount($SEGMENT_COUNT, $page->scenes);
     }
 
     public function testPageHasComments()
@@ -45,15 +45,15 @@ class PageTest extends TestCase
 
     public function testPageHasGenre()
     {
-        $segment = Page::factory()->forGenre()->make();
+        $scene = Page::factory()->forGenre()->make();
 
-        $this->assertNotNull($segment->genre);
+        $this->assertNotNull($scene->genre);
     }
 
     public function testPageHasFormat()
     {
-        $segment = Page::factory()->forFormat()->make();
+        $scene = Page::factory()->forFormat()->make();
 
-        $this->assertNotNull($segment->format);
+        $this->assertNotNull($scene->format);
     }
 }

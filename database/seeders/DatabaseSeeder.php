@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
                 ThemeSeeder::class,
                 ImageSeeder::class,
                 PageSeeder::class,
-                SegmentSeeder::class,
+                SceneSeeder::class,
                 ReferenceSeeder::class,
                 VoteSeeder::class,
                 CommentSeeder::class,

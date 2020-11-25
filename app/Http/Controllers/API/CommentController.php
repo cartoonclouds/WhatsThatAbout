@@ -30,7 +30,7 @@ class CommentController extends Controller
     {
         //save a new comment
         // api/page/{page}/comment
-        // api/segment/{segment}/comment
+        // api/scene/{scene}/comment
     }
 
     /**

@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Page;
 use App\Models\Reference;
-use App\Models\Segment;
+use App\Models\Scene;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -26,7 +26,7 @@ class ReferenceFactory extends Factory
     {
         $referenceable_type = $this->faker->randomElement([
             Page::class,
-            Segment::class,
+            Scene::class,
         ]);
 
         if ($referenceable_type::count() === 0) {

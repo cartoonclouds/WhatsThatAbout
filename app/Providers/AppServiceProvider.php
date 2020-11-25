@@ -6,7 +6,7 @@ use App\Contracts\Commentable;
 use App\Http\Controllers\CommentController;
 use App\Models\Image;
 use App\Models\Page;
-use App\Models\Segment;
+use App\Models\Scene;
 use App\Models\User;
 use App\Observers\ImageObserver;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
 //        $this->app->bind(Commentable::class, function (Application $app) {
-//            return Page::whereSlug(request()->segment(1))->first();
+//            return Page::whereSlug(request()->scene(1))->first();
 //        });
 
         Route::bind('commentable', function ($modelKey, \Illuminate\Routing\Route $route) {

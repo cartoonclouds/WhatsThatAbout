@@ -55,8 +55,8 @@
                             {{ $page->synopsis }}
                         </p>
 
-                        @can('create', \App\Models\Segment::class)
-                            <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ new \App\Models\Segment }})">Create Segment</button>
+                        @can('create', \App\Models\Scene::class)
+                            <button type="button" class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ new \App\Models\Scene }})">Create Scene</button>
                         @endcan
 
                     </div>
@@ -69,10 +69,10 @@
 
         <hr>
 
-        <h2>Segments:</h2>
+        <h2>Scene:</h2>
 
         <div class="row row-cols-1">
-            @each('segments.partials.excerpt', $page->segments, 'segment', 'segments.partials.empty')
+            @each('scenes.partials.excerpt', $page->scenes, 'scene', 'scenes.partials.empty')
         </div>
     </div>
 

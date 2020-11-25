@@ -14,12 +14,12 @@ class Theme extends Eloquent
     ];
 
     protected $withCount = [
-        'segments',
+        'scenes',
     ];
 
 
-    public function segments()
+    public function scenes()
     {
-        return $this->hasMany(Segment::class);
+        return $this->hasMany(Scene::class);
     }
 }

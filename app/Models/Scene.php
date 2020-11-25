@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Page extends Eloquent implements Commentable, Votable
+class Scene extends Eloquent implements Commentable, Votable
 {
     use HasFactory;
     use Sluggable;
@@ -23,20 +23,18 @@ class Page extends Eloquent implements Commentable, Votable
 
     protected $casts = [ // object
         'references' => 'array', // {imdb_id: tt0123456}, wikipedia_url: '', official_website_url: ''} http://www.imdb.com/title/tt0123456/
+        'runs_throughout' => 'boolean',
     ];
 
     protected $with = [
         'votes',
-        'creator',
         'genre',
-        'format',
-        'coverImage',
-        'heroImage',
+        'theme',
+        'creator',
     ];
 
     protected $withCount = [
         'comments',
-        'scenes',
         'votes',
     ];
 
@@ -45,6 +43,12 @@ class Page extends Eloquent implements Commentable, Votable
         'exists',
         'url',
     ];
+
+
+    public function getTitleAttribute()
+    {
+        return ucwords($this->attributes['title']);
+    }
 
 
     public function getModelTypeAttribute()
@@ -59,15 +63,9 @@ class Page extends Eloquent implements Commentable, Votable
     }
 
 
-    public function getTitleAttribute()
-    {
-        return ucwords($this->attributes['title']);
-    }
-
-
     public function getUrlAttribute()
     {
-        return url('/' . $this->getRouteKey());
+        return url('/scenes/' . $this->getRouteKey());
     }
 
 
@@ -80,7 +78,6 @@ class Page extends Eloquent implements Commentable, Votable
     {
         return 'slug';
     }
-
 
     public function sluggable()
     {
@@ -98,15 +95,15 @@ class Page extends Eloquent implements Commentable, Votable
     }
 
 
-    public function comments()
+    public function page()
     {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->belongsTo(Page::class);
     }
 
 
-    public function scenes()
+    public function comments()
     {
-        return $this->hasMany(Scene::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
 
@@ -122,25 +119,15 @@ class Page extends Eloquent implements Commentable, Votable
     }
 
 
-    public function coverImage()
-    {
-        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault([
-            'file_path' => ''
-        ]);
-    }
-
-
-    public function heroImage()
-    {
-        return $this->morphOne(Image::class, 'imageable')->where('hero', true)->withDefault([
-            'file_path' => ''
-        ]);
-    }
-
-
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+
+    public function coverImage()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
     }
 
 
@@ -150,8 +137,8 @@ class Page extends Eloquent implements Commentable, Votable
     }
 
 
-    public function format()
+    public function theme()
     {
-        return $this->belongsTo(Format::class);
+        return $this->belongsTo(Theme::class);
     }
 }
