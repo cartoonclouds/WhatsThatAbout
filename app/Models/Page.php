@@ -30,8 +30,6 @@ class Page extends Eloquent implements Commentable, Votable
         'creator',
         'genre',
         'format',
-        'coverImage',
-        'heroImage',
     ];
 
     protected $withCount = [
@@ -119,28 +117,6 @@ class Page extends Eloquent implements Commentable, Votable
     public function creator()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-
-    public function coverImage()
-    {
-        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault([
-            'file_path' => ''
-        ]);
-    }
-
-
-    public function heroImage()
-    {
-        return $this->morphOne(Image::class, 'imageable')->where('hero', true)->withDefault([
-            'file_path' => ''
-        ]);
-    }
-
-
-    public function images()
-    {
-        return $this->morphMany(Image::class, 'imageable');
     }
 
 

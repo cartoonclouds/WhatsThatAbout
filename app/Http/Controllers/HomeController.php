@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['pages'] = Page::paginate(10);
+        $data['pages'] = Page::paginate(12);
 
         flash('Testing flash')->error();
 

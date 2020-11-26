@@ -2,15 +2,8 @@
 
 namespace App\Providers;
 
-use App\Contracts\Commentable;
-use App\Http\Controllers\CommentController;
 use App\Models\Image;
-use App\Models\Page;
-use App\Models\Scene;
-use App\Models\User;
-use App\Observers\ImageObserver;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
-use Illuminate\Foundation\Application;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +24,19 @@ class AppServiceProvider extends ServiceProvider
          * sudo apt-get update && sudo apt-get install -y imagemagick php-imagick && sudo service php restart && sudo service nginx restart
          */
 
+
+        /*
+         *
+            Missing image placeholder
+
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image Cap" preserveAspectRatio="xMidYMid slice" role="img">
+                    <title>Poster Placeholder</title>
+                    <rect width="100%" height="100%" fill="#868e96"/>
+                    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Poster Placeholder</text>
+                </svg>
+
+         *
+         */
 
 
 //        $this->app->bind(Commentable::class, function (Application $app) {
@@ -61,8 +67,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Image::observe(ImageObserver::class);
-
         Paginator::defaultView('vendor.pagination.default');
     }
 }

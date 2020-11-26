@@ -38,7 +38,7 @@ class User extends Authenticatable implements Commentable, Votable
     ];
 
     protected $with = [
-        'avatar',
+        //
     ];
 
     protected $dates = [
@@ -77,17 +77,5 @@ class User extends Authenticatable implements Commentable, Votable
     public function votes()
     {
         return $this->hasMany(Vote::class);
-    }
-
-
-    public function avatar()
-    {
-        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
-    }
-
-
-    public function images()
-    {
-        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
     }
 }

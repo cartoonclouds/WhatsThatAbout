@@ -9,9 +9,7 @@
 @section('content')
     <div id="content" class="container-fluid">
 
-        @include('scenes.partials.scene')
 
-        <update-or-create></update-or-create>
     </div>
 @endsection
 

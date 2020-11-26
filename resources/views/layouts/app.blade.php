@@ -29,6 +29,35 @@
             color: #000;
             text-shadow: none;
         }*/
+
+        .post-excerpt .bd-placeholder-img {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            transition: 0.4s ease;
+        }
+        .post-excerpt .bd-placeholder-img i {
+            opacity: 0;
+            transition: 0.4s ease;
+        }
+        .post-excerpt .bd-placeholder-img svg {
+            opacity: 1;
+        }
+
+        .post-excerpt .bd-placeholder-img:hover {
+            box-shadow: 0 0 20px 0 rgba(255,88,96,0.5);
+            background-color: rgba(255,88,96,0.5);
+        }
+
+        .post-excerpt .bd-placeholder-img:hover i {
+            opacity: 1;
+        }
+        .post-excerpt .bd-placeholder-img:hover svg {
+            opacity: 0;
+        }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
     @stack('styles')

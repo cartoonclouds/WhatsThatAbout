@@ -13,9 +13,9 @@
 
                             <div class="col-3">
 
-                                <x-form.image-upload name="cover_image" class="w-100 h-75 mb-4" title="Cover Image" source="{{ $page->coverImage->file_path }}" label="Upload cover (270 x 400)" help-text="Enter a title image for the page" :field-errors="$errors->page"></x-form.image-upload>
+                                <x-form.image-upload name="cover_image" class="w-100 h-75 mb-4" title="Cover Image" source="" label="Upload cover (270 x 400)" help-text="Enter a title image for the page" :field-errors="$errors->page"></x-form.image-upload>
 
-                                <x-form.image-upload name="hero_image" class="w-100 h-25 mt-4" title="Hero Image" source="{{ $page->heroImage->file_path }}" label="Upload hero (350 x 150)" help-text="Enter a hero image for the page" :field-errors="$errors->page"></x-form.image-upload>
+                                <x-form.image-upload name="hero_image" class="w-100 h-25 mt-4" title="Hero Image" source="" label="Upload hero (350 x 150)" help-text="Enter a hero image for the page" :field-errors="$errors->page"></x-form.image-upload>
 
                             </div>
 

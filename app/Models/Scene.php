@@ -119,18 +119,6 @@ class Scene extends Eloquent implements Commentable, Votable
     }
 
 
-    public function images()
-    {
-        return $this->morphMany(Image::class, 'imageable');
-    }
-
-
-    public function coverImage()
-    {
-        return $this->morphOne(Image::class, 'imageable')->where('cover', true)->withDefault();
-    }
-
-
     public function genre()
     {
         return $this->belongsTo(Genre::class);

@@ -4,7 +4,7 @@
     @include('layouts.navigation.sorting')
 
     @foreach($pages->chunk(3) as $rowPage)
-        <div class="card-deck mb-2" style="height: 237px;">
+        <div class="row">
             @each('pages.partials.excerpt', $rowPage, 'page')
         </div>
     @endforeach
