@@ -82,20 +82,6 @@
 
 @push('scripts')
     <script type="text/javascript">
-        new Vue({
-            el: '#app',
-            components: {
-                //
-            },
-            data() {
-                return {
-                    //
-                }
-            },
-            mounted()
-            {
 
-            }
-        });
     </script>
 @endpush

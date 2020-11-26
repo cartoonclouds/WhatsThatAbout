@@ -1,2 +1,12 @@
 
+// Using Tailwind color palette create additional styles
+@each $tw_color_pallet, $tw_color_pallet_values in ($tw_colors) {
+  @each $tw_color_pallet_number,
+  $tw_color_pallet_hex in ($tw_color_pallet_values)
+  {
+    .tw-border-#{$tw_color_pallet}-#{$tw_color_pallet_number} {
+      border-color: $tw_color_pallet_hex !important;
+    }
+  }
+}
 

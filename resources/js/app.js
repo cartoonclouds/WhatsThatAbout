@@ -54,10 +54,6 @@ window.axios.defaults.headers.common = {
 // window.notify = require('./mixins/notify').default;
 
 
-/**
- * Setup Inputmask
- */
-Inputmask().mask(document.querySelectorAll('input'));
 
 /**
  * Setup Bootbox
@@ -92,4 +88,3 @@ Inputmask().mask(document.querySelectorAll('input'));
 // });
 
 require('./components/form/image-upload');
-

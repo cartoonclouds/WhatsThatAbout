@@ -6,10 +6,8 @@
 // https://github.com/stevepolitodesign/tailwind-color-palette
 @import '~tailwind-color-palette/scss/tailwind-color-palette';
 
-//Insert here to override Bootstrap's variables
-
-// Import Bootstrap
-@import "~bootstrap/scss/bootstrap.scss";
+// Import CoreUI
+@import "~@coreui/coreui/scss/coreui";
 
 // Import Custom SCSS
 @import "theme/global.scss";

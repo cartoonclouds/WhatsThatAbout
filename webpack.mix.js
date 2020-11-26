@@ -44,6 +44,6 @@ mix.extract();
 if (mix.inProduction()) {
     mix.version();
 } else {
-    mix.sourceMaps()
+    mix.sourceMaps();
 }
 

@@ -29,11 +29,19 @@ window.createPopper = createPopper;
 
 // window.popper = require('~popper')
 
+
 /**
  * Bootstrap 5.0
  * https://v5.getbootstrap.com/docs/5.0/
  */
-window.bootstrap = require('bootstrap');
+// window.bootstrap = require('bootstrap');
+
+
+/**
+ * CoreUI 3.4.0
+ * https://coreui.io/docs/
+ */
+window.coreui = require('@coreui/coreui');
 
 
 /**
@@ -53,12 +61,12 @@ window.axios = axios;
 
 
 /**
- * Inputmask
- * https://github.com/RobinHerbots/Inputmask
+ * Cleave.js
+ * https://github.com/nosir/cleave.js
  */
-import Inputmask from 'inputmask/dist/inputmask';
+import Cleave from 'cleave.js';
 
-window.Inputmask = Inputmask;
+window.Cleave = Cleave;
 
 
 /**
@@ -101,3 +109,5 @@ require('./mixins/layout');
 require('./mixins/dataTableDefaults');
 
 window.animateCSS = require('./mixins/animateCSS');
+
+// require('./mixins/cleavejs-masks');

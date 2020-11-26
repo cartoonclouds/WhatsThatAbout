@@ -1,35 +1,21 @@
 @extends('layouts.app')
-
 @section('content')
-    <div id="content" class="container-fluid">
 
-        @include('layouts.navigation.sorting')
+    @include('layouts.navigation.sorting')
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            @each('pages.partials.excerpt', $pages, 'page')
+    @foreach($pages->chunk(3) as $rowPage)
+        <div class="card-deck mb-2" style="height: 237px;">
+            @each('pages.partials.excerpt', $rowPage, 'page')
         </div>
+    @endforeach
 
-        {{ $pages->withQueryString()->links() }}
 
-        @can('createOrUpdate', 'page')
-            <update-or-create></update-or-create>
-        @endcan
-    </div>
+    {{ $pages->withQueryString()->links() }}
+
 @endsection
 
 @push('scripts')
     <script type="text/javascript">
-        new Vue({
-            el: '#app',
-            data() {
-                return {
-                    //
-                }
-            },
-            mounted()
-            {
 
-            }
-        });
     </script>
 @endpush

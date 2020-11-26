@@ -19,83 +19,6 @@
         window.remember_token = '{{ user()->getRememberToken() }}';
     </script>
     <style>
-        body {
-            font-family: 'Roboto';
-        }
-
-        #body-row {
-            margin-left:0;
-            margin-right:0;
-        }
-
-        #sidebar-container {
-            min-height: 100vh;
-            background-color: #333;
-            padding: 0;
-        }
-
-        /* Sidebar sizes when expanded and expanded */
-        .sidebar-expanded {
-            width: 230px;
-        }
-        .sidebar-collapsed {
-            width: 60px;
-        }
-
-        /* Menu item*/
-        /*#sidebar-container li + .list-group-item,*/
-        /*#sidebar-container .list-group-item:first-of-type {*/
-        /*    padding-top: 1em;*/
-        /*    padding-bottom: 1em;*/
-        /*}*/
-
-        #sidebar-container .list-group a {
-            height: 50px;
-            color: white;
-        }
-
-        /* Submenu item*/
-        #sidebar-container .list-group .sidebar-submenu a {
-            height: 45px;
-            padding-left: 30px;
-        }
-        .sidebar-submenu {
-            font-size: 0.9rem;
-        }
-
-        /* Separators */
-        .sidebar-separator-title {
-            background-color: #333;
-            height: 35px;
-        }
-        .sidebar-separator {
-            background-color: #333;
-            height: 25px;
-        }
-        .logo-separator {
-            background-color: #333;
-            height: 60px;
-        }
-
-        /* Closed submenu icon */
-        #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
-            content: " \f0d7";
-            font-family: "Font Awesome 5 Pro";
-            display: inline;
-            text-align: right;
-            padding-left: 10px;
-            font-weight: bold;
-        }
-        /* Opened submenu icon */
-        #sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
-            content: " \f0da";
-            font-family: "Font Awesome 5 Pro";
-            display: inline;
-            text-align: right;
-            padding-left: 10px;
-            font-weight: bold;
-        }
-
         /** image-upload component styles */
         label:hover {
             color: #fff !important;
@@ -107,55 +30,78 @@
             text-shadow: none;
         }*/
     </style>
-
-
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
     @stack('styles')
 </head>
-<body class="vh-100">
-    <div id="app" class="h-100">
-
-    <header>
-        @include('layouts.navigation.topnav')
-
-        @include('layouts.header')
-    </header>
-
-    <main class="main row" id="body-row">
-
-        @hasanyrole($adminRoles->implode('|'))
-            @include('layouts.navigation.sidenav')
-        @endhasanyrole
+<body class="c-app">
 
 
-        <!-- MAIN -->
-        <div class="col row p-4 mx-0">
+    @hasanyrole($adminRoles->implode('|'))
+    <div id="sidebar" class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show">
+        <div class="c-sidebar-brand d-md-down-none">
+            <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+                <use xlink:href="assets/brand/coreui-pro.svg#full"></use>
+            </svg>
+            <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
+                <use xlink:href="assets/brand/coreui-pro.svg#signet"></use>
+            </svg>
+        </div>
 
-            <aside class="col-lg-2">
-                @include('layouts.search')
-            </aside>
+        @include('layouts.navigation.sidenav')
 
-            <div class="col">
-                @include('flash::message')
+        <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
+    </div>
+    @endhasanyrole
 
-                @hasanyrole($adminRoles->implode('|'))
-                    <div class="alert alert-info mb-3">
-                        <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
+    <div class="c-wrapper">
+        <header class="c-header c-header-dark c-header-fixed">
+            @include('layouts.navigation.topnav')
+
+{{--            @include('layouts.header')--}}
+        </header>
+
+        <div class="c-body">
+            <main class="c-main">
+
+                <div class="container-fluid">
+                    <div class="fade-in">
+                        <div class="row">
+
+                            <aside class="col-lg-2">
+                                @include('layouts.search')
+                            </aside>
+
+
+                            <div class="col">
+
+                                @include('flash::message')
+
+                                @hasanyrole($adminRoles->implode('|'))
+                                <div class="alert alert-info mb-3">
+                                    <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
+                                </div>
+                                @endhasanyrole
+
+                                @yield('content')
+
+                            </div>
+
+                        </div>
                     </div>
-                @endhasanyrole
+                </div>
 
-                @yield('content')
+            </main>
 
-            </div>
+        </div>
 
-        </div><!-- Main Col END -->
 
-    </main>
+        <footer class="c-footer mt-4">
+            @include('layouts.footer')
+        </footer>
+    </div>
 
-    <footer class="py-4 bg-light mt-auto">
-        @include('layouts.footer')
-    </footer>
 
-</div>
+</body>
 
 <script src="{{ mix('js/manifest.js') }}"></script>
 <script src="{{ mix('js/vendor.js') }}"></script>
@@ -192,11 +138,6 @@
             // Collapse/Expand icon
             $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
         }
-            /**
-             * Setup Inputmask
-             */
-            Inputmask().mask(document.querySelectorAll('input'));
-
 
 
         $('#flash-overlay-modal').modal();
