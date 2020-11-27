@@ -33,16 +33,7 @@
                         <div class="row">
 
                             <div class="col-4 text-center">
-                                <svg class="card-img-top" width="100%" height="100%"  role="img"
-                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-                                    <rect width="100%" height="100%" fill="#868e96"/>
-                                    <text pointer-events="none" style="user-select: none" x="50%" y="50%" fill="#dee2e6" text-anchor="middle">
-                                        <tspan x="50%" y="50%">{{ $page->genre->name }} Poster</tspan>
-                                        <tspan x="50%" y="60%">Placeholder</tspan>
-                                    </text>
-                                    <title>{{ $page->genre->name }} Poster Placeholder</title>
-                                </svg>
+                                {!! placeholder($page->genre->name, 'Poster Placeholder') !!}
                             </div>
 
                             <div class="col">

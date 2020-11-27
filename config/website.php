@@ -52,5 +52,6 @@ return [
         'formats' => [
             'index' => 'fas fa-camera-movie',
         ],
-    ]
+    ],
+
 ];

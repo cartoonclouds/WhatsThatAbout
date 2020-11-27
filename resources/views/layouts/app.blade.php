@@ -58,6 +58,10 @@
         .post-excerpt .bd-placeholder-img:hover svg {
             opacity: 0;
         }
+
+        .tab-content > .active.c-subheader-nav {
+            display: flex;
+        }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
     @stack('styles')
@@ -96,7 +100,7 @@
                     <div class="fade-in">
                         <div class="row">
 
-                            <aside class="col-lg-2">
+                            <aside class="col-xl-2">
                                 @include('layouts.search')
                             </aside>
 
