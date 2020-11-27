@@ -125,20 +125,20 @@
 
 
     @hasanyrole($adminRoles->implode('|'))
-    <div id="sidebar" class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show">
-        <div class="c-sidebar-brand d-md-down-none">
-            <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-                <use xlink:href="#full"></use>
-            </svg>
-            <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
-                <use xlink:href="#signet"></use>
-            </svg>
+        <div id="sidebar" class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show">
+            <div class="c-sidebar-brand d-md-down-none">
+                <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+                    <use xlink:href="#full"></use>
+                </svg>
+                <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
+                    <use xlink:href="#signet"></use>
+                </svg>
+            </div>
+
+            @include('layouts.navigation.sidenav')
+
+            <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
         </div>
-
-        @include('layouts.navigation.sidenav')
-
-        <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
-    </div>
     @endhasanyrole
 
     <div class="c-wrapper">
@@ -188,62 +188,59 @@
         </footer>
     </div>
 
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script>
+        $(document).ready(function() {
 
-</body>
-
-<script src="{{ mix('js/manifest.js') }}"></script>
-<script src="{{ mix('js/vendor.js') }}"></script>
-<script src="{{ mix('js/app.js') }}"></script>
-<script>
-    $(document).ready(function() {
-
-        // Hide submenus
-        $('#body-row .collapse').collapse('hide');
-
-        // Collapse/Expand icon
-        $('#collapse-icon').addClass('fa-angle-double-left');
-
-        // Collapse click
-        $('[data-toggle=sidebar-collapse]').click(function() {
-            SidebarCollapse();
-        });
-
-        function SidebarCollapse (e) {
-            $('.menu-collapsed').toggleClass('d-none');
-            $('.sidebar-submenu').toggleClass('d-none');
-            $('.submenu-icon').toggleClass('d-none');
-            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-            // Treating d-flex/d-none on separators with title
-            var SeparatorTitle = $('.sidebar-separator-title');
-
-            if ( SeparatorTitle.hasClass('d-flex') ) {
-                SeparatorTitle.removeClass('d-flex');
-            } else {
-                SeparatorTitle.addClass('d-flex');
-            }
+            // Hide submenus
+            $('#body-row .collapse').collapse('hide');
 
             // Collapse/Expand icon
-            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-        }
+            $('#collapse-icon').addClass('fa-angle-double-left');
+
+            // Collapse click
+            $('[data-toggle=sidebar-collapse]').click(function() {
+                SidebarCollapse();
+            });
+
+            function SidebarCollapse (e) {
+                $('.menu-collapsed').toggleClass('d-none');
+                $('.sidebar-submenu').toggleClass('d-none');
+                $('.submenu-icon').toggleClass('d-none');
+                $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+                // Treating d-flex/d-none on separators with title
+                var SeparatorTitle = $('.sidebar-separator-title');
+
+                if ( SeparatorTitle.hasClass('d-flex') ) {
+                    SeparatorTitle.removeClass('d-flex');
+                } else {
+                    SeparatorTitle.addClass('d-flex');
+                }
+
+                // Collapse/Expand icon
+                $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+            }
 
 
-        $('#flash-overlay-modal').modal();
+            $('#flash-overlay-modal').modal();
 
-        // $('.select2').select2();
+            // $('.select2').select2();
 
-        // Enable all tooltips
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+            // Enable all tooltips
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
 
-        window.User = @json([
-                'user' => Auth::user(),
-                'signedIn' => Auth::check()
-            ]);
-    });
-</script>
+            window.User = @json([
+                    'user' => Auth::user(),
+                    'signedIn' => Auth::check()
+                ]);
+        });
+    </script>
 
-@stack('scripts')
+    @stack('scripts')
 </body>
 </html>
