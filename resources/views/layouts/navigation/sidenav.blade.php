@@ -6,24 +6,24 @@
 
         <!-- Users Sidebar Links -->
         <li class="c-sidebar-nav-title">Users</li>
-        <x-nav.nav-item icon="{{ config('website.icons.users.index') }}" url="{{ url('users') }}">All Users</x-nav.nav-item>
-        <x-nav.nav-item icon="{{ config('website.icons.users.create') }}" url="{{ url('users/create') }}">Create User</x-nav.nav-item>
+        <x-nav.nav-item icon="{{ config('website.icons.users.index') }}" url="{{ url('admin/users') }}">All Users</x-nav.nav-item>
+        <x-nav.nav-item icon="{{ config('website.icons.users.create') }}" url="{{ url('admin/users/create') }}">Create User</x-nav.nav-item>
 
         <!-- Pages Sidebar Links -->
         <li class="c-sidebar-nav-title">Pages</li>
-        <x-nav.nav-item icon="{{ config('website.icons.pages.index') }}" url="{{ url('pages') }}">All Pages</x-nav.nav-item>
-        <x-nav.nav-item icon="{{ config('website.icons.pages.create') }}" url="{{ url('pages/create') }}">Create Page</x-nav.nav-item>
+        <x-nav.nav-item icon="{{ config('website.icons.pages.index') }}" url="{{ url('admin/pages') }}">All Pages</x-nav.nav-item>
+        <x-nav.nav-item icon="{{ config('website.icons.pages.create') }}" url="{{ url('admin/pages/create') }}">Create Page</x-nav.nav-item>
 
         <!-- Scenes Sidebar Links -->
         <li class="c-sidebar-nav-title">Scenes</li>
-        <x-nav.nav-item icon="{{ config('website.icons.scenes.index') }}" url="{{ url('scenes') }}">All Scenes</x-nav.nav-item>
-        <x-nav.nav-item icon="{{ config('website.icons.scenes.create') }}" url="{{ url('scenes/create') }}">Create Scene</x-nav.nav-item>
+        <x-nav.nav-item icon="{{ config('website.icons.scenes.index') }}" url="{{ url('admin/scenes') }}">All Scenes</x-nav.nav-item>
+        <x-nav.nav-item icon="{{ config('website.icons.scenes.create') }}" url="{{ url('admin/scenes/create') }}">Create Scene</x-nav.nav-item>
 
         <!-- Configuration Sidebar Links -->
         <li class="c-sidebar-nav-title">Configuration</li>
-        <x-nav.nav-item icon="{{ config('website.icons.themes.index') }}" url="{{ url('themes') }}">Themes</x-nav.nav-item>
-        <x-nav.nav-item icon="{{ config('website.icons.genres.index') }}" url="{{ url('genres') }}">Genres</x-nav.nav-item>
-        <x-nav.nav-item icon="{{ config('website.icons.formats.index') }}" url="{{ url('formats') }}">Formats</x-nav.nav-item>
+        <x-nav.nav-item icon="{{ config('website.icons.themes.index') }}" url="{{ url('admin/themes') }}">Themes</x-nav.nav-item>
+        <x-nav.nav-item icon="{{ config('website.icons.genres.index') }}" url="{{ url('admin/genres') }}">Genres</x-nav.nav-item>
+        <x-nav.nav-item icon="{{ config('website.icons.formats.index') }}" url="{{ url('admin/formats') }}">Formats</x-nav.nav-item>
 
     </ul>
 

@@ -1,24 +1,41 @@
 
-    <button class="c-header-toggler c-class-toggler d-lg-none ml-3" type="button" data-target="#sidebar" data-class="c-sidebar-show">
-        ☰
-    </button>
+    @hasanyrole($adminRoles->implode('|'))
+        <button class="c-header-toggler c-class-toggler d-lg-none ml-3" type="button" data-target="#sidebar" data-class="c-sidebar-show">
+            <i class="c-header-toggler-icon"></i>
+        </button>
+
+        <button class="c-header-toggler c-class-toggler ml-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
+            <i class="c-header-toggler-icon"></i>
+        </button>
+    @endhasanyrole
+
 
     <a class="c-header-brand d-lg-none c-header-brand-sm-up-center" href="#">
         <svg width="118" height="46" alt="CoreUI Logo">
             <use xlink:href="full"></use>
-        </svg>
+        </svg>`
     </a>
-
-    <button class="c-header-toggler c-class-toggler ml-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
-        ☰
-    </button>
-
 
 
     <ul class="c-header-nav d-md-down-none">
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link active" href="#">Dashboard</a></li>
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li>
+{{--        <li class="c-header-nav-item px-3 h-100">--}}
+{{--            <a class="c-header-nav-link active" href="{{ url('/') }}">--}}
+{{--                <i class="{{ config('website.icons.home') }}"></i>&nbsp;Home--}}
+{{--            </a>--}}
+{{--        </li>--}}
+
+        <x-nav.nav-item-dropdown :sub-menu-items="$genres" path="genre">
+            <i class="{{ config('website.icons.genres.index') }} mr-2"></i>Genres
+        </x-nav.nav-item-dropdown>
+
+        <x-nav.nav-item-dropdown :sub-menu-items="$themes" path="theme">
+            <i class="{{ config('website.icons.themes.index') }} mr-2"></i>Themes
+        </x-nav.nav-item-dropdown>
+
+        <x-nav.nav-item-dropdown :sub-menu-items="$formats" path="format">
+            <i class="{{ config('website.icons.formats.index') }} mr-2"></i>Formats
+        </x-nav.nav-item-dropdown>
+
     </ul>
 
     <ul class="c-header-nav ml-auto">
@@ -297,26 +314,4 @@
 {{--        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>--}}
 {{--    </div>--}}
 
-    <!-- Second nav bar -->
-    <div class="c-subheader justify-content-between px-3">
-
-        <div class="c-subheader-nav d-md-down-none mr-2">
-            <a class="c-subheader-nav-link" href="#">
-                <svg class="c-icon">
-                    <use xlink:href="cil-speech"></use>
-                </svg>
-            </a>
-            <a class="c-subheader-nav-link" href="#">
-                <svg class="c-icon">
-                    <use xlink:href="cil-graph"></use>
-                </svg> &nbsp;Dashboard
-            </a>
-            <a class="c-subheader-nav-link" href="#">
-                <svg class="c-icon">
-                    <use xlink:href="cil-settings"></use>
-                </svg> &nbsp;Settings
-            </a>
-        </div>
-
-    </div>
 

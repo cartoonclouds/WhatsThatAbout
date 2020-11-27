@@ -62,6 +62,61 @@
         .tab-content > .active.c-subheader-nav {
             display: flex;
         }
+
+        @media all and (min-width: 992px) {
+            .c-header .has-megamenu{position:unset!important;}
+            .c-header .megamenu{left:-2px; right:-1px; width:101%;background-color:#3c4b64 !important}
+        }
+
+        .dropdown-menu.megamenu {
+            border-style: none;
+        }
+
+        .c-subheader .c-subheader-nav .c-subheader-nav-link, .c-subheader .c-subheader-nav .c-subheader-nav-btn {
+            color: #ffffffbf !important;
+
+            transition: color 0.3s;
+        }
+
+        .c-subheader .c-subheader-nav .c-subheader-nav-link:hover, .c-subheader .c-subheader-nav .c-subheader-nav-btn:hover {
+            color: #fff !important;
+            background-color: rgba(255, 255, 255, 0.1);
+
+            background: linear-gradient(90deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.2) 80%, rgba(255,255,255,0.01) 100%);
+        }
+
+        .c-header-nav-item.has-megamenu.show {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .megamenu .c-subheader {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-top: none !important;
+            margin-top: 0 !important;
+        }
+
+
+
+
+        .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-link .c-sidebar-nav-icon, .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon,
+        .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-link, .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-dropdown-toggle {
+            color: #303c54;
+        }
+
+        .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-link .c-sidebar-nav-icon, .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon {
+            margin-right: 0.5em;
+        }
+
+        .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-link, .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-dropdown-toggle {
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .c-sidebar .c-sidebar-nav-link:hover, .c-sidebar .c-sidebar-nav-dropdown-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(90deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.2) 80%, rgba(255,255,255,0.01) 100%);
+        }
+
     </style>
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
     @stack('styles')
@@ -73,10 +128,10 @@
     <div id="sidebar" class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show">
         <div class="c-sidebar-brand d-md-down-none">
             <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-                <use xlink:href="assets/brand/coreui-pro.svg#full"></use>
+                <use xlink:href="#full"></use>
             </svg>
             <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
-                <use xlink:href="assets/brand/coreui-pro.svg#signet"></use>
+                <use xlink:href="#signet"></use>
             </svg>
         </div>
 
@@ -87,7 +142,7 @@
     @endhasanyrole
 
     <div class="c-wrapper">
-        <header class="c-header c-header-dark c-header-fixed">
+        <header class="c-header c-header-dark c-header-fixed pr-4">
             @include('layouts.navigation.topnav')
 
 {{--            @include('layouts.header')--}}

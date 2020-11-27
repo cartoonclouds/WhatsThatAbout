@@ -35,5 +35,13 @@ class ViewServiceProvider extends ServiceProvider
             User::ROLE_SUPER_ADMIN,
             User::ROLE_ADMIN
         ]));
+
+        View::share('genres', \App\Models\Genre::get()->map->only(['name', 'url']));
+
+        View::share('formats', \App\Models\Format::get()->map->only(['name', 'url']));
+
+        View::share('themes', \App\Models\Theme::get()->map->only(['name', 'url']));
+
+
     }
 }

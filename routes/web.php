@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('user', UserController::class)->only(['show', 'edit']);
 
-    Route::group(['middleware' => ['auth.admin']], function () {
+    Route::group(['middleware' => ['auth.admin'], 'prefix' => 'admin/'], function () {
 
         Route::resource('users', AdminUserController::class)->only(['index']);
 
