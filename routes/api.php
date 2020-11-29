@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\CommentController;
-use App\Http\Controllers\API\PageController;
-use App\Http\Controllers\API\SceneController;
+use App\Http\Controllers\Admin\API\PageController;
+use App\Http\Controllers\Admin\API\SceneController;
 use App\Http\Controllers\API\VoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -49,10 +49,7 @@ Route::group(['middleware' => ['auth:api']], function() {
         ->only(['store', 'update', 'destroy']);
 
 
-    Route::post('pages/updateOrCreate/{page:slug?}', [PageController::class, 'updateOrCreate']);
     Route::delete('pages/{page:slug}', [PageController::class, 'destroy']);
-
-    Route::post('scenes/updateOrCreate/{scene:slug?}', [SceneController::class, 'updateOrCreate']);
     Route::delete('scenes/{scene:slug}', [SceneController::class, 'destroy']);
 
 });

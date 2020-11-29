@@ -25,15 +25,11 @@ class ThemesDataTable extends DataTable
                     : '';
             })
             ->editColumn('name', '{{$name}}')
-            ->editColumn('created_at', function (Theme $theme) {
-                return $theme->created_at->format(config('website.formats.datetime'));
-            })
-            ->editColumn('updated_at', function (Theme $theme) {
-                return $theme->updated_at->format(config('website.formats.datetime'));
-            })
 
             ->addColumn('scenes_count', '{{$scenes_count}}')
-            ->addColumn('action', 'themes.action')
+            ->addColumn('action', function (Theme $theme) {
+                return view('themes.admin.action', compact('theme'));
+            })
 
             ->rawColumns(['icon'], true);
     }
@@ -80,10 +76,8 @@ class ThemesDataTable extends DataTable
         return [
             Column::make('icon')->width('40')->title('')->addClass('text-center vertical-align'),
             Column::make('id')->title('ID'),
-            Column::make('name'),
+            Column::make('name')->addClass('title'),
             Column::make('scenes_count')->title('Associated Scenes'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

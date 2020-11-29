@@ -36,7 +36,9 @@ class Comment extends Eloquent implements Commentable, Votable
 
     public function page()
     {
-        return $this->morphTo(Page::class, 'commentable_type', 'commentable_id');
+        return $this->morphTo(Page::class, 'commentable_type', 'commentable_id')->withDefault([
+            'deleted' => "<span class='text-muted'>** page deleted **</span>"
+        ]);
     }
 
 

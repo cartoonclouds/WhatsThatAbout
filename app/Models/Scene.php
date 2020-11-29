@@ -97,7 +97,25 @@ class Scene extends Eloquent implements Commentable, Votable
 
     public function page()
     {
-        return $this->belongsTo(Page::class);
+        return $this->belongsTo(Page::class)->withDefault([
+            'deleted' => "<span class='text-muted font-italic'>page deleted</span>"
+        ]);
+    }
+
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class)->withDefault([
+            'deleted' => "<span class='text-muted font-italic'>genre deleted</span>"
+        ]);
+    }
+
+
+    public function theme()
+    {
+        return $this->belongsTo(Theme::class)->withDefault([
+            'deleted' => "<span class='text-muted font-italic'>theme deleted</span>"
+        ]);
     }
 
 
@@ -115,18 +133,9 @@ class Scene extends Eloquent implements Commentable, Votable
 
     public function creator()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withDefault([
+            'deleted' => "<span class='text-muted font-italic'>creator deleted</span>"
+        ]);
     }
 
-
-    public function genre()
-    {
-        return $this->belongsTo(Genre::class);
-    }
-
-
-    public function theme()
-    {
-        return $this->belongsTo(Theme::class);
-    }
 }

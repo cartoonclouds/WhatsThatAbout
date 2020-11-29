@@ -25,7 +25,18 @@ class ThemeController extends Controller
      */
     public function index(ThemesDataTable $dataTable)
     {
-        return $dataTable->render('themes.index');
+        return $dataTable->render('themes.admin.index');
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function create()
+    {
+        return view('themes.admin.edit', ['theme' => new Theme]);
     }
 
 
@@ -37,6 +48,6 @@ class ThemeController extends Controller
      */
     public function edit(Theme $theme)
     {
-        return view('themes.edit', compact('theme'));
+        return view('themes.admin.edit', compact('theme'));
     }
 }

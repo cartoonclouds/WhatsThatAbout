@@ -25,7 +25,18 @@ class FormatController extends Controller
      */
     public function index(FormatsDataTable $dataTable)
     {
-        return $dataTable->render('formats.index');
+        return $dataTable->render('formats.admin.index');
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function create()
+    {
+        return view('formats.admin.edit', ['format' => new Format]);
     }
 
 
@@ -37,6 +48,6 @@ class FormatController extends Controller
      */
     public function edit(Format $format)
     {
-        return view('formats.edit', compact('format'));
+        return view('formats.admin.edit', compact('format'));
     }
 }

@@ -44,6 +44,10 @@ class Page extends Eloquent implements Commentable, Votable
         'url',
     ];
 
+    protected $dates = [
+        'release_year'
+    ];
+
 
     public function getModelTypeAttribute()
     {
@@ -116,18 +120,24 @@ class Page extends Eloquent implements Commentable, Votable
 
     public function creator()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withDefault([
+            'deleted' => "<span class='text-muted font-italic'>user deleted</span>"
+        ]);
     }
 
 
     public function genre()
     {
-        return $this->belongsTo(Genre::class);
+        return $this->belongsTo(Genre::class)->withDefault([
+            'deleted' => "<span class='text-muted font-italic'>genre deleted</span>"
+        ]);
     }
 
 
     public function format()
     {
-        return $this->belongsTo(Format::class);
+        return $this->belongsTo(Format::class)->withDefault([
+            'deleted' => "<span class='text-muted font-italic'>format deleted</span>"
+        ]);
     }
 }

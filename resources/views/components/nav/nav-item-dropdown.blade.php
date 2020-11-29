@@ -1,13 +1,13 @@
 
-@props(['link' => '#', 'sub-menu-items'])
+@props(['sub-menu-items', 'tag'])
 
-<li class="c-header-nav-item px-3 dropdown has-megamenu h-100">
+<li class="c-header-nav-item px-3 dropdown topnav h-100 {{ $tag }}">
 
-    <a class="c-header-nav-link dropdown-toggle h-100" href="{{ $link }}" data-toggle="dropdown">
+    <a id="{{ $tag }}Dropdown" class="c-header-nav-link dropdown-toggle h-100" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{ $slot }}
     </a>
 
-    <div class="dropdown-menu p-0 m-0 megamenu">
+    <div class="dropdown-menu p-0 m-0" role="menu" aria-labelledby="#{{ $tag }}Dropdown">
         <!-- Second nav bar -->
         <div class="c-subheader">
 

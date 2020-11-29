@@ -35,7 +35,9 @@ class UsersDataTable extends DataTable
             ->addColumn('email_verified', function (User $user) {
                 return $user->email_verified_at ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-minus text-black-50"></i>';
             })
-            ->addColumn('action', 'users.action')
+            ->addColumn('action', function (User $user) {
+                return view('users.admin.action', compact('user'));
+            })
 
             ->filterColumn('created_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(created_at, '%d/%m/%Y') LIKE ?", ["%$keyword%"]);
@@ -54,7 +56,7 @@ class UsersDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery()->withTrashed();
+        return $model->newQuery();
     }
 
 
@@ -90,7 +92,7 @@ class UsersDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('banned')->addClass('text-center'),
-            Column::make('name'),
+            Column::make('name')->addClass('title'),
             Column::make('username'),
             Column::make('email'),
             Column::make('email_verified')->addClass('text-center'),

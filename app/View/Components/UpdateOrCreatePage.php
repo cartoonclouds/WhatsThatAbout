@@ -10,14 +10,14 @@ class UpdateOrCreatePage extends Component
     /**
      * @var \App\Models\Page
      */
-    public Page $page;
+    public ?Page $page;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(Page $page)
+    public function __construct(Page $page = null)
     {
         //
         $this->page = $page;

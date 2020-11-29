@@ -8,14 +8,14 @@
 
 @section('content')
     <div id="content" class="container-fluid">
-
-        <h2>Scene {{ $scene->title }}</h2>
+        <h3 class="mb-4"><i class="{{ config('website.icons.themes.index') }}"></i> All Themes</h3>
+        {!! $dataTable->table() !!}
     </div>
 @endsection
 
-
 @push('scripts')
-    <script type="text/javascript">
+    {!! $dataTable->scripts() !!}
+    <script>
 
     </script>
 @endpush

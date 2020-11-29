@@ -37,22 +37,6 @@ class PagePolicy
 
 
     /**
-     * Determine whether the user can create Pages.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        if ($user->hasRole(User::ROLE_ADMIN)) {
-            return Response::allow();
-        }
-
-        return Response::deny('A page can only be created by an administrator');
-    }
-
-
-    /**
      * Determine whether the user can update the Page.
      *
      * @param  \App\Models\User $user

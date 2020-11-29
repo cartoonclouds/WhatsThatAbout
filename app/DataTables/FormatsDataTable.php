@@ -27,15 +27,11 @@ class FormatsDataTable extends DataTable
                     : '';
             })
             ->editColumn('name', '{{$name}}')
-            ->editColumn('created_at', function (Format $format) {
-                return $format->created_at->format(config('website.formats.datetime'));
-            })
-            ->editColumn('updated_at', function (Format $format) {
-                return $format->updated_at->format(config('website.formats.datetime'));
-            })
 
             ->addColumn('pages_count', '{{$pages_count}}')
-            ->addColumn('action', 'formats.action')
+            ->addColumn('action', function (Format $format) {
+                return view('formats.admin.action', compact('format'));
+            })
 
             ->rawColumns(['icon'], true);
     }
@@ -82,10 +78,8 @@ class FormatsDataTable extends DataTable
         return [
             Column::make('icon')->width('40')->title('')->addClass('text-center vertical-align'),
             Column::make('id')->title('ID'),
-            Column::make('name'),
+            Column::make('name')->addClass('title'),
             Column::make('pages_count')->title('Associated Pages'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

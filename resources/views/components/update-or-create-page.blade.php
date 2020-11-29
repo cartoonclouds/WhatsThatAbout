@@ -1,8 +1,8 @@
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="updateOrCreatePageModal" data-backdrop="static" tabindex="-1" aria-labelledby="updateOrCreatePageModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Update/Create Page</h5>
+                <h5 class="modal-title" id="updateOrCreatePageModalLabel">Update/Create Page</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

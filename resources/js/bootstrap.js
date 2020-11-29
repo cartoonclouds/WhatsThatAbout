@@ -31,13 +31,6 @@ window.createPopper = createPopper;
 
 
 /**
- * Bootstrap 5.0
- * https://v5.getbootstrap.com/docs/5.0/
- */
-// window.bootstrap = require('bootstrap');
-
-
-/**
  * CoreUI 3.4.0
  * https://coreui.io/docs/
  */
@@ -48,7 +41,7 @@ window.coreui = require('@coreui/coreui');
  * Bootstrap-Notify - Growl message alert
  * http://bootstrap-notify.remabledesigns.com/
  */
-// require('bootstrap-notify');
+require('bootstrap-notify');
 
 
 /**
@@ -80,6 +73,7 @@ require('datatables.net-bs4');
 require('datatables.net-buttons');
 require('datatables.net-buttons-bs4');
 
+
 /**
  * Select2
  * https://select2.org/
@@ -94,20 +88,35 @@ require('select2/dist/js/select2.full');
  * Bootbox - alert/prompt replacement
  * http://bootboxjs.com/documentation.html
  */
-// import bootbox from 'bootbox';
-//
-// window.bootbox = bootbox;
+import bootbox from 'bootbox';
+
+window.bootbox = bootbox;
 
 
 /**
  * General Helper Functions/Mixins
  */
-require('./mixins/helpers');
+import * as Helpers from './mixins/helpers';
 
-require('./mixins/layout');
+// require('./mixins/layout');
 
 require('./mixins/dataTableDefaults');
 
 window.animateCSS = require('./mixins/animateCSS');
 
 // require('./mixins/cleavejs-masks');
+
+
+/**
+ * Shave
+ * https://github.com/garygreen/shave
+ *
+ * Shave is a zero dependency javascript plugin that truncates multi-line
+ * text to fit within an html element based on a set max-height.
+ */
+import shave from 'shave';
+
+window.shave = shave;
+
+
+Helpers.range(15, i => i * 25, 1).forEach(size => { window.shave(`.text-truncate-${size}`, size) })

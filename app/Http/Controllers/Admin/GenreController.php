@@ -25,7 +25,18 @@ class GenreController extends Controller
      */
     public function index(GenresDataTable $dataTable)
     {
-        return $dataTable->render('genres.index');
+        return $dataTable->render('genres.admin.index');
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function create()
+    {
+        return view('genres.admin.edit', ['genre' => new Genre]);
     }
 
 
@@ -37,6 +48,6 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        return view('genres.edit', compact('genre'));
+        return view('genres.admin.edit', compact('genre'));
     }
 }

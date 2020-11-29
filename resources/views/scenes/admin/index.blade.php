@@ -1,10 +1,8 @@
 @extends('layouts.app')
-@section('title', 'View Show')
+@section('title', 'All Scenes')
 @push('styles')
     <style>
-        .dataTable {
-            width: 100% !important;
-        }
+
     </style>
 @endpush
 

@@ -27,16 +27,12 @@ class GenresDataTable extends DataTable
                     : '';
             })
             ->editColumn('name', '{{$name}}')
-            ->editColumn('created_at', function (Genre $genre) {
-                return $genre->created_at->format(config('website.formats.datetime'));
-            })
-            ->editColumn('updated_at', function (Genre $genre) {
-                return $genre->updated_at->format(config('website.formats.datetime'));
-            })
 
             ->addColumn('pages_count', '{{$pages_count}}')
             ->addColumn('scenes_count', '{{$scenes_count}}')
-            ->addColumn('action', 'genres.action')
+            ->addColumn('action', function (Genre $genre) {
+                return view('genres.admin.action', compact('genre'));
+            })
 
             ->rawColumns(['icon'], true);
     }
@@ -83,11 +79,9 @@ class GenresDataTable extends DataTable
         return [
             Column::make('icon')->width('40')->title('')->addClass('text-center vertical-align'),
             Column::make('id')->title('ID'),
-            Column::make('name'),
+            Column::make('name')->addClass('title'),
             Column::make('pages_count')->title('Associated Pages'),
             Column::make('scenes_count')->title('Associated Scenes'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

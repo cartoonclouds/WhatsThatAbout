@@ -21,7 +21,34 @@ class ScenesDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'scenes.action');
+
+            ->editColumn('title', '{{$title}}')
+
+            ->addColumn('page', function (Scene $scene) {
+                return $scene->page->deleted ?? "<a href='{$scene->page->url}'>{$scene->page->title}</a>";
+            })
+            ->addColumn('genre', function (Scene $scene) {
+                return $scene->genre->deleted ?? "<a href='{$scene->genre->url}'>{$scene->genre->name}</a>";
+            })
+            ->addColumn('theme', function (Scene $scene) {
+                return$scene->theme->deleted ?? "<a href='{$scene->theme->url}'>{$scene->theme->name}</a>";
+            })
+            ->addColumn('creator', function (Scene $scene) {
+                return $scene->creator->deleted ?? "<a href='{$scene->creator->url}'>{$scene->creator->username}</a>";
+            })
+            ->addColumn('votes', function (Scene $scene) {
+                return "<i class='far fa-thumbs-up text-success'></i> {$scene->votes()->upVotes()->count()}"
+                        . "<br><i class='far fa-thumbs-down'></i> {$scene->votes()->downVotes()->count()}";
+            })
+            ->addColumn('comments_count', '{{$comments_count}}')
+            ->addColumn('action', function (Scene $scene) {
+                return view('scenes.admin.action', compact('scene'));
+            })
+
+
+            ->orderColumn('comments_count', '-comments_count $1')
+
+            ->rawColumns(['runs_throughout', 'page', 'genre', 'theme', 'creator', 'votes'], true);
     }
 
     /**
@@ -32,7 +59,7 @@ class ScenesDataTable extends DataTable
      */
     public function query(Scene $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['page', 'genre', 'theme', 'creator']);
     }
 
     /**
@@ -46,7 +73,7 @@ class ScenesDataTable extends DataTable
                     ->setTableId('scenes-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1)
+                    ->orderBy(1, 'asc')
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),
@@ -64,15 +91,19 @@ class ScenesDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::make('id')->title('ID'),
+            Column::make('title')->addClass('title'),
+            Column::make('page')->name('page.title'),//->orderable(false)->searchable(false),
+            Column::make('genre')->name('genre.name'),
+            Column::make('theme')->name('theme.name'),
+            Column::make('creator')->name('creator.username'),
+            Column::make('votes')->orderable(false)->searchable(false),
+            Column::make('comments_count'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(160)
+                ->addClass('text-center'),
         ];
     }
 

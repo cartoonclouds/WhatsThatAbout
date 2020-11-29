@@ -24,18 +24,51 @@
 {{--            </a>--}}
 {{--        </li>--}}
 
-        <x-nav.nav-item-dropdown :sub-menu-items="$genres" path="genre">
+        <x-nav.nav-item-dropdown :sub-menu-items="$genres" tag="genre">
             <i class="{{ config('website.icons.genres.index') }} mr-2"></i>Genres
         </x-nav.nav-item-dropdown>
 
-        <x-nav.nav-item-dropdown :sub-menu-items="$themes" path="theme">
+        <x-nav.nav-item-dropdown :sub-menu-items="$themes" tag="theme">
             <i class="{{ config('website.icons.themes.index') }} mr-2"></i>Themes
         </x-nav.nav-item-dropdown>
 
-        <x-nav.nav-item-dropdown :sub-menu-items="$formats" path="format">
+        <x-nav.nav-item-dropdown :sub-menu-items="$formats" tag="format">
             <i class="{{ config('website.icons.formats.index') }} mr-2"></i>Formats
         </x-nav.nav-item-dropdown>
 
+
+{{--        <li class="c-header-nav-item px-3 dropdown show has-megamenu h-100">--}}
+
+{{--            <a class="c-header-nav-link dropdown-toggle h-100" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">--}}
+{{--                Test--}}
+{{--            </a>--}}
+
+{{--            <div role="menu" class="dropdown-menu show p-0 m-0 megamenu">--}}
+{{--                <!-- Second nav bar -->--}}
+{{--                <div class="c-subheader">--}}
+
+{{--                    <div class="c-subheader-nav d-md-down-none mr-2 w-100" style="justify-content: space-evenly;">--}}
+
+{{--                            <a class="c-subheader-nav-link h-100 w-75 justify-content-around text-center" href="/">--}}
+{{--                                name--}}
+{{--                            </a>--}}
+{{--                            <span class="text-white-50">|</span>--}}
+{{--                            <a class="c-subheader-nav-link h-100 w-75 justify-content-around text-center" href="/">--}}
+{{--                                name2--}}
+{{--                            </a>--}}
+{{--                            <span class="text-white-50">|</span>--}}
+{{--                            <a class="c-subheader-nav-link h-100 w-75 justify-content-around text-center" href="/">--}}
+{{--                                name3--}}
+{{--                            </a>--}}
+{{--                            <span class="text-white-50">|</span>--}}
+
+
+{{--                    </div>--}}
+
+{{--                </div>--}}
+{{--            </div> <!-- dropdown-mega-menu.// -->--}}
+
+{{--        </li>--}}
     </ul>
 
     <ul class="c-header-nav ml-auto">

@@ -64,11 +64,11 @@
         }
 
         @media all and (min-width: 992px) {
-            .c-header .has-megamenu{position:unset!important;}
-            .c-header .megamenu{left:-2px; right:-1px; width:101%;background-color:#3c4b64 !important}
+            .c-header .topnav{position:unset!important;}
+            .c-header .topnav .dropdown-menu{left:-2px; right:-1px; width:101%;background-color:#3c4b64 !important}
         }
 
-        .dropdown-menu.megamenu {
+        .topnav .dropdown-menu {
             border-style: none;
         }
 
@@ -85,18 +85,24 @@
             background: linear-gradient(90deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.2) 80%, rgba(255,255,255,0.01) 100%);
         }
 
-        .c-header-nav-item.has-megamenu.show {
+        .c-header-nav-item.dropdown-menu.show {
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        .megamenu .c-subheader {
+        .topnav .c-subheader {
             background-color: rgba(255, 255, 255, 0.1);
             border-top: none !important;
             margin-top: 0 !important;
         }
 
 
+        .c-header-nav-link.dropdown-toggle::after {
+            transition: transform 0.15s linear;
+        }
 
+        .c-header-nav-link.dropdown-toggle:hover::after {
+            transform: translateY(3px);
+        }
 
         .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-link .c-sidebar-nav-icon, .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon,
         .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-link, .c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-dropdown-toggle {
@@ -151,14 +157,15 @@
         <div class="c-body">
             <main class="c-main">
 
-                <div class="container-fluid">
+                <div class="container-fluid pt-5">
                     <div class="fade-in">
                         <div class="row">
 
-                            <aside class="col-xl-2">
-                                @include('layouts.search')
-                            </aside>
-
+                            @if(!request()->fullUrlIs('*/admin*'))
+                                <aside class="col-xl-2">
+                                    @include('layouts.search')
+                                </aside>
+                            @endif
 
                             <div class="col">
 
@@ -193,6 +200,33 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <script>
         $(document).ready(function() {
+
+            @if(count(request()->segments()) > 0)
+                $('.{{ request()->segment(1) }}').addClass('show c-active').find('[data-toggle=dropdown]').attr('aria-expanded', true).next().addClass('show');
+            @endif
+            
+            const $dropdown = $(".dropdown");
+            const $dropdownToggle = $(".dropdown-toggle");
+            const $dropdownMenu = $(".dropdown-menu");
+            const showClass = "show";
+
+            $dropdown.hover(
+                function() {
+                    const $this = $(this);
+                    $this.addClass(showClass);
+                    $this.find($dropdownToggle).attr("aria-expanded", "true");
+                    $this.find($dropdownMenu).addClass(showClass);
+                },
+                function() {
+                    const $this = $(this);
+                    if (!$this.hasClass('genre')) {
+                        $this.removeClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "false");
+                        $this.find($dropdownMenu).removeClass(showClass);
+                    }
+                }
+            );
+
 
             // Hide submenus
             $('#body-row .collapse').collapse('hide');

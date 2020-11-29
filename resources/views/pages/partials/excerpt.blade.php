@@ -27,7 +27,7 @@
             </div>
 
 
-            <div class="text-justify mt-2 text-break" style="overflow: hidden;text-overflow: ellipsis; display: -webkit-box;-webkit-line-clamp: 6;-webkit-box-orient: vertical;">
+            <div class="text-justify mt-2 text-break text-truncate-200">
                 {{ $page->synopsis }}
             </div>
 

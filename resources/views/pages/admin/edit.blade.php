@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'View Show')
+@section('title', 'Page Editing')
 @push('styles')
     <style>
 
@@ -8,14 +8,12 @@
 
 @section('content')
     <div id="content" class="container-fluid">
-
-        <h2>Scene {{ $scene->title }}</h2>
+        Edit details
     </div>
 @endsection
 
-
 @push('scripts')
-    <script type="text/javascript">
+    <script>
 
     </script>
 @endpush

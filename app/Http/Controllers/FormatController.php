@@ -8,32 +8,22 @@ use Illuminate\Http\Request;
 class FormatController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Format::class, 'format');
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function index ()
     {
         //
     }
@@ -41,45 +31,11 @@ class FormatController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Format  $format
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Format $format
+     * @return \Illuminate\Contracts\View\View
      */
-    public function show(Format $format)
+    public function show (Format $format)
     {
         return view('formats.show', compact('format'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Format  $format
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Format $format)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Format  $format
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Format $format)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Format  $format
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Format $format)
-    {
-        //
     }
 }
