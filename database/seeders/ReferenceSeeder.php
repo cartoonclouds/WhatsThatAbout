@@ -15,12 +15,6 @@ class ReferenceSeeder extends Seeder
      */
     public function run()
     {
-        try {
-
-            Reference::factory()->count(10)->create();
-
-        } catch (QueryException $e) {
-
-        }
+        Reference::factory()->count(10)->create();
     }
 }

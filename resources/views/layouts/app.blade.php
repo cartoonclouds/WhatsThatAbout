@@ -157,7 +157,7 @@
         <div class="c-body">
             <main class="c-main">
 
-                <div class="container-fluid pt-5">
+                <div class="container-fluid {{ in_array(request()->segment(1), ['genre', 'theme', 'format']) ? 'pt-5' : '' }}">
                     <div class="fade-in">
                         <div class="row">
 
@@ -171,11 +171,6 @@
 
                                 @include('flash::message')
 
-                                @hasanyrole($adminRoles->implode('|'))
-                                <div class="alert alert-info mb-3">
-                                    <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
-                                </div>
-                                @endhasanyrole
 
                                 @yield('content')
 
@@ -201,10 +196,10 @@
     <script>
         $(document).ready(function() {
 
-            @if(count(request()->segments()) > 0)
+            @if(in_array(request()->segment(1), ['genre', 'theme', 'format']))
                 $('.{{ request()->segment(1) }}').addClass('show c-active').find('[data-toggle=dropdown]').attr('aria-expanded', true).next().addClass('show');
             @endif
-            
+
             const $dropdown = $(".dropdown");
             const $dropdownToggle = $(".dropdown-toggle");
             const $dropdownMenu = $(".dropdown-menu");
@@ -219,7 +214,7 @@
                 },
                 function() {
                     const $this = $(this);
-                    if (!$this.hasClass('genre')) {
+                    if (!$this.hasClass('{{ request()->segment(1) }}')) {
                         $this.removeClass(showClass);
                         $this.find($dropdownToggle).attr("aria-expanded", "false");
                         $this.find($dropdownMenu).removeClass(showClass);

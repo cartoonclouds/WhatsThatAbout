@@ -11,18 +11,16 @@
 
 
     <a class="c-header-brand d-lg-none c-header-brand-sm-up-center" href="#">
-        <svg width="118" height="46" alt="CoreUI Logo">
-            <use xlink:href="full"></use>
-        </svg>`
+        <i class="{{ config('website.icons.home') }}"></i>&nbsp;Home
     </a>
 
 
     <ul class="c-header-nav d-md-down-none">
-{{--        <li class="c-header-nav-item px-3 h-100">--}}
-{{--            <a class="c-header-nav-link active" href="{{ url('/') }}">--}}
-{{--                <i class="{{ config('website.icons.home') }}"></i>&nbsp;Home--}}
-{{--            </a>--}}
-{{--        </li>--}}
+        <li class="c-header-nav-item px-3 h-100">
+            <a class="c-header-nav-link h-100" href="{{ url('/') }}">
+                <i class="{{ config('website.icons.home') }}"></i>&nbsp;Home
+            </a>
+        </li>
 
         <x-nav.nav-item-dropdown :sub-menu-items="$genres" tag="genre">
             <i class="{{ config('website.icons.genres.index') }} mr-2"></i>Genres

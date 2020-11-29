@@ -12,12 +12,12 @@
                aria-label="{{ $placeholder }}"
         >
 
-        <label for="{{ $name }}" id={{ $name }}Label'" class="form-label">{{  $label }}</label>
+        <label for="{{ $name }}" id={{ $name }}Label'" class="form-label mb-0">{{  $label }}</label>
 
     </div>
 
     @if($helpText)
-        <div id="{{ $name }}HelpBlock" class="form-text text-light">
+        <div id="{{ $name }}HelpBlock" class="form-text text-muted">
             {{ $helpText ?? '' }}
         </div>
     @endif

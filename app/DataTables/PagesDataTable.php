@@ -77,6 +77,7 @@ class PagesDataTable extends DataTable
     {
         return $this->builder()
                     ->setTableId('pages-table')
+                    ->addTableClass('table-hover')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->orderBy(1, 'asc')

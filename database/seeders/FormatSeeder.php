@@ -15,12 +15,6 @@ class FormatSeeder extends Seeder
      */
     public function run()
     {
-        try {
-
-            Format::factory()->count(6)->create();
-
-        } catch (QueryException $e) {
-
-        }
+        Format::factory()->count(6)->create();
     }
 }

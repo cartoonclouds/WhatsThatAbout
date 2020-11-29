@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\FormatsDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreFormatRequest;
 use App\Models\Format;
 
 class FormatController extends Controller
@@ -26,6 +27,44 @@ class FormatController extends Controller
     public function index(FormatsDataTable $dataTable)
     {
         return $dataTable->render('formats.admin.index');
+    }
+
+
+    /**
+     * Store a newly created Format or update as specific Format in storage.
+     *
+     * @param  \App\Http\Requests\StoreFormatRequest  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateOrCreate(StoreFormatRequest $request, Format $format)
+    {
+        if ($format->exists) {
+            $format = $request->persist($format);
+
+            if ($format) {
+                return response()->json([
+                    'message' => "Successfully updated format $format->name!",
+                    'format' => $format
+                ]);
+            }
+
+            return response()->json([
+                'message' => "There was an issue updating the format $format->name. Please try again!",
+            ]);
+        } else {
+            $format = $request->persist(new Format());
+
+            if ($format) {
+                return response()->json([
+                    'message' => "Successfully created new format $format->name!",
+                    'format' => $format
+                ]);
+            }
+
+            return response()->json([
+                'message' => "There was an issue creating the format $format->name. Please try again!",
+            ]);
+        }
     }
 
 

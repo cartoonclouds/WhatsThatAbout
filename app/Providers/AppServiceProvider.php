@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Image;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;

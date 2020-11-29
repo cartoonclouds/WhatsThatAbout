@@ -68,7 +68,7 @@ window.Cleave = Cleave;
  * https://datatables.yajrabox.com/starter
  * https://datatables.net/
  */
-require('datatables.net');
+window.DataTables = require('datatables.net');
 require('datatables.net-bs4');
 require('datatables.net-buttons');
 require('datatables.net-buttons-bs4');
@@ -98,13 +98,11 @@ window.bootbox = bootbox;
  */
 import * as Helpers from './mixins/helpers';
 
-// require('./mixins/layout');
-
 require('./mixins/dataTableDefaults');
 
 window.animateCSS = require('./mixins/animateCSS');
 
-// require('./mixins/cleavejs-masks');
+String.prototype.ucfirst = Helpers.ucfirst;
 
 
 /**

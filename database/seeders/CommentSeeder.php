@@ -15,12 +15,6 @@ class CommentSeeder extends Seeder
      */
     public function run()
     {
-        try {
-
-            Comment::factory()->count(50)->create();
-
-        } catch (QueryException $e) {
-
-        }
+        Comment::factory()->count(50)->create();
     }
 }

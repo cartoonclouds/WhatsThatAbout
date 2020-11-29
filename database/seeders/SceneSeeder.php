@@ -15,12 +15,6 @@ class SceneSeeder extends Seeder
      */
     public function run()
     {
-        try {
-
-            Scene::factory()->count(10)->create();
-
-        } catch (QueryException $e) {
-
-        }
+        Scene::factory()->count(10)->create();
     }
 }

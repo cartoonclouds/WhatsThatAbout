@@ -19,7 +19,7 @@
     </label>
 
     @if($helpText)
-        <div id="{{ $name }}HelpBlock" class="form-text mb-2 tw-text-gray-300">
+        <div id="{{ $name }}HelpBlock" class="form-text tw-text-gray-300">
             {{ $helpText ?? '' }}
         </div>
     @endif

@@ -9,14 +9,12 @@
 @section('content')
     <div id="content" class="container-fluid">
 
-        <a href="{{ back()->getTargetUrl() }}" class="btn btn-dark float-left"><i class="fa fa-chevron-double-left"></i> Back</a>
+        @canany(['create', 'edit'], $page)
+            <a href="{{ url('admin/pages/create') }}" class="btn btn-dark float-right ml-2">Create</a>
+            <a href="{{ url("admin/pages/$page->slug/edit") }}" class="btn btn-dark float-right ml-2"><i class="fa fa-edit"></i> Edit</a>
 
-        @can('createOrUpdate', $page)
-            <button class="btn btn-dark float-right ml-2" @click="$bus.$emit('update-or-create', {{ (new \App\Models\Page) }})">Create</button>
-            <button class="btn btn-dark float-right" @click="$bus.$emit('update-or-create', {{ $page }})"><i class="fa fa-edit"></i> Edit</button>
+            <div class="clearfix"></div>
         @endcan
-
-        <div class="clearfix"></div>
 
         <article>
 

@@ -15,12 +15,6 @@ class ThemeSeeder extends Seeder
      */
     public function run()
     {
-        try {
-
-            Theme::factory()->count(9)->create();
-
-        } catch (QueryException $e) {
-
-        }
+        Theme::factory()->count(9)->create();
     }
 }

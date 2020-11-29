@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\ThemesDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreThemeRequest;
 use App\Models\Theme;
 
 class ThemeController extends Controller
@@ -26,6 +27,44 @@ class ThemeController extends Controller
     public function index(ThemesDataTable $dataTable)
     {
         return $dataTable->render('themes.admin.index');
+    }
+
+
+    /**
+     * Store a newly created Theme or update as specific Theme in storage.
+     *
+     * @param  \App\Http\Requests\StoreThemeRequest  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateOrCreate(StoreThemeRequest $request, Theme $theme)
+    {
+        if ($theme->exists) {
+            $theme = $request->persist($theme);
+
+            if ($theme) {
+                return response()->json([
+                    'message' => "Successfully updated theme $theme->name!",
+                    'theme' => $theme
+                ]);
+            }
+
+            return response()->json([
+                'message' => "There was an issue updating the theme $theme->name. Please try again!",
+            ]);
+        } else {
+            $theme = $request->persist(new Theme());
+
+            if ($theme) {
+                return response()->json([
+                    'message' => "Successfully created new theme $theme->name!",
+                    'theme' => $theme
+                ]);
+            }
+
+            return response()->json([
+                'message' => "There was an issue creating the theme $theme->name. Please try again!",
+            ]);
+        }
     }
 
 

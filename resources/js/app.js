@@ -80,3 +80,5 @@ window.notify = require('./mixins/notify').default;
 // });
 
 require('./components/form/image-upload');
+
+require('./components/form/delete-button');

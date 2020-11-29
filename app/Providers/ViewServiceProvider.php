@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\Genre;
+use App\Models\Theme;
+use App\Models\Format;
+use Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,12 +40,17 @@ class ViewServiceProvider extends ServiceProvider
             User::ROLE_ADMIN
         ]));
 
-        View::share('genres', \App\Models\Genre::get()->map->only(['name', 'url']));
+        if (Schema::hasTable('genres')) {
+            View::share('genres', Genre::exists() ? Genre::get()->map->only(['name', 'url']) : collect());
+        }
 
-        View::share('formats', \App\Models\Format::get()->map->only(['name', 'url']));
+        if (Schema::hastable('formats')) {
+            View::share('formats', Format::get()->map->only(['name', 'url']));
+        }
 
-        View::share('themes', \App\Models\Theme::get()->map->only(['name', 'url']));
-
+        if (Schema::hastable('themes')) {
+            View::share('themes', Theme::get()->map->only(['name', 'url']));
+        }
 
     }
 }

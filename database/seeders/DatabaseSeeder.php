@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,12 +20,15 @@ class DatabaseSeeder extends Seeder
                 FormatSeeder::class,
                 GenreSeeder::class,
                 ThemeSeeder::class,
-                ImageSeeder::class,
                 PageSeeder::class,
                 SceneSeeder::class,
                 ReferenceSeeder::class,
                 VoteSeeder::class,
                 CommentSeeder::class,
+            ]);
+
+            User::find(1)->assignRole(User::ROLE_SUPER_ADMIN)->update([
+                'email' => 'abbigail20@example.net'
             ]);
         });
     }

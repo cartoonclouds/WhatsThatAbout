@@ -15,12 +15,6 @@ class GenreSeeder extends Seeder
      */
     public function run()
     {
-        try {
-
-            Genre::factory()->count(10)->create();
-
-        } catch (QueryException $e) {
-
-        }
+        Genre::factory()->count(10)->create();
     }
 }

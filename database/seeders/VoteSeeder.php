@@ -15,12 +15,6 @@ class VoteSeeder extends Seeder
      */
     public function run()
     {
-        try {
-
-            Vote::factory()->count(10)->create();
-
-        } catch (QueryException $e) {
-
-        }
+        Vote::factory()->count(10)->create();
     }
 }

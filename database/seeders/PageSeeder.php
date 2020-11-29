@@ -15,12 +15,6 @@ class PageSeeder extends Seeder
      */
     public function run()
     {
-        try {
-
-            Page::factory()->count(10)->create();
-
-        } catch (QueryException $e) {
-
-        }
+        Page::factory()->count(10)->create();
     }
 }

@@ -22,7 +22,7 @@ class FormatFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->mediaFormat,
+            'name' => $this->faker->unique()->word,
             'definition' => $this->faker->sentence,
             'icon' => function (array $format) {
                 return 'data:image/png;base64,';// . $this->faker->base64Image('placeholder', '250x250', 'png', 'cccccc', '999999', $format['format']);

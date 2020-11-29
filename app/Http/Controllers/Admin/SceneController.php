@@ -36,7 +36,7 @@ class SceneController extends Controller
      * @param  \App\Http\Requests\StoreSceneRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function updateOrStore(StoreSceneRequest $request, Scene $scene)
+    public function updateOrCreate(StoreSceneRequest $request, Scene $scene)
     {
         if ($scene->exists) {
             $scene = $request->persist($scene);

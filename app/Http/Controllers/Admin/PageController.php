@@ -36,7 +36,7 @@ class PageController extends Controller
      * @param  \App\Http\Requests\StorePageRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function updateOrStore(StorePageRequest $request, Page $page)
+    public function updateOrCreate(StorePageRequest $request, Page $page)
     {
         if ($page->exists) {
             $page = $request->persist($page);
@@ -66,7 +66,6 @@ class PageController extends Controller
             ]);
         }
     }
-
 
 
     /**

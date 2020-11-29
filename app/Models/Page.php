@@ -63,7 +63,7 @@ class Page extends Eloquent implements Commentable, Votable
 
     public function getTitleAttribute()
     {
-        return ucwords($this->attributes['title']);
+        return ucwords($this->attributes['title'] ?? '');
     }
 
 

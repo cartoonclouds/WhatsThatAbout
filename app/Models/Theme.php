@@ -42,7 +42,7 @@ class Theme extends Eloquent
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => 'name'
             ]
         ];
     }
