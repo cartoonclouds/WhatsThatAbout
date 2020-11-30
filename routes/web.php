@@ -13,6 +13,7 @@ use App\Http\Controllers\PageViewController;
 use App\Http\Controllers\SceneViewController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\UserController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +40,7 @@ Route::resource('format', FormatController::class)->only(['index', 'show']);
 Route::resource('genre', GenreController::class)->only(['index', 'show']);
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::resource('user', UserController::class)->only(['show', 'edit']);
 

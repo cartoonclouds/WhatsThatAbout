@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class GenrePolicy
 {
@@ -16,9 +17,9 @@ class GenrePolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
-        //
+        return Response::allow();
     }
 
     /**
@@ -28,9 +29,9 @@ class GenrePolicy
      * @param  \App\Models\Genre  $genre
      * @return mixed
      */
-    public function view(User $user, Genre $genre)
+    public function view(?User $user, Genre $genre)
     {
-        //
+        return Response::allow();
     }
 
     /**
@@ -41,7 +42,11 @@ class GenrePolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user->hasRole(User::ROLE_ADMIN)) {
+            return Response::allow();
+        }
+
+        return Response::deny('A genre can only be created by an administrator');
     }
 
     /**
@@ -53,7 +58,11 @@ class GenrePolicy
      */
     public function update(User $user, Genre $genre)
     {
-        //
+        if ($user->hasRole(User::ROLE_ADMIN)) {
+            return Response::allow();
+        }
+
+        return Response::deny('A genre can only be updated by an administrator');
     }
 
     /**
@@ -65,30 +74,11 @@ class GenrePolicy
      */
     public function delete(User $user, Genre $genre)
     {
-        //
+        if ($user->hasRole(User::ROLE_SUPER_ADMIN)) {
+            return Response::allow();
+        }
+
+        return Response::deny('A genre can only be deleted by a super administrator');
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Genre  $genre
-     * @return mixed
-     */
-    public function restore(User $user, Genre $genre)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Genre  $genre
-     * @return mixed
-     */
-    public function forceDelete(User $user, Genre $genre)
-    {
-        //
-    }
 }

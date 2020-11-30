@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements Commentable, Votable
+class User extends Authenticatable implements MustVerifyEmail, Commentable, Votable
 {
     use HasFactory;
     use HasRoles;

@@ -17,13 +17,9 @@ class ThemePolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
-        if ($user->hasRole(User::ROLE_ADMIN)) {
-            return Response::allow();
-        }
-
-        return Response::deny('A user can only be created by an administrator');
+        return Response::allow();
     }
 
     /**
@@ -33,13 +29,9 @@ class ThemePolicy
      * @param  \App\Models\Theme  $theme
      * @return mixed
      */
-    public function view(User $user, Theme $theme)
+    public function view(?User $user, Theme $theme)
     {
-        if ($user->hasRole(User::ROLE_ADMIN)) {
-            return Response::allow();
-        }
-
-        return Response::deny('A user can only be created by an administrator');
+        return Response::allow();
     }
 
     /**
@@ -54,7 +46,7 @@ class ThemePolicy
             return Response::allow();
         }
 
-        return Response::deny('A user can only be created by an administrator');
+        return Response::deny('A theme can only be created by an administrator');
     }
 
     /**
@@ -70,7 +62,7 @@ class ThemePolicy
             return Response::allow();
         }
 
-        return Response::deny('A user can only be created by an administrator');
+        return Response::deny('A theme can only be updated by an administrator');
     }
 
     /**
@@ -86,6 +78,6 @@ class ThemePolicy
             return Response::allow();
         }
 
-        return Response::deny('A user can only be created by a super administrator');
+        return Response::deny('A theme can only be deleted by a super administrator');
     }
 }
