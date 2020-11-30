@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
                     'name'     => 'Test Super Admin',
                     'username' => 'super-admin@example.com',
                     'banned'   => false
-                ])->assignRole(User::ROLE_SUPER_ADMIN);
+                ])->create()->assignRole(User::ROLE_SUPER_ADMIN);
 
                 $this->call([
                     UserSeeder::class,
