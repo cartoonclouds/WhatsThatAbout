@@ -12,7 +12,7 @@ class Input extends Component
     public string $placeholder;
     public string $label;
     public string $helpText;
-    public string $inputMask;
+    public string $errorBag;
 
     /**
      * @var \Illuminate\Contracts\Support\MessageBag|null
@@ -24,14 +24,14 @@ class Input extends Component
      *
      * @return void
      */
-    public function __construct(string $name, string $value, string $label, string $helpText = '', string $placeholder = '', string $inputMask = '', MessageBag $fieldErrors = null)
+    public function __construct(string $name, string $value, string $label, string $helpText = '', string $placeholder = '', string $errorBag = '', MessageBag $fieldErrors = null)
     {
         $this->name = $name;
         $this->value = $value;
         $this->placeholder = $placeholder;
         $this->label = $label;
         $this->helpText = $helpText;
-        $this->inputMask = $inputMask;
+        $this->errorBag = $errorBag;
 
         $this->fieldErrors = $fieldErrors ?? new \Illuminate\Support\MessageBag;
     }
@@ -49,7 +49,7 @@ class Input extends Component
     public function classList()
     {
         return implode(' ', array_filter([
-            'form-control',
+            'form-control form-control-lg',
             ($this->isInvalid() ? 'is-invalid' : false),
         ]));
     }

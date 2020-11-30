@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Contracts\Commentable;
 use App\Contracts\Votable;
+use App\Traits\AppendModelRoutes;
+use App\Traits\SimpleSluggable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,9 +15,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Scene extends Eloquent implements Commentable, Votable
 {
     use HasFactory;
-    use Sluggable;
     use SoftDeletes;
+    use SimpleSluggable;
+    use AppendModelRoutes;
     use LogsActivity;
+
+    protected $sluggableSource = 'title';
 
     protected static $logOnlyDirty = true;
 
@@ -38,54 +43,10 @@ class Scene extends Eloquent implements Commentable, Votable
         'votes',
     ];
 
-    protected $appends = [
-        'model_type',
-        'exists',
-        'url',
-    ];
-
 
     public function getTitleAttribute()
     {
         return ucwords($this->attributes['title'] ?? '');
-    }
-
-
-    public function getModelTypeAttribute()
-    {
-        return get_class($this);
-    }
-
-
-    public function getExistsAttribute()
-    {
-        return $this->exists;
-    }
-
-
-    public function getUrlAttribute()
-    {
-        return url('/scene/' . $this->getRouteKey());
-    }
-
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
     }
 
 

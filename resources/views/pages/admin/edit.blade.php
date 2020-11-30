@@ -31,26 +31,26 @@
     <div id="content" class="container-fluid">
         <h5>Update/Create Page</h5>
 
-        <form id="saveForm" novalidate method="post" action="{{ url('admin/pages/store/' . ($page->exists ? $page->slug : '')) }}">
+        <form id="saveForm" class="needs-validation" novalidate method="post" action="{{ url('admin/pages/store/' . ($page->exists ? $page->slug : '')) }}">
             <div class="row">
 
                 <div class="col-3">
 
-                    <x-form.image-upload name="cover_image" class="w-100 h-75" title="Cover Image" source="" label="Upload cover (270 x 400)" help-text="Enter a title image for the page" :field-errors="$errors->page"></x-form.image-upload>
+                    <x-form.image-upload name="cover_image" class="w-100 h-75" error-bag="page" title="Cover Image" source="" label="Upload cover (270 x 400)" help-text="Enter a title image for the page" :field-errors="$errors->page"></x-form.image-upload>
 
-                    <x-form.image-upload name="hero_image" class="w-100 h-25 mt-2" title="Hero Image" source="" label="Upload hero (350 x 150)" help-text="Enter a hero image for the page" :field-errors="$errors->page"></x-form.image-upload>
+                    <x-form.image-upload name="hero_image" class="w-100 h-25 mt-2" error-bag="page" title="Hero Image" source="" label="Upload hero (350 x 150)" help-text="Enter a hero image for the page" :field-errors="$errors->page"></x-form.image-upload>
 
                 </div>
 
                 <div class="col-9">
 
-                    <x-form.input name="title" value="{{ $page->title }}" placeholder="write here" help-text="Enter a title for the page" label="Page Title" :field-errors="$errors->page"></x-form.input>
+                    <x-form.input name="title" value="{{ $page->title }}" error-bag="page" placeholder="write here" help-text="Enter a title for the page" label="Page Title" :field-errors="$errors->page"></x-form.input>
 
-                    <x-form.input name="release_year" class="input-year" placeholder="YYYY" value="{{ $page->release_year }}" help-text="Enter a Release Year for the page" label="Release Year" :field-errors="$errors->page"></x-form.input>
+                    <x-form.input name="release_year" class="input-year" error-bag="page" placeholder="YYYY" value="{{ $page->release_year }}" help-text="Enter a Release Year for the page" label="Release Year" :field-errors="$errors->page"></x-form.input>
 
-                    <x-form.input name="run_time" class="input-runtime" value="{{ $page->run_time }}" placeholder="" help-text="Enter a Run Time for the page" label="Runtime" :field-errors="$errors->page"></x-form.input>
+                    <x-form.input name="run_time" class="input-runtime" error-bag="page" value="{{ $page->run_time }}" placeholder="" help-text="Enter a Run Time for the page" label="Runtime" :field-errors="$errors->page"></x-form.input>
 
-                    <x-form.textarea name="synopsis" rows="10" style="height:10em;" value="{{ $page->run_time }}" placeholder="Write a interesting synopsis here..." help-text="Enter a Synopsis for the page" label="Synopsis" :field-errors="$errors->page"></x-form.textarea>
+                    <x-form.textarea name="synopsis" rows="10" style="height:10em;" error-bag="page" value="{{ $page->run_time }}" placeholder="Write a interesting synopsis here..." help-text="Enter a Synopsis for the page" label="Synopsis" :field-errors="$errors->page"></x-form.textarea>
 
                 </div>
 

@@ -12,8 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageViewController;
 use App\Http\Controllers\SceneViewController;
 use App\Http\Controllers\ThemeController;
-use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,9 +28,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/{page:slug}', PageViewController::class);
+Route::get('/{page:slug}', PageViewController::class)->name('page');
 
-Route::get('scene/{scene:slug}', SceneViewController::class);
+Route::get('scene/{scene:slug}', SceneViewController::class)->name('scene');
 
 Route::resource('theme', ThemeController::class)->only(['index', 'show']);
 
@@ -49,10 +48,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::resource('users', AdminUserController::class)->only(['index', 'edit']);
 
         Route::resource('pages', AdminPageController::class)->only(['index', 'create', 'edit']);
-        Route::post('pages/store/{page:slug?}', [AdminPageController::class, 'updateOrCreate']);
+        Route::post('pages/store/{page:slug?}', [AdminPageController::class, 'updateOrCreate'])->name('pages.store');
 
         Route::resource('scenes', AdminSceneController::class)->only(['index', 'create', 'edit']);
-        Route::post('scenes/store/{scene:slug?}', [AdminSceneController::class, 'updateOrCreate']);
+        Route::post('scenes/store/{scene:slug?}', [AdminSceneController::class, 'updateOrCreate'])->name('scenes.store');
 
         Route::resource('themes', AdminThemeController::class)->only(['index', 'create', 'edit']);
 

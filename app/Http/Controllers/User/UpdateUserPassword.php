@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Actions\Fortify;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
+use App\Rules\UserValidationRules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
-class UpdateUserPassword implements UpdatesUserPasswords
+class UpdateUserPassword extends Controller implements UpdatesUserPasswords
 {
-    use PasswordValidationRules;
+    use UserValidationRules;
 
     /**
      * Validate and update the user's password.

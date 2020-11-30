@@ -13,10 +13,12 @@ window.$ = window.jQuery = $ = require('jquery');
 
 
 /**
- * syrupjs
- * https://github.com/ahmed-musallam/syrupjs
+ * AlphineJS
+ * Alpine.js offers you the reactive and declarative nature of big frameworks like Vue or React at a much lower cost.
+ *
+ * https://github.com/alpinejs/alpine
  */
-require('syrupjs');
+import 'alpinejs';
 
 
 /**

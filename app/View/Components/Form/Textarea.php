@@ -12,7 +12,7 @@ class Textarea extends Component
     public string $placeholder;
     public string $label;
     public string $helpText;
-    public string $inputMask;
+    public string $errorBag;
 
     /**
      * @var \Illuminate\Contracts\Support\MessageBag|null
@@ -24,14 +24,14 @@ class Textarea extends Component
      *
      * @return void
      */
-    public function __construct(string $name, string $value, string $placeholder, string $label, string $helpText, string $inputMask = '', MessageBag $fieldErrors = null)
+    public function __construct(string $name, string $value, string $placeholder, string $label, string $helpText, string $errorBag = '', MessageBag $fieldErrors = null)
     {
         $this->name = $name;
         $this->value = $value;
         $this->placeholder = $placeholder;
         $this->label = $label;
         $this->helpText = $helpText;
-        $this->inputMask = $inputMask;
+        $this->errorBag = $errorBag;
 
         $this->fieldErrors = $fieldErrors ?? new \Illuminate\Support\MessageBag;
     }

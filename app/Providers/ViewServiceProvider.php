@@ -29,28 +29,14 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('allRoles', collect([
-            User::ROLE_SUPER_ADMIN,
-            User::ROLE_ADMIN,
-            User::ROLE_MOD
-        ]));
+        View::composer('*', function (\Illuminate\View\View $view) {
 
-        View::share('adminRoles', collect([
-            User::ROLE_SUPER_ADMIN,
-            User::ROLE_ADMIN
-        ]));
+            $view->with('genres', Genre::get()->map->only(['name', 'url']));
 
-        if (Schema::hasTable('genres')) {
-            View::share('genres', Genre::exists() ? Genre::get()->map->only(['name', 'url']) : collect());
-        }
+            $view->with('formats', Format::get()->map->only(['name', 'url']));
 
-        if (Schema::hastable('formats')) {
-            View::share('formats', Format::get()->map->only(['name', 'url']));
-        }
+            $view->with('themes', Theme::get()->map->only(['name', 'url']));
 
-        if (Schema::hastable('themes')) {
-            View::share('themes', Theme::get()->map->only(['name', 'url']));
-        }
-
+        });
     }
 }

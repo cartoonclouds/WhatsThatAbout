@@ -27,17 +27,17 @@
             </div>
 
 
-            <div class="text-justify mt-2 text-break text-truncate-200">
+            <div class="text-justify mt-2 text-break text-truncate-200" style="max-height: 14em;">
                 {{ $page->synopsis }}
             </div>
 
         </div>
 
-        @hasanyrole($allRoles->implode('|'))
-        <div class="card-footer text-muted p-0 mt-3">
-            <small>Last updated {{ $page->updated_at->diffForHumans() }}, by ??</small>
-        </div>
-        @endhasanyrole
+        @hasAdminRole
+            <div class="card-footer text-muted p-0 mt-3">
+                <small>Last updated {{ $page->updated_at->diffForHumans() }}, by ??</small>
+            </div>
+        @endHasAdminRole
 
     </div>
 

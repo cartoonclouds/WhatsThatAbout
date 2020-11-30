@@ -26,7 +26,7 @@
 
     <div class="valid-feedback">{{ $feedback ?? '' }}</div>
 
-    @error($name, 'page')
+    @error($name, $errorBag)
     <div id="validation{{ $name }}Feedback" class="invalid-feedback">
         {{ $message }}
     </div>

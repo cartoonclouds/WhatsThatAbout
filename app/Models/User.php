@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Contracts\Commentable;
 use App\Contracts\Votable;
+use App\Traits\AppendModelRoutes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,6 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail, Commentable, Vota
     use HasFactory;
     use HasRoles;
     use Notifiable;
+    use AppendModelRoutes;
     use SoftDeletes;
 
     public const ROLE_SUPER_ADMIN = 'super-admin';
@@ -44,16 +46,6 @@ class User extends Authenticatable implements MustVerifyEmail, Commentable, Vota
     protected $dates = [
         'email_verified_at',
     ];
-
-    protected $appends = [
-        'url'
-    ];
-
-
-    public function getUrlAttribute()
-    {
-        return url('user/' . $this->id);
-    }
 
 
     public function pages()

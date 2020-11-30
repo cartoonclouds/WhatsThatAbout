@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Traits\AppendModelRoutes;
+use App\Traits\SimpleSluggable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,8 +12,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Genre extends Eloquent
 {
     use HasFactory;
-    use Sluggable;
+    use SimpleSluggable;
+    use AppendModelRoutes;
     use LogsActivity;
+
+    protected $sluggableSource = 'name';
 
     protected static $logOnlyDirty = true;
 
@@ -25,35 +30,6 @@ class Genre extends Eloquent
         'pages',
         'scenes',
     ];
-
-    protected $appends = [
-        'url'
-    ];
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
-
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
-    }
-
-    public function getUrlAttribute()
-    {
-        return url('genre/' . $this->getRouteKey());
-    }
 
     public function pages()
     {

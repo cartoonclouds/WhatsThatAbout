@@ -1,5 +1,5 @@
 
-    @hasanyrole($adminRoles->implode('|'))
+    @hasAdminRole
         <button class="c-header-toggler c-class-toggler d-lg-none ml-3" type="button" data-target="#sidebar" data-class="c-sidebar-show">
             <i class="c-header-toggler-icon"></i>
         </button>
@@ -7,20 +7,21 @@
         <button class="c-header-toggler c-class-toggler ml-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
             <i class="c-header-toggler-icon"></i>
         </button>
-    @endhasanyrole
+    @endHasAdminRole
 
 
-    <a class="c-header-brand d-lg-none c-header-brand-sm-up-center" href="#">
+    <a class="c-header-brand d-lg-none c-header-brand-xs-up-center {{ request()->is('/') ? 'c-active' : '' }}" href="#">
         <i class="{{ config('website.icons.home') }}"></i>&nbsp;Home
     </a>
 
 
     <ul class="c-header-nav d-md-down-none">
         <li class="c-header-nav-item px-3 h-100">
-            <a class="c-header-nav-link h-100" href="{{ url('/') }}">
+            <a class="c-header-nav-link h-100 {{ request()->is('/') ? 'c-active' : '' }}" href="{{ url('/') }}">
                 <i class="{{ config('website.icons.home') }}"></i>&nbsp;Home
             </a>
         </li>
+
 
         <x-nav.nav-item-dropdown :sub-menu-items="$genres" tag="genre">
             <i class="{{ config('website.icons.genres.index') }} mr-2"></i>Genres
@@ -85,191 +86,13 @@
             </li>
 
         @else
-{{--            <li class="c-header-nav-item dropdown d-md-down-none mx-2">--}}
-
-{{--            Icon with a badge--}}
-{{--            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--}}
-{{--                <svg class="c-icon">--}}
-{{--                    <use xlink:href="cil-bell"></use>--}}
-{{--                </svg><span class="badge badge-pill badge-danger">5</span>--}}
-{{--            </a>--}}
-
-{{--            Icon with dropdown menu--}}
-{{--            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">--}}
-{{--                <div class="dropdown-header bg-light">--}}
-{{--                    <strong>You have 5 notifications</strong>--}}
-{{--                </div>--}}
-{{--                    <a class="dropdown-item" href="#">--}}
-{{--                        <svg class="c-icon mr-2 text-success">--}}
-{{--                            <use xlink:href="cil-user-follow"></use>--}}
-{{--                        </svg> New user registered--}}
-{{--                    </a>--}}
-{{--                    <a class="dropdown-item" href="#">--}}
-{{--                        <svg class="c-icon mr-2 text-danger">--}}
-{{--                            <use xlink:href="cil-user-unfollow"></use>--}}
-{{--                        </svg> User deleted--}}
-{{--                    </a>--}}
-{{--                    <a class="dropdown-item" href="#">--}}
-{{--                        <svg class="c-icon mr-2 text-info">--}}
-{{--                            <use xlink:href="cil-chart"></use>--}}
-{{--                        </svg> Sales report is ready--}}
-{{--                    </a>--}}
-{{--                    <a class="dropdown-item" href="#">--}}
-{{--                        <svg class="c-icon mr-2 text-success">--}}
-{{--                            <use xlink:href="cil-basket"></use>--}}
-{{--                        </svg> New client--}}
-{{--                    </a>--}}
-{{--                    <a class="dropdown-item" href="#">--}}
-{{--                        <svg class="c-icon mr-2 text-warning">--}}
-{{--                            <use xlink:href="cil-speedometer"></use>--}}
-{{--                        </svg> Server overloaded--}}
-{{--                    </a>--}}
-
-{{--                <div class="dropdown-header bg-light">--}}
-{{--                    <strong>Server</strong>--}}
-{{--                </div>--}}
-{{--                    <a class="dropdown-item d-block" href="#">--}}
-{{--                        <div class="text-uppercase mb-1">--}}
-{{--                            <small><b>CPU Usage</b></small>--}}
-{{--                        </div>--}}
-{{--                        <span class="progress progress-xs">--}}
-{{--                            <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--                        </span>--}}
-{{--                        <small class="text-muted">348 Processes. 1/4 Cores.</small>--}}
-{{--                    </a>--}}
-{{--                    <a class="dropdown-item d-block" href="#">--}}
-{{--                        <div class="text-uppercase mb-1">--}}
-{{--                            <small><b>Memory Usage</b></small>--}}
-{{--                        </div>--}}
-{{--                        <span class="progress progress-xs">--}}
-{{--                            <div class="progress-bar bg-warning" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--                        </span>--}}
-{{--                        <small class="text-muted">11444GB/16384MB</small>--}}
-{{--                    </a>--}}
-{{--                    <a class="dropdown-item d-block" href="#">--}}
-{{--                        <div class="text-uppercase mb-1">--}}
-{{--                            <small><b>SSD 1 Usage</b></small>--}}
-{{--                        </div>--}}
-{{--                        <span class="progress progress-xs">--}}
-{{--                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--                        </span>--}}
-{{--                        <small class="text-muted">243GB/256GB</small>--}}
-{{--                    </a>--}}
-
-{{--            </div>--}}
-{{--        </li>--}}
-
-{{--        Icon with dropdown menu, link on bottom--}}
-{{--        <li class="c-header-nav-item dropdown d-md-down-none mx-2">--}}
-{{--            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--}}
-{{--                <svg class="c-icon">--}}
-{{--                    <use xlink:href="cil-list-rich"></use>--}}
-{{--                </svg>--}}
-{{--                <span class="badge badge-pill badge-warning">15</span>--}}
-{{--            </a>--}}
-{{--            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">--}}
-{{--                <div class="dropdown-header bg-light">--}}
-{{--                    <strong>You have 5 pending tasks</strong>--}}
-{{--                </div>--}}
-{{--                    <a class="dropdown-item d-block" href="#">--}}
-{{--                        <div class="small mb-1">Upgrade NPM &amp; Bower--}}
-{{--                            <span class="float-right"><strong>0%</strong></span>--}}
-{{--                        </div>--}}
-{{--                        <span class="progress progress-xs">--}}
-{{--                            <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--                        </span>--}}
-{{--                    </a>--}}
-{{--                    <a class="dropdown-item d-block" href="#">--}}
-{{--                        <div class="small mb-1">ReactJS Version--}}
-{{--                            <span class="float-right"><strong>25%</strong></span>--}}
-{{--                        </div>--}}
-{{--                        <span class="progress progress-xs">--}}
-{{--                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--                        </span>--}}
-{{--                    </a>--}}
-{{--                    <a class="dropdown-item d-block" href="#">--}}
-{{--                        <div class="small mb-1">VueJS Version--}}
-{{--                            <span class="float-right"><strong>50%</strong></span>--}}
-{{--                        </div>--}}
-{{--                        <span class="progress progress-xs">--}}
-{{--                            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--                        </span>--}}
-{{--                    </a>--}}
-{{--                    <a class="dropdown-item d-block" href="#">--}}
-{{--                        <div class="small mb-1">--}}
-{{--                            Add new layouts<span class="float-right"><strong>75%</strong></span>--}}
-{{--                        </div>--}}
-{{--                        <span class="progress progress-xs">--}}
-{{--                            <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--                        </span>--}}
-{{--                    </a>--}}
-{{--                    <a class="dropdown-item d-block" href="#">--}}
-{{--                        <div class="small mb-1">--}}
-{{--                            Angular 8 Version<span class="float-right"><strong>100%</strong>--}}
-{{--                            </span>--}}
-{{--                        </div>--}}
-{{--                        <span class="progress progress-xs">--}}
-{{--                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--                        </span>--}}
-{{--                    </a>--}}
-
-{{--                <a class="dropdown-item text-center border-top" href="#">--}}
-{{--                    <strong>View all tasks</strong>--}}
-{{--                </a>--}}
-{{--            </div>--}}
-{{--        </li>--}}
-
-{{--        Mail--}}
-{{--        <li class="c-header-nav-item dropdown d-md-down-none mx-2">--}}
-{{--            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--}}
-{{--                <svg class="c-icon">--}}
-{{--                    <use xlink:href="cil-envelope-open"></use>--}}
-{{--                </svg><span class="badge badge-pill badge-info">7</span></a>--}}
-{{--            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">--}}
-{{--                <div class="dropdown-header bg-light"><strong>You have 4 messages</strong></div><a class="dropdown-item" href="#">--}}
-{{--                    <div class="message">--}}
-{{--                        <div class="py-3 mr-3 float-left">--}}
-{{--                            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/7.jpg" alt="user@email.com"><span class="c-avatar-status bg-success"></span></div>--}}
-{{--                        </div>--}}
-{{--                        <div><small class="text-muted">John Doe</small><small class="text-muted float-right mt-1">Just now</small></div>--}}
-{{--                        <div class="text-truncate font-weight-bold"><span class="text-danger">!</span> Important message</div>--}}
-{{--                        <div class="small text-muted text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>--}}
-{{--                    </div>--}}
-{{--                </a><a class="dropdown-item" href="#">--}}
-{{--                    <div class="message">--}}
-{{--                        <div class="py-3 mr-3 float-left">--}}
-{{--                            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/6.jpg" alt="user@email.com"><span class="c-avatar-status bg-warning"></span></div>--}}
-{{--                        </div>--}}
-{{--                        <div><small class="text-muted">John Doe</small><small class="text-muted float-right mt-1">5 minutes ago</small></div>--}}
-{{--                        <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>--}}
-{{--                        <div class="small text-muted text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>--}}
-{{--                    </div>--}}
-{{--                </a><a class="dropdown-item" href="#">--}}
-{{--                    <div class="message">--}}
-{{--                        <div class="py-3 mr-3 float-left">--}}
-{{--                            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/5.jpg" alt="user@email.com"><span class="c-avatar-status bg-danger"></span></div>--}}
-{{--                        </div>--}}
-{{--                        <div><small class="text-muted">John Doe</small><small class="text-muted float-right mt-1">1:52 PM</small></div>--}}
-{{--                        <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>--}}
-{{--                        <div class="small text-muted text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>--}}
-{{--                    </div>--}}
-{{--                </a><a class="dropdown-item" href="#">--}}
-{{--                    <div class="message">--}}
-{{--                        <div class="py-3 mr-3 float-left">--}}
-{{--                            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/4.jpg" alt="user@email.com"><span class="c-avatar-status bg-info"></span></div>--}}
-{{--                        </div>--}}
-{{--                        <div><small class="text-muted">John Doe</small><small class="text-muted float-right mt-1">4:03 PM</small></div>--}}
-{{--                        <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>--}}
-{{--                        <div class="small text-muted text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>--}}
-{{--                    </div>--}}
-{{--                </a><a class="dropdown-item text-center border-top" href="#"><strong>View all messages</strong></a>--}}
-{{--            </div>--}}
-{{--        </li>--}}
-
 
         <li class="c-header-nav-item dropdown">
             <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/6.jpg" alt="user@email.com"></div>
+                <div class="c-avatar c-avatar-rounded">
+{{--                    <img class="c-avatar-img" src="{{ user()->avatar ?? 'https://ui-avatars.com/api/?name='.urlencode(user()->name).'&background=random&rounded=true' }}" alt="{{ user()->email }}">--}}
+                    <img class="c-avatar-img" src="{{ user()->avatar ?? 'https://www.gravatar.com/avatar/'.md5( strtolower( trim( user()->email ) ) ).'?d=monsterid' }}" alt="{{ user()->email }}">
+                </div>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right pt-0">
@@ -299,18 +122,8 @@
                     <a class="dropdown-item" href="{{ user()->url }}">
                         <i class="fas fa-user fa-fw"></i>&nbsp; Profile
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ url('user/'. user()->id .'/edit') }}">
                         <i class="fas fa-user-cog"></i>&nbsp; Settings
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <svg class="c-icon mr-2">
-                            <use xlink:href="cil-credit-card"></use>
-                        </svg> Payments<span class="badge badge-secondary ml-auto">42</span>
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <svg class="c-icon mr-2">
-                            <use xlink:href="cil-file"></use>
-                        </svg> Projects<span class="badge badge-primary ml-auto">42</span>
                     </a>
 
                 <div class="dropdown-divider"></div>
@@ -327,12 +140,6 @@
             </div>
         </li>
 
-        <button class="c-header-toggler c-class-toggler mr-md-3" type="button" data-target="#aside" data-class="c-sidebar-show">
-            <svg class="c-icon c-icon-lg">
-                <use xlink:href="cil-applications-settings"></use>
-            </svg>
-        </button>
-
         @endguest
 
     </ul>
@@ -346,3 +153,184 @@
 {{--    </div>--}}
 
 
+
+    {{--            <li class="c-header-nav-item dropdown d-md-down-none mx-2">--}}
+
+    {{--            Icon with a badge--}}
+    {{--            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--}}
+    {{--                <svg class="c-icon">--}}
+    {{--                    <use xlink:href="cil-bell"></use>--}}
+    {{--                </svg><span class="badge badge-pill badge-danger">5</span>--}}
+    {{--            </a>--}}
+
+    {{--            Icon with dropdown menu--}}
+    {{--            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">--}}
+    {{--                <div class="dropdown-header bg-light">--}}
+    {{--                    <strong>You have 5 notifications</strong>--}}
+    {{--                </div>--}}
+    {{--                    <a class="dropdown-item" href="#">--}}
+    {{--                        <svg class="c-icon mr-2 text-success">--}}
+    {{--                            <use xlink:href="cil-user-follow"></use>--}}
+    {{--                        </svg> New user registered--}}
+    {{--                    </a>--}}
+    {{--                    <a class="dropdown-item" href="#">--}}
+    {{--                        <svg class="c-icon mr-2 text-danger">--}}
+    {{--                            <use xlink:href="cil-user-unfollow"></use>--}}
+    {{--                        </svg> User deleted--}}
+    {{--                    </a>--}}
+    {{--                    <a class="dropdown-item" href="#">--}}
+    {{--                        <svg class="c-icon mr-2 text-info">--}}
+    {{--                            <use xlink:href="cil-chart"></use>--}}
+    {{--                        </svg> Sales report is ready--}}
+    {{--                    </a>--}}
+    {{--                    <a class="dropdown-item" href="#">--}}
+    {{--                        <svg class="c-icon mr-2 text-success">--}}
+    {{--                            <use xlink:href="cil-basket"></use>--}}
+    {{--                        </svg> New client--}}
+    {{--                    </a>--}}
+    {{--                    <a class="dropdown-item" href="#">--}}
+    {{--                        <svg class="c-icon mr-2 text-warning">--}}
+    {{--                            <use xlink:href="cil-speedometer"></use>--}}
+    {{--                        </svg> Server overloaded--}}
+    {{--                    </a>--}}
+
+    {{--                <div class="dropdown-header bg-light">--}}
+    {{--                    <strong>Server</strong>--}}
+    {{--                </div>--}}
+    {{--                    <a class="dropdown-item d-block" href="#">--}}
+    {{--                        <div class="text-uppercase mb-1">--}}
+    {{--                            <small><b>CPU Usage</b></small>--}}
+    {{--                        </div>--}}
+    {{--                        <span class="progress progress-xs">--}}
+    {{--                            <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
+    {{--                        </span>--}}
+    {{--                        <small class="text-muted">348 Processes. 1/4 Cores.</small>--}}
+    {{--                    </a>--}}
+    {{--                    <a class="dropdown-item d-block" href="#">--}}
+    {{--                        <div class="text-uppercase mb-1">--}}
+    {{--                            <small><b>Memory Usage</b></small>--}}
+    {{--                        </div>--}}
+    {{--                        <span class="progress progress-xs">--}}
+    {{--                            <div class="progress-bar bg-warning" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>--}}
+    {{--                        </span>--}}
+    {{--                        <small class="text-muted">11444GB/16384MB</small>--}}
+    {{--                    </a>--}}
+    {{--                    <a class="dropdown-item d-block" href="#">--}}
+    {{--                        <div class="text-uppercase mb-1">--}}
+    {{--                            <small><b>SSD 1 Usage</b></small>--}}
+    {{--                        </div>--}}
+    {{--                        <span class="progress progress-xs">--}}
+    {{--                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>--}}
+    {{--                        </span>--}}
+    {{--                        <small class="text-muted">243GB/256GB</small>--}}
+    {{--                    </a>--}}
+
+    {{--            </div>--}}
+    {{--        </li>--}}
+
+    {{--        Icon with dropdown menu, link on bottom--}}
+    {{--        <li class="c-header-nav-item dropdown d-md-down-none mx-2">--}}
+    {{--            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--}}
+    {{--                <svg class="c-icon">--}}
+    {{--                    <use xlink:href="cil-list-rich"></use>--}}
+    {{--                </svg>--}}
+    {{--                <span class="badge badge-pill badge-warning">15</span>--}}
+    {{--            </a>--}}
+    {{--            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">--}}
+    {{--                <div class="dropdown-header bg-light">--}}
+    {{--                    <strong>You have 5 pending tasks</strong>--}}
+    {{--                </div>--}}
+    {{--                    <a class="dropdown-item d-block" href="#">--}}
+    {{--                        <div class="small mb-1">Upgrade NPM &amp; Bower--}}
+    {{--                            <span class="float-right"><strong>0%</strong></span>--}}
+    {{--                        </div>--}}
+    {{--                        <span class="progress progress-xs">--}}
+    {{--                            <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>--}}
+    {{--                        </span>--}}
+    {{--                    </a>--}}
+    {{--                    <a class="dropdown-item d-block" href="#">--}}
+    {{--                        <div class="small mb-1">ReactJS Version--}}
+    {{--                            <span class="float-right"><strong>25%</strong></span>--}}
+    {{--                        </div>--}}
+    {{--                        <span class="progress progress-xs">--}}
+    {{--                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
+    {{--                        </span>--}}
+    {{--                    </a>--}}
+    {{--                    <a class="dropdown-item d-block" href="#">--}}
+    {{--                        <div class="small mb-1">VueJS Version--}}
+    {{--                            <span class="float-right"><strong>50%</strong></span>--}}
+    {{--                        </div>--}}
+    {{--                        <span class="progress progress-xs">--}}
+    {{--                            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>--}}
+    {{--                        </span>--}}
+    {{--                    </a>--}}
+    {{--                    <a class="dropdown-item d-block" href="#">--}}
+    {{--                        <div class="small mb-1">--}}
+    {{--                            Add new layouts<span class="float-right"><strong>75%</strong></span>--}}
+    {{--                        </div>--}}
+    {{--                        <span class="progress progress-xs">--}}
+    {{--                            <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>--}}
+    {{--                        </span>--}}
+    {{--                    </a>--}}
+    {{--                    <a class="dropdown-item d-block" href="#">--}}
+    {{--                        <div class="small mb-1">--}}
+    {{--                            Angular 8 Version<span class="float-right"><strong>100%</strong>--}}
+    {{--                            </span>--}}
+    {{--                        </div>--}}
+    {{--                        <span class="progress progress-xs">--}}
+    {{--                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>--}}
+    {{--                        </span>--}}
+    {{--                    </a>--}}
+
+    {{--                <a class="dropdown-item text-center border-top" href="#">--}}
+    {{--                    <strong>View all tasks</strong>--}}
+    {{--                </a>--}}
+    {{--            </div>--}}
+    {{--        </li>--}}
+
+    {{--        Mail--}}
+    {{--        <li class="c-header-nav-item dropdown d-md-down-none mx-2">--}}
+    {{--            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">--}}
+    {{--                <svg class="c-icon">--}}
+    {{--                    <use xlink:href="cil-envelope-open"></use>--}}
+    {{--                </svg><span class="badge badge-pill badge-info">7</span></a>--}}
+    {{--            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">--}}
+    {{--                <div class="dropdown-header bg-light"><strong>You have 4 messages</strong></div><a class="dropdown-item" href="#">--}}
+    {{--                    <div class="message">--}}
+    {{--                        <div class="py-3 mr-3 float-left">--}}
+    {{--                            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/7.jpg" alt="user@email.com"><span class="c-avatar-status bg-success"></span></div>--}}
+    {{--                        </div>--}}
+    {{--                        <div><small class="text-muted">John Doe</small><small class="text-muted float-right mt-1">Just now</small></div>--}}
+    {{--                        <div class="text-truncate font-weight-bold"><span class="text-danger">!</span> Important message</div>--}}
+    {{--                        <div class="small text-muted text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>--}}
+    {{--                    </div>--}}
+    {{--                </a><a class="dropdown-item" href="#">--}}
+    {{--                    <div class="message">--}}
+    {{--                        <div class="py-3 mr-3 float-left">--}}
+    {{--                            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/6.jpg" alt="user@email.com"><span class="c-avatar-status bg-warning"></span></div>--}}
+    {{--                        </div>--}}
+    {{--                        <div><small class="text-muted">John Doe</small><small class="text-muted float-right mt-1">5 minutes ago</small></div>--}}
+    {{--                        <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>--}}
+    {{--                        <div class="small text-muted text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>--}}
+    {{--                    </div>--}}
+    {{--                </a><a class="dropdown-item" href="#">--}}
+    {{--                    <div class="message">--}}
+    {{--                        <div class="py-3 mr-3 float-left">--}}
+    {{--                            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/5.jpg" alt="user@email.com"><span class="c-avatar-status bg-danger"></span></div>--}}
+    {{--                        </div>--}}
+    {{--                        <div><small class="text-muted">John Doe</small><small class="text-muted float-right mt-1">1:52 PM</small></div>--}}
+    {{--                        <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>--}}
+    {{--                        <div class="small text-muted text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>--}}
+    {{--                    </div>--}}
+    {{--                </a><a class="dropdown-item" href="#">--}}
+    {{--                    <div class="message">--}}
+    {{--                        <div class="py-3 mr-3 float-left">--}}
+    {{--                            <div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/4.jpg" alt="user@email.com"><span class="c-avatar-status bg-info"></span></div>--}}
+    {{--                        </div>--}}
+    {{--                        <div><small class="text-muted">John Doe</small><small class="text-muted float-right mt-1">4:03 PM</small></div>--}}
+    {{--                        <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>--}}
+    {{--                        <div class="small text-muted text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>--}}
+    {{--                    </div>--}}
+    {{--                </a><a class="dropdown-item text-center border-top" href="#"><strong>View all messages</strong></a>--}}
+    {{--            </div>--}}
+    {{--        </li>--}}

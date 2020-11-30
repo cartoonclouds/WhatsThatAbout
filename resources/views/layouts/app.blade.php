@@ -1,3 +1,4 @@
+@php /** @var \App\Models\User $user */ @endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,11 +79,14 @@
             transition: color 0.3s;
         }
 
-        .c-subheader .c-subheader-nav .c-subheader-nav-link:hover, .c-subheader .c-subheader-nav .c-subheader-nav-btn:hover {
+        .c-subheader .c-subheader-nav .c-subheader-nav-link.active,
+        .c-subheader .c-subheader-nav .c-subheader-nav-link:hover,
+        .c-subheader .c-subheader-nav .c-subheader-nav-btn.active,
+        .c-subheader .c-subheader-nav .c-subheader-nav-btn:hover {
             color: #fff !important;
             background-color: rgba(255, 255, 255, 0.1);
 
-            background: linear-gradient(90deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.2) 80%, rgba(255,255,255,0.01) 100%);
+            /*background: linear-gradient(90deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.2) 80%, rgba(255,255,255,0.01) 100%);*/
         }
 
         .c-header-nav-item.dropdown-menu.show {
@@ -129,8 +133,7 @@
 </head>
 <body class="c-app">
 
-
-    @hasanyrole($adminRoles->implode('|'))
+    @hasAdminRole
         <div id="sidebar" class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show">
             <div class="c-sidebar-brand d-md-down-none">
                 <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
@@ -145,7 +148,7 @@
 
             <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
         </div>
-    @endhasanyrole
+    @endHasAdminRole
 
     <div class="c-wrapper">
         <header class="c-header c-header-dark c-header-fixed pr-4">
@@ -161,7 +164,7 @@
                     <div class="fade-in">
                         <div class="row">
 
-                            @if(!request()->fullUrlIs('*/admin*'))
+                            @if(!request()->is(['admin*', 'user*', 'login', 'register*']))
                                 <aside class="col-xl-2">
                                     @include('layouts.search')
                                 </aside>
@@ -184,7 +187,6 @@
 
         </div>
 
-
         <footer class="c-footer mt-4">
             @include('layouts.footer')
         </footer>
@@ -196,23 +198,25 @@
     <script>
         $(document).ready(function() {
 
-            @if(in_array(request()->segment(1), ['genre', 'theme', 'format']))
-                $('.{{ request()->segment(1) }}').addClass('show c-active').find('[data-toggle=dropdown]').attr('aria-expanded', true).next().addClass('show');
-            @endif
+            const $dropdown = $('.c-header-nav-item.dropdown');
+            const $dropdownToggle = $dropdown.find('.dropdown-toggle');
+            const $dropdownMenu = $dropdown.find('.dropdown-menu');
+            const showClass = 'show';
 
-            const $dropdown = $(".dropdown");
-            const $dropdownToggle = $(".dropdown-toggle");
-            const $dropdownMenu = $(".dropdown-menu");
-            const showClass = "show";
+            $dropdown.css('z-index', 0);
+
+            try {
+                [...$dropdown.not('.{{ request()->segment(1) }}')].reverse().forEach((li, i) => $(li).css('z-index', i));
+            } catch(e) {}
 
             $dropdown.hover(
-                function() {
+                function () {
                     const $this = $(this);
                     $this.addClass(showClass);
                     $this.find($dropdownToggle).attr("aria-expanded", "true");
                     $this.find($dropdownMenu).addClass(showClass);
                 },
-                function() {
+                function () {
                     const $this = $(this);
                     if (!$this.hasClass('{{ request()->segment(1) }}')) {
                         $this.removeClass(showClass);

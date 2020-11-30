@@ -19,25 +19,15 @@ class Comment extends Eloquent implements Commentable, Votable
 
     protected $guarded = [];
 
-    protected $appends = [
-        'exists'
-    ];
-
     protected $withCount = [
         'votes',
     ];
 
 
-    public function getExistsAttribute()
-    {
-        return $this->exists;
-    }
-
-
     public function page()
     {
         return $this->morphTo(Page::class, 'commentable_type', 'commentable_id')->withDefault([
-            'deleted' => "<span class='text-muted'>** page deleted **</span>"
+            'deleted' => "<span class='text-muted font-italic'>page deleted</span>"
         ]);
     }
 

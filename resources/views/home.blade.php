@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
-    @hasanyrole($adminRoles->implode('|'))
+    @hasAdminRole
     <div class="alert alert-info mb-3">
         <i class="fa fa-exclamation"></i> Hey! You're a {{ user()->roles->first()->pretty_name }}, why not <a href="#" @click="$bus.$emit('update-or-create', {{ new \App\Models\Page }})">create a new page</a>?
     </div>
-    @endhasanyrole
+    @endHasAdminRole
 
     @include('layouts.navigation.sorting')
 

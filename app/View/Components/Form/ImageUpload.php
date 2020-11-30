@@ -12,6 +12,7 @@ class ImageUpload extends Component
     public string $source;
     public string $label;
     public string $helpText;
+    public string $errorBag;
 
     /**
      * @var \Illuminate\Contracts\Support\MessageBag|null
@@ -23,12 +24,13 @@ class ImageUpload extends Component
      *
      * @return void
      */
-    public function __construct(string $name, string $source, string $label, string $helpText, MessageBag $fieldErrors = null)
+    public function __construct(string $name, string $source, string $label, string $helpText, string $errorBag = '', MessageBag $fieldErrors = null)
     {
         $this->name = $name;
         $this->source = $source;
         $this->label = $label;
         $this->helpText = $helpText;
+        $this->errorBag = $errorBag;
 
         $this->fieldErrors = $fieldErrors ?? new \Illuminate\Support\MessageBag;
     }

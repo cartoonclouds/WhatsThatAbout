@@ -44,7 +44,7 @@ class Vote extends Eloquent
     public function page()
     {
         return $this->morphTo(Page::class, 'votable_type', 'votable_id')->withDefault([
-            'deleted' => "<span class='text-muted'>** page deleted **</span>"
+            'deleted' => "<span class='text-muted font-italic'>page deleted</span>"
         ]);
     }
 

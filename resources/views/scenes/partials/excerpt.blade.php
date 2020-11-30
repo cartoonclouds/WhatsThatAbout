@@ -22,11 +22,11 @@
                 <a href="{{ $scene->url }}" class="mb-3 mr-4 card-text d-block text-right text-decoration-none">Continue <i class="fa fa-chevron-double-right"></i></a>
             </div>
 
-            @hasanyrole($allRoles->implode('|'))
-            <div class="card-footer text-muted">
-                <small>Last updated {{ $scene->updated_at->diffForHumans() }}, by ??</small>
-            </div>
-            @endhasanyrole
+            @hasAdminRole
+                <div class="card-footer text-muted">
+                    <small>Last updated {{ $scene->updated_at->diffForHumans() }}, by ??</small>
+                </div>
+            @endHasAdminRole
         </div>
     </div>
 </div>

@@ -2,11 +2,10 @@
 
     <div class="form-floating d-block">
 
-        <textarea {{ $attributes->merge(['class' => $classList, 'type' => 'text', 'autocomplete' => 'off']) }}
+        <textarea {{ $attributes->merge(['class' => $classList]) }}
                name="{{ $name }}"
                id="{{ $name }}"
                placeholder="{{ $placeholder }}"
-               data-inputmask="{{ "'mask':'$inputMask'" }}"
                aria-describedby="{{ $name }}HelpBlock validation{{ $name }}Feedback"
                aria-label="{{ $placeholder }}"
         >
@@ -25,7 +24,7 @@
 
     <div class="valid-feedback">{{ $feedback ?? '' }}</div>
 
-    @error($name, 'page')
+    @error($name, $errorBag)
     <div id="validation{{ $name }}Feedback" class="invalid-feedback">
         {{ $message }}
     </div>
