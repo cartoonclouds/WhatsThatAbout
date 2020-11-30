@@ -38,7 +38,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'username' => $this->faker->userName,
+            'username' => $this->faker->unique()->userName,
             'email' => $this->faker->unique()->safeEmail,
             'banned' => $this->faker->boolean,
             'banned_reason' => function (array $user) {
