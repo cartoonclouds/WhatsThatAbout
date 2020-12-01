@@ -8,7 +8,7 @@ use Tests\TestCase;
 class ThemeTest extends TestCase
 {
 
-    public function testThemeHasScenes()
+    public function testThemeHasScenes ()
     {
         $SCENE_COUNT = 6;
 

@@ -18,6 +18,8 @@ class Theme extends Eloquent
 
     protected static $logOnlyDirty = true;
 
+    protected $guarded = [];
+
     protected $sluggableSource = 'name';
 
     protected $with = [

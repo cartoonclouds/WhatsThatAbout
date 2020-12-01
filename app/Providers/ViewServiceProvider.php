@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use App\Models\Genre;
 use App\Models\Theme;
 use App\Models\Format;
-use Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 

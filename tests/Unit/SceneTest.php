@@ -8,14 +8,14 @@ use Tests\TestCase;
 class SceneTest extends TestCase
 {
 
-    public function testSceneHasPage()
+    public function testSceneHasPage ()
     {
         $scene = Scene::factory()->forPage()->make();
 
         $this->assertNotNull($scene->page);
     }
 
-    public function testSceneHasComments()
+    public function testSceneHasComments ()
     {
         $COMMENT_COUNT = 6;
 
@@ -24,7 +24,7 @@ class SceneTest extends TestCase
         $this->assertCount($COMMENT_COUNT, $scene->comments);
     }
 
-    public function testSceneHasVotes()
+    public function testSceneHasVotes ()
     {
         $VOTE_COUNT = 6;
 
@@ -33,21 +33,21 @@ class SceneTest extends TestCase
         $this->assertCount($VOTE_COUNT, $scene->votes);
     }
 
-    public function testSceneHasCreator()
+    public function testSceneHasCreator ()
     {
         $scene = Scene::factory()->hasCreator()->make();
 
         $this->assertNotNull($scene->creator);
     }
 
-    public function testSceneHasGenre()
+    public function testSceneHasGenre ()
     {
         $scene = Scene::factory()->forGenre()->make();
 
         $this->assertNotNull($scene->genre);
     }
 
-    public function testSceneHasTheme()
+    public function testSceneHasTheme ()
     {
         $scene = Scene::factory()->forTheme()->make();
 

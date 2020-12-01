@@ -2,11 +2,10 @@
 
 namespace Tests\Feature\Vote\Scene;
 
-use App\Models\Vote;
 use App\Models\Scene;
 use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class ModeratorAccess extends TestCase
@@ -25,12 +24,13 @@ class ModeratorAccess extends TestCase
     protected $bannedUser;
     protected $scene;
 
-    public function setUp(): void
+    public function setUp ()
+    : void
     {
         parent::setUp();
 
         $this->user = User::factory()->create([
-            'banned' => false
+            'banned' => false,
         ]);
 
         $this->bannedUser = User::factory()->banned()->create();
@@ -42,299 +42,281 @@ class ModeratorAccess extends TestCase
         $this->bannedUser->assignRole(User::ROLE_MOD);
     }
 
-    public function testModeratorCanCreateSceneVote()
+    public function testModeratorCanCreateSceneVote ()
     {
         $response = $this->actingAs($this->user, 'api')->postJson("/api/scenes/{$this->scene->slug}/votes", Vote::factory()->make()->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
-    public function testBannedModeratorCannotCreateSceneVote()
+    public function testBannedModeratorCannotCreateSceneVote ()
     {
         $this->expectException(AuthorizationException::class);
 
         $response = $this->actingAs($this->bannedUser, 'api')->postJson("/api/scenes/{$this->scene->slug}/votes", Vote::factory()->make()->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // User Updating
-    public function testModeratorCanUpdateSceneVote()
+    public function testModeratorCanUpdateSceneVote ()
     {
         $vote = Vote::factory()->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $response = $this->actingAs($this->user, 'api')->putJson('/api/votes/' . $vote->getRouteKey(), $vote->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
-    public function testModeratorCanUpdateAnySceneVote()
-    {
-        $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create()
-        ]);
-
-        $response = $this->actingAs($this->user, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_OK);
-    }
-
-    public function testModeratorCanUpdateVoteOutsideHour()
-    {
-        $vote = Vote::factory()->create([
-            'user_id' => $this->user->id,
-            'created_at' => now()->subHours(2)
-        ]);
-
-        $response = $this->actingAs($this->user, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_OK);
-    }
-
-    public function testModeratorCanUpdateAnyVoteOutsideHour()
+    public function testModeratorCanUpdateAnySceneVote ()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create(),
-            'created_at' => now()->subHours(2)
         ]);
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
+    }
+
+    public function testModeratorCanUpdateVoteOutsideHour ()
+    {
+        $vote = Vote::factory()->create([
+            'user_id'    => $this->user->id,
+            'created_at' => now()->subHours(2),
+        ]);
+
+        $response = $this->actingAs($this->user, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
+
+        $response->assertSuccessful();
+    }
+
+    public function testModeratorCanUpdateAnyVoteOutsideHour ()
+    {
+        $vote = Vote::factory()->create([
+            'user_id'    => User::factory()->create(),
+            'created_at' => now()->subHours(2),
+        ]);
+
+        $response = $this->actingAs($this->user, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
+
+        $response->assertSuccessful();
     }
 
     // Banned User Updating
-    public function testBannedModeratorCannotUpdateSceneVote()
-    {
-        $this->expectException(AuthorizationException::class);
-
-        $vote = Vote::factory()->create([
-            'user_id' => $this->bannedUser->id
-        ]);
-
-        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
-    }
-
-    public function testBannedModeratorCannotUpdateAnySceneVote()
-    {
-        $this->expectException(AuthorizationException::class);
-
-        $vote = Vote::factory()->create([
-            'user_id' => $this->bannedUser->id
-        ]);
-
-        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
-    }
-
-    public function testBannedModeratorCannotUpdateVoteOutsideHour()
+    public function testBannedModeratorCannotUpdateSceneVote ()
     {
         $this->expectException(AuthorizationException::class);
 
         $vote = Vote::factory()->create([
             'user_id' => $this->bannedUser->id,
-            'created_at' => now()->subMinute()
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedModeratorCannotUpdateAnyVoteOutsideHour()
+    public function testBannedModeratorCannotUpdateAnySceneVote ()
     {
         $this->expectException(AuthorizationException::class);
 
         $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create(),
-            'created_at' => now()->subMinute()
+            'user_id' => $this->bannedUser->id,
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
+    }
 
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
+    public function testBannedModeratorCannotUpdateVoteOutsideHour ()
+    {
+        $this->expectException(AuthorizationException::class);
+
+        $vote = Vote::factory()->create([
+            'user_id'    => $this->bannedUser->id,
+            'created_at' => now()->subMinute(),
+        ]);
+
+        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
+    }
+
+    public function testBannedModeratorCannotUpdateAnyVoteOutsideHour ()
+    {
+        $this->expectException(AuthorizationException::class);
+
+        $vote = Vote::factory()->create([
+            'user_id'    => User::factory()->create(),
+            'created_at' => now()->subMinute(),
+        ]);
+
+        $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
     }
 
     // User Destroying
-    public function testModeratorCanDestroySceneVote()
+    public function testModeratorCanDestroySceneVote ()
     {
         $vote = Vote::factory()->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
-    public function testModeratorCannotDestroyAnySceneVote()
-    {
-        $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create()
-        ]);
-
-        $response = $this->actingAs($this->user, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_OK);
-    }
-
-    public function testModeratorCanDestroyVoteOutsideHour()
-    {
-        $vote = Vote::factory()->create([
-            'user_id' => $this->user->id,
-            'created_at' => now()->subHours(2)
-        ]);
-
-        $response = $this->actingAs($this->user, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_OK);
-    }
-
-    public function testModeratorCanDestroyAnyVoteOutsideHour()
+    public function testModeratorCannotDestroyAnySceneVote ()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create(),
-            'created_at' => now()->subHours(2)
         ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
+    }
+
+    public function testModeratorCanDestroyVoteOutsideHour ()
+    {
+        $vote = Vote::factory()->create([
+            'user_id'    => $this->user->id,
+            'created_at' => now()->subHours(2),
+        ]);
+
+        $response = $this->actingAs($this->user, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
+
+        $response->assertSuccessful();
+    }
+
+    public function testModeratorCanDestroyAnyVoteOutsideHour ()
+    {
+        $vote = Vote::factory()->create([
+            'user_id'    => User::factory()->create(),
+            'created_at' => now()->subHours(2),
+        ]);
+
+        $response = $this->actingAs($this->user, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
+
+        $response->assertSuccessful();
     }
 
     // Banned User Destroying
-    public function testBannedModeratorCannotDestroySceneVote()
-    {
-        $this->expectException(AuthorizationException::class);
-
-        $vote = Vote::factory()->create([
-            'user_id' => $this->bannedUser->id
-        ]);
-
-        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
-    }
-
-    public function testBannedModeratorCannotDestroyAnySceneVote()
-    {
-        $this->expectException(AuthorizationException::class);
-
-        $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create()
-        ]);
-
-        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
-    }
-
-    public function testBannedModeratorCannotDestroyVoteOutsideHour()
+    public function testBannedModeratorCannotDestroySceneVote ()
     {
         $this->expectException(AuthorizationException::class);
 
         $vote = Vote::factory()->create([
             'user_id' => $this->bannedUser->id,
-            'created_at' => now()->subMinute()
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedModeratorCannotDestroyAnyVoteOutsideHour()
+    public function testBannedModeratorCannotDestroyAnySceneVote ()
     {
         $this->expectException(AuthorizationException::class);
 
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create(),
-            'created_at' => now()->subMinute()
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
+    }
 
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
+    public function testBannedModeratorCannotDestroyVoteOutsideHour ()
+    {
+        $this->expectException(AuthorizationException::class);
+
+        $vote = Vote::factory()->create([
+            'user_id'    => $this->bannedUser->id,
+            'created_at' => now()->subMinute(),
+        ]);
+
+        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
+    }
+
+    public function testBannedModeratorCannotDestroyAnyVoteOutsideHour ()
+    {
+        $this->expectException(AuthorizationException::class);
+
+        $vote = Vote::factory()->create([
+            'user_id'    => User::factory()->create(),
+            'created_at' => now()->subMinute(),
+        ]);
+
+        $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
     }
 
     // User Deleting
-    public function testModeratorCanDeleteSceneVote()
-    {
-        $vote = Vote::factory()->create([
-            'user_id' => $this->user->id
-        ]);
-
-        $this->assertTrue($this->user->can('delete', $vote));
-    }
-
-    public function testModeratorCannDeleteAnySceneVote()
-    {
-        $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create()
-        ]);
-
-        $this->assertTrue($this->user->can('delete', $vote));
-    }
-
-    public function testModeratorCanDeleteVoteOutsideHour()
+    public function testModeratorCanDeleteSceneVote ()
     {
         $vote = Vote::factory()->create([
             'user_id' => $this->user->id,
-            'created_at' => now()->subHours(2)
         ]);
 
         $this->assertTrue($this->user->can('delete', $vote));
     }
 
-    public function testModeratorCanDeleteAnyVoteOutsideHour()
+    public function testModeratorCannDeleteAnySceneVote ()
     {
         $vote = Vote::factory()->create([
             'user_id' => User::factory()->create(),
-            'created_at' => now()->subHours(2)
+        ]);
+
+        $this->assertTrue($this->user->can('delete', $vote));
+    }
+
+    public function testModeratorCanDeleteVoteOutsideHour ()
+    {
+        $vote = Vote::factory()->create([
+            'user_id'    => $this->user->id,
+            'created_at' => now()->subHours(2),
+        ]);
+
+        $this->assertTrue($this->user->can('delete', $vote));
+    }
+
+    public function testModeratorCanDeleteAnyVoteOutsideHour ()
+    {
+        $vote = Vote::factory()->create([
+            'user_id'    => User::factory()->create(),
+            'created_at' => now()->subHours(2),
         ]);
 
         $this->assertTrue($this->user->can('delete', $vote));
     }
 
     // Banned User Deleting
-    public function testBannedModeratorCannotDeleteSceneVote()
-    {
-        $vote = Vote::factory()->create([
-            'user_id' => $this->bannedUser->id
-        ]);
-
-        $this->assertFalse($this->bannedUser->can('delete', $vote));
-    }
-
-    public function testBannedModeratorCannotDeleteAnySceneVote()
-    {
-        $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create()
-        ]);
-
-        $this->assertFalse($this->bannedUser->can('delete', $vote));
-    }
-
-    public function testBannedModeratorCannotDeleteVoteOutsideHour()
+    public function testBannedModeratorCannotDeleteSceneVote ()
     {
         $vote = Vote::factory()->create([
             'user_id' => $this->bannedUser->id,
-            'created_at' => now()->subHours(2)
         ]);
 
         $this->assertFalse($this->bannedUser->can('delete', $vote));
     }
 
-    public function testBannedModeratorCannotDeleteAnyVoteOutsideHour()
+    public function testBannedModeratorCannotDeleteAnySceneVote ()
+    {
+        $vote = Vote::factory()->create([
+            'user_id' => User::factory()->create(),
+        ]);
+
+        $this->assertFalse($this->bannedUser->can('delete', $vote));
+    }
+
+    public function testBannedModeratorCannotDeleteVoteOutsideHour ()
+    {
+        $vote = Vote::factory()->create([
+            'user_id'    => $this->bannedUser->id,
+            'created_at' => now()->subHours(2),
+        ]);
+
+        $this->assertFalse($this->bannedUser->can('delete', $vote));
+    }
+
+    public function testBannedModeratorCannotDeleteAnyVoteOutsideHour ()
     {
         $vote = Vote::factory()->create([
             'user_id'    => User::factory()->create(),
-            'created_at' => now()->subHours(2)
+            'created_at' => now()->subHours(2),
         ]);
 
         $this->assertFalse($this->bannedUser->can('delete', $vote));

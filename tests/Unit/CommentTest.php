@@ -3,13 +3,13 @@
 namespace Tests\Unit;
 
 use App\Models\Comment;
-use App\Models\Scene;
 use App\Models\Page;
+use App\Models\Scene;
 use Tests\TestCase;
 
 class CommentTest extends TestCase
 {
-    public function testCommentHasPage()
+    public function testCommentHasPage ()
     {
         $comment = Comment::factory()->for(
             Page::factory(),
@@ -19,7 +19,7 @@ class CommentTest extends TestCase
         $this->assertTrue($comment->page->exists);
     }
 
-    public function testCommentHasScene()
+    public function testCommentHasScene ()
     {
         $comment = Comment::factory()->for(
             Scene::factory(),
@@ -29,7 +29,7 @@ class CommentTest extends TestCase
         $this->assertTrue($comment->scene->exists);
     }
 
-    public function testCommentHasCommenter()
+    public function testCommentHasCommenter ()
     {
         $comment = Comment::factory()->hasCommenter()->make();
 

@@ -4,15 +4,14 @@ namespace Tests\Feature\User;
 
 use App\Http\Middleware\VerifyAdmin;
 use App\Models\User;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class AdminAccessTest extends TestCase
 {
     protected $user;
 
-    public function setUp(): void
+    public function setUp ()
+    : void
     {
         parent::setUp();
 

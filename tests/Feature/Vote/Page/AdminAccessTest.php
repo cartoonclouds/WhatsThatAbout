@@ -2,11 +2,10 @@
 
 namespace Tests\Feature\Vote\Page;
 
-use App\Models\Vote;
 use App\Models\Page;
 use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class AdminAccessTest extends TestCase
@@ -21,12 +20,13 @@ class AdminAccessTest extends TestCase
     protected $bannedUser;
     protected $page;
 
-    public function setUp(): void
+    public function setUp ()
+    : void
     {
         parent::setUp();
 
         $this->user = User::factory()->create([
-            'banned' => false
+            'banned' => false,
         ]);
 
         $this->bannedUser = User::factory()->banned()->create();
@@ -38,155 +38,145 @@ class AdminAccessTest extends TestCase
         $this->bannedUser->assignRole(User::ROLE_MOD);
     }
 
-    public function testAdminCanCreatePageVote()
+    public function testAdminCanCreatePageVote ()
     {
         $response = $this->actingAs($this->user, 'api')->postJson("/api/pages/{$this->page->slug}/votes", Vote::factory()->make()->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
-    public function testBannedAdminCannotCreatePageVote()
+    public function testBannedAdminCannotCreatePageVote ()
     {
         $this->expectException(AuthorizationException::class);
 
         $response = $this->actingAs($this->bannedUser, 'api')->postJson("/api/pages/{$this->page->slug}/votes", Vote::factory()->make()->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // User Updating
-    public function testAdminCanUpdatePageVote()
+    public function testAdminCanUpdatePageVote ()
     {
         $vote = Vote::factory()->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $response = $this->actingAs($this->user, 'api')->putJson('/api/votes/' . $vote->getRouteKey(), $vote->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
-    public function testAdminCanUpdateAnyPageVote()
+    public function testAdminCanUpdateAnyPageVote ()
     {
         $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
         ]);
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     // Banned User Updating
-    public function testBannedAdminCannotUpdatePageVote()
+    public function testBannedAdminCannotUpdatePageVote ()
     {
         $this->expectException(AuthorizationException::class);
 
         $vote = Vote::factory()->create([
-            'user_id' => $this->bannedUser->id
+            'user_id' => $this->bannedUser->id,
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedAdminCannotUpdateAnyPageVote()
+    public function testBannedAdminCannotUpdateAnyPageVote ()
     {
         $this->expectException(AuthorizationException::class);
 
         $vote = Vote::factory()->create([
-            'user_id' => $this->bannedUser->id
+            'user_id' => $this->bannedUser->id,
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // User Destroying
-    public function testAdminCanDestroyPageVote()
+    public function testAdminCanDestroyPageVote ()
     {
         $vote = Vote::factory()->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
-    public function testAdminCannotDestroyAnyPageVote()
+    public function testAdminCannotDestroyAnyPageVote ()
     {
         $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
         ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     // Banned User Destroying
-    public function testBannedAdminCannotDestroyPageVote()
+    public function testBannedAdminCannotDestroyPageVote ()
     {
         $this->expectException(AuthorizationException::class);
 
         $vote = Vote::factory()->create([
-            'user_id' => $this->bannedUser->id
+            'user_id' => $this->bannedUser->id,
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testBannedAdminCannotDestroyAnyPageVote()
+    public function testBannedAdminCannotDestroyAnyPageVote ()
     {
         $this->expectException(AuthorizationException::class);
 
         $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/votes/" . $vote->getRouteKey(), $vote->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // User Deleting
-    public function testAdminCanDeletePageVote()
+    public function testAdminCanDeletePageVote ()
     {
         $vote = Vote::factory()->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $this->assertTrue($this->user->can('delete', $vote));
     }
 
-    public function testAdminCannDeleteAnyPageVote()
+    public function testAdminCannDeleteAnyPageVote ()
     {
         $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
         ]);
 
         $this->assertTrue($this->user->can('delete', $vote));
     }
 
     // Banned User Deleting
-    public function testBannedAdminCannotDeletePageVote()
+    public function testBannedAdminCannotDeletePageVote ()
     {
         $vote = Vote::factory()->create([
-            'user_id' => $this->bannedUser->id
+            'user_id' => $this->bannedUser->id,
         ]);
 
         $this->assertFalse($this->bannedUser->can('delete', $vote));
     }
 
-    public function testBannedAdminCannotDeleteAnyPageVote()
+    public function testBannedAdminCannotDeleteAnyPageVote ()
     {
         $vote = Vote::factory()->create([
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
         ]);
 
         $this->assertFalse($this->bannedUser->can('delete', $vote));

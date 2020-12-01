@@ -13,17 +13,6 @@ class CommentPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any Comments.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
-     */
-    public function viewAny(?User $user)
-    {
-        return Response::allow();
-    }
-
-    /**
      * Determine whether the user can view the Comment.
      *
      * @param  \App\Models\User  $user

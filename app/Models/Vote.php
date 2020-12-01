@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Vote extends Eloquent
 {
-    use SoftDeletes;
     use HasFactory;
 
     protected $guarded = [];

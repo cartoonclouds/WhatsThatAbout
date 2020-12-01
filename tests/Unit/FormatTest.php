@@ -8,7 +8,7 @@ use Tests\TestCase;
 class FormatTest extends TestCase
 {
 
-    public function testFormatHasPages()
+    public function testFormatHasPages ()
     {
         $PAGE_COUNT = 6;
 

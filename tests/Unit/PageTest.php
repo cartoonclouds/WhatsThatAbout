@@ -8,7 +8,7 @@ use Tests\TestCase;
 class PageTest extends TestCase
 {
 
-    public function testPageHasScenes()
+    public function testPageHasScenes ()
     {
         $SEGMENT_COUNT = 6;
 
@@ -17,7 +17,7 @@ class PageTest extends TestCase
         $this->assertCount($SEGMENT_COUNT, $page->scenes);
     }
 
-    public function testPageHasComments()
+    public function testPageHasComments ()
     {
         $COMMENT_COUNT = 6;
 
@@ -26,7 +26,7 @@ class PageTest extends TestCase
         $this->assertCount($COMMENT_COUNT, $page->comments);
     }
 
-    public function testPageHasVotes()
+    public function testPageHasVotes ()
     {
         $VOTE_COUNT = 6;
 
@@ -35,7 +35,7 @@ class PageTest extends TestCase
         $this->assertCount($VOTE_COUNT, $page->votes);
     }
 
-    public function testPageHasCreator()
+    public function testPageHasCreator ()
     {
         $page = Page::factory()->hasCreator()->make();
 
@@ -43,14 +43,14 @@ class PageTest extends TestCase
     }
 
 
-    public function testPageHasGenre()
+    public function testPageHasGenre ()
     {
         $scene = Page::factory()->forGenre()->make();
 
         $this->assertNotNull($scene->genre);
     }
 
-    public function testPageHasFormat()
+    public function testPageHasFormat ()
     {
         $scene = Page::factory()->forFormat()->make();
 

@@ -6,7 +6,6 @@ use App\Models\Comment;
 use App\Models\Scene;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class AdminAccessTest extends TestCase
@@ -48,7 +47,7 @@ class AdminAccessTest extends TestCase
     {
         $response = $this->actingAs($this->user, 'api')->postJson("/api/scenes/{$this->scene->slug}/comments", Comment::factory()->make()->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     public function testBannedAdminCannotCreateSceneComment()
@@ -56,8 +55,6 @@ class AdminAccessTest extends TestCase
         $this->expectException(AuthorizationException::class);
 
         $response = $this->actingAs($this->bannedUser, 'api')->postJson("/api/scenes/{$this->scene->slug}/comments", Comment::factory()->make()->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // User Updating
@@ -69,7 +66,7 @@ class AdminAccessTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')->putJson('/api/comments/' . $comment->getRouteKey(), $comment->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     public function testAdminCanUpdateAnySceneComment()
@@ -80,7 +77,7 @@ class AdminAccessTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     public function testAdminCanUpdateCommentOutsideHour()
@@ -92,7 +89,7 @@ class AdminAccessTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     public function testAdminCanUpdateAnyCommentOutsideHour()
@@ -104,7 +101,7 @@ class AdminAccessTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     // Banned User Updating
@@ -117,8 +114,6 @@ class AdminAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedAdminCannotUpdateAnySceneComment()
@@ -130,8 +125,6 @@ class AdminAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedAdminCannotUpdateCommentOutsideHour()
@@ -144,8 +137,6 @@ class AdminAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedAdminCannotUpdateAnyCommentOutsideHour()
@@ -158,8 +149,6 @@ class AdminAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // User Destroying
@@ -171,7 +160,7 @@ class AdminAccessTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     public function testAdminCannotDestroyAnySceneComment()
@@ -182,7 +171,7 @@ class AdminAccessTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     public function testAdminCanDestroyCommentOutsideHour()
@@ -194,7 +183,7 @@ class AdminAccessTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     public function testAdminCanDestroyAnyCommentOutsideHour()
@@ -206,7 +195,7 @@ class AdminAccessTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     // Banned User Destroying
@@ -219,8 +208,6 @@ class AdminAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedAdminCannotDestroyAnySceneComment()
@@ -232,8 +219,6 @@ class AdminAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedAdminCannotDestroyCommentOutsideHour()
@@ -246,8 +231,6 @@ class AdminAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedAdminCannotDestroyAnyCommentOutsideHour()
@@ -260,8 +243,6 @@ class AdminAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // User Deleting

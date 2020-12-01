@@ -8,7 +8,7 @@ use Tests\TestCase;
 class GenreTest extends TestCase
 {
 
-    public function testGenreHasScenes()
+    public function testGenreHasScenes ()
     {
         $SCENE_COUNT = 6;
 
@@ -17,7 +17,7 @@ class GenreTest extends TestCase
         $this->assertCount($SCENE_COUNT, $genre->scenes);
     }
 
-    public function testGenreHasPages()
+    public function testGenreHasPages ()
     {
         $PAGE_COUNT = 6;
 

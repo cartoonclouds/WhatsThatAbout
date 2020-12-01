@@ -14,22 +14,23 @@ class AuthenticationTest extends TestCase
 {
     private $newUserDetails;
 
-    public function setUp(): void
+    public function setUp ()
+    : void
     {
         parent::setUp();
 
         $this->newUserDetails = [
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'username' => 'jdoe',
-            'password' => 'password',
+            'name'                  => 'John Doe',
+            'email'                 => 'john@example.com',
+            'username'              => 'jdoe',
+            'password'              => 'password',
             'password_confirmation' => 'password',
         ];
 
         //https://medium.com/@DCzajkowski/testing-laravel-authentication-flow-573ea0a96318
     }
 
-    public function testUserCanRegister()
+    public function testUserCanRegister ()
     {
         // GET route('register')
         $this->expectsEvents(Registered::class);
@@ -41,7 +42,7 @@ class AuthenticationTest extends TestCase
         $this->assertAuthenticated();
     }
 
-    public function testRegisteredUserReceivesVerificationEmail()
+    public function testRegisteredUserReceivesVerificationEmail ()
     {
         Notification::fake();
 
@@ -50,10 +51,10 @@ class AuthenticationTest extends TestCase
 
         $this->post('/register', $this->newUserDetails);
 
-        $this->assertDatabaseHas('users',[
-            'name' => $this->newUserDetails['name'],
+        $this->assertDatabaseHas('users', [
+            'name'     => $this->newUserDetails['name'],
             'username' => $this->newUserDetails['username'],
-            'email' => $this->newUserDetails['email'],
+            'email'    => $this->newUserDetails['email'],
         ])->assertAuthenticated();
 
         $user = $this->app->make('auth')->guard('web')->user();
@@ -88,21 +89,21 @@ class AuthenticationTest extends TestCase
     }
     */
 
-    public function testUserCanLogin()
+    public function testUserCanLogin ()
     {
         $this->expectsEvents(Login::class);
 
         $user = User::factory()->create();
 
         $this->post('/login', [
-            'email' => $user->email,
+            'email'    => $user->email,
             'password' => 'password',
         ])->assertRedirect('/');
 
         $this->assertAuthenticatedAs($user);
     }
 
-    public function testUserCanLogout()
+    public function testUserCanLogout ()
     {
         $this->expectsEvents(Logout::class);
 

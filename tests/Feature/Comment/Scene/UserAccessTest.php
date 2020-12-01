@@ -6,7 +6,6 @@ use App\Models\Comment;
 use App\Models\Scene;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class UserAccessTest extends TestCase
@@ -44,7 +43,7 @@ class UserAccessTest extends TestCase
     {
         $response = $this->actingAs($this->user, 'api')->postJson("/api/scenes/{$this->scene->slug}/comments", Comment::factory()->make()->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     public function testBannedUserCannotCreateSceneComment()
@@ -52,8 +51,6 @@ class UserAccessTest extends TestCase
         $this->expectException(AuthorizationException::class);
 
         $response = $this->actingAs($this->bannedUser, 'api')->postJson("/api/scenes/{$this->scene->slug}/comments", Comment::factory()->make()->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // User Updating
@@ -65,7 +62,7 @@ class UserAccessTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     public function testUserCannotUpdateAnySceneComment()
@@ -77,8 +74,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testUserCannotUpdateCommentOutsideHour()
@@ -91,8 +86,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testUserCannotUpdateAnyCommentOutsideHour()
@@ -105,8 +98,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // Banned User Updating
@@ -119,8 +110,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedUserCannotUpdateAnySceneComment()
@@ -132,8 +121,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedUserCannotUpdateCommentOutsideHour()
@@ -146,8 +133,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedUserCannotUpdateAnyCommentOutsideHour()
@@ -160,8 +145,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // User Destroying
@@ -173,7 +156,7 @@ class UserAccessTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
     public function testUserCannotDestroyAnySceneComment()
@@ -185,8 +168,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testUserCannotDestroyCommentOutsideHour()
@@ -199,8 +180,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testUserCannotDestroyAnyCommentOutsideHour()
@@ -213,8 +192,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // Banned User Destroying
@@ -227,8 +204,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedUserCannotDestroyAnySceneComment()
@@ -240,8 +215,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedUserCannotDestroyCommentOutsideHour()
@@ -254,8 +227,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testBannedUserCannotDestroyAnyCommentOutsideHour()
@@ -268,8 +239,6 @@ class UserAccessTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->bannedUser, 'api')->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     // User Deleting

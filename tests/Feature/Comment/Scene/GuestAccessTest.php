@@ -6,7 +6,6 @@ use App\Models\Comment;
 use App\Models\Scene;
 use App\Models\User;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class GuestAccessTest extends TestCase
@@ -26,8 +25,6 @@ class GuestAccessTest extends TestCase
         $this->expectException(AuthenticationException::class);
 
         $response = $this->postJson("/api/scenes/{$this->scene->slug}/comments", Comment::factory()->make()->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testGuestCannotUpdateAnySceneComment()
@@ -39,8 +36,6 @@ class GuestAccessTest extends TestCase
         ]);
 
         $response = $this->putJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testGuestCannotDestroyAnySceneComment()
@@ -52,7 +47,5 @@ class GuestAccessTest extends TestCase
         ]);
 
         $response = $this->deleteJson("/api/comments/" . $comment->getRouteKey(), $comment->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 }

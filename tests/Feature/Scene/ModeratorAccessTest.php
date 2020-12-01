@@ -6,14 +6,14 @@ use App\Http\Middleware\VerifyAdmin;
 use App\Models\Scene;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class ModeratorAccessTest extends TestCase
 {
     protected $user;
 
-    public function setUp(): void
+    public function setUp ()
+    : void
     {
         parent::setUp();
 
@@ -24,102 +24,98 @@ class ModeratorAccessTest extends TestCase
         $this->user->assignRole(User::ROLE_MOD);
     }
 
-    public function testModeratorCanCreateSegment()
+    public function testModeratorCanCreateSegment ()
     {
         $response = $this->actingAs($this->user)->post(route('admin.scenes.store'), Scene::factory()->make()->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
-    public function testModeratorCanUpdateSegment()
+    public function testModeratorCanUpdateSegment ()
     {
         $scene = Scene::factory()->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $response = $this->actingAs($this->user)->post(route('admin.scenes.store', $scene), Scene::factory()->make()->toArray());
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
-    public function testModeratorCannotUpdateAnySegment()
+    public function testModeratorCannotUpdateAnySegment ()
     {
         $this->expectException(AuthorizationException::class);
 
         $scene = Scene::factory()->create([
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
         ]);
 
         $response = $this->actingAs($this->user)->post(route('admin.scenes.store', $scene), Scene::factory()->make()->toArray());
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function testModeratorCanDestroySegment()
+    public function testModeratorCanDestroySegment ()
     {
         $scene = Scene::factory()->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson(route('api.admin.scenes.destroy', $scene));
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertSuccessful();
     }
 
-    public function testModeratorCannotDestroyAnySegment()
+    public function testModeratorCannotDestroyAnySegment ()
     {
         $this->expectException(AuthorizationException::class);
 
         $scene = Scene::factory()->create([
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
         ]);
 
         $response = $this->actingAs($this->user, 'api')->deleteJson(route('api.admin.scenes.destroy', $scene));
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
 
-    public function testModeratorCanDeleteSegment()
+    public function testModeratorCanDeleteSegment ()
     {
         $scene = Scene::factory()->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $this->assertTrue($this->user->can('delete', $scene));
     }
 
-    public function testModeratorCannotDeleteAnySegment()
+    public function testModeratorCannotDeleteAnySegment ()
     {
         $scene = Scene::factory()->create([
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
         ]);
 
         $this->assertFalse($this->user->can('delete', $scene));
     }
 
-    public function testModeratorCannotRestoreSegment()
+    public function testModeratorCannotRestoreSegment ()
     {
         $scene = Scene::factory()->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $this->assertFalse($this->user->can('restore', $scene));
     }
 
-    public function testModeratorCannotRestoreAnySegment()
+    public function testModeratorCannotRestoreAnySegment ()
     {
         $scene = Scene::factory()->create([
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
         ]);
 
         $this->assertFalse($this->user->can('restore', $scene));
     }
 
-    public function testModeratorCannotForceDeleteSegment()
+    public function testModeratorCannotForceDeleteSegment ()
     {
         $scene = Scene::factory()->create([
-            'user_id' => $this->user->id
+            'user_id' => $this->user->id,
         ]);
 
         $this->assertFalse($this->user->can('force-delete', $scene));

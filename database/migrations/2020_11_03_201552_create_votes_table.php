@@ -19,7 +19,6 @@ class CreateVotesTable extends Migration
             $table->morphs('votable');
             $table->foreignIdFor(User::class)->index('votes_user_id_idx');
             $table->boolean('vote')->comment('TRUE is a positive vote, FALSE a negative vote');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
