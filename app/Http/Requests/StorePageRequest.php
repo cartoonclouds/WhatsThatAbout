@@ -49,7 +49,7 @@ class StorePageRequest extends FormRequest
     /**
      * Save the Page.
      *
-     * @param \App\Models\Page $page
+     * @param  \App\Models\Page $page
      * @return \App\Models\Page|false
      */
     public function persist(Page $page)

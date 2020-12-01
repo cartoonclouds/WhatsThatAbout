@@ -44,7 +44,7 @@ class SceneController extends Controller
             if ($scene) {
                 return response()->json([
                     'message' => "Successfully updated scene $scene->title!",
-                    'scene' => $scene
+                    'scene'   => $scene
                 ]);
             }
 
@@ -57,7 +57,7 @@ class SceneController extends Controller
             if ($scene) {
                 return response()->json([
                     'message' => "Successfully created new scene $scene->title!",
-                    'scene' => $scene
+                    'scene'   => $scene
                 ]);
             }
 

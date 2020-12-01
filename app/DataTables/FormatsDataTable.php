@@ -12,7 +12,7 @@ class FormatsDataTable extends DataTable
     /**
      * Build DataTable class.
      *
-     * @param mixed $query Results from query() method.
+     * @param  mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable($query)
@@ -37,7 +37,7 @@ class FormatsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \\App\Models\Format $model
+     * @param  \\App\Models\Format $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Format $model)

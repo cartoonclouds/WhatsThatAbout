@@ -22,8 +22,8 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request   $request
-     * @param \App\Contracts\Commentable $commentable
+     * @param  \Illuminate\Http\Request   $request
+     * @param  \App\Contracts\Commentable $commentable
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Commentable $commentable)
@@ -36,9 +36,9 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request   $request
-     * @param \App\Contracts\Commentable $commentable
-     * @param \App\Models\Comment        $comment
+     * @param  \Illuminate\Http\Request   $request
+     * @param  \App\Contracts\Commentable $commentable
+     * @param  \App\Models\Comment        $comment
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Comment $comment)
@@ -51,8 +51,8 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Contracts\Commentable $commentable
-     * @param \App\Models\Comment        $comment
+     * @param  \App\Contracts\Commentable $commentable
+     * @param  \App\Models\Comment        $comment
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comment $comment)

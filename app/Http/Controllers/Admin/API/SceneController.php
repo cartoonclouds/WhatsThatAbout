@@ -21,7 +21,7 @@ class SceneController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Scene $scene
+     * @param  \App\Models\Scene $scene
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */

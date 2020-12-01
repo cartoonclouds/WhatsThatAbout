@@ -12,7 +12,7 @@ class PagesDataTable extends DataTable
     /**
      * Build DataTable class.
      *
-     * @param mixed $query Results from query() method.
+     * @param  mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable($query)
@@ -58,7 +58,7 @@ class PagesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Page $model
+     * @param  \App\Models\Page $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Page $model)

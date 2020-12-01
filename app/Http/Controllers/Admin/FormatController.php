@@ -44,7 +44,7 @@ class FormatController extends Controller
             if ($format) {
                 return response()->json([
                     'message' => "Successfully updated format $format->name!",
-                    'format' => $format
+                    'format'  => $format
                 ]);
             }
 
@@ -57,7 +57,7 @@ class FormatController extends Controller
             if ($format) {
                 return response()->json([
                     'message' => "Successfully created new format $format->name!",
-                    'format' => $format
+                    'format'  => $format
                 ]);
             }
 

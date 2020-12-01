@@ -21,8 +21,8 @@ class User extends Authenticatable implements MustVerifyEmail, Commentable, Vota
     use SoftDeletes;
 
     public const ROLE_SUPER_ADMIN = 'super-admin';
-    public const ROLE_ADMIN = 'admin';
-    public const ROLE_MOD = 'moderator';
+    public const ROLE_ADMIN       = 'admin';
+    public const ROLE_MOD         = 'moderator';
 
     protected $guarded = [];
 

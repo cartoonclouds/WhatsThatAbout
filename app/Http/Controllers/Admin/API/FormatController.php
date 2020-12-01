@@ -21,7 +21,7 @@ class FormatController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Format $format
+     * @param  \App\Models\Format $format
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */

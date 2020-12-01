@@ -44,7 +44,7 @@ class ThemeController extends Controller
             if ($theme) {
                 return response()->json([
                     'message' => "Successfully updated theme $theme->name!",
-                    'theme' => $theme
+                    'theme'   => $theme
                 ]);
             }
 
@@ -57,7 +57,7 @@ class ThemeController extends Controller
             if ($theme) {
                 return response()->json([
                     'message' => "Successfully created new theme $theme->name!",
-                    'theme' => $theme
+                    'theme'   => $theme
                 ]);
             }
 

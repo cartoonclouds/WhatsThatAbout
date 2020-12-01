@@ -49,7 +49,7 @@ class StoreSceneRequest extends FormRequest
     /**
      * Save the Scene.
      *
-     * @param \App\Models\Scene $scene
+     * @param  \App\Models\Scene $scene
      * @return \App\Models\Scene|false
      */
     public function persist(Scene $scene)

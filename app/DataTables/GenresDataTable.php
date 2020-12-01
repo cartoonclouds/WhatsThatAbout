@@ -12,7 +12,7 @@ class GenresDataTable extends DataTable
     /**
      * Build DataTable class.
      *
-     * @param mixed $query Results from query() method.
+     * @param  mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable($query)
@@ -38,7 +38,7 @@ class GenresDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \\App\Models\Genre $model
+     * @param  \\App\Models\Genre $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Genre $model)

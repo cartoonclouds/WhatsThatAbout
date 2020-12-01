@@ -25,9 +25,9 @@ class ImageUpload extends Component
      */
     public function __construct(string $name, string $source, string $label, string $helpText, string $errorBag = '', MessageBag $fieldErrors = null)
     {
-        $this->name = $name;
-        $this->source = $source;
-        $this->label = $label;
+        $this->name     = $name;
+        $this->source   = $source;
+        $this->label    = $label;
         $this->helpText = $helpText;
         $this->errorBag = $errorBag;
 

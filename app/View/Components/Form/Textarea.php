@@ -26,12 +26,12 @@ class Textarea extends Component
      */
     public function __construct(string $name, string $value, string $placeholder, string $label, string $helpText, string $errorBag = '', MessageBag $fieldErrors = null)
     {
-        $this->name = $name;
-        $this->value = $value;
+        $this->name        = $name;
+        $this->value       = $value;
         $this->placeholder = $placeholder;
-        $this->label = $label;
-        $this->helpText = $helpText;
-        $this->errorBag = $errorBag;
+        $this->label       = $label;
+        $this->helpText    = $helpText;
+        $this->errorBag    = $errorBag;
 
         $this->fieldErrors = $fieldErrors ?? new \Illuminate\Support\MessageBag;
     }

@@ -44,7 +44,7 @@ class GenreController extends Controller
             if ($genre) {
                 return response()->json([
                     'message' => "Successfully updated genre $genre->name!",
-                    'genre' => $genre
+                    'genre'   => $genre
                 ]);
             }
 
@@ -57,7 +57,7 @@ class GenreController extends Controller
             if ($genre) {
                 return response()->json([
                     'message' => "Successfully created new genre $genre->name!",
-                    'genre' => $genre
+                    'genre'   => $genre
                 ]);
             }
 

@@ -1,19 +1,46 @@
 <?xml version="1.0"?>
 <ruleset name="WTA Ruleset">
-    <description>WTA PHP CodeSniffer Ruleset</description>
+    <description>Custom Standard</description>
     <file>app/</file>
 
-    <!-- args -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+
+    <!-- ================= -->
+    <!-- Options for phpcs -->
+    <!-- ================= -->
+
+    <!-- Short options -->
+    <!-- -e : Explain a standard by showing the sniffs it includes -->
+    <!-- -p : Show progress of the run -->
+    <!-- -s : Show sniff codes in all reports -->
+    <!-- -n : Do not print warnings (shortcut for \-\-warning-severity=0) -->
+    <!-- -w : Print both warnings and errors (this is the default) -->
+    <!-- More: 'phpcs -h' print the help message -->
+    <arg value="ps" />
+
+    <!-- Use colors in output -->
     <arg name="colors"/>
-    <arg name="standard" value="PSR1,PSR2"/>
+
+<!--    <arg name="standard" value="Generic,Squiz,PSR1,PSR2"/>-->
+
+    <!-- Report types: -->
+    <!--    full (default), xml, checkstyle, csv, json, junit, emacs,      -->
+    <!--    source, summary, diff, svnblame, gitblame, hgblame, notifysend -->
+    <!--<arg name="report" value="full" />-->
 
     <!-- config -->
     <config name="php_path" value="/usr/bin/php"/>
 
-    <exclude-pattern>vendor</exclude-pattern>
 
     <rule ref="PSR1"/>
     <rule ref="PSR2">
         <exclude name="Generic.Files.LineLength"/>
     </rule>
+
+    <rule ref="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned"/>
+    <rule ref="Generic.Commenting.DocComment"/>
+    <rule ref="Generic.Formatting.MultipleStatementAlignment"/>
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+
+<!--    https://github.com/IceHe/phpcs-ruleset/blob/master/ruleset.xml-->
 </ruleset>

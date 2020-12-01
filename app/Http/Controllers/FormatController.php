@@ -30,7 +30,7 @@ class FormatController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Format $format
+     * @param  \App\Models\Format $format
      * @return \Illuminate\Contracts\View\View
      */
     public function show(Format $format)

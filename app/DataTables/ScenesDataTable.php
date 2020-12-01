@@ -12,7 +12,7 @@ class ScenesDataTable extends DataTable
     /**
      * Build DataTable class.
      *
-     * @param mixed $query Results from query() method.
+     * @param  mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable($query)
@@ -52,7 +52,7 @@ class ScenesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \\App\Models\Scene $model
+     * @param  \\App\Models\Scene $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Scene $model)

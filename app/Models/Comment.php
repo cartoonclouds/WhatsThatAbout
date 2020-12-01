@@ -63,7 +63,9 @@ class Comment extends Eloquent implements Commentable, Votable
 
 
 
-    /** LEAVE! Required for comments to be commentable */
+    /**
+ * LEAVE! Required for comments to be commentable
+*/
     public function commentable()
     {
         return $this->morphTo();

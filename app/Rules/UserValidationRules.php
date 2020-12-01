@@ -28,13 +28,13 @@ trait UserValidationRules
     private function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'name'     => 'required|string|max:255',
             'username' => [
                 'required',
                 'string',
                 'max:255',
             ],
-            'email' => [
+            'email'    => [
                 'required',
                 'email',
                 'string',
@@ -53,7 +53,7 @@ trait UserValidationRules
         return $this->rules() + [
             'password' => $this->passwordRules(),
             'username' => Rule::unique(User::class),
-            'email' => Rule::unique(User::class),
+            'email'    => Rule::unique(User::class),
         ];
     }
 
@@ -65,12 +65,12 @@ trait UserValidationRules
     protected function updateRules(): array
     {
         return $this->rules() + [
-                'banned' => 'in:1',
+                'banned'        => 'in:1',
                 'banned_reason' => 'string',
-                'banned_by' => 'exists:users,id',
-                'banned_at' => 'datetime',
-                'username' => Rule::unique('users')->ignore(user()->id),
-                'email' => Rule::unique('users')->ignore(user()->id),
+                'banned_by'     => 'exists:users,id',
+                'banned_at'     => 'datetime',
+                'username'      => Rule::unique('users')->ignore(user()->id),
+                'email'         => Rule::unique('users')->ignore(user()->id),
             ];
     }
 
@@ -78,7 +78,7 @@ trait UserValidationRules
     /**
      * Save the User.
      *
-     * @param \App\Models\User $user
+     * @param  \App\Models\User $user
      * @return \App\Models\User|false
      */
     public function persist(User $user, $input)
@@ -116,8 +116,8 @@ trait UserValidationRules
     protected function updateVerifiedUser($user, array $input)
     {
         $user->forceFill([
-            'name' => $input['name'],
-            'email' => $input['email'],
+            'name'              => $input['name'],
+            'email'             => $input['email'],
             'email_verified_at' => null,
         ])->save();
 

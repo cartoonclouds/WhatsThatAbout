@@ -45,7 +45,7 @@ class StoreFormatRequest extends FormRequest
     /**
      * Save the Format.
      *
-     * @param \App\Models\Format $format
+     * @param  \App\Models\Format $format
      * @return \App\Models\Format|false
      */
     public function persist(Format $format)

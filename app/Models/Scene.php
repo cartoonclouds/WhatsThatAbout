@@ -26,7 +26,7 @@ class Scene extends Eloquent implements Commentable, Votable
     protected $guarded = [];
 
     protected $casts = [ // object
-        'references' => 'array', // {imdb_id: tt0123456}, wikipedia_url: '', official_website_url: ''} http://www.imdb.com/title/tt0123456/
+        'references'      => 'array', // {imdb_id: tt0123456}, wikipedia_url: '', official_website_url: ''} http://www.imdb.com/title/tt0123456/
         'runs_throughout' => 'boolean',
     ];
 

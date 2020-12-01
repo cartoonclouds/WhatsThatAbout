@@ -21,7 +21,7 @@ class GenreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Genre $genre
+     * @param  \App\Models\Genre $genre
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */

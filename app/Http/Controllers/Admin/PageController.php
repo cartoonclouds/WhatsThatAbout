@@ -44,7 +44,7 @@ class PageController extends Controller
             if ($page) {
                 return response()->json([
                     'message' => "Successfully updated page $page->title!",
-                    'page' => $page
+                    'page'    => $page
                 ]);
             }
 
@@ -57,7 +57,7 @@ class PageController extends Controller
             if ($page) {
                 return response()->json([
                     'message' => "Successfully created new page $page->title!",
-                    'page' => $page
+                    'page'    => $page
                 ]);
             }
 

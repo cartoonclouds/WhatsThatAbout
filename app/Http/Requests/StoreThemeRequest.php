@@ -45,7 +45,7 @@ class StoreThemeRequest extends FormRequest
     /**
      * Save the Theme.
      *
-     * @param \App\Models\Theme $theme
+     * @param  \App\Models\Theme $theme
      * @return \App\Models\Theme|false
      */
     public function persist(Theme $theme)

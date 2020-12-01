@@ -45,7 +45,7 @@ class StoreGenreRequest extends FormRequest
     /**
      * Save the Genre.
      *
-     * @param \App\Models\Genre $genre
+     * @param  \App\Models\Genre $genre
      * @return \App\Models\Genre|false
      */
     public function persist(Genre $genre)

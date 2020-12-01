@@ -20,7 +20,7 @@ class ThemeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Theme $theme
+     * @param  \App\Models\Theme $theme
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */

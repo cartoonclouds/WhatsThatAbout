@@ -24,7 +24,7 @@ class LoginSuccessful
      */
     public function handle(Login $event)
     {
-        $event->subject = 'login';
+        $event->subject     = 'login';
         $event->description = 'Login successful';
 
         activity($event->subject)

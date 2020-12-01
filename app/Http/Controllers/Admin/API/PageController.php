@@ -21,7 +21,7 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Page $page
+     * @param  \App\Models\Page $page
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */

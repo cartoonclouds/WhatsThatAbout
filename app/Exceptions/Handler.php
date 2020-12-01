@@ -42,9 +42,9 @@ class Handler extends ExceptionHandler
         if ($this->shouldReport($exception) && app()->bound('sentry')) {
             app('sentry')->configureScope(function (Scope $scope): void {
                 $scope->setUser([
-                    'id' => user()->id,
-                    'username' => user()->username,
-                    'email' => user()->email,
+                    'id'         => user()->id,
+                    'username'   => user()->username,
+                    'email'      => user()->email,
                     'ip_address' => request()->ip(),
                 ]);
             });
