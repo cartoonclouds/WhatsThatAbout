@@ -12,8 +12,8 @@ class VerifyAdmin
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
@@ -22,7 +22,7 @@ class VerifyAdmin
             throw UnauthorizedException::forRoles([
                 User::ROLE_MOD,
                 User::ROLE_ADMIN,
-                User::ROLE_SUPER_ADMIN
+                User::ROLE_SUPER_ADMIN,
             ]);
         }
 

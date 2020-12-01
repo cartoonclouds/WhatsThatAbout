@@ -34,7 +34,7 @@ class PageController extends Controller
         $page->delete();
 
         return response()->json([
-            'message' => "Successfully deleted page $page->title!"
+            'message' => "Successfully deleted page $page->title!",
         ]);
     }
 }

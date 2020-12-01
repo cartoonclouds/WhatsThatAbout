@@ -30,7 +30,7 @@ class GenreController extends Controller
         $genre->delete();
 
         return response()->json([
-            'message' => "Successfully deleted genre $genre->title!"
+            'message' => "Successfully deleted genre $genre->title!",
         ]);
     }
 }

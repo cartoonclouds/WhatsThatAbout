@@ -34,7 +34,7 @@ class SceneController extends Controller
         $scene->delete();
 
         return response()->json([
-            'message' => "Successfully deleted scene $scene->title!"
+            'message' => "Successfully deleted scene $scene->title!",
         ]);
     }
 }

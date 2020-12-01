@@ -32,12 +32,12 @@ class StoreThemeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+            'name'       => [
                 'required',
                 'string',
                 Rule::unique('themes', 'name')->ignore($this->theme),
             ],
-            'definition' => ''
+            'definition' => '',
         ];
     }
 

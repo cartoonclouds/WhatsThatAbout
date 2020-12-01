@@ -30,18 +30,18 @@ class StoreSceneRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => [
+            'title'           => [
                 'required',
                 'string',
                 Rule::unique('scenes', 'title')->ignore($this->scene),
             ],
-            'start_time' => 'required',
-            'finish_time' => 'required',
+            'start_time'      => 'required',
+            'finish_time'     => 'required',
             'runs_throughout' => 'required|in:' . true . ',' . false,
-            'details' => 'required',
-            'page_id' => 'required|exists:pages,id',
-            'genre_id' => 'required|exists:genres,id',
-            'theme_id' => 'required|exists:themes,id',
+            'details'         => 'required',
+            'page_id'         => 'required|exists:pages,id',
+            'genre_id'        => 'required|exists:genres,id',
+            'theme_id'        => 'required|exists:themes,id',
         ];
     }
 

@@ -30,7 +30,7 @@ class FormatController extends Controller
         $format->delete();
 
         return response()->json([
-            'message' => "Successfully deleted format $format->title!"
+            'message' => "Successfully deleted format $format->title!",
         ]);
     }
 }

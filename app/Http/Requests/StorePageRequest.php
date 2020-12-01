@@ -32,16 +32,16 @@ class StorePageRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => [
+            'title'        => [
                 'required',
                 'string',
                 Rule::unique('pages', 'title')->ignore($this->page),
             ],
-            'synopsis' => 'required|string',
+            'synopsis'     => 'required|string',
             'release_year' => 'required',
-            'runtime' => 'required',
-            'genre_id' => 'exists:genres,id',
-            'format_id' => 'exists:formats,id',
+            'runtime'      => 'required',
+            'genre_id'     => 'exists:genres,id',
+            'format_id'    => 'exists:formats,id',
         ];
     }
 
@@ -74,7 +74,7 @@ class StorePageRequest extends FormRequest
 
                 $page->images()->updateOrCreate([
                     'file_path' => $coverImagePath,
-                    'cover' => true,
+                    'cover'     => true,
                 ]);
             }
 
@@ -87,7 +87,7 @@ class StorePageRequest extends FormRequest
 
                 $page->images()->updateOrCreate([
                     'file_path' => $heroImagePath,
-                    'hero' => true,
+                    'hero'      => true,
                 ]);
             }
 

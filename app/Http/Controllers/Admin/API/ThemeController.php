@@ -29,7 +29,7 @@ class ThemeController extends Controller
         $theme->delete();
 
         return response()->json([
-            'message' => "Successfully deleted theme $theme->title!"
+            'message' => "Successfully deleted theme $theme->title!",
         ]);
     }
 }

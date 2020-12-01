@@ -32,12 +32,12 @@ class StoreGenreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+            'name'       => [
                 'required',
                 'string',
                 Rule::unique('genres', 'name')->ignore($this->genre),
             ],
-            'definition' => ''
+            'definition' => '',
         ];
     }
 

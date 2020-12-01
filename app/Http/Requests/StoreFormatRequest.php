@@ -32,12 +32,12 @@ class StoreFormatRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+            'name'       => [
                 'required',
                 'string',
                 Rule::unique('formats', 'name')->ignore($this->format),
             ],
-            'definition' => ''
+            'definition' => '',
         ];
     }
 
