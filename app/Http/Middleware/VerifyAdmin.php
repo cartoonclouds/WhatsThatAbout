@@ -3,13 +3,9 @@
 namespace App\Http\Middleware;
 
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Closure;
-use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Exceptions\UnauthorizedException;
-use Spatie\Permission\Models\Role;
 
 class VerifyAdmin
 {

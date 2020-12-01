@@ -6,7 +6,6 @@ use App\Contracts\Commentable;
 use App\Contracts\Votable;
 use App\Traits\AppendModelRoutes;
 use App\Traits\SimpleSluggable;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;

@@ -4,9 +4,8 @@ namespace App\Models;
 
 use App\Traits\AppendModelRoutes;
 use App\Traits\SimpleSluggable;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Eloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Theme extends Eloquent

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin\API;
 
-use App\DataTables\GenresDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Genre;
 

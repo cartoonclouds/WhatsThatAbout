@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Eloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reference extends Eloquent
 {

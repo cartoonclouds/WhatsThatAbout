@@ -3,7 +3,6 @@
 namespace App\View\Components\Form;
 
 use Illuminate\Contracts\Support\MessageBag;
-use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class ImageUpload extends Component

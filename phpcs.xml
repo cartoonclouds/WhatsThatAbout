@@ -5,7 +5,7 @@
 
     <!-- args -->
     <arg name="colors"/>
-    <arg name="standard" value="PSR1,PSR12"/>
+    <arg name="standard" value="PSR1,PSR2"/>
 
     <!-- config -->
     <config name="php_path" value="/usr/bin/php"/>
@@ -13,8 +13,7 @@
     <exclude-pattern>vendor</exclude-pattern>
 
     <rule ref="PSR1"/>
-    <rule ref="PSR12">
-        <exclude name="PSR12.Classes.ClassInstantiation"/>
+    <rule ref="PSR2">
         <exclude name="Generic.Files.LineLength"/>
     </rule>
 </ruleset>

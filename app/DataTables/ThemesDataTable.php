@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
+use App\Models\Theme;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
-use App\Models\Theme;
 
 class ThemesDataTable extends DataTable
 {
