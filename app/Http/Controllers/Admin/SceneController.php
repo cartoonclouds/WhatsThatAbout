@@ -90,5 +90,4 @@ class SceneController extends Controller
     {
         return view('scenes.admin.edit', compact('scene'));
     }
-
 }

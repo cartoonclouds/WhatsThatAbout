@@ -23,7 +23,7 @@ class FormatController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index ()
+    public function index()
     {
         //
     }
@@ -34,7 +34,7 @@ class FormatController extends Controller
      * @param \App\Models\Format $format
      * @return \Illuminate\Contracts\View\View
      */
-    public function show (Format $format)
+    public function show(Format $format)
     {
         return view('formats.show', compact('format'));
     }

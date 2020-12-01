@@ -20,6 +20,8 @@ class UpdateUserProfileInformation extends Controller implements UpdatesUserProf
      */
     public function update($user, array $input)
     {
+        $this->authorize('update', $user);
+
         $validated = Validator::make($input, $this->updateRules())->validateWithBag('updateProfileInformation');
 
         $this->persist($user, $validated);

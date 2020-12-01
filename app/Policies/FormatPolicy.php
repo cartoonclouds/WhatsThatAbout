@@ -80,5 +80,4 @@ class FormatPolicy
 
         return Response::deny('A format can only be deleted by a super administrator');
     }
-
 }

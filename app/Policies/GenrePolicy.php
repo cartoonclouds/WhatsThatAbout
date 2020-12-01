@@ -80,5 +80,4 @@ class GenrePolicy
 
         return Response::deny('A genre can only be deleted by a super administrator');
     }
-
 }

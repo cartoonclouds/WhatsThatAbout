@@ -37,5 +37,4 @@ class GenreController extends Controller
     {
         return view('genres.show', compact('genre'));
     }
-
 }

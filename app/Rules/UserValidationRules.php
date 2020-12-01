@@ -84,20 +84,13 @@ trait UserValidationRules
     public function persist(User $user, $input)
     {
         if (!$user->exists) {
-
             // create a new user and hash the password
             $user->password = Hash::make($input['password']);
-
-
         } else {
-
             // if the user hasn't been verified but email changed, resend the verify email notification
             if ($input['email'] !== $user->email && $user instanceof MustVerifyEmail) {
-
                 $this->updateVerifiedUser($user, $input);
-
             }
-
         }
 
 

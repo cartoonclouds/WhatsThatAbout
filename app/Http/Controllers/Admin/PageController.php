@@ -89,5 +89,4 @@ class PageController extends Controller
     {
         return view('pages.admin.edit', compact('page'));
     }
-
 }

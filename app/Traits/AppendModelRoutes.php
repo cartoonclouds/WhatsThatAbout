@@ -28,5 +28,4 @@ trait AppendModelRoutes
             'model_type',
         ]);
     }
-
 }

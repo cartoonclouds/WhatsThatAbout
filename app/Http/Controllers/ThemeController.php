@@ -37,5 +37,4 @@ class ThemeController extends Controller
     {
         return view('themes.show', compact('theme'));
     }
-
 }

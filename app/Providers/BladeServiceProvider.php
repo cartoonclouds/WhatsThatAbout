@@ -39,11 +39,11 @@ class BladeServiceProvider extends ServiceProvider
 
         // Does user have any admin role blade directive
         Blade::directive('hasAdminRole', function ($value) {
-            return "<?php if(auth()->check() && auth()->user()->hasAnyRole('".collect([
+            return "<?php if(auth()->check() && auth()->user()->hasAnyRole('" . collect([
                     \App\Models\User::ROLE_SUPER_ADMIN,
                     \App\Models\User::ROLE_ADMIN,
                     \App\Models\User::ROLE_MOD
-                ])->implode('|')."')): ?>";
+                ])->implode('|') . "')): ?>";
         });
 
         Blade::directive('endHasAdminRole', function ($value) {

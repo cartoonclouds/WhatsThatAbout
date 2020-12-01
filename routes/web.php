@@ -28,36 +28,47 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/{page:slug}', PageViewController::class)->name('page');
+Route::get('/{page:slug}', PageViewController::class)->name('pages');
 
-Route::get('scene/{scene:slug}', SceneViewController::class)->name('scene');
+Route::get('scenes/{scene:slug}', SceneViewController::class)->name('scenes');
 
-Route::resource('theme', ThemeController::class)->only(['index', 'show']);
 
-Route::resource('format', FormatController::class)->only(['index', 'show']);
-
-Route::resource('genre', GenreController::class)->only(['index', 'show']);
+Route::resources([
+    'themes' => ThemeController::class,
+    'formats' => FormatController::class,
+    'genres' => GenreController::class
+], [
+    'only' => [ 'index', 'show' ]
+]);
 
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::resource('user', UserController::class)->only(['show', 'edit']);
 
-    Route::group(['middleware' => ['auth.admin'], 'prefix' => 'admin/'], function () {
+    Route::group(['middleware' => ['auth.admin'], 'prefix' => 'admin/', 'as' => 'admin.'], function () {
 
         Route::resource('users', AdminUserController::class)->only(['index', 'edit']);
 
-        Route::resource('pages', AdminPageController::class)->only(['index', 'create', 'edit']);
         Route::post('pages/store/{page:slug?}', [AdminPageController::class, 'updateOrCreate'])->name('pages.store');
 
-        Route::resource('scenes', AdminSceneController::class)->only(['index', 'create', 'edit']);
         Route::post('scenes/store/{scene:slug?}', [AdminSceneController::class, 'updateOrCreate'])->name('scenes.store');
 
-        Route::resource('themes', AdminThemeController::class)->only(['index', 'create', 'edit']);
+        Route::post('themes/store/{theme:slug?}', [AdminThemeController::class, 'updateOrCreate'])->name('themes.store');
 
-        Route::resource('genres', AdminGenreController::class)->only(['index', 'create', 'edit']);
+        Route::post('genres/store/{genre:slug?}', [AdminGenreController::class, 'updateOrCreate'])->name('genres.store');
 
-        Route::resource('formats', AdminFormatController::class)->only(['index', 'create', 'edit']);
+        Route::post('formats/store/{format:slug?}', [AdminFormatController::class, 'updateOrCreate'])->name('formats.store');
+
+        Route::resources([
+            'pages' => AdminPageController::class,
+            'scenes' => AdminSceneController::class,
+            'themes' => AdminThemeController::class,
+            'genres' => AdminGenreController::class,
+            'formats' => AdminFormatController::class,
+        ], [
+            'only' => ['index', 'create', 'edit']
+        ]);
 
     });
 

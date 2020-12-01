@@ -28,8 +28,6 @@ class VerifyAdmin
                 User::ROLE_ADMIN,
                 User::ROLE_SUPER_ADMIN
             ]);
-
-            return redirect(RouteServiceProvider::HOME);
         }
 
         return $next($request);

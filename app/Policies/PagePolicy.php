@@ -37,6 +37,22 @@ class PagePolicy
 
 
     /**
+     * Determine whether the user can create Scenes.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
+    {
+        if ($user->hasAnyRole([User::ROLE_ADMIN])) {
+            return Response::allow();
+        }
+
+        return Response::deny('A page can only be created by an administrator');
+    }
+
+
+    /**
      * Determine whether the user can update the Page.
      *
      * @param  \App\Models\User $user

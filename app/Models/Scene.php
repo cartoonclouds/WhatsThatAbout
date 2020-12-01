@@ -98,5 +98,4 @@ class Scene extends Eloquent implements Commentable, Votable
             'deleted' => "<span class='text-muted font-italic'>creator deleted</span>"
         ]);
     }
-
 }

@@ -36,7 +36,6 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('formats', Format::get()->map->only(['name', 'url']));
 
             $view->with('themes', Theme::get()->map->only(['name', 'url']));
-
         });
     }
 }

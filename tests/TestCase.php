@@ -12,8 +12,6 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
     use WithFaker;
 
-    protected bool $withSeed = true;
-
     protected function setUp(): void
     {
         parent::setUp();
